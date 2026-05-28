@@ -29,7 +29,7 @@ export default function Navbar() {
 
   const navLinks = [
     { name: "About", href: "/#about" },
-    { name: "Endorsement", href: "/#endorsement" },
+    { name: "Simulator Endorsement", href: "/simulation" },
     { name: "Career", href: "/career" },
     { name: "Contact us", href: "/#contact" },
   ];

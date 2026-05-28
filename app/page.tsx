@@ -7,7 +7,6 @@ import OurBranch from "@/components/sections/OurBranch";
 import OurTeam from "@/components/sections/OurTeam";
 import VillaDetail from "@/components/sections/VillaDetail";
 import PricingPackages from "@/components/sections/PricingPackages";
-import SimulationPackage from "@/components/sections/SimulationPackage";
 import Role from "@/components/sections/Role";
 import FollowOurJourney from "@/components/sections/FollowOurJourney";
 import Faq from "@/components/sections/Faq";
@@ -24,7 +23,6 @@ export default function Home() {
       <VillaDetail />
       <OurBranch />
       <PricingPackages />
-      <SimulationPackage />
       <Role />
       <FollowOurJourney />
       <Faq />
