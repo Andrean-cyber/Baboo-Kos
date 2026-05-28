@@ -130,7 +130,8 @@ export default function Navbar() {
                 <div className="bg-zinc-200 my-2 w-full h-px" />
 
                 {/* MOBILE BUTTON */}
-                <button className="bg-[#495C29] shadow-lg rounded-full h-14 font-bold text-[15px] text-white active:scale-[0.98] transition-transform">Booking Now</button>
+                <button onClick={handleWhatsapp} className="bg-[#495C29] shadow-lg rounded-full h-14 font-bold text-[15px] text-white active:scale-[0.98] transition-transform">Booking Now</button>
+                
               </div>
             </motion.div>
           </>

@@ -526,7 +526,7 @@ function SimulationContent() {
             <a
               target="_blank"
               rel="noreferrer"
-              href={`https://wa.me/628993503094?text=${buildWA()}`}
+              href={`https://wa.me/6287785338441?text=${buildWA()}`}
               className="flex justify-center items-center gap-2 bg-[#F3C546] hover:bg-[#e0b641] mt-6 py-3.5 rounded-xl font-bold text-zinc-900 text-sm transition-colors"
             >
               <ShoppingCart size={18} />

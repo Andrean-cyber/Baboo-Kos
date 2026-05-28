@@ -6,9 +6,7 @@ import ScrollToTop from "@/components/sections/ScrollToTop";
 export const metadata: Metadata = {
   title: "Babookos - Exclusive Stay",
   description: "Find your perfect stay at Babookos",
-  icons: {
-    icon: '/babookos.png', // Pastikan file icon.png ada di folder public/
-  },
+  
 };
 
 export default function RootLayout({
@@ -18,9 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
-        className="bg-[#F5F5F2] overflow-x-hidden font-sans text-zinc-900 antialiased"
-      >
+      <body className="bg-[#F5F5F2] overflow-x-hidden font-sans text-zinc-900 antialiased">
         <Navbar />
         {children}
         <ScrollToTop />

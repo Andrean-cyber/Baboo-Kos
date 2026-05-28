@@ -173,7 +173,7 @@ export default function HeroKos() {
         {/* MOBILE HERO */}
         {/* ========================= */}
         <div className="lg:hidden block relative w-full">
-          <div className={cn("relative mt-20 rounded-[1rem] h-[560px] overflow-hidden transition-all duration-1000 ease-out mtshadow-[0_10px_40px_rgba(0,0,0,0.08)]", isLoaded ? "opacity-100 scale-100" : "opacity-0 scale-95")}>
+          <div className={cn("relative mt-20 rounded-[2rem] h-[560px] overflow-hidden transition-all duration-1000 ease-out mtshadow-[0_10px_40px_rgba(0,0,0,0.08)]", isLoaded ? "opacity-100 scale-100" : "opacity-0 scale-95")}>
             <img src="/hero.jpg" alt="Baboo Kos" className="absolute inset-0 w-full h-full object-cover" />
             <div className="absolute inset-0 bg-black/28" />
 
