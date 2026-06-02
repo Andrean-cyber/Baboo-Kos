@@ -58,7 +58,7 @@ export default function HeroKos() {
 
   // Daftar kata-kata tidak baik (Silakan tambahkan sesuai kebutuhan Anda)
   const badWordsDictionary = [
-    "anjing", "babi", "bangsat", "bodoh", "goblok", "tolol", "jelek", "kasar"
+    "anjing", "babi", "bangsat", "bodoh", "goblok", "tolol", "jelek", "kasar", "jancok", "memek", "kontol", "lol", "bajingan"
   ];
 
   const handleWhatsAppRedirect = () => {
@@ -71,7 +71,12 @@ export default function HeroKos() {
       // Proses Sensor: Ganti kata tidak baik dengan "***"
       badWordsDictionary.forEach((word) => {
         // Regex 'gi' (Global, Case-Insensitive) agar menyensor huruf besar/kecil
-        const regex = new RegExp(`\\b${word}\\b`, "gi"); 
+        const escapedWord = word.replace(
+          /[.*+?^${}()|[\]\\]/g,
+          "\\$&"
+        );
+
+        const regex = new RegExp(`\\b${escapedWord}\\b`, "gi");
         message = message.replace(regex, "***");
       });
     }
@@ -97,7 +102,7 @@ export default function HeroKos() {
       {/* ========================= */}
       {/* HERO SECTION */}
       {/* ========================= */}
-      <section className="relative flex lg:flex-row flex-col lg:items-start gap-8 lg:gap-10 lg:mx-auto px-4 sm:px-6 md:px-10 lg:px-12 pt-4 lg:pt-6 w-full max-w-[1440px] overflow-hidden">
+      <section className="relative flex lg:flex-row flex-col lg:items-start gap-8 lg:gap-10 lg:mx-auto px-4 sm:px-6 md:px-10 lg:px-12 pt-4 lg:pt-6 w-full max-w-[1280px] overflow-hidden">
         
         {/* ========================= */}
         {/* LEFT CONTENT (DESKTOP) */}
@@ -106,7 +111,7 @@ export default function HeroKos() {
           {/* Badge */}
           <ShinyButton
             className={cn(
-              "inline-flex items-center gap-2 bg-[#EEF3E8] mb-7 px-4 py-2 rounded-full w-max font-bold text-[#495C29] text-sm transition-all duration-1000 ease-out",
+              "inline-flex items-center gap-2 bg-[#FAFAFA] mb-7 px-4 py-2 rounded-full w-max font-bold text-[#495C29] text-sm transition-all duration-1000 ease-out",
               isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6",
             )}
           >
@@ -181,7 +186,7 @@ export default function HeroKos() {
               
               <ShinyButton
             className={cn(
-              "inline-flex items-center gap-1.5 bg-[#EEF3E8]/95 backdrop-blur-md mb-4 px-3 py-1.5 rounded-full w-max font-bold text-[#495C29] text-[11px] transition-all duration-1000 ease-out delay-300",
+              "inline-flex items-center gap-1.5 bg-[#FAFAFA]/95 backdrop-blur-md mb-4 px-3 py-1.5 rounded-full w-max font-bold text-[#495C29] text-[11px] transition-all duration-1000 ease-out delay-300",
                   isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6",
             )}
           >
@@ -200,7 +205,7 @@ export default function HeroKos() {
 
             {/* Mobile Floating Card */}
             <div className={cn("bottom-5 left-1/2 z-30 absolute flex items-center w-[85%] transition-all duration-1000 ease-out delay-[800ms]", isLoaded ? "opacity-100 -translate-x-1/2" : "opacity-0 translate-x-[50%]")}>
-              <div className="flex flex-1 items-center bg-[#EEF3E8]/95 shadow-xl backdrop-blur-xl py-2 pr-4 pl-2 border border-white/40 rounded-full">
+              <div className="flex flex-1 items-center bg-[#FAFAFA]/95 shadow-xl backdrop-blur-xl py-2 pr-4 pl-2 border border-white/40 rounded-full">
                 <img src="/hero.jpg" alt="Agent" className="border-2 border-white rounded-full w-12 h-12 object-cover" />
                 <div className="ml-3">
                   <p className="font-extrabold text-[#495C29] text-[15px]">Baboo Kos</p>
@@ -219,12 +224,12 @@ export default function HeroKos() {
         {/* DESKTOP IMAGE */}
         {/* ========================= */}
         <div className="hidden lg:block relative w-[52%]">
-          <div className={cn("relative shadow-[0_10px_40px_rgba(0,0,0,0.08)] rounded-[2.5rem] w-full h-[650px] transition-all duration-1000 ease-out", isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10")}>
+          <div className={cn("relative  rounded-[2.5rem] w-full h-[650px] transition-all duration-1000 ease-out", isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10")}>
             <div className="absolute inset-0 rounded-[2.5rem] overflow-hidden">
               <img src="/hero.jpg" alt="BabooKos" className="brightness-[0.95] w-full h-full object-cover" />
             </div>
 
-            <div className="top-0 right-0 z-10 absolute bg-[#FAFAFA] rounded-bl-[2.5rem] w-[180px] h-[84px]">
+            <div className="top-0 right-0 z-5 absolute bg-[#FAFAFA] rounded-bl-[2.5rem] w-[180px] h-[84px]">
               <div className="top-0 -left-[30px] absolute bg-transparent shadow-[15px_-15px_0_15px_#FAFAFA] rounded-tr-[1.5rem] w-[30px] h-[30px]" />
               <div className="right-0 -bottom-[30px] absolute bg-transparent shadow-[15px_-15px_0_15px_#FAFAFA] rounded-tr-[1.5rem] w-[30px] h-[30px]" />
             </div>
@@ -256,7 +261,7 @@ export default function HeroKos() {
 
             {/* FLOATING BOTTOM RIGHT */}
             <div className={cn("right-8 bottom-8 z-20 absolute flex items-center w-[420px] transition-all duration-1000 ease-out delay-[900ms]", isLoaded ? "opacity-100 translate-x-0" : "opacity-0 translate-x-24")}>
-              <div className="flex flex-1 items-center bg-[#EBF0E6]/95 shadow-xl backdrop-blur-xl py-2 pr-5 pl-2 border border-white/50 rounded-full">
+              <div className="flex flex-1 items-center bg-[#FAFAFA]/95 shadow-xl backdrop-blur-xl py-2 pr-5 pl-2 border border-white/50 rounded-full">
                 <img src="/hero.jpg" alt="Agent" className="shadow-sm border-2 border-white rounded-full w-12 h-12 object-cover" />
                 <div className="ml-3">
                   <p className="font-bold text-[#495C29] text-[15px]">Baboo Kos</p>
@@ -276,7 +281,8 @@ export default function HeroKos() {
       {/* STATS */}
       {/* ========================= */}
       <section className="mx-auto mt-8 md:mt-14 px-5 md:px-10 lg:px-16 w-full max-w-[1240px]">
-        <div className="md:flex md:justify-between md:items-center gap-x-6 gap-y-8 grid grid-cols-2">
+        {/* Tambahkan justify-items-center di bawah ini */}
+        <div className="md:flex md:justify-between md:items-center gap-x-6 gap-y-8 grid grid-cols-2 justify-items-center">
           <StatItem endValue={40000} suffix=" +" text={<>Pengguna <br /> Jasa</>} />
           <StatItem endValue={2000} suffix=" +" text={<>Mitra Owner <br /> Kos</>} />
           <StatItem endValue={10} suffix=" +" text={<>Tersebar di <br /> Kota Besar</>} />
@@ -288,7 +294,7 @@ export default function HeroKos() {
       {/* MOBILE SEARCH */}
       {/* ========================= */}
       <section className="lg:hidden mt-10 px-4 md:px-6 pb-10">
-        <div className={cn("flex items-center bg-white shadow-sm p-1.5 border border-[#D9E1CE] rounded-full transition-all duration-1000 ease-out", isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6")}>
+        <div className={cn("flex items-center bg-white shadow-sm p-1.5 border border-[#FAFAFA] rounded-full transition-all duration-1000 ease-out", isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6")}>
           <input 
             type="text" 
             value={inputValue}

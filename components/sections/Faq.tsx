@@ -68,9 +68,10 @@ export default function Faq() {
 
           {/* BIG TITLE */}
           <h2 className={cn("mb-8 font-bold text-zinc-900 text-3xl md:text-4xl lg:text-5xl leading-tight tracking-tight transition-all duration-700 ease-out delay-150", isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0")}>
-            Pertanyaan yang
+            <span className="inline">Pertanyaan yang</span>
+            <span className="inline md:hidden"> </span>
             <br className="hidden md:block" />
-            Sering Diajukan
+            <span className="inline">Sering Diajukan</span>
           </h2>
 
           {/* CTA BOX */}

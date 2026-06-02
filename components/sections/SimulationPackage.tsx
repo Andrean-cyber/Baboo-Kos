@@ -76,10 +76,10 @@ function SimulationContent() {
   }, []);
 
   // STATES
-  const [selectedPlatforms, setSelectedPlatforms] = useState<Platform[]>(["tiktok", "instagram"]);
-  const [selectedPackages, setSelectedPackages] = useState<string[]>(["tk_supreme", "ig_reels"]);
+  const [selectedPlatforms, setSelectedPlatforms] = useState<Platform[]>([]);
+  const [selectedPackages, setSelectedPackages] = useState<string[]>([]);
   const [igStoryUpload, setIgStoryUpload] = useState<1 | 2 | 3>(1);
-  const [selectedAddons, setSelectedAddons] = useState<string[]>(["pin_7"]);
+  const [selectedAddons, setSelectedAddons] = useState<string[]>([]);
 
   const formatPrice = (price: number) => new Intl.NumberFormat("id-ID").format(price);
 
@@ -526,7 +526,7 @@ function SimulationContent() {
             <a
               target="_blank"
               rel="noreferrer"
-              href={`https://wa.me/6287785338441?text=${buildWA()}`}
+              href={`https://wa.me/6285178476086?text=${buildWA()}`}
               className="flex justify-center items-center gap-2 bg-[#F3C546] hover:bg-[#e0b641] mt-6 py-3.5 rounded-xl font-bold text-zinc-900 text-sm transition-colors"
             >
               <ShoppingCart size={18} />
