@@ -12,6 +12,7 @@ import FollowOurJourney from "@/components/sections/FollowOurJourney";
 import FormKos from "@/components/sections/FormKos";
 import Faq from "@/components/sections/Faq";
 import Footer from "@/components/sections/Footer";
+import Testimonial from "@/components/sections/Testimonial";
 import { cn } from "../lib/utils";
 
 export default function Home() {
@@ -27,6 +28,7 @@ export default function Home() {
       <Role />
       <FollowOurJourney />
       <FormKos />
+      <Testimonial />
       <Faq />
       <Footer />
     </main>
