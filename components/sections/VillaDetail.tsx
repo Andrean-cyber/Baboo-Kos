@@ -163,7 +163,7 @@ export default function VillaDetail() {
           <button
   onClick={handleWhatsapp}
   className={cn(
-    "flex justify-center items-center gap-2 bg-[#495C29] hover:bg-[#44552a] shadow-md mt-auto py-4 rounded-full font-bold text-white text-sm active:scale-95 transition-all"
+    "flex justify-center items-center gap-2 bg-[#495C29] hover:bg-[#44552a] shadow-md mt-auto py-4 rounded-2xl font-bold text-white text-sm active:scale-95 transition-all"
   )}
 >
   Cek Ketersediaan

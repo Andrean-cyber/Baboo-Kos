@@ -67,14 +67,41 @@ export default function OurTeam() {
             </p>
 
             {/* TIMELINE LIST */}
-            <div className="relative flex flex-col gap-6 pl-4 md:pl-6">
-              <div className="top-4 bottom-6 left-[27px] md:left-[35px] absolute bg-zinc-200 w-px" />
+          <div className="relative flex flex-col gap-8">
 
-              <TimelineItem icon={<CalendarDays size={18} className="text-zinc-500" />} date="12 Jan 2024" title="Beach Day 🏖️" desc="Bersantai dan menikmati keindahan pantai bersama." />
-              <TimelineItem icon={<Users size={18} className="text-[#495C29]" />} date="24 Mar 2024" title="Team Building 🧩" desc="Games seru untuk membangun kerja sama dan komunikasi tim." isActive />
-              <TimelineItem icon={<Flame size={18} className="text-orange-500" />} date="17 Mei 2024" title="Camping & BBQ 🔥" desc="Malam keakraban dengan BBQ dan storytelling." />
-              <TimelineItem icon={<Ship size={18} className="text-blue-500" />} date="29 Jul 2024" title="Rafting Adventure 🛶" desc="Tantangan seru yang membuat kami semakin solid!" />
-            </div>
+            {/* Vertical Line */}
+            <div className="absolute left-5 md:left-6 top-0 bottom-0 w-px bg-zinc-200" />
+
+            <TimelineItem
+              icon={<CalendarDays size={18} className="text-zinc-500" />}
+              date="12 Jan 2024"
+              title="Beach Day 🏖️"
+              desc="Bersantai dan menikmati keindahan pantai bersama."
+            />
+
+            <TimelineItem
+              icon={<Users size={18} className="text-[#495C29]" />}
+              date="24 Mar 2024"
+              title="Team Building 🧩"
+              desc="Games seru untuk membangun kerja sama dan komunikasi tim."
+              isActive
+            />
+
+            <TimelineItem
+              icon={<Flame size={18} className="text-orange-500" />}
+              date="17 Mei 2024"
+              title="Camping & BBQ 🔥"
+              desc="Malam keakraban dengan BBQ dan storytelling."
+            />
+
+            <TimelineItem
+              icon={<Ship size={18} className="text-blue-500" />}
+              date="29 Jul 2024"
+              title="Rafting Adventure 🛶"
+              desc="Tantangan seru yang membuat kami semakin solid!"
+            />
+
+          </div>
           </div>
 
           {/* RIGHT COLUMN: GALLERY */}
@@ -117,17 +144,45 @@ export default function OurTeam() {
 // SUB-COMPONENTS
 // ==========================================
 
-function TimelineItem({ icon, date, title, desc, isActive = false }: { icon: React.ReactNode; date: string; title: string; desc: string; isActive?: boolean }) {
+function TimelineItem({
+  icon,
+  date,
+  title,
+  desc,
+  isActive = false,
+}: {
+  icon: React.ReactNode;
+  date: string;
+  title: string;
+  desc: string;
+  isActive?: boolean;
+}) {
   return (
-    <div className="z-10 relative flex gap-4 md:gap-6">
-      <div className={cn("flex justify-center items-center bg-white border-[3px] rounded-full w-10 md:w-12 h-10 md:h-12 shrink-0", isActive ? "border-[#495C29]" : "border-zinc-100")}>
+    <div className="relative flex gap-4 md:gap-6">
+
+      {/* ICON */}
+      <div
+        className={cn(
+          "relative z-10 flex justify-center items-center bg-white border-[3px] rounded-full w-10 h-10 md:w-12 md:h-12 shrink-0",
+          isActive ? "border-[#495C29]" : "border-zinc-200"
+        )}
+      >
         {icon}
       </div>
+
+      {/* TEXT */}
       <div className="flex flex-col pb-2">
-        <span className="font-bold text-[10px] text-zinc-400 md:text-xs">{date}</span>
-        <h5 className="mt-1 font-bold text-zinc-900 text-sm md:text-base">{title}</h5>
-        <p className="mt-1 max-w-[280px] text-zinc-500 text-xs md:text-sm leading-relaxed">{desc}</p>
+        <span className="font-bold text-[10px] md:text-xs text-zinc-400">
+          {date}
+        </span>
+        <h5 className="mt-1 font-bold text-sm md:text-base text-zinc-900">
+          {title}
+        </h5>
+        <p className="mt-1 max-w-[280px] text-xs md:text-sm text-zinc-500 leading-relaxed">
+          {desc}
+        </p>
       </div>
+
     </div>
   );
 }

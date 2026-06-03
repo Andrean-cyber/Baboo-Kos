@@ -42,7 +42,7 @@ export default function Career() {
   );
 
   window.open(
-    `https://wa.me/6287785338441?text=${message}`,
+    `https://wa.me/6285111203894?text=${message}`,
     "_blank"
   );
 };

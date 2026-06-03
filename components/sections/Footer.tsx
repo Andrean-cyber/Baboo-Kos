@@ -54,7 +54,7 @@ export default function Footer() {
             target="_blank"
             rel="noopener noreferrer"
             className={cn(
-              "block bg-[#F3C546] shadow-md px-8 py-3.5 rounded-full w-full md:w-auto font-bold text-[#495C29] text-sm text-center hover:scale-105 active:scale-95 transition-all duration-700 ease-out delay-150 shrink-0",
+              "block bg-[#F3C546] shadow-md px-8 py-3.5 rounded-xl w-full md:w-auto font-bold text-zinc-900 text-sm text-center hover:scale-105 active:scale-95 transition-all duration-700 ease-out delay-150 shrink-0",
               isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0",
             )}
           >

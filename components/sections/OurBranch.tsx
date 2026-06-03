@@ -7,6 +7,24 @@ import { MapPin, Mail, MessageCircle, Home } from "lucide-react";
 // Data Cabang dan List Kos (Ditambah properti 'delay' untuk animasi kedip yang tidak barengan)
 const branches = [
   {
+    id: "medan",
+    city: "Medan",
+    position: { top: "20%", left: "10%" },
+    delay: "0s",
+    properties: [
+      { name: "Baboo Kos Medan", price: "" },
+    ],
+  },
+  {
+    id: "batam",
+    city: "Bedan",
+    position: { top: "21%", left: "23.8%" },
+    delay: "0s",
+    properties: [
+      { name: "Baboo Kos Batam", price: "" },
+    ],
+  },
+  {
     id: "jakarta",
     city: "Jakarta",
     position: { top: "71%", left: "34%" },

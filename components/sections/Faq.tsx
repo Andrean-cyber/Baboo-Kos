@@ -86,10 +86,11 @@ export default function Faq() {
 
             <button
               onClick={handleWhatsapp}
-              className={cn("flex justify-center items-center bg-[#F3C546] py-3.5 rounded-full w-full font-bold text-[#495C29] text-sm hover:scale-[1.02] active:scale-[0.98] transition-transform duration-300")}
+              className={cn("flex justify-center items-center bg-[#F3C546] py-3.5 rounded-xl w-full font-bold text-zinc-900 text-sm hover:scale-[1.02] active:scale-[0.98] transition-transform duration-300")}
             >
               Hubungi Kami
             </button>
+            
           </div>
         </div>
 

@@ -135,62 +135,86 @@ export default function AboutBaboo() {
           {/* ========================= */}
           {/* KARTU 2 (Tengah) - Main Green Card */}
           {/* ========================= */}
-          <div className="relative flex flex-col justify-between items-center bg-[#495C29] shadow-xl px-5 md:px-10 py-8 md:py-10 rounded-[2rem] md:rounded-[2.5rem] w-[90vw] max-w-[850px] h-[520px] md:h-[420px] overflow-hidden snap-center shrink-0">
-            {/* Background Wavy Abstract */}
-            <div className="z-0 absolute inset-0 opacity-40 pointer-events-none">
-              <svg viewBox="0 0 800 400" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full object-cover">
-                <path d="M-50 150 C 150 -50, 300 250, 450 100 C 600 -50, 750 300, 900 150" stroke="#849859" strokeWidth="35" strokeLinecap="round" />
-                <path d="M-100 350 C 100 400, 300 200, 500 350 C 700 500, 800 200, 950 300" stroke="#849859" strokeWidth="35" strokeLinecap="round" />
-              </svg>
-            </div>
+          <div className="relative flex flex-col justify-between items-center rounded-[2rem] md:rounded-[2.5rem] w-[90vw] max-w-[850px] h-[520px] md:h-[420px] overflow-hidden snap-center shrink-0 shadow-xl">
 
-            <p className="z-10 font-medium text-[13px] text-white md:text-base text-center">
-              We help people find 'kos' easier, while helping <br className="hidden md:block" />
-              property owners grow digitally.
-            </p>
+            {/* GREEN GRADIENT BACKGROUND */}
+            <div className="absolute inset-0 bg-gradient-to-br from-[#495C29] to-[#2F3A18]" />
 
-            <div className="z-10 flex md:flex-row flex-col md:justify-center md:items-stretch gap-3 lg:gap-5 mt-4 md:mt-0 w-full">
-              {/* Card 1 */}
-              <div className="flex flex-col flex-1 bg-white shadow-sm p-4 rounded-2xl md:max-w-[220px]">
-                <p className="font-medium text-[10px] text-zinc-600 xl:text-xs leading-relaxed">
-                  <span className="font-bold text-zinc-900">Baboo Kos</span> ikut membangun ekosistem digital properti di Indonesia, hadir menjadi solusi untuk para pemilik properti kos, apartemen, dan manajemen kos.
-                </p>
-              </div>
+            {/* LINE PATTERN */}
+            <div
+              className="absolute inset-0 opacity-40 bg-center bg-cover pointer-events-none"
+              style={{ backgroundImage: "url('/line2.svg')" }}
+            />
 
-              {/* Card 2 */}
-              <div className="flex flex-col flex-1 justify-center gap-3 bg-white shadow-sm p-4 rounded-2xl md:max-w-[220px]">
-                <div>
-                  <h4 className="mb-0.5 font-bold text-[11px] text-zinc-900 xl:text-xs">Visi</h4>
-                  <p className="text-[9px] text-zinc-500 xl:text-[11px] leading-snug">Making living space search friction-less for everyone.</p>
+            {/* CONTENT */}
+            <div className="relative z-10 flex flex-col justify-between items-center px-5 md:px-10 py-8 md:py-10 w-full h-full">
+
+              <p className="font-medium text-[13px] text-white md:text-base text-center">
+                We help people find 'kos' easier, while helping <br className="hidden md:block" />
+                property owners grow digitally.
+              </p>
+
+              <div className="flex md:flex-row flex-col md:justify-center md:items-stretch gap-3 lg:gap-5 mt-4 md:mt-0 w-full">
+
+                {/* Card 1 */}
+                <div className="flex flex-col flex-1 bg-white shadow-sm p-4 rounded-2xl md:max-w-[220px]">
+                  <p className="font-medium text-[10px] text-zinc-600 xl:text-xs leading-relaxed">
+                    <span className="font-bold text-zinc-900">Baboo Kos</span> ikut membangun ekosistem digital properti di Indonesia.
+                  </p>
                 </div>
-                <div>
-                  <h4 className="mb-0.5 font-bold text-[11px] text-zinc-900 xl:text-xs">Misi</h4>
-                  <p className="text-[9px] text-zinc-500 xl:text-[11px] leading-snug">Connecting people with curated spaces through great UX, community, and technology.</p>
-                </div>
-              </div>
 
-              {/* Card 3 (Column) */}
-              {/* Card 3 (Column) */}
-              <div className="flex flex-row md:flex-col flex-1 gap-3 md:max-w-[220px]">
-                <div className="flex items-center bg-white shadow-sm p-2 md:pr-4 rounded-2xl md:rounded-full w-1/2 md:w-full">
-                  <img src="/hero.jpg" alt="Baboo Kos" className="rounded-full w-8 h-8 object-cover shrink-0" />
-                  {/* 'hidden md:block' sudah dihapus di div bawah ini */}
-                  <div className="ml-2">
-                    <h4 className="font-bold text-[10px] text-zinc-900 xl:text-xs leading-none">Baboo Kos</h4>
-                    <p className="mt-0.5 text-[8px] text-zinc-500 xl:text-[10px]">Find it easier</p>
+                {/* Card 2 */}
+                <div className="flex flex-col flex-1 justify-center gap-3 bg-white shadow-sm p-4 rounded-2xl md:max-w-[220px]">
+                  <div>
+                    <h4 className="mb-0.5 font-bold text-[11px] text-zinc-900 xl:text-xs">Visi</h4>
+                    <p className="text-[9px] text-zinc-500 xl:text-[11px] leading-snug">
+                      Making living space search friction-less for everyone.
+                    </p>
+                  </div>
+                  <div>
+                    <h4 className="mb-0.5 font-bold text-[11px] text-zinc-900 xl:text-xs">Misi</h4>
+                    <p className="text-[9px] text-zinc-500 xl:text-[11px] leading-snug">
+                      Connecting people with curated spaces through great UX & technology.
+                    </p>
                   </div>
                 </div>
-                <div className="flex flex-col justify-center bg-white shadow-sm p-3 md:p-4 rounded-2xl w-1/2 md:w-full md:h-full">
-                  <h4 className="mb-0.5 font-bold text-[11px] text-zinc-900 xl:text-xs">Objective</h4>
-                  <p className="text-[9px] text-zinc-500 xl:text-[11px] leading-relaxed">Baboo Kos hadir untuk membantu setiap owner kos go digital.</p>
-                </div>
-              </div>
-            </div>
 
-            <p className="z-10 mt-4 md:mt-0 font-medium text-[11px] text-white/90 xl:text-sm text-center">
-              Baboo Kos is growing as a nationwide <br className="hidden md:block" />
-              platform across Indonesia
-            </p>
+                {/* Card 3 */}
+                <div className="flex flex-row md:flex-col flex-1 gap-3 md:max-w-[220px]">
+                  <div className="flex items-center bg-white shadow-sm p-2 md:pr-4 rounded-2xl md:rounded-full w-1/2 md:w-full">
+                    <img
+                      src="/hero.jpg"
+                      alt="Baboo Kos"
+                      className="rounded-full w-8 h-8 object-cover shrink-0"
+                    />
+                    <div className="ml-2">
+                      <h4 className="font-bold text-[10px] text-zinc-900 xl:text-xs leading-none">
+                        Baboo Kos
+                      </h4>
+                      <p className="mt-0.5 text-[8px] text-zinc-500 xl:text-[10px]">
+                        Find it easier
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex flex-col justify-center bg-white shadow-sm p-3 md:p-4 rounded-2xl w-1/2 md:w-full md:h-full">
+                    <h4 className="mb-0.5 font-bold text-[11px] text-zinc-900 xl:text-xs">
+                      Objective
+                    </h4>
+                    <p className="text-[9px] text-zinc-500 xl:text-[11px] leading-relaxed">
+                      Membantu setiap owner kos go digital.
+                    </p>
+                  </div>
+                </div>
+
+              </div>
+
+              <p className="mt-4 md:mt-0 font-medium text-[11px] text-white/90 xl:text-sm text-center">
+                Baboo Kos is growing as a nationwide <br className="hidden md:block" />
+                platform across Indonesia
+              </p>
+
+            </div>
           </div>
 
           {/* ========================= */}

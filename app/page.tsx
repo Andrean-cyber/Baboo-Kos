@@ -9,6 +9,7 @@ import VillaDetail from "@/components/sections/VillaDetail";
 import PricingPackages from "@/components/sections/PricingPackages";
 import Role from "@/components/sections/Role";
 import FollowOurJourney from "@/components/sections/FollowOurJourney";
+import FormKos from "@/components/sections/FormKos";
 import Faq from "@/components/sections/Faq";
 import Footer from "@/components/sections/Footer";
 import { cn } from "../lib/utils";
@@ -25,6 +26,7 @@ export default function Home() {
       <PricingPackages />
       <Role />
       <FollowOurJourney />
+      <FormKos />
       <Faq />
       <Footer />
     </main>
