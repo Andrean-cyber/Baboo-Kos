@@ -154,7 +154,7 @@ export default function KosCriteriaSection() {
               Fasilitas yang diinginkan
             </label>
 
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-zinc-800">
               {[
                 "Kamar Mandi Dalam",
                 "Water Heater",
@@ -169,7 +169,8 @@ export default function KosCriteriaSection() {
                     key={item}
                     onClick={() => toggleFacility(item)}
                     className={cn(
-                      "flex items-center gap-3 px-4 py-3 rounded-xl border text-sm",
+                      "flex items-center gap-3 px-4 py-3 rounded-xl border text-sm text-left",
+                      "w-full min-h-[72px] md:min-h-[56px]",
                       active
                         ? "border-[#495C29] bg-[#EEF3E8]"
                         : "border-zinc-200"
@@ -177,7 +178,7 @@ export default function KosCriteriaSection() {
                   >
                     <span
                       className={cn(
-                        "w-5 h-5 rounded-md border flex items-center justify-center",
+                        "w-5 h-5 shrink-0 rounded-full border flex items-center justify-center",
                         active
                           ? "bg-[#495C29] border-[#495C29]"
                           : "border-zinc-300"
@@ -198,12 +199,12 @@ export default function KosCriteriaSection() {
               <label className="block text-sm font-medium mb-3 text-zinc-800">
                 Budget per Bulan
               </label>
-              <div className="flex items-center border border-zinc-200 rounded-xl overflow-hidden">
+              <div className="flex items-center border border-zinc-200 rounded-xl overflow-hidden text-zinc-400">
                 <span className="px-4 text-zinc-500">Rp</span>
                 <input
                   type="text"
                   placeholder="Contoh: 1.500.000"
-                  className="w-full px-4 py-3 outline-none"
+                  className="w-full px-4 py-3 outline-none text-zinc-400"
                 />
               </div>
             </div>
@@ -218,7 +219,7 @@ export default function KosCriteriaSection() {
                     key={num}
                     onClick={() => setRecommendation(num)}
                     className={cn(
-                      "flex-1 flex items-center gap-2 px-5 py-2.5 rounded-xl border text-sm",
+                      "flex-1 flex items-center gap-2 px-5 py-2.5 rounded-xl border text-sm text-zinc-800",
                       recommendation === num
                         ? "border-[#495C29] bg-[#EEF3E8]"
                         : "border-zinc-200"
@@ -254,7 +255,7 @@ export default function KosCriteriaSection() {
                   type="date"
                   value={date}
                   onChange={(e) => setDate(e.target.value)}
-                  className="w-full border border-zinc-200 rounded-xl px-4 py-3 outline-none"
+                  className="w-full border border-zinc-200 rounded-xl px-4 py-3 outline-none text-zinc-800"
                 />
               </div>
             </div>
@@ -267,7 +268,7 @@ export default function KosCriteriaSection() {
                 value={notes}
                 onChange={(e) => setNotes(e.target.value)}
                 placeholder="Catatan tambahan"
-                className="w-full border border-zinc-200 rounded-xl px-4 py-3 outline-none resize-none h-[48px]"
+                className="w-full border border-zinc-200 rounded-xl px-4 py-3 outline-none resize-none h-[48px text-zinc-400"
               />
             </div>
           </div>
