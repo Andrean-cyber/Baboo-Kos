@@ -114,7 +114,6 @@ export default function MeetOurTeam() {
               <div>
                 <h4 className="font-bold text-zinc-900 text-lg">{member.name}</h4>
                 <p className="mt-1 font-bold text-[#495C29] text-xs">{member.role}</p>
-                <p className="mt-3 text-[13px] text-zinc-500 leading-relaxed">{member.desc}</p>
               </div>
 
               
