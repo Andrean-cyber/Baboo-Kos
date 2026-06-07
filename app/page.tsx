@@ -22,7 +22,6 @@ export default function Home() {
       <AboutBaboo />
       <OurTeam />
       <MeetOurTeam />
-      <VillaDetail />
       <OurBranch />
       <PricingPackages />
       <Role />

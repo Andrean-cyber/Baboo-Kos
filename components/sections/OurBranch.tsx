@@ -11,99 +11,66 @@ const branches = [
     city: "Medan",
     position: { top: "20%", left: "10%" },
     delay: "0s",
-    properties: [
-      { name: "Baboo Kos Medan", price: "" },
-    ],
   },
   {
     id: "batam",
-    city: "Bedan",
+    city: "Batam",
     position: { top: "21%", left: "23.8%" },
     delay: "0s",
-    properties: [
-      { name: "Baboo Kos Batam", price: "" },
-    ],
   },
   {
     id: "jakarta",
     city: "Jakarta",
     position: { top: "71%", left: "34%" },
     delay: "0s",
-    properties: [
-      { name: "Baboo Kos Senayan", price: "Rp 2.5 Jt" },
-      { name: "Baboo Kos Tebet", price: "Rp 1.8 Jt" },
-    ],
   },
   {
     id: "bogor",
     city: "Bogor",
     position: { top: "80%", left: "34%" },
     delay: "0.3s",
-    properties: [{ name: "Baboo Kos IPB", price: "Rp 1.2 Jt" }],
   },
   {
     id: "bandung",
     city: "Bandung",
     position: { top: "80%", left: "40%" },
     delay: "0.7s",
-    properties: [
-      { name: "Baboo Kos Dago", price: "Rp 1.5 Jt" },
-      { name: "Baboo Kos Dipatiukur", price: "Rp 1.3 Jt" },
-    ],
   },
   {
     id: "semarang",
     city: "Semarang",
     position: { top: "72%", left: "46%" },
     delay: "0.2s",
-    properties: [{ name: "Baboo Kos Tembalang", price: "Rp 1.1 Jt" }],
   },
   {
     id: "jogja",
     city: "Yogyakarta",
     position: { top: "79%", left: "46%" },
     delay: "0.8s",
-    properties: [
-      { name: "Baboo Kos Seturan", price: "Rp 1.4 Jt" },
-      { name: "Baboo Kos UGM", price: "Rp 1.6 Jt" },
-    ],
   },
   {
     id: "surabaya",
     city: "Surabaya",
     position: { top: "76%", left: "50%" },
     delay: "0.5s",
-    properties: [
-      { name: "Baboo Kos Gubeng", price: "Rp 1.5 Jt" },
-      { name: "Baboo Kos ITS", price: "Rp 1.3 Jt" },
-    ],
   },
   {
     id: "malang",
     city: "Malang",
     position: { top: "85%", left: "50%" },
     delay: "0.1s",
-    properties: [
-      { name: "Baboo Kos Suhat", price: "Rp 1.2 Jt" },
-      { name: "Baboo Kos Sigura-gura", price: "Rp 1.1 Jt" },
-    ],
   },
   {
     id: "jember",
     city: "Jember",
     position: { top: "80%", left: "54%" },
     delay: "0.6s",
-    properties: [{ name: "Baboo Kos Kampus Unej", price: "Rp 800 Rb" }],
   },
   {
     id: "bali",
     city: "Bali",
     position: { top: "85%", left: "60%" },
     delay: "0.4s",
-    properties: [
-      { name: "Baboo Villa Canggu", price: "Rp 4.5 Jt" },
-      { name: "Baboo Kos Denpasar", price: "Rp 1.8 Jt" },
-    ],
   },
 ];
 
@@ -186,17 +153,7 @@ export default function OurBranch() {
                   <MapPin size={14} className="text-[#495C29]" />
                   <span className="font-bold text-zinc-900 text-xs">{branch.city}</span>
                 </div>
-                <div className="flex flex-col gap-2">
-                  {branch.properties.map((prop, idx) => (
-                    <div key={idx} className="flex items-start gap-2">
-                      <Home size={12} className="mt-0.5 text-zinc-400 shrink-0" />
-                      <div className="flex flex-col">
-                        <span className="font-bold text-[10px] text-zinc-700 leading-tight">{prop.name}</span>
-                        <span className="font-semibold text-[#495C29] text-[9px]">{prop.price} / Bulan</span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
+                
               </div>
             </div>
           </div>

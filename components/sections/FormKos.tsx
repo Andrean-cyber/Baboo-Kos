@@ -16,7 +16,7 @@ import { cn } from "@/lib/utils";
 export default function KosCriteriaSection() {
   const [gender, setGender] = useState<string>();
   const sectionRef = useRef<HTMLElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible] = useState(true);
   const hasAnimated = useRef(false);
   const [recommendation, setRecommendation] = useState<string>();
   const [facilities, setFacilities] = useState<string[]>([]);

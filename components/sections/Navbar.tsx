@@ -28,11 +28,13 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
-    { name: "About", href: "/#about" },
-    { name: "Simulator Endorsement", href: "/simulation" },
-    { name: "Career", href: "/career" },
-    { name: "Contact us", href: "/#contact" },
-  ];
+  { name: "Home", href: "/#home" },
+  { name: "Simulator Endorsement", href: "/simulation" },
+  { name: "Baboo Villa", href: "/villa" },
+  { name: "Career", href: "/career" },
+];
+
+  const [isVillaOpen, setIsVillaOpen] = useState(false);
 
   return (
     <>

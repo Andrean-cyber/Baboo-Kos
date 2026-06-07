@@ -183,7 +183,7 @@ export default function AboutBaboo() {
                 <div className="flex flex-row md:flex-col flex-1 gap-3 md:max-w-[220px]">
                   <div className="flex items-center bg-white shadow-sm p-2 md:pr-4 rounded-2xl md:rounded-full w-1/2 md:w-full">
                     <img
-                      src="/hero.jpg"
+                      src="/about.jpg"
                       alt="Baboo Kos"
                       className="rounded-full w-8 h-8 object-cover shrink-0"
                     />

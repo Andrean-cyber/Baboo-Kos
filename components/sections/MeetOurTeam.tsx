@@ -6,34 +6,44 @@ import { cn } from "@/lib/utils";
 // Data Tim untuk mempermudah render
 const teamMembers = [
   {
-    name: "Rizky Febian",
-    role: "Founder & CEO",
-    desc: "Visioner yang selalu mendorong inovasi dan pertumbuhan Baboo.",
-    img: "/rizky.jpg",
+    name: "Yucha Pratama",
+    role: "Chief Executive Officer (CEO)",
+    img: "/yuca.jpg",
   },
   {
-    name: "Nadya Arina",
-    role: "COO",
-    desc: "Mengatur operasional dan memastikan semua berjalan dengan excellence.",
-    img: "/nadya.jpg",
+    name: "Pranayama Sukma Fritzie Wisnu",
+    role: "administrasi (ADM)",
+    img: "/pran.jpg",
   },
   {
-    name: "Jerome Polin",
-    role: "Marketing Director",
-    desc: "Merancang strategi kreatif untuk membawa Baboo semakin dikenal.",
-    img: "/jerome.jpg",
+    name: "Afifa Nur Aulia Viranti",
+    role: "Human Resources Development (HRD)",
+    img: "/afifa.jpg",
   },
   {
-    name: "Sisca Kohl",
-    role: "Creative Lead",
-    desc: "Menghadirkan ide-ide kreatif yang menguatkan brand Baboo.",
-    img: "/siska.jpg",
+    name: "Atikah Azra Wahdah",
+    role: "Social Media Specialist (SMS)",
+    img: "/tika.jpg",
   },
   {
-    name: "Fadil Jaidi",
-    role: "Operation Manager",
-    desc: "Memastikan layanan dan pengalaman terbaik untuk setiap client.",
-    img: "/fadil.jpg",
+    name: "Kisfa Azka Khalisa",
+    role: "Content Manager (CM)",
+    img: "/lisa.jpg",
+  },
+  {
+    name: "Meliani Ananda Ginting",
+    role: "Head of Customer Service (HCS)",
+    img: "/meli.jpg",
+  },
+  {
+    name: "Muchammad Akmal Mustofa",
+    role: "Head of Content Creator (HCC)",
+    img: "/akmal.jpg",
+  },
+  {
+    name: "Andrean Yogha Saputra",
+    role: "WEB DEV / Digital Support (IT)",
+    img: "/andre.jpg",
   },
 ];
 
@@ -95,7 +105,7 @@ export default function MeetOurTeam() {
             style={{ transitionDelay: isVisible ? `${400 + index * 150}ms` : "0ms" }}
           >
             {/* Image Section */}
-            <div className="w-full h-[280px] overflow-hidden">
+            <div className="w-full h-[420px] overflow-hidden">
               <img src={member.img} alt={member.name} className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" />
             </div>
 
