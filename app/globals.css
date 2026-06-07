@@ -36,6 +36,7 @@ html {
   --primary-light: #ebf0e6;
 
   --border: #e4e4e7;
+  color-scheme: var(--primary-light);
 }
 
 /* =========================

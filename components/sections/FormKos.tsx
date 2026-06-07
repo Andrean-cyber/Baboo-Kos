@@ -16,7 +16,7 @@ import { cn } from "@/lib/utils";
 export default function KosCriteriaSection() {
   const [gender, setGender] = useState<string>();
   const sectionRef = useRef<HTMLElement>(null);
-  const [isVisible] = useState(true);
+  const [isVisible, setIsVisible] = useState(false);
   const hasAnimated = useRef(false);
   const [recommendation, setRecommendation] = useState<string>();
   const [facilities, setFacilities] = useState<string[]>([]);
@@ -104,10 +104,10 @@ export default function KosCriteriaSection() {
 
             {/* Jenis Kos */}
             <div>
-              <label className="block mb-3 text-sm font-medium">
+              <label className="block mb-3 text-sm font-medium text-zinc-800">
                 Jenis Kos
               </label>
-              <div className="flex flex-wrap gap-3">
+              <div className="flex flex-wrap gap-3 text-zinc-800">
                 {["Putra", "Putri", "Pasutri", "Campur"].map((item) => (
                   <button
                     key={item}
@@ -150,7 +150,7 @@ export default function KosCriteriaSection() {
 
           {/* ================= FASILITAS ================= */}
           <div className="mt-12">
-            <label className="block text-sm font-medium mb-4">
+            <label className="block text-sm font-medium mb-4 text-zinc-800">
               Fasilitas yang diinginkan
             </label>
 
@@ -195,7 +195,7 @@ export default function KosCriteriaSection() {
           {/* ================= BUDGET & REKOMENDASI ================= */}
           <div className="grid md:grid-cols-2 gap-8 mt-12">
             <div>
-              <label className="block text-sm font-medium mb-3">
+              <label className="block text-sm font-medium mb-3 text-zinc-800">
                 Budget per Bulan
               </label>
               <div className="flex items-center border border-zinc-200 rounded-xl overflow-hidden">
@@ -209,7 +209,7 @@ export default function KosCriteriaSection() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium mb-3">
+              <label className="block text-sm font-medium mb-3 text-zinc-800">
                 Jumlah Rekomendasi yang diinginkan
               </label>
               <div className="flex gap-4">
@@ -246,7 +246,7 @@ export default function KosCriteriaSection() {
           {/* ================= TANGGAL & CATATAN ================= */}
           <div className="grid md:grid-cols-2 gap-8 mt-12">
             <div>
-              <label className="block text-sm font-medium mb-3">
+              <label className="block text-sm font-medium mb-3 text-zinc-800">
                 Rencana tanggal dihuni
               </label>
               <div className="relative">
@@ -260,7 +260,7 @@ export default function KosCriteriaSection() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium mb-3">
+              <label className="block text-sm font-medium mb-3 text-zinc-800">
                 Catatan Tambahan (Opsional)
               </label>
               <textarea
@@ -345,11 +345,11 @@ export default function KosCriteriaSection() {
 function Input({ label, placeholder }: { label: string; placeholder: string }) {
   return (
     <div>
-      <label className="block text-sm font-medium mb-3">{label}</label>
+      <label className="block text-sm font-medium mb-3 text-zinc-800">{label}</label>
       <input
         type="text"
         placeholder={placeholder}
-        className="w-full border border-zinc-200 rounded-xl px-4 py-3 outline-none"
+        className="w-full border border-zinc-200 rounded-xl px-4 py-3 outline-none placeholder:text-zinc-400 text-zinc-900"
       />
     </div>
   );
