@@ -128,11 +128,9 @@ export default function HeroKos() {
     isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
   )}
 >
-            A Simplified Way
-            <br />
-            to Start <span className="text-[#495C29]">Find</span>
-            <br />
-            <span className="text-[#495C29]">Kos.</span>
+            Cari Kos
+            <span className="text-yellow-500"> Tanpa Ribet,</span> 
+            <span className="text-[#495C29]"> Sesuai Budget!</span>
           </h1>
 
           {/* Description */}

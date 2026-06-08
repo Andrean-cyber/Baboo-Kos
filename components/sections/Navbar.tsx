@@ -87,14 +87,19 @@ const handleWhatsapp = () => {
   }, []);
 
   const navLinks = [
-  { name: "Baboo Kos", href: "/babookos" },
-  { name: "Baboo Villa", href: "/villa" },
-  { name: "Partnership", href: "/simulation" },
-  { name: "Career", href: "/career" },
-  { name: "About Us", href: "/aboutus" },
-];
+    { name: "Baboo Kos", href: "/#home" },
+    { name: "Baboo Villa", href: "/villa" },
+    { name: "Partnership", href: "/simulation" },
+    { name: "Career", href: "/career" },
+    { name: "About Us", href: "/aboutus" },
+  ];
 
-  const [isVillaOpen, setIsVillaOpen] = useState(false);
+  // Cek apakah user sedang berada di halaman sub-page
+  const isSubPage = 
+    pathname.startsWith("/villa") || 
+    pathname.startsWith("/simulation") || 
+    pathname.startsWith("/career") || 
+    pathname.startsWith("/aboutus");
 
   return (
     <>
@@ -110,7 +115,7 @@ const handleWhatsapp = () => {
             ease: [0.22, 1, 0.36, 1],
           }}
           className={cn(
-            "flex justify-between items-center h-16 transition-all duration-500 ease-out pointer-events-auto",
+            "flex justify-between items-center h-16 transition-all duration-500 ease-out pointer-events-auto relative",
             isScrolled
               ? "w-[95%] max-w-5xl rounded-full border border-white/40 bg-white/80 px-6 shadow-[0_8px_30px_rgba(0,0,0,0.08)] backdrop-blur-xl md:px-8"
               : "w-full max-w-[1280px] rounded-full border border-transparent bg-transparent px-5 shadow-none md:px-8 lg:px-12",
@@ -125,93 +130,117 @@ const handleWhatsapp = () => {
               <img src="/babookos.png" alt="Baboo Kos Logo" className="w-auto h-7 md:h-10 object-contain" />
             </Link>
 
-            {/* DESKTOP MENU */}
-            <div className="hidden md:flex items-center gap-8">
-            <Link
-              href="/babookos"
-              className="font-bold text-[14px] text-zinc-600 hover:text-[#495C29] transition-colors duration-300"
+            {/* DESKTOP MENU - Menggunakan Posisi Dinamis */}
+            <div 
+              className={cn(
+                "hidden md:flex items-center gap-6 lg:gap-8 transition-all duration-300",
+                isSubPage 
+                  ? "absolute left-1/2 -translate-x-1/2 justify-center" 
+                  : "justify-start"
+              )}
             >
-              Baboo Kos
-            </Link>
-
-            <Link
-              href="/villa"
-              className="font-bold text-[14px] text-zinc-600 hover:text-[#495C29] transition-colors duration-300"
-            >
-              Baboo Villa
-            </Link>
-
-            <Link
-              href="/simulation"
-              className="font-bold text-[14px] text-zinc-600 hover:text-[#495C29] transition-colors duration-300"
-            >
-              Partnership
-            </Link>
-
-            {/* EXPLORE DROPDOWN */}
-            <div ref={exploreRef} className="relative">
-              <button
-                onClick={() => setIsExploreOpen(!isExploreOpen)}
-                className={cn(
-                  "group flex items-center gap-2 rounded-full px-3 py-2 font-bold text-[14px] transition-all duration-300",
-                  isExploreOpen
-                    ? "bg-[#EEF3E8] text-[#495C29]"
-                    : "text-zinc-600 hover:bg-[#EEF3E8] hover:text-[#495C29]"
-                )}
-              >
-                Explore
-
-                <ChevronDown
-                  size={16}
-                  className={cn(
-                    "transition-transform duration-300",
-                    isExploreOpen && "rotate-180"
-                  )}
-                />
-              </button>
-
-              <AnimatePresence>
-                {isExploreOpen && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 10, scale: 0.96 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: 10, scale: 0.96 }}
-                    transition={{ duration: 0.2 }}
-                    className="absolute left-0 top-full z-50 mt-3 w-[260px] overflow-hidden rounded-2xl border border-[#495C29]/10 bg-white shadow-[0_20px_50px_rgba(0,0,0,0.08)]"
+              {isSubPage ? (
+                // TAMPILAN JIKA DI SUB-PAGE (Explore Terbuka Sejajar)
+                <>
+                  {navLinks.map((link) => (
+                    <Link
+                      key={link.name}
+                      href={link.href}
+                      className={cn(
+                        "font-bold text-[14px] transition-colors duration-300 whitespace-nowrap",
+                        pathname === link.href || (link.href !== "/#home" && pathname.startsWith(link.href))
+                          ? "text-[#495C29]"
+                          : "text-zinc-600 hover:text-[#495C29]"
+                      )}
+                    >
+                      {link.name}
+                    </Link>
+                  ))}
+                </>
+              ) : (
+                // TAMPILAN AWAL/DEFAULT (Menggunakan Dropdown Explore)
+                <>
+                  <Link
+                    href="/#home"
+                    className="font-bold text-[14px] text-zinc-600 hover:text-[#495C29] transition-colors duration-300"
                   >
+                    Baboo Kos
+                  </Link>
 
-                    {/* MENU */}
-                    <div className="p-2">
+                  <Link
+                    href="/villa"
+                    className="font-bold text-[14px] text-zinc-600 hover:text-[#495C29] transition-colors duration-300"
+                  >
+                    Baboo Villa
+                  </Link>
 
-                      <Link
-                        href="/career"
-                        className="group flex items-center justify-between rounded-xl px-4 py-3 text-[14px] font-medium text-zinc-700 transition-all hover:bg-[#EEF3E8] hover:text-[#495C29]"
-                      >
-                        <span>Career</span>
-                        <span className="opacity-0 transition-opacity group-hover:opacity-100">
-                          →
-                        </span>
-                      </Link>
+                  <Link
+                    href="/simulation"
+                    className="font-bold text-[14px] text-zinc-600 hover:text-[#495C29] transition-colors duration-300"
+                  >
+                    Partnership
+                  </Link>
 
-                      <Link
-                        href="/aboutus"
-                        className="group flex items-center justify-between rounded-xl px-4 py-3 text-[14px] font-medium text-zinc-700 transition-all hover:bg-[#EEF3E8] hover:text-[#495C29]"
-                      >
-                        <span>About Us</span>
-                        <span className="opacity-0 transition-opacity group-hover:opacity-100">
-                          →
-                        </span>
-                      </Link>
+                  {/* EXPLORE DROPDOWN */}
+                  <div ref={exploreRef} className="relative">
+                    <button
+                      onClick={() => setIsExploreOpen(!isExploreOpen)}
+                      className={cn(
+                        "group flex items-center gap-2 rounded-full px-3 py-2 font-bold text-[14px] transition-all duration-300",
+                        isExploreOpen
+                          ? "bg-[#EEF3E8] text-[#495C29]"
+                          : "text-zinc-600 hover:bg-[#EEF3E8] hover:text-[#495C29]"
+                      )}
+                    >
+                      Explore
 
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+                      <ChevronDown
+                        size={16}
+                        className={cn(
+                          "transition-transform duration-300",
+                          isExploreOpen && "rotate-180"
+                        )}
+                      />
+                    </button>
+
+                    <AnimatePresence>
+                      {isExploreOpen && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 10, scale: 0.96 }}
+                          animate={{ opacity: 1, y: 0, scale: 1 }}
+                          exit={{ opacity: 0, y: 10, scale: 0.96 }}
+                          transition={{ duration: 0.2 }}
+                          className="absolute left-0 top-full z-50 mt-3 w-[260px] overflow-hidden rounded-2xl border border-[#495C29]/10 bg-white shadow-[0_20px_50px_rgba(0,0,0,0.08)]"
+                        >
+                          {/* MENU */}
+                          <div className="p-2">
+                            <Link
+                              href="/career"
+                              className="group flex items-center justify-between rounded-xl px-4 py-3 text-[14px] font-medium text-zinc-700 transition-all hover:bg-[#EEF3E8] hover:text-[#495C29]"
+                            >
+                              <span>Career</span>
+                              <span className="opacity-0 transition-opacity group-hover:opacity-100">
+                                →
+                              </span>
+                            </Link>
+
+                            <Link
+                              href="/aboutus"
+                              className="group flex items-center justify-between rounded-xl px-4 py-3 text-[14px] font-medium text-zinc-700 transition-all hover:bg-[#EEF3E8] hover:text-[#495C29]"
+                            >
+                              <span>About Us</span>
+                              <span className="opacity-0 transition-opacity group-hover:opacity-100">
+                                →
+                              </span>
+                            </Link>
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                </>
+              )}
             </div>
-
-
-
-          </div>
           </div>
 
           {/* ========================= */}
@@ -219,16 +248,13 @@ const handleWhatsapp = () => {
           {/* ========================= */}
           <div className="flex items-center gap-3">
             {/* DESKTOP BUTTON */}
-
             <button
               onClick={handleWhatsapp}
               className={cn(
                 "hidden md:flex justify-center items-center bg-white/80 hover:bg-[#495C29] backdrop-blur-md px-8 py-3 border border-[#495C29]/20 rounded-full font-bold text-[#495C29] text-[15px] hover:text-white transition-all",
               )}
             >
-              
               Booking →
-              
             </button>
 
             {/* MOBILE HAMBURGER */}

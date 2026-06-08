@@ -2,6 +2,7 @@
 
 import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
+import { usePathname } from "next/navigation"; 
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { FaWhatsapp, FaInstagram, FaTiktok, FaThreads } from "react-icons/fa6";
@@ -10,7 +11,28 @@ export default function Footer() {
   const footerRef = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
   const hasAnimated = useRef(false);
-  const message = encodeURIComponent("Halo kak,\n\nBisa tau informasi lebih lanjut tentang Baboo Kos?\nTerima kasih 🙏");
+  const pathname = usePathname();
+  const getFooterConfig = () => {
+  if (pathname.startsWith("/villa")) {
+    return {
+      title: "A secret space, a gentle price, your hidden slice of paradise 🚀",
+      phone: "6285852237843",
+      message:
+        "Halo kak,\n\nBisa tau informasi lebih lanjut tentang Baboo Villa?\nTerima kasih 🙏",
+    };
+  }
+
+  return {
+    title: "Cari Kos Tanpa Ribet,\nSesuai Budget 🥇",
+    phone: "6287785338441",
+    message:
+      "Halo kak,\n\nBisa tau informasi lebih lanjut tentang Baboo Kos?\nTerima kasih 🙏",
+  };
+};
+
+const footerConfig = getFooterConfig();
+
+const message = encodeURIComponent(footerConfig.message);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -45,12 +67,25 @@ export default function Footer() {
         {/* TOP SECTION: BANNER (Heading & CTA Button)                */}
         {/* ========================================================= */}
         <div className={cn("z-10 relative flex md:flex-row flex-col justify-between items-start md:items-center gap-6 pb-10 md:pb-12 border-white/20 border-b")}>
-          <h2 className={cn("max-w-md font-bold text-2xl md:text-3xl lg:text-4xl leading-tight tracking-tight transition-all duration-700 ease-out", isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0")}>
-            Cari Kos Tanpa Ribet, <br /> Sesuai Budget 🥇
+          <h2
+            className={cn(
+              "max-w-xl font-bold text-2xl md:text-3xl lg:text-4xl leading-tight tracking-tight transition-all duration-700 ease-out",
+              isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
+            )}
+          >
+            {pathname.startsWith("/villa") ? (
+              footerConfig.title
+            ) : (
+              <>
+                Cari Kos Tanpa Ribet,
+                <br />
+                Sesuai Budget 🥇
+              </>
+            )}
           </h2>
 
           <a
-            href={`https://wa.me/6287785338441?text=${message}`}
+            href={`https://wa.me/${footerConfig.phone}?text=${message}`}
             target="_blank"
             rel="noopener noreferrer"
             className={cn(

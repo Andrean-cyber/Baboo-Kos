@@ -20,11 +20,10 @@ export default function Home() {
     <main className={cn("min-h-screen", "overflow-hidden", "bg-[#FAFAFA]", "pb-16")}>
       <HeroKos />
       <AboutBaboo />
-      <PricingPackages />
       <Role />
-      <FollowOurJourney />
       <FormKos />
       <Testimonial />
+      <FollowOurJourney />
       <Faq />
       <Footer />
     </main>
