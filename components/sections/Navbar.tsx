@@ -34,7 +34,7 @@ export default function Navbar() {
   const getWhatsappConfig = () => {
   if (pathname.startsWith("/villa")) {
     return {
-      phone: "6281234567890",
+      phone: "6285852237843",
       message:
         "Halo kak, saya ingin mendapatkan informasi lebih lanjut tentang Baboo Villa."
     };
@@ -42,7 +42,7 @@ export default function Navbar() {
 
   if (pathname.startsWith("/career")) {
     return {
-      phone: "6289876543210",
+      phone: "6285111203894",
       message:
         "Halo kak, saya ingin mendapatkan informasi mengenai karir di Baboo."
     };
@@ -50,7 +50,7 @@ export default function Navbar() {
 
   if (pathname.startsWith("/simulation")) {
     return {
-      phone: "6281111111111",
+      phone: "6285178476086",
       message:
         "Halo kak, saya ingin mendapatkan informasi mengenai Partnership Baboo."
     };
@@ -87,10 +87,11 @@ const handleWhatsapp = () => {
   }, []);
 
   const navLinks = [
-  { name: "Home", href: "/#home" },
-  { name: "Simulator Endorsement", href: "/simulation" },
+  { name: "Baboo Kos", href: "/babookos" },
   { name: "Baboo Villa", href: "/villa" },
+  { name: "Partnership", href: "/simulation" },
   { name: "Career", href: "/career" },
+  { name: "About Us", href: "/aboutus" },
 ];
 
   const [isVillaOpen, setIsVillaOpen] = useState(false);
@@ -125,20 +126,9 @@ const handleWhatsapp = () => {
             </Link>
 
             {/* DESKTOP MENU */}
-            {/* <div className="hidden md:flex items-center gap-8">
-              {navLinks.map((link) => (
-                <Link
-                key={link.name} 
-                href={link.href}
-                className="font-bold text-[14px] text-zinc-600 hover:text-[#495C29] transition-all duration-300">
-                  {link.name}
-                </Link>
-              ))}
-            </div> */}
             <div className="hidden md:flex items-center gap-8">
-
             <Link
-              href="/#home"
+              href="/babookos"
               className="font-bold text-[14px] text-zinc-600 hover:text-[#495C29] transition-colors duration-300"
             >
               Baboo Kos
@@ -204,7 +194,7 @@ const handleWhatsapp = () => {
                       </Link>
 
                       <Link
-                        href="/#testimonial"
+                        href="/aboutus"
                         className="group flex items-center justify-between rounded-xl px-4 py-3 text-[14px] font-medium text-zinc-700 transition-all hover:bg-[#EEF3E8] hover:text-[#495C29]"
                       >
                         <span>About Us</span>
