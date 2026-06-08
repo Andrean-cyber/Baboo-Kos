@@ -17,7 +17,7 @@ export default function Testimonial() {
   const [previewImage, setPreviewImage] = useState<string | null>(null);
 
   const properties = Array.from({ length: 15 }).map((_, i) => ({
-    img: `/Testimoni - PRAT 3 - Testimoni - ${i + 1}.png`,
+    img: `/Testimoni - PRAT 3 - Testimoni - ${i + 1}.PNG`,
   }));
 
   /* ================= CENTER HELPER ================= */
