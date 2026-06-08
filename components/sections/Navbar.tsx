@@ -1,19 +1,78 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
+import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown} from "lucide-react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
+
 export default function Navbar() {
+  const pathname = usePathname();
+  
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const handleWhatsapp = () => {
-    const message = encodeURIComponent("Halo kak, bisa tau informasi lebih lanjut tentang Baboo Kos?");
-
-    window.open(`https://wa.me/6287785338441?text=${message}`, "_blank");
+  const [isExploreOpen, setIsExploreOpen] = useState(false);
+  const exploreRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+  const handleClickOutside = (event: MouseEvent) => {
+    if (
+      exploreRef.current &&
+      !exploreRef.current.contains(event.target as Node)
+    ) {
+      setIsExploreOpen(false);
+    }
   };
+
+  document.addEventListener("mousedown", handleClickOutside);
+
+  return () => {
+    document.removeEventListener("mousedown", handleClickOutside);
+  };
+}, []);
+  const getWhatsappConfig = () => {
+  if (pathname.startsWith("/villa")) {
+    return {
+      phone: "6281234567890",
+      message:
+        "Halo kak, saya ingin mendapatkan informasi lebih lanjut tentang Baboo Villa."
+    };
+  }
+
+  if (pathname.startsWith("/career")) {
+    return {
+      phone: "6289876543210",
+      message:
+        "Halo kak, saya ingin mendapatkan informasi mengenai karir di Baboo."
+    };
+  }
+
+  if (pathname.startsWith("/simulation")) {
+    return {
+      phone: "6281111111111",
+      message:
+        "Halo kak, saya ingin mendapatkan informasi mengenai Partnership Baboo."
+    };
+  }
+
+  return {
+    phone: "6287785338441",
+    message:
+      "Halo kak, saya ingin mendapatkan informasi lebih lanjut tentang Baboo Kos."
+  };
+};
+
+const handleWhatsapp = () => {
+  const config = getWhatsappConfig();
+
+  window.open(
+    `https://wa.me/${config.phone}?text=${encodeURIComponent(
+      config.message
+    )}`,
+    "_blank"
+  );
+};
 
   useEffect(() => {
     const handleScroll = () => {
@@ -66,13 +125,103 @@ export default function Navbar() {
             </Link>
 
             {/* DESKTOP MENU */}
-            <div className="hidden md:flex items-center gap-8">
+            {/* <div className="hidden md:flex items-center gap-8">
               {navLinks.map((link) => (
-                <Link key={link.name} href={link.href} className="font-bold text-[14px] text-zinc-600 hover:text-[#495C29] transition-all duration-300">
+                <Link
+                key={link.name} 
+                href={link.href}
+                className="font-bold text-[14px] text-zinc-600 hover:text-[#495C29] transition-all duration-300">
                   {link.name}
                 </Link>
               ))}
+            </div> */}
+            <div className="hidden md:flex items-center gap-8">
+
+            <Link
+              href="/#home"
+              className="font-bold text-[14px] text-zinc-600 hover:text-[#495C29] transition-colors duration-300"
+            >
+              Baboo Kos
+            </Link>
+
+            <Link
+              href="/villa"
+              className="font-bold text-[14px] text-zinc-600 hover:text-[#495C29] transition-colors duration-300"
+            >
+              Baboo Villa
+            </Link>
+
+            <Link
+              href="/simulation"
+              className="font-bold text-[14px] text-zinc-600 hover:text-[#495C29] transition-colors duration-300"
+            >
+              Partnership
+            </Link>
+
+            {/* EXPLORE DROPDOWN */}
+            <div ref={exploreRef} className="relative">
+              <button
+                onClick={() => setIsExploreOpen(!isExploreOpen)}
+                className={cn(
+                  "group flex items-center gap-2 rounded-full px-3 py-2 font-bold text-[14px] transition-all duration-300",
+                  isExploreOpen
+                    ? "bg-[#EEF3E8] text-[#495C29]"
+                    : "text-zinc-600 hover:bg-[#EEF3E8] hover:text-[#495C29]"
+                )}
+              >
+                Explore
+
+                <ChevronDown
+                  size={16}
+                  className={cn(
+                    "transition-transform duration-300",
+                    isExploreOpen && "rotate-180"
+                  )}
+                />
+              </button>
+
+              <AnimatePresence>
+                {isExploreOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10, scale: 0.96 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 10, scale: 0.96 }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute left-0 top-full z-50 mt-3 w-[260px] overflow-hidden rounded-2xl border border-[#495C29]/10 bg-white shadow-[0_20px_50px_rgba(0,0,0,0.08)]"
+                  >
+
+                    {/* MENU */}
+                    <div className="p-2">
+
+                      <Link
+                        href="/career"
+                        className="group flex items-center justify-between rounded-xl px-4 py-3 text-[14px] font-medium text-zinc-700 transition-all hover:bg-[#EEF3E8] hover:text-[#495C29]"
+                      >
+                        <span>Career</span>
+                        <span className="opacity-0 transition-opacity group-hover:opacity-100">
+                          →
+                        </span>
+                      </Link>
+
+                      <Link
+                        href="/#testimonial"
+                        className="group flex items-center justify-between rounded-xl px-4 py-3 text-[14px] font-medium text-zinc-700 transition-all hover:bg-[#EEF3E8] hover:text-[#495C29]"
+                      >
+                        <span>About Us</span>
+                        <span className="opacity-0 transition-opacity group-hover:opacity-100">
+                          →
+                        </span>
+                      </Link>
+
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
+
+
+
+          </div>
           </div>
 
           {/* ========================= */}

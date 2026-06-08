@@ -32,7 +32,7 @@ export default function Footer() {
   }, []);
 
   return (
-    <section id="contact" className={cn("bg-slate-50/50 px-4 md:px-6 pt-4 pb-6 md:pb-8 w-full")}>
+    <section id="contact" className="bg-slate-50/50 px-4 md:px-6 pt-4 pb-0 md:pb-0 w-full">
       <footer ref={footerRef} className={cn("relative bg-[#495C29] shadow-lg mx-auto px-6 md:px-12 lg:px-16 py-12 md:py-14 rounded-3xl md:rounded-[2rem] w-full max-w-[1360px] overflow-hidden text-white")}>
         {/* ========================================================= */}
         {/* BACKGROUND ABSTRACT SVG                                   */}
@@ -46,7 +46,7 @@ export default function Footer() {
         {/* ========================================================= */}
         <div className={cn("z-10 relative flex md:flex-row flex-col justify-between items-start md:items-center gap-6 pb-10 md:pb-12 border-white/20 border-b")}>
           <h2 className={cn("max-w-md font-bold text-2xl md:text-3xl lg:text-4xl leading-tight tracking-tight transition-all duration-700 ease-out", isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0")}>
-            A Simplified Way to 🚀 <br /> Start Find Kos.
+            Cari Kos Tanpa Ribet, <br /> Sesuai Budget 🥇
           </h2>
 
           <a
@@ -66,20 +66,20 @@ export default function Footer() {
         {/* BOTTOM SECTION: LINKS & BRAND INFO                        */}
         {/* ========================================================= */}
         <div
-          className={cn(
-            "z-10 relative gap-10 lg:gap-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-5 pt-10 transition-all duration-1000 ease-out delay-300",
-            isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0",
-          )}
-        >
+            className={cn(
+              "z-10 relative gap-10 lg:gap-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-5 pt-8 transition-all duration-1000 ease-out delay-300 text-center lg:text-left",
+              isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0",
+            )}
+          >
           {/* Kolom 1 & 2 (Span 2): Tentang Brand */}
-          <div className={cn("flex flex-col gap-4 lg:col-span-2")}>
+          <div className={cn("flex flex-col items-center lg:items-start gap-4 lg:col-span-2")}>
             <h4 className={cn("font-bold text-sm tracking-wide")}>About Baboo Kos</h4>
             <p className={cn("max-w-sm font-normal text-zinc-200/80 text-xs leading-relaxed")}>
               Platform pencarian kos yang menghadirkan pilihan hunian terbaik dengan kenyamanan, lokasi strategis, dan pengalaman mencari tempat tinggal yang praktis untuk keseharian Anda.
             </p>
 
             {/* Social Media Icons dengan Link Aktif */}
-            <div className={cn("flex items-center gap-5 mt-4 text-zinc-200")}>
+            <div className={cn("flex items-center justify-center lg:justify-start gap-5 mt-4 text-zinc-200")}>
               <a href="https://wa.me/6287785338441" target="_blank" rel="noopener noreferrer" className={cn("hover:text-[#F3C546] text-lg transition-colors")} aria-label="WhatsApp">
                 <FaWhatsapp />
               </a>
@@ -96,7 +96,7 @@ export default function Footer() {
           </div>
 
           {/* Kolom 3: Company Links */}
-          <div className={cn("flex flex-col gap-3")}>
+          <div className={cn("flex flex-col items-center lg:items-start gap-3")}>
             <h4 className={cn("font-bold text-sm tracking-wide")}>Company</h4>
             <ul className="flex flex-col gap-2.5 text-zinc-200/70 text-xs">
               <li>

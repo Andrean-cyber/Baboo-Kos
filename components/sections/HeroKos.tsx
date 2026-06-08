@@ -120,7 +120,14 @@ export default function HeroKos() {
           </ShinyButton>
 
           {/* Title */}
-          <h1 className={cn("max-w-[720px] font-bold text-[4rem] text-zinc-900 leading-[1.05] tracking-[-0.05em] transition-all duration-1000 ease-out delay-200", isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6")}>
+          <h1
+  className={cn(
+    "max-w-[720px] font-bold leading-[1.05] tracking-[-0.05em] transition-all duration-1000 ease-out delay-200",
+    "text-3xl sm:text-4xl md:text-5xl lg:text-[4rem]",
+    "text-center lg:text-left",
+    isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+  )}
+>
             A Simplified Way
             <br />
             to Start <span className="text-[#495C29]">Find</span>
@@ -184,37 +191,72 @@ export default function HeroKos() {
 
             <div className="z-20 absolute inset-0 flex flex-col justify-end px-5 pb-28">
               
-              <ShinyButton
-            className={cn(
-              "inline-flex items-center gap-1.5 bg-[#FAFAFA]/95 backdrop-blur-md mb-4 px-3 py-1.5 rounded-full w-max font-bold text-[#495C29] text-[11px] transition-all duration-1000 ease-out delay-300",
-                  isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6",
-            )}
-          >
-            <Sparkles size={15} className="z-10 relative text-[#495C29]" />
-            Unlimited comfort
-          </ShinyButton>
+              {/* Badge kanan atas */}
+            <ShinyButton
+              className={cn(
+                "absolute top-8 right-8 z-30",
+                "inline-flex items-center gap-1.5",
+                "bg-[#FAFAFA]/20 backdrop-blur-md",
+                "px-3 py-2 rounded-full",
+                "font-bold text-[#FFFFFF] text-[1.1rem]",
+                "transition-all duration-1000 ease-out delay-300",
+                isLoaded
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 -translate-y-6"
+              )}
+            >
+              <Sparkles
+                size={12}
+                className="relative z-10 text-[#FFFFFF] text-[1.1rem]"
+              />
+              Unlimited comfort
+            </ShinyButton>
 
-              <h1 className={cn("max-w-[290px] font-bold text-[2rem] text-white leading-[1] tracking-[-0.01em] transition-all duration-1000 ease-out delay-500", isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6")}>
-                A Simplified Way
-                <br />
-                to Start Find
-                <br />
-                Kos.
-              </h1>
+              <h1
+              className={cn(
+                "max-w-[1440px] text-center font-bold text-white leading-[1.05] tracking-[-0.01em] transition-all duration-1000 ease-out delay-500",
+                "text-[1.8rem] sm:text-[2rem] md:text-[2.5rem]",
+                isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+              )}
+            >
+              A SIMPLIFIED WAY
+              TO START {" "}
+              <span className="inline-flex items-center bg-white px-4 py-0 rounded-full text-[#495C29] ">
+                FIND KOS
+              </span>
+            </h1>
             </div>
 
             {/* Mobile Floating Card */}
-            <div className={cn("bottom-5 left-1/2 z-30 absolute flex items-center w-[85%] transition-all duration-1000 ease-out delay-[800ms]", isLoaded ? "opacity-100 -translate-x-1/2" : "opacity-0 translate-x-[50%]")}>
-              <div className="flex flex-1 items-center bg-[#FAFAFA]/95 shadow-xl backdrop-blur-xl py-2 pr-4 pl-2 border border-white/40 rounded-full">
-                <img src="/heroo.jpg" alt="Agent" className="border-2 border-white rounded-full w-12 h-12 object-cover" />
-                <div className="ml-3">
-                  <p className="font-extrabold text-[#495C29] text-[15px]">Baboo Kos</p>
-                  <p className="font-medium text-[12px] text-zinc-500">Find kos is easier</p>
+            <div
+              className={cn(
+                "absolute bottom-10 left-1/2 z-30 flex items-center transition-all duration-1000 ease-out delay-[800ms]",
+                "w-[90%] max-w-[420px] lg:w-[92%]",
+                isLoaded
+                  ? "opacity-100 -translate-x-1/2"
+                  : "opacity-0 translate-x-[50%]"
+              )}
+            >
+              <div className="flex flex-1 items-center bg-[#FAFAFA]/95 shadow-xl backdrop-blur-xl py-1.5 pr-3 pl-2 lg:py-2 lg:pr-4 border border-white/40 rounded-full">
+
+                <img
+                  src="/heroo.jpg"
+                  alt="Agent"
+                  className="border-2 border-white rounded-full w-9 h-9 lg:w-12 lg:h-12 object-cover"
+                />
+
+                <div className="ml-2 lg:ml-3">
+                  <p className="font-extrabold text-[#495C29] text-[13px] lg:text-[15px]">
+                    Baboo Kos
+                  </p>
+                  <p className="font-medium text-[12px] lg:text-[12px] text-zinc-500">
+                    Find kos is easier
+                  </p>
                 </div>
               </div>
 
-              <button className="flex justify-center items-center bg-white/90 shadow-lg backdrop-blur-xl ml-3 border border-white/40 rounded-full w-12 h-12 active:scale-95 transition-all shrink-0">
-                <ArrowRight size={18} className="text-[#495C29]" />
+              <button className="flex justify-center items-center bg-white/90 shadow-lg backdrop-blur-xl ml-2 lg:ml-3 border border-white/40 rounded-full w-12 h-12 lg:w-16 lg:h-16 active:scale-95 transition-all shrink-0">
+                <ArrowRight size={16} className="text-[#495C29]" />
               </button>
             </div>
           </div>
@@ -262,7 +304,7 @@ export default function HeroKos() {
             {/* FLOATING BOTTOM RIGHT */}
             <div className={cn("right-8 bottom-8 z-20 absolute flex items-center w-[420px] transition-all duration-1000 ease-out delay-[900ms]", isLoaded ? "opacity-100 translate-x-0" : "opacity-0 translate-x-24")}>
               <div className="flex flex-1 items-center bg-[#FAFAFA]/95 shadow-xl backdrop-blur-xl py-2 pr-5 pl-2 border border-white/50 rounded-full">
-                <img src="/hero.jpg" alt="Agent" className="shadow-sm border-2 border-white rounded-full w-12 h-12 object-cover" />
+                <img src="/heroo.jpg" alt="Agent" className="shadow-sm border-2 border-white rounded-full w-12 h-12 object-cover" />
                 <div className="ml-3">
                   <p className="font-bold text-[#495C29] text-[15px]">Baboo Kos</p>
                   <p className="font-medium text-[12px] text-zinc-500">Find Kos is Easier</p>

@@ -14,6 +14,9 @@ import { useRef, useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 
 export default function KosCriteriaSection() {
+  const [name, setName] = useState("");
+  const [city, setCity] = useState("");
+  const [location, setLocation] = useState("");
   const [gender, setGender] = useState<string>();
   const sectionRef = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -22,7 +25,43 @@ export default function KosCriteriaSection() {
   const [facilities, setFacilities] = useState<string[]>([]);
   const [date, setDate] = useState("");
   const [notes, setNotes] = useState("");
+  const today = new Date().toISOString().split("T")[0];
+  const bannedWords = [
+  "anjing",
+  "bangsat",
+  "kontol",
+  "memek",
+  "ngentot",
+  "tai",
+  "bajingan",
+  "goblok",
+];
+
+  const containsBadWord = (text: string) => {
+  const normalized = text
+    .toLowerCase()
+    .replace(/[^a-z]/g, "");
+
+  return bannedWords.some((word) =>
+    normalized.includes(word)
+  );
+};
+
+  const isFormValid =
+  name.trim() !== "" &&
+  city.trim() !== "" &&
+  location.trim() !== "" &&
+  gender &&
+  recommendation &&
+  date;
   const handleSubmit = () => {
+      if (containsBadWord(notes)) {
+        alert(
+          "Catatan tambahan mengandung kata yang tidak diperbolehkan."
+        );
+        return;
+      }
+
       if (!gender || !recommendation) {
         alert("Silakan lengkapi jenis kos dan jumlah rekomendasi.");
         return;
@@ -100,8 +139,12 @@ export default function KosCriteriaSection() {
 
           <div className="grid md:grid-cols-2 gap-8">
             {/* Nama */}
-            <Input label="Nama Lengkap" placeholder="Masukkan nama lengkap Anda" />
-
+            <Input
+              label="Nama Lengkap"
+              placeholder="Masukkan nama lengkap Anda"
+              value={name}
+              onChange={setName}
+            />
             {/* Jenis Kos */}
             <div>
               <label className="block mb-3 text-sm font-medium text-zinc-800">
@@ -140,12 +183,16 @@ export default function KosCriteriaSection() {
             <Input
               label="Kabupaten / Kota Kos"
               placeholder="Pilih kabupaten / kota"
-            />
+              value={city}
+              onChange={setCity}
+            />            
 
             <Input
-              label="Lokasi spesifik yang diharapkan"
-              placeholder="Contoh: Dekat kampus UGM, Seturan"
-            />
+                label="Lokasi spesifik yang diharapkan"
+                placeholder="Contoh: Dekat kampus UGM, Seturan"
+                value={location}
+                onChange={setLocation}
+              />
           </div>
 
           {/* ================= FASILITAS ================= */}
@@ -202,9 +249,9 @@ export default function KosCriteriaSection() {
               <div className="flex items-center border border-zinc-200 rounded-xl overflow-hidden text-zinc-400">
                 <span className="px-4 text-zinc-500">Rp</span>
                 <input
-                  type="text"
+                  type="number"
                   placeholder="Contoh: 1.500.000"
-                  className="w-full px-4 py-3 outline-none text-zinc-400"
+                  className="w-full px-4 py-3 outline-none text-zinc-800"
                 />
               </div>
             </div>
@@ -254,6 +301,7 @@ export default function KosCriteriaSection() {
                 <input
                   type="date"
                   value={date}
+                  min={today}
                   onChange={(e) => setDate(e.target.value)}
                   className="w-full border border-zinc-200 rounded-xl px-4 py-3 outline-none text-zinc-800"
                 />
@@ -268,7 +316,7 @@ export default function KosCriteriaSection() {
                 value={notes}
                 onChange={(e) => setNotes(e.target.value)}
                 placeholder="Catatan tambahan"
-                className="w-full border border-zinc-200 rounded-xl px-4 py-3 outline-none resize-none h-[48px text-zinc-400"
+                className="w-full border border-zinc-200 rounded-xl px-4 py-3 outline-none resize-none h-[48px] text-zinc-800"
               />
             </div>
           </div>
@@ -276,7 +324,13 @@ export default function KosCriteriaSection() {
           {/* ================= BUTTON ================= */}
           <button
             onClick={handleSubmit}
-            className="mt-14 w-full bg-[#495C29] hover:bg-[#3e4f23] text-white py-4 rounded-2xl font-bold text-lg transition-all shadow-md"
+            disabled={!isFormValid}
+            className={cn(
+              "mt-14 w-full py-4 rounded-2xl font-bold text-lg transition-all shadow-md",
+              isFormValid
+                ? "bg-[#495C29] hover:bg-[#3e4f23] text-white"
+                : "bg-zinc-300 text-zinc-500 cursor-not-allowed"
+            )}
           >
             Kirim Kriteria Saya
           </button>
@@ -343,12 +397,26 @@ export default function KosCriteriaSection() {
   );
 }
 
-function Input({ label, placeholder }: { label: string; placeholder: string }) {
+function Input({
+  label,
+  placeholder,
+  value,
+  onChange,
+}: {
+  label: string;
+  placeholder: string;
+  value: string;
+  onChange: (val: string) => void;
+}) {
   return (
     <div>
-      <label className="block text-sm font-medium mb-3 text-zinc-800">{label}</label>
+      <label className="block text-sm font-medium mb-3 text-zinc-800">
+        {label}
+      </label>
       <input
         type="text"
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
         className="w-full border border-zinc-200 rounded-xl px-4 py-3 outline-none placeholder:text-zinc-400 text-zinc-900"
       />
