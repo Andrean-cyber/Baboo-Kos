@@ -183,33 +183,34 @@ export default function Testimonial() {
         </div>
 
         {/* ================= CONTROLS ================= */}
-        <div className="flex justify-center items-center gap-6 mt-8">
+        <div className="shrink-0 flex justify-center items-center gap-6 mt-8">
 
           <button
             onClick={() => scrollToCard(activeIndex - 1)}
-            className="flex justify-center items-center bg-[#EEF3E8] hover:bg-[#dce3d4] shadow-sm rounded-full w-12 h-12 text-[#495C29]"
+            className="shrink-0 flex justify-center items-center bg-[#EEF3E8] hover:bg-[#dce3d4] shadow-sm rounded-full w-12 h-12 text-[#495C29]"
           >
             <ChevronLeft size={24} />
           </button>
 
-          <div className="flex items-center gap-2">
-            {properties.map((_, index) => (
-              <div
-                key={index}
-                onClick={() => scrollToCard(index)}
-                className={cn(
-                  "w-2.5 h-2.5 rounded-full transition-all cursor-pointer",
-                  activeIndex === index
-                    ? "bg-[#495C29]"
-                    : "bg-zinc-300"
-                )}
-              />
-            ))}
+          <div className="flex md:hidden items-center gap-2">
+            {Array.from({ length: 5 }).map((_, i) => {
+              const current = Math.floor((activeIndex / (properties.length - 1)) * 4);
+
+              return (
+                <div
+                  key={i}
+                  className={cn(
+                    "w-2.5 h-2.5 rounded-full transition-all",
+                    current === i ? "bg-[#495C29]" : "bg-zinc-300"
+                  )}
+                />
+              );
+            })}
           </div>
 
           <button
             onClick={() => scrollToCard(activeIndex + 1)}
-            className="flex justify-center items-center bg-[#EEF3E8] hover:bg-[#dce3d4] shadow-sm rounded-full w-12 h-12 text-[#495C29]"
+            className="shrink-0 flex justify-center items-center bg-[#EEF3E8] hover:bg-[#dce3d4] shadow-sm rounded-full w-12 h-12 text-[#495C29]"
           >
             <ChevronRight size={24} />
           </button>
