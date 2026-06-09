@@ -14,7 +14,7 @@ const steps = [
     headerIcon: MessageCircle,
     title: "Menghubungi Whatsapp Baboo Kos",
     desc: "Kamu bisa menghubungi Admin Baboo Kos tertera di link tree dan bio semua akun sosial media kami (Instagram, TikTok, dan Threads).",
-    charImg: "/ill1.webp",
+    charImg: "/ilustrasi/ill1.webp",
     mockupType: "social",
     footerIcon: Zap,
     footerTitle: "Fast Response",
@@ -25,7 +25,7 @@ const steps = [
     headerIcon: ClipboardList,
     title: "Menyampaikan Kriteria Kos",
     desc: "Admin akan memandu kamu untuk menyampaikan kriteria kos sesuai dengan kebutuhan dan budget yang dimiliki berdasarkan request customer.",
-    charImg: "/ill2.webp",
+    charImg: "/ilustrasi/ill2.webp",
     mockupType: "chat",
     footerIcon: FileText,
     footerTitle: "Detail Kriteria",
@@ -36,7 +36,7 @@ const steps = [
     headerIcon: CreditCard,
     title: "Pembayaran & Proses Pencarian",
     desc: "Setelah pembayaran, Admin Baboo Kos akan memberikan estimasi hari untuk mencari kos yang sesuai kriteria.",
-    charImg: "/ill3.webp",
+    charImg: "/ilustrasi/ill3.webp",
     mockupType: "payment",
     footerIcon: CheckCircle2,
     footerTitle: "Proses Cepat & Transparan",
@@ -47,7 +47,7 @@ const steps = [
     headerIcon: Headset,
     title: "Mendapatkan Rekomendasi Kos",
     desc: "Customer akan dihubungi oleh tim CS (Customer Service) untuk mengirimkan list kos berdasarkan form kriteria yang telah diisi sesuai estimasi waktu.",
-    charImg: "/ill4.webp",
+    charImg: "/ilustrasi/ill4.webp",
     mockupType: "list",
     footerIcon: Handshake,
     footerTitle: "Dibantu Sampai Deal",
@@ -192,22 +192,99 @@ export default function Role() {
 function MockupRenderer({ type }: { type: string }) {
   if (type === "social") {
     return (
-      <div className="flex flex-col gap-3 opacity-80 w-full h-full pointer-events-none">
-        <div className="flex items-center gap-3 pb-2 border-zinc-200 border-b">
-          <div className="bg-zinc-200 rounded-full w-10 h-10 shrink-0"></div>
-          <div className="flex flex-col gap-1 w-full">
-            <div className="bg-zinc-200 rounded-full w-1/2 h-3"></div>
-            <div className="bg-zinc-200 rounded-full w-1/3 h-2"></div>
+      <div className="flex flex-col gap-3 w-full h-full pointer-events-none">
+        {/* Header Profile */}
+        <div className="flex items-center gap-3 pb-3 border-zinc-200 border-b">
+          <div className="relative bg-white rounded-full w-12 h-12 shrink-0 flex items-center justify-center overflow-hidden border border-zinc-200">
+            <img 
+              src="/icon.png" 
+              alt="Baboo Kos" 
+              className="w-full h-full object-cover"
+            />
+          </div>
+          <div className="flex flex-col gap-1.5 w-full">
+            <div className="flex items-center gap-1.5">
+              <span className="font-bold text-zinc-800 text-sm">Baboo Kos</span>
+              {/* Centang Biru Verifikasi WhatsApp */}
+              <svg className="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24" fill="none">
+                <circle cx="12" cy="12" r="10" fill="#00A5F4"/>
+                <path d="M9 12l2 2 4-4" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </div>
+            <div className="flex items-center gap-1 text-[10px] text-zinc-500">
+              <div className="bg-[#25D366] rounded-full w-2 h-2"></div>
+              <span>Online</span>
+            </div>
           </div>
         </div>
-        <div className="flex gap-2 mb-1">
-          <div className="flex justify-center items-center bg-blue-500/10 rounded-lg w-full h-8 font-bold text-[8px] text-blue-600">Kirim Pesan</div>
-          <div className="bg-zinc-200 rounded-lg w-8 h-8 shrink-0"></div>
+
+        {/* Action Buttons */}
+        <div className="flex gap-2 mb-2">
+          <div className="flex justify-center items-center gap-1.5 bg-[#25D366] hover:bg-[#20BD5C] rounded-lg w-full h-9 font-semibold text-[9px] text-white transition-colors">
+            <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2C6.48 2 2 6.48 2 12c0 1.54.36 3 .97 4.29L2 22l5.71-.97C9 21.64 10.46 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18c-1.38 0-2.69-.28-3.88-.78l-.28-.12-2.84.48.48-2.84-.12-.28C4.78 14.69 4.5 13.38 4.5 12c0-4.14 3.36-7.5 7.5-7.5s7.5 3.36 7.5 7.5-3.36 7.5-7.5 7.5z"/>
+            </svg>
+            Kirim Pesan
+          </div>
+          <div className="flex justify-center items-center bg-zinc-100 hover:bg-zinc-200 rounded-lg w-9 h-9 shrink-0 transition-colors">
+            <svg className="w-4 h-4 text-zinc-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+            </svg>
+          </div>
         </div>
-        <div className="gap-1 grid grid-cols-3">
-          {[1, 2, 3, 4, 5, 6].map((i) => (
-            <div key={i} className="bg-zinc-200 rounded-md aspect-square"></div>
-          ))}
+
+        {/* Info Section */}
+        <div className="space-y-3">
+          <div className="text-[10px] text-zinc-500 font-medium">Info Kontak</div>
+          
+          <div className="flex items-center gap-3">
+            <div className="bg-zinc-100 rounded-lg w-8 h-8 flex items-center justify-center shrink-0">
+              <svg className="w-4 h-4 text-zinc-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <div className="flex-1">
+              <div className="text-[11px] text-zinc-800 font-medium">Hunian Nyaman untuk Mahasiswa</div>
+              <div className="text-[9px] text-zinc-500 mt-0.5">Kos eksklusif di Yogyakarta</div>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-3">
+            <div className="bg-zinc-100 rounded-lg w-8 h-8 flex items-center justify-center shrink-0">
+              <svg className="w-4 h-4 text-zinc-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+            </div>
+            <div className="flex-1">
+              <div className="text-[11px] text-zinc-800 font-medium">Yogyakarta, Indonesia</div>
+              <div className="text-[9px] text-zinc-500 mt-0.5">Dekat kampus & fasilitas umum</div>
+            </div>
+          </div>
+        </div>
+
+        {/* Media Gallery */}
+        <div className="mt-2">
+          <div className="flex justify-between items-center mb-2">
+            <div className="text-[10px] text-zinc-500 font-medium">Media & Foto</div>
+            <div className="text-[9px] text-[#25D366] font-medium">12</div>
+          </div>
+          <div className="gap-1 grid grid-cols-3">
+            {[
+              { bg: "bg-gradient-to-br from-blue-400 to-blue-600" },
+              { bg: "bg-gradient-to-br from-green-400 to-green-600" },
+              { bg: "bg-gradient-to-br from-orange-400 to-orange-600" },
+              { bg: "bg-gradient-to-br from-purple-400 to-purple-600" },
+              { bg: "bg-gradient-to-br from-pink-400 to-pink-600" },
+              { bg: "bg-gradient-to-br from-teal-400 to-teal-600" },
+            ].map((item, i) => (
+              <div key={i} className={`${item.bg} rounded-md aspect-square flex items-center justify-center opacity-80`}>
+                <svg className="w-5 h-5 text-white opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     );
@@ -231,36 +308,99 @@ function MockupRenderer({ type }: { type: string }) {
         </div>
         <div className="text-center">
           <div className="text-[10px] text-zinc-500">Total Pembayaran</div>
-          <div className="font-bold text-zinc-900 text-sm">Rp150.000</div>
+          <div className="font-bold text-zinc-900 text-sm">Rp.450.000</div>
         </div>
         <div className="my-1 border-zinc-300 border-t border-dashed w-full"></div>
         <div className="bg-white p-2 border border-zinc-200 rounded-lg w-full text-[8px] text-zinc-500 text-center">
           Pembayaran diterima <br />
-          <span className="font-semibold text-[#495C29]">BCA - 1234 5678</span>
+          <span className="font-semibold text-[#495C29]">Rekening a.n Yucha Pratama</span>
         </div>
       </div>
     );
   }
 
   if (type === "list") {
-    return (
-      <div className="flex flex-col gap-2 w-full h-full pointer-events-none">
-        {[1, 2].map((i) => (
-          <div key={i} className="flex gap-2 bg-white shadow-sm p-2 border border-zinc-200 rounded-xl overflow-hidden">
-            <div className="bg-zinc-200 rounded-lg w-16 h-16 shrink-0"></div>
-            <div className="flex flex-col justify-center w-full">
-              <div className="bg-zinc-200 mb-1.5 rounded-full w-3/4 h-3"></div>
-              <div className="bg-[#495C29]/20 mb-2 rounded-full w-1/2 h-2"></div>
-              <div className="flex flex-col gap-1">
-                <div className="bg-zinc-100 rounded-full w-full h-1.5"></div>
-                <div className="bg-zinc-100 rounded-full w-4/5 h-1.5"></div>
-              </div>
+  return (
+    <div className="flex flex-col gap-2 w-full h-full pointer-events-none">
+      {[
+        {
+          name: "Baboo Kos Gejayan",
+          price: "1.2 Jt",
+          facility: "AC, Kasur, Lemari",
+          location: "Dekat UGM",
+          image: "bg-gradient-to-br from-blue-400 to-blue-600"
+        },
+        {
+          name: "Baboo Kos Seturan",
+          price: "1.5 Jt",
+          facility: "AC, WiFi, Kamar Mandi Dalam",
+          location: "Dekat UPN",
+          image: "bg-gradient-to-br from-green-400 to-green-600"
+        }
+      ].map((kos, i) => (
+        <div key={i} className="flex gap-3 bg-white shadow-sm p-2.5 border border-zinc-200 rounded-xl overflow-hidden hover:shadow-md transition-shadow">
+          {/* Image Thumbnail */}
+          <div className={`${kos.image} rounded-lg w-20 h-20 shrink-0 flex items-center justify-center relative overflow-hidden`}>
+            <svg className="w-8 h-8 text-white opacity-40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+            </svg>
+            {/* Badge */}
+            <div className="absolute top-1 right-1 bg-[#495C29] px-1.5 py-0.5 rounded text-[7px] text-white font-semibold">
+              Ready
             </div>
           </div>
-        ))}
-      </div>
-    );
-  }
 
+          {/* Content */}
+          <div className="flex flex-col justify-center w-full min-w-0">
+            {/* Title */}
+            <h4 className="font-bold text-zinc-800 text-[11px] truncate mb-1">
+              {kos.name}
+            </h4>
+            
+            {/* Price */}
+            <div className="flex items-center gap-1 mb-1.5">
+              <span className="font-bold text-[#495C29] text-[10px]">Rp {kos.price}</span>
+              <span className="text-[8px] text-zinc-400">/bulan</span>
+            </div>
+
+            {/* Facilities */}
+            <div className="flex items-center gap-1 mb-1">
+              <svg className="w-2.5 h-2.5 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+              </svg>
+              <span className="text-[9px] text-zinc-500 truncate">{kos.facility}</span>
+            </div>
+
+            {/* Location */}
+            <div className="flex items-center gap-1">
+              <svg className="w-2.5 h-2.5 text-zinc-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+              <span className="text-[9px] text-zinc-400 truncate">{kos.location}</span>
+            </div>
+          </div>
+
+          {/* Arrow */}
+          <div className="flex items-center ml-auto">
+            <svg className="w-4 h-4 text-zinc-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </div>
+        </div>
+      ))}
+
+      {/* Info Footer */}
+      <div className="flex items-start gap-2 bg-blue-50 mt-1 p-2 border border-blue-200 rounded-lg">
+        <svg className="w-3 h-3 text-blue-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <p className="text-[8px] text-blue-700 leading-relaxed">
+          Tim CS akan menghubungi untuk detail lengkap dan jadwal survei
+        </p>
+      </div>
+    </div>
+  );
+}
   return null;
 }

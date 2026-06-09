@@ -3,47 +3,55 @@
 import { useRef, useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { Maximize, Bed, Bath, ChefHat, CheckCircle2, X, ChevronLeft, ChevronRight } from "lucide-react";
+import { FiWifi } from "react-icons/fi";
+import { LuHouse } from "react-icons/lu";
+import BalconyIcon from '@mui/icons-material/Balcony';
 
 const villaData = {
   pesona: {
     name: "BABOO VILLA PESONA",
-    img: "/villaPesona.jpeg",
+    img: "/villa/pesona/villaPesona.jpeg",
     gallery: [
-      "/galleryPesona1.jpg",
-      "/galleryPesona2.jpg",
-      "/galleryPesona3.jpg",
-      "/galleryPesona4.jpg",
-      "/galleryPesona5.jpg",
-      "/galleryPesona6.jpg",
-      "/galleryPesona7.jpg",
-      "/galleryPesona8.jpg",
-      "/galleryPesona9.jpg",
-      "/galleryPesona10.jpg",
+      "/villa/pesona/pesona3.jpg",
+      "/villa/pesona/pesona5.jpg",
+      "/villa/pesona/pesona6.jpg",
+      "/villa/pesona/pesona7.jpg",
+      "/villa/pesona/pesona2.jpg",
+      "/villa/pesona/pesona1.jpg",
+      "/villa/pesona/pesona8.jpg",
+      "/villa/pesona/pesona9.jpg",
+      "/villa/pesona/pesona4.jpg",
     ],
     description: '"Baboo Villa Pesona menawarkan kehangatan hunian modern dengan pemandangan alam yang memukau setiap pagi."',
     specs: [
       { label: "Luas Bangunan", value: "110 m2", icon: <Maximize size={18} /> },
-      { label: "Kamar Tidur", value: "4 Room", icon: <Bed size={18} /> },
-      { label: "Kamar Mandi", value: "3 Room", icon: <Bath size={18} /> },
+      { label: "Kamar Tidur", value: "3 Room", icon: <Bed size={18} /> },
+      { label: "Kamar Mandi", value: "2 Room", icon: <Bath size={18} /> },
       { label: "Dapur", value: "1 Area", icon: <ChefHat size={18} /> },
+      { label: "Balkon", value: "1 Area", icon: <LuHouse size={18} /> },
+      { label: "Free WIFI", value: "", icon: <FiWifi size={18} /> },
     ],
-    points: ["Private Pool", "Smart Home System", "View Gunung"],
-    price: "550 Ribuan",
+    points: [" ⁠3 menit ke BNS dan Jatim Park 2", "5 menit ke Jatim Park 1, Jatim Park 3 dan Museum Angkut", "V8 menit ke Alun-alun Kota Batu", "View Gunung Arjuna", "KAwasan Villa Strategis"],
+    price: "350 Ribuan",
   },
   kusuma: {
     name: "BABOO VILLA KUSUMA",
-    img: "/villaKusuma.jpeg",
+    img: "/villa/kusuma/kusuma10.jpg",
     gallery: [
-      "/galleryKusuma1.jpg",
-      "/galleryKusuma2.jpg",
-      "/galleryKusuma3.jpg",
-      "/galleryKusuma4.jpg",
-      "/galleryKusuma5.jpg",
-      "/galleryKusuma6.jpg",
-      "/galleryKusuma7.jpg",
-      "/galleryKusuma8.jpg",
-      "/galleryKusuma9.jpg",
-      "/galleryKusuma10.jpg",
+      "/villa/kusuma/kusuma0.jpg",
+      "/villa/kusuma/kusuma12.jpg",
+      "/villa/kusuma/kusuma13.jpg",
+      "/villa/kusuma/kusuma3.jpg",
+      "/villa/kusuma/kusuma2.jpg",
+      "/villa/kusuma/kusuma1.jpg",
+      "/villa/kusuma/kusuma5.jpg",
+      "/villa/kusuma/kusuma11.jpg",
+      "/villa/kusuma/kusuma4.jpg",
+      "/villa/kusuma/kusuma9.jpg",
+      "/villa/kusuma/kusuma6.jpg",
+      "/villa/kusuma/kusuma7.jpg",
+      "/villa/kusuma/kusuma8.jpg",
+      "/villa/kusuma/kusuma14.jpeg",
     ],
     description: '"Baboo Villa Kusuma menghadirkan hunian eksklusif dengan kemewahan untuk momen relaksasi tanpa batas."',
     specs: [
@@ -53,7 +61,7 @@ const villaData = {
       { label: "Dapur", value: "1 Area", icon: <ChefHat size={18} /> },
     ],
     points: ["Konsep Minimalis", "High Ceiling", "Kawasan Wisata"],
-    price: "400 Ribuan",
+    price: "450 Ribuan",
   },
 };
 
@@ -67,7 +75,8 @@ export default function VillaDetail() {
   const hasAnimated = useRef(false);
 
   const handleWhatsapp = () => {
-    const message = encodeURIComponent("Halo kak, bisa tau informasi jadwal ketersediaan tentang Baboo Villa?");
+    const villaName = activeTab === "pesona" ? "Baboo Villa Pesona" : "Baboo Villa Kusuma";
+    const message = encodeURIComponent(`Halo kak, bisa tau informasi jadwal ketersediaan tentang ${villaName}?`);
     window.open(`https://wa.me/6287785338441?text=${message}`, "_blank");
   };
 
@@ -201,10 +210,10 @@ export default function VillaDetail() {
 
       <div className="flex flex-col items-center mb-10 text-center">
         <h3 className={cn("mb-2 font-bold text-[#495C29] text-sm md:text-base transition-all duration-700 ease-out", isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0")}>
-          Baboo Villa Detail
+          Property Breakdown
         </h3>
-        <h2 className={cn("mb-10 font-bold text-slate-900 text-3xl md:text-5xl tracking-tight transition-all duration-700 ease-out delay-150", isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0")}>
-          Eksplorasi Keunggulan Unit
+        <h2 className={cn("mb-15 font-bold text-slate-900 text-3xl md:text-5xl tracking-tight transition-all duration-700 ease-out delay-150", isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0")}>
+          Vibes-nya Dapet, Spek-nya Jelas ✨
         </h2>
 
         <div className={cn("flex justify-center items-center gap-12 md:gap-20 border-zinc-200 border-b w-full max-w-2xl transition-all duration-700 delay-300", isVisible ? "opacity-100" : "opacity-0")}>

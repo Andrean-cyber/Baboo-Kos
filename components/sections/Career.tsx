@@ -74,10 +74,10 @@ export default function Career() {
       <div className="flex flex-col items-center mb-10 max-w-3xl text-center">
         <h3 className={cn("mb-2 font-bold text-[#495C29] text-sm md:text-base transition-all duration-700 ease-out", isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0")}>Career</h3>
         <h2 className={cn("mb-5 font-bold text-slate-900 text-3xl md:text-4xl lg:text-5xl tracking-tight transition-all duration-700 ease-out delay-150", isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0")}>
-          Growing and Creating Memorable Moments
+          Join the squad: Tempatnya Ide Gila Dikasih Panggung
         </h2>
         <p className={cn("font-medium text-zinc-500 text-sm md:text-base leading-relaxed transition-all duration-700 ease-out delay-300", isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0")}>
-          Come to join as the professional team at Baboo Kos. We believe that the best service comes from a supportive, comfortable, and respectful working environment.
+          Kami bukan sekadar rekan kerja, tapi kolektif anak muda yang ambisius buat ngubah industri properti lokal. Bawa talenta terbaik lo, nikmati work-life balance yang proper, dan mari berkembang bareng tanpa drama.
         </p>
 
         {/* ========================= */}

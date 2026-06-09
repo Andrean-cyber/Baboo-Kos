@@ -135,7 +135,7 @@ export default function HeroKos() {
 
           {/* Description */}
           <p className={cn("mt-8 max-w-[430px] font-medium text-zinc-500 text-lg leading-relaxed transition-all duration-1000 ease-out delay-[400ms]", isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6")}>
-            Explore, choose, and book your private sanctuary tailored to your ultimate comfort.
+            Standar baru cari tempat tinggal anak muda. Prosesnya digital, fasilitasnya riil, dan harganya transparan dari awal sampai kamu terima kunci.
           </p>
 
           {/* Input Search (Desktop) */}
