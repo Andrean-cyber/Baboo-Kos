@@ -25,6 +25,8 @@ export default function KosCriteriaSection() {
   const [recommendation, setRecommendation] = useState<string>();
   const [facilities, setFacilities] = useState<string[]>([]);
   const [date, setDate] = useState("");
+  const formattedDate = date
+    ? date.split("-").reverse().join("-") : "-";
   const [notes, setNotes] = useState("");
   const today = new Date().toISOString().split("T")[0];
   const bannedWords = [
@@ -86,7 +88,7 @@ export default function KosCriteriaSection() {
         budget ? `Rp ${Number(budget).toLocaleString("id-ID")}` : "-"
       }*`,
       `*Jumlah Rekomendasi: ${recommendation} Kos*`,
-      `*Rencana Tanggal Huni: ${date || "-"}*`,
+      `*Rencana Tanggal Huni: ${formattedDate}*`,
       `*Catatan Tambahan: ${notes || "-"}*`,
       "",
       "Terima kasih 🙏",
