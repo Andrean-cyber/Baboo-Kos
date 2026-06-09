@@ -163,13 +163,13 @@ export default function OurBranch() {
       {/* ========================= */}
       {/* FOOTER CONTACT */}
       {/* ========================= */}
-      <div
+      {/* <div
         className={cn(
           "gap-10 md:gap-6 grid grid-cols-1 md:grid-cols-3 mt-10 md:mt-16 pt-10 border-zinc-100 border-t w-full lg:max-w-[900px] text-center transition-all duration-1000 ease-out delay-700",
           isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0",
         )}
       >
-        {/* Support */}
+
         <div className="flex flex-col items-center gap-2">
           <Mail size={24} className="mb-1 text-[#495C29]" />
           <h4 className="font-bold text-zinc-900 text-sm">Support</h4>
@@ -179,7 +179,7 @@ export default function OurBranch() {
           </a>
         </div>
 
-        {/* Airbnb */}
+
         <div className="flex flex-col items-center gap-2">
           <Home size={24} className="mb-1 text-[#495C29]" />
           <h4 className="font-bold text-zinc-900 text-sm">Airbnb</h4>
@@ -189,7 +189,7 @@ export default function OurBranch() {
           </a>
         </div>
 
-        {/* CP Villa */}
+
         <div className="flex flex-col items-center gap-2">
           <MessageCircle size={24} className="mb-1 text-[#495C29]" />
           <h4 className="font-bold text-zinc-900 text-sm">CP Villa</h4>
@@ -198,7 +198,7 @@ export default function OurBranch() {
             +6287785338441
           </a>
         </div>
-      </div>
+      </div> */}
     </section>
   );
 }

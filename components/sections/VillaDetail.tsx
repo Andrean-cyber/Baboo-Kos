@@ -2,27 +2,9 @@
 
 import { useRef, useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
-import { Maximize, Bed, Bath, ChefHat, CheckCircle2, X } from "lucide-react";
+import { Maximize, Bed, Bath, ChefHat, CheckCircle2, X, ChevronLeft, ChevronRight } from "lucide-react";
 
 const villaData = {
-  kusuma: {
-    name: "BABOO VILLA KUSUMA",
-    img: "/villaKusuma.jpeg",
-    gallery: [
-      "/galleryKusuma1.jpg",
-      "/galleryKusuma2.jpg",
-      "/galleryKusuma3.jpg",
-    ],
-    description: '"Baboo Villa Kusuma menghadirkan hunian eksklusif dengan kemewahan untuk momen relaksasi tanpa batas."',
-    specs: [
-      { label: "Luas Bangunan", value: "90 m2", icon: <Maximize size={18} /> },
-      { label: "Kamar Tidur", value: "3 Room", icon: <Bed size={18} /> },
-      { label: "Kamar Mandi", value: "2 Room", icon: <Bath size={18} /> },
-      { label: "Dapur", value: "1 Area", icon: <ChefHat size={18} /> },
-    ],
-    points: ["Konsep Minimalis", "High Ceiling", "Kawasan Wisata"],
-    price: "400 Ribuan",
-  },
   pesona: {
     name: "BABOO VILLA PESONA",
     img: "/villaPesona.jpeg",
@@ -30,6 +12,13 @@ const villaData = {
       "/galleryPesona1.jpg",
       "/galleryPesona2.jpg",
       "/galleryPesona3.jpg",
+      "/galleryPesona4.jpg",
+      "/galleryPesona5.jpg",
+      "/galleryPesona6.jpg",
+      "/galleryPesona7.jpg",
+      "/galleryPesona8.jpg",
+      "/galleryPesona9.jpg",
+      "/galleryPesona10.jpg",
     ],
     description: '"Baboo Villa Pesona menawarkan kehangatan hunian modern dengan pemandangan alam yang memukau setiap pagi."',
     specs: [
@@ -41,11 +30,38 @@ const villaData = {
     points: ["Private Pool", "Smart Home System", "View Gunung"],
     price: "550 Ribuan",
   },
+  kusuma: {
+    name: "BABOO VILLA KUSUMA",
+    img: "/villaKusuma.jpeg",
+    gallery: [
+      "/galleryKusuma1.jpg",
+      "/galleryKusuma2.jpg",
+      "/galleryKusuma3.jpg",
+      "/galleryKusuma4.jpg",
+      "/galleryKusuma5.jpg",
+      "/galleryKusuma6.jpg",
+      "/galleryKusuma7.jpg",
+      "/galleryKusuma8.jpg",
+      "/galleryKusuma9.jpg",
+      "/galleryKusuma10.jpg",
+    ],
+    description: '"Baboo Villa Kusuma menghadirkan hunian eksklusif dengan kemewahan untuk momen relaksasi tanpa batas."',
+    specs: [
+      { label: "Luas Bangunan", value: "90 m2", icon: <Maximize size={18} /> },
+      { label: "Kamar Tidur", value: "3 Room", icon: <Bed size={18} /> },
+      { label: "Kamar Mandi", value: "2 Room", icon: <Bath size={18} /> },
+      { label: "Dapur", value: "1 Area", icon: <ChefHat size={18} /> },
+    ],
+    points: ["Konsep Minimalis", "High Ceiling", "Kawasan Wisata"],
+    price: "400 Ribuan",
+  },
 };
 
 export default function VillaDetail() {
-  const [activeTab, setActiveTab] = useState<"kusuma" | "pesona">("kusuma");
-  const [selectedImg, setSelectedImg] = useState<string | null>(null); // State untuk zoom gambar
+  const [activeTab, setActiveTab] = useState<"kusuma" | "pesona">("pesona");
+  const [selectedImg, setSelectedImg] = useState<string | null>(null);
+  const [showAllGallery, setShowAllGallery] = useState(false);
+  const [currentGalleryIndex, setCurrentGalleryIndex] = useState(0);
   const sectionRef = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
   const hasAnimated = useRef(false);
@@ -56,6 +72,15 @@ export default function VillaDetail() {
   };
 
   const currentVilla = villaData[activeTab];
+
+  // Handler untuk navigasi gallery
+  const handleNextGallery = () => {
+    setCurrentGalleryIndex((prev) => (prev + 1) % currentVilla.gallery.length);
+  };
+
+  const handlePrevGallery = () => {
+    setCurrentGalleryIndex((prev) => (prev - 1 + currentVilla.gallery.length) % currentVilla.gallery.length);
+  };
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -71,6 +96,12 @@ export default function VillaDetail() {
     if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
   }, []);
+
+  // Reset gallery index saat tab berubah
+  useEffect(() => {
+    setCurrentGalleryIndex(0);
+    setShowAllGallery(false);
+  }, [activeTab]);
 
   return (
     <section ref={sectionRef} className="mx-auto px-4 md:px-8 py-16 md:py-24 w-full max-w-[1280px]">
@@ -97,6 +128,77 @@ export default function VillaDetail() {
         </div>
       )}
 
+      {/* ========================= */}
+      {/* GALLERY MODAL (SLIDER) */}
+      {/* ========================= */}
+      {showAllGallery && (
+        <div 
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-md p-4"
+          onClick={() => setShowAllGallery(false)}
+        >
+          <button 
+            className="absolute top-10 right-10 text-white hover:rotate-90 transition-transform duration-300 z-10"
+            onClick={() => setShowAllGallery(false)}
+          >
+            <X size={40} />
+          </button>
+
+          {/* Navigation Buttons */}
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              handlePrevGallery();
+            }}
+            className="absolute left-4 md:left-10 z-10 bg-white/20 hover:bg-white/30 backdrop-blur-sm p-3 rounded-full text-white transition-all"
+          >
+            <ChevronLeft size={32} />
+          </button>
+
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              handleNextGallery();
+            }}
+            className="absolute right-4 md:right-10 z-10 bg-white/20 hover:bg-white/30 backdrop-blur-sm p-3 rounded-full text-white transition-all"
+          >
+            <ChevronRight size={32} />
+          </button>
+
+          {/* Main Image */}
+          <div className="relative max-w-5xl w-full" onClick={(e) => e.stopPropagation()}>
+            <img 
+              src={currentVilla.gallery[currentGalleryIndex]} 
+              alt={`Gallery ${currentGalleryIndex + 1}`}
+              className="w-full max-h-[80vh] rounded-2xl shadow-2xl object-contain"
+            />
+            
+            {/* Counter */}
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/50 backdrop-blur-sm px-4 py-2 rounded-full text-white text-sm">
+              {currentGalleryIndex + 1} / {currentVilla.gallery.length}
+            </div>
+          </div>
+
+          {/* Thumbnails */}
+          <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex gap-2 max-w-full overflow-x-auto px-4 py-2">
+            {currentVilla.gallery.map((img, i) => (
+              <button
+                key={i}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setCurrentGalleryIndex(i);
+                }}
+                className={cn(
+                  "w-16 h-16 rounded-lg overflow-hidden flex-shrink-0 transition-all",
+                  currentGalleryIndex === i ? "ring-2 ring-white scale-110" : "opacity-50 hover:opacity-100"
+                )}
+              >
+                <img src={img} alt={`Thumb ${i + 1}`} className="w-full h-full object-cover" />
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+
       <div className="flex flex-col items-center mb-10 text-center">
         <h3 className={cn("mb-2 font-bold text-[#495C29] text-sm md:text-base transition-all duration-700 ease-out", isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0")}>
           Baboo Villa Detail
@@ -106,7 +208,7 @@ export default function VillaDetail() {
         </h2>
 
         <div className={cn("flex justify-center items-center gap-12 md:gap-20 border-zinc-200 border-b w-full max-w-2xl transition-all duration-700 delay-300", isVisible ? "opacity-100" : "opacity-0")}>
-          {["kusuma", "pesona"].map((tab) => (
+          {["pesona", "kusuma"].map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab as "kusuma" | "pesona")}
@@ -131,9 +233,9 @@ export default function VillaDetail() {
             <div className="top-8 right-10 absolute bg-[#495C29]/90 shadow-sm backdrop-blur-md px-4 py-1.5 rounded-full font-bold text-[10px] text-white tracking-wide">Cek Ketersediaan</div>
           </div>
 
-          {/* Sub Gallery */}
+          {/* Sub Gallery - Show 2 images + More button */}
           <div className="grid grid-cols-3 gap-3 md:gap-4 mt-4 md:mt-6">
-            {currentVilla.gallery.map((img, i) => (
+            {currentVilla.gallery.slice(0, 2).map((img, i) => (
               <div 
                 key={i} 
                 className="aspect-[4/3] rounded-2xl overflow-hidden shadow-sm cursor-zoom-in group"
@@ -146,6 +248,15 @@ export default function VillaDetail() {
                 />
               </div>
             ))}
+            
+            {/* More Button */}
+            <button
+              onClick={() => setShowAllGallery(true)}
+              className="aspect-[4/3] rounded-2xl overflow-hidden shadow-sm bg-zinc-900/80 hover:bg-zinc-900/90 flex flex-col items-center justify-center gap-2 transition-all group"
+            >
+              <span className="text-white text-2xl font-bold">+{currentVilla.gallery.length - 2}</span>
+              <span className="text-white text-xs font-medium">Lihat Semua</span>
+            </button>
           </div>
         </div>
 
