@@ -2,7 +2,10 @@
 
 import { useRef, useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
-import { Maximize, Bed, Bath, ChefHat, CheckCircle2, X, ChevronLeft, ChevronRight } from "lucide-react";
+import { 
+  Maximize, Bed, Bath, ChefHat, CheckCircle2, X, ChevronLeft, ChevronRight, MapPin, Info,
+  Layers, Tv, Music, Thermometer, Car, Box, Shirt, Utensils, Mountain 
+} from "lucide-react";
 import { FiWifi } from "react-icons/fi";
 import { LuHouse } from "react-icons/lu";
 import BalconyIcon from '@mui/icons-material/Balcony';
@@ -24,15 +27,31 @@ const villaData = {
     ],
     description: '"Baboo Villa Pesona menawarkan kehangatan hunian modern dengan pemandangan alam yang memukau setiap pagi."',
     specs: [
-      { label: "Luas Bangunan", value: "110 m2", icon: <Maximize size={18} /> },
-      { label: "Kamar Tidur", value: "3 Room", icon: <Bed size={18} /> },
-      { label: "Kamar Mandi", value: "2 Room", icon: <Bath size={18} /> },
-      { label: "Dapur", value: "1 Area", icon: <ChefHat size={18} /> },
-      { label: "Balkon", value: "1 Area", icon: <LuHouse size={18} /> },
-      { label: "Free WIFI", value: "", icon: <FiWifi size={18} /> },
+      { label: "2 Lantai", icon: <Layers size={16} /> },
+      { label: "3 Kamar Tidur", icon: <Bed size={16} /> },
+      { label: "2 Kamar Mandi", icon: <Bath size={16} /> },
+      { label: "Kitchen Set", icon: <ChefHat size={16} /> },
+      { label: 'Smart TV Samsung 50"', icon: <Tv size={16} /> },
+      { label: "Speaker + Karaoke", icon: <Music size={16} /> },
+      { label: "Water Heater", icon: <Thermometer size={16} /> },
+      { label: "Free Wi-Fi", icon: <FiWifi size={16} /> },
+      { label: "Carport Mobil", icon: <Car size={16} /> },
+      { label: "Rak Sepatu", icon: <Box size={16} /> },
+      { label: "Lemari Pakaian", icon: <Shirt size={16} /> },
+      { label: "Meja Makan", icon: <Utensils size={16} /> },
+      { label: "Peralatan Memasak", icon: <ChefHat size={16} /> },
+      { label: "Balkon G. Arjuna", icon: <Mountain size={16} /> },
     ],
-    points: [" ⁠3 menit ke BNS dan Jatim Park 2", "5 menit ke Jatim Park 1, Jatim Park 3 dan Museum Angkut", "V8 menit ke Alun-alun Kota Batu", "View Gunung Arjuna", "KAwasan Villa Strategis"],
-    price: "350 Ribuan",
+    points: [" ⁠3 menit ke BNS dan Jatim Park 2", "5 menit ke Jatim Park 1, Jatim Park 3 dan Museum Angkut", "8 menit ke Alun-alun Kota Batu", "High Ceiling", "Kawasan Villa Strategis"],
+    priceWeekday: "350 Ribu",
+    priceWeekend: "550 Ribu",
+    address: "Pesona Batu Residence Kav. 16 Oro-oro ombo Kota Batu",
+    notes: [
+      "Kapasitas max Baboo Vila 6 orang dewasa, jika lebih maka akan dikenakan biaya tambahan 30k/orang.",
+      "Anak-anak di atas 5 tahun terhitung orang dewasa.",
+      "Harga weekend juga berlaku untuk hari libur nasional.",
+      "Check-in jam 14.00 dan Check-out max 11.00."
+    ]
   },
   kusuma: {
     name: "BABOO VILLA KUSUMA",
@@ -55,13 +74,33 @@ const villaData = {
     ],
     description: '"Baboo Villa Kusuma menghadirkan hunian eksklusif dengan kemewahan untuk momen relaksasi tanpa batas."',
     specs: [
-      { label: "Luas Bangunan", value: "90 m2", icon: <Maximize size={18} /> },
-      { label: "Kamar Tidur", value: "3 Room", icon: <Bed size={18} /> },
-      { label: "Kamar Mandi", value: "2 Room", icon: <Bath size={18} /> },
-      { label: "Dapur", value: "1 Area", icon: <ChefHat size={18} /> },
+      { label: "2 Lantai", icon: <Layers size={16} /> },
+      { label: "3 Kamar Tidur", icon: <Bed size={16} /> },
+      { label: "2 Kamar Mandi", icon: <Bath size={16} /> },
+      { label: "All Queen Size Bed", icon: <Bed size={16} /> },
+      { label: "Kitchen Set", icon: <ChefHat size={16} /> },
+      { label: 'Samsung Smart TV', icon: <Tv size={16} /> },
+      { label: "Speaker + Karaoke", icon: <Music size={16} /> },
+      { label: "Water Heater", icon: <Thermometer size={16} /> },
+      { label: "Free Wi-Fi", icon: <FiWifi size={16} /> },
+      { label: "Carport Mobil", icon: <Car size={16} /> },
+      { label: "Standing Hanger", icon: <Box size={16} /> },
+      { label: "Lemari Pakaian", icon: <Shirt size={16} /> },
+      { label: "Meja Makan", icon: <Utensils size={16} /> },
+      { label: "Peralatan Memasak & Grill Pan", icon: <ChefHat size={16} /> },
+      { label: "Balkon Minimalis", icon: <LuHouse size={16} /> },
+      { label: "Lingkungan Ekslusif", icon: <LuHouse size={16} /> },
     ],
-    points: ["Konsep Minimalis", "High Ceiling", "Kawasan Wisata"],
-    price: "450 Ribuan",
+    points: ["4 Menit ke Museum Angkut", "4 Menit ke Kusuma Agro Wisata", "5 Menit ke Jatim Park 1 dan Bukit Bintang", "8 Menit ke Alun-Alun Kota Batu", "10 Menit ke Jatim Park 2 dan BNS"],
+    priceWeekday: "450 Ribu",
+    priceWeekend: "750 Ribu",
+    address: "Grand Kusuma Hills A-11, Ngaglik, Kota Batu.",
+    notes: [
+      "Kapasitas max Baboo Vila 7 orang dewasa, jika lebih maka akan dikenakan biaya tambahan 40k/orang.",
+      "Anak-anak di atas 5 tahun terhitung orang dewasa.",
+      "Harga weekend juga berlaku untuk hari libur nasional.",
+      "Check-in jam 14.00 dan Check-out max 11.00."
+    ]
   },
 };
 
@@ -269,25 +308,24 @@ export default function VillaDetail() {
           </div>
         </div>
 
-        {/* MIDDLE: SPECS */}
+        {/* MIDDLE: SPECS (GRID 2 KOLOM) */}
         <div className="flex flex-col lg:col-span-4 lg:pt-4">
-          <h4 className="mb-4 font-bold text-zinc-900 text-lg">Spesifikasi Unit</h4>
-          <p className="mb-8 text-[13px] text-zinc-500 italic leading-relaxed">{currentVilla.description}</p>
+          <h4 className="mb-3 font-bold text-zinc-900 text-lg">Fasilitas Unit</h4>
+          <p className="mb-6 text-[13px] text-zinc-500 italic leading-relaxed">{currentVilla.description}</p>
 
-          <div className="flex flex-col gap-4">
+          <div className="grid grid-cols-2 gap-x-4 gap-y-3">
             {currentVilla.specs.map((spec, i) => (
-              <div key={i} className="flex justify-between items-center pb-3 border-zinc-100 border-b">
-                <div className="flex items-center gap-3 text-zinc-400">
+              <div key={i} className="flex items-center gap-2.5 pb-2 border-zinc-100 border-b">
+                <div className="text-[#495C29] bg-[#EEF3E8] p-1.5 rounded-lg shrink-0">
                   {spec.icon}
-                  <span className="font-medium text-sm">{spec.label}</span>
                 </div>
-                <span className="font-bold text-zinc-900 text-sm">{spec.value}</span>
+                <span className="font-semibold text-zinc-700 text-xs truncate leading-tight">{spec.label}</span>
               </div>
             ))}
           </div>
 
-          <div className="mt-10">
-            <h4 className="mb-5 font-bold text-[#495C29] text-sm uppercase tracking-wide">Point Plus</h4>
+          <div className="mt-8">
+            <h4 className="mb-4 font-bold text-[#495C29] text-sm uppercase tracking-wide">Point Plus</h4>
             <div className="flex flex-col gap-3">
               {currentVilla.points.map((point, i) => (
                 <div key={i} className="flex items-center gap-3">
@@ -299,15 +337,61 @@ export default function VillaDetail() {
           </div>
         </div>
 
-        {/* RIGHT: PRICING & CTA */}
-        <div className="flex flex-col justify-between gap-8 lg:col-span-3 lg:pt-4">
+        {/* RIGHT: PRICING (WEEKDAY & WEEKEND) & CTA */}
+        <div className="flex flex-col justify-between gap-6 lg:col-span-3 lg:pt-4">
           <div className="flex flex-col gap-3">
-            <div className="flex flex-col items-start bg-[#EEF3E8] shadow-sm p-6 md:p-8 rounded-2xl">
-              <p className="font-semibold text-zinc-500 text-xs">Harga Mulai</p>
-              <h3 className="mt-1 font-extrabold text-[#495C29] text-[1.6rem] tracking-tight">Rp. {currentVilla.price}</h3>
-              <button className="bg-white/70 hover:bg-white mt-4 px-4 py-2 rounded-full font-bold text-[#495C29] text-[11px] transition-colors">Dapatkan promo</button>
+            {/* HARGA CARD */}
+            <div className="flex flex-col items-start bg-[#EEF3E8] shadow-sm p-5 md:p-6 rounded-2xl">
+              <p className="font-bold text-zinc-700 text-xs mb-3">Informasi Harga</p>
+              
+              <div className="flex justify-between items-center w-full border-zinc-200/60 border-b pb-2.5 mb-2.5">
+                <span className="font-medium text-zinc-500 text-xs">Weekday</span>
+                <div className="text-right">
+                  <span className="font-extrabold text-[#495C29] text-base">Rp {currentVilla.priceWeekday}</span>
+                  <span className="text-[10px] text-zinc-400 block -mt-0.5">/ malam</span>
+                </div>
+              </div>
+
+              <div className="flex justify-between items-center w-full">
+                <span className="font-medium text-zinc-500 text-xs">Weekend / Libur</span>
+                <div className="text-right">
+                  <span className="font-extrabold text-[#495C29] text-base">Rp {currentVilla.priceWeekend}</span>
+                  <span className="text-[10px] text-zinc-400 block -mt-0.5">/ malam</span>
+                </div>
+              </div>
+
+              <button className="bg-white/80 hover:bg-white mt-4 w-full py-2 rounded-full font-bold text-[#495C29] text-[11px] shadow-sm transition-colors text-center">
+                Dapatkan promo
+              </button>
             </div>
-            <p className="px-2 font-medium text-[10px] text-zinc-400">*Harga Termasuk... (syarat & ketentuan berlaku)</p>
+            <p className="px-2 font-medium text-[10px] text-zinc-400 mb-1">*Syarat & ketentuan berlaku</p>
+
+            {/* ADDRESS CARD */}
+            <div className="bg-white border border-zinc-100 shadow-sm p-4 rounded-2xl flex items-start gap-3">
+              <MapPin size={20} className="text-[#495C29] shrink-0 mt-0.5" />
+              <div className="flex flex-col">
+                <span className="font-bold text-zinc-800 text-xs mb-1">Alamat</span>
+                <span className="text-zinc-500 text-[11px] leading-relaxed">
+                  {currentVilla.address}
+                </span>
+              </div>
+            </div>
+
+            {/* NOTES CARD */}
+            <div className="bg-amber-50/70 border border-amber-100/80 p-4 rounded-2xl">
+              <div className="flex items-center gap-2 mb-3">
+                <Info size={16} className="text-amber-600" />
+                <span className="font-bold text-amber-900 text-xs">Catatan Penting</span>
+              </div>
+              <ul className="text-amber-800/90 text-[11px] space-y-2 list-none">
+                {currentVilla.notes.map((note, i) => (
+                  <li key={i} className="flex gap-2 items-start">
+                    <span className="text-amber-500 mt-0.5">•</span> 
+                    <span>{note}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
           
           <button

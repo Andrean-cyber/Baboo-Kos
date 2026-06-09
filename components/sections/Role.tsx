@@ -303,17 +303,17 @@ function MockupRenderer({ type }: { type: string }) {
   if (type === "payment") {
     return (
       <div className="flex flex-col justify-center items-center gap-3 h-full pointer-events-none">
-        <div className="flex justify-center items-center bg-[#EEF3E8] rounded-full w-12 h-12 text-[#495C29]">
-          <CheckCircle2 size={24} />
-        </div>
-        <div className="text-center">
-          <div className="text-[10px] text-zinc-500">Total Pembayaran</div>
-          <div className="font-bold text-zinc-900 text-sm">Rp.450.000</div>
-        </div>
+        
         <div className="my-1 border-zinc-300 border-t border-dashed w-full"></div>
         <div className="bg-white p-2 border border-zinc-200 rounded-lg w-full text-[8px] text-zinc-500 text-center">
-          Pembayaran diterima <br />
-          <span className="font-semibold text-[#495C29]">Rekening a.n Yucha Pratama</span>
+          Untuk payment bisa kesini ya kakak! <br />
+          <span className="font-semibold text-[#495C29]">BCA a.n Yucha Pratama 3680362199</span>
+        </div>
+        <div className="bg-white p-2 border border-zinc-200 rounded-lg w-full text-[8px] text-zinc-500 text-center">
+          <span className="font-semibold text-[#495C29]">BRI a.n Yucha Pratama 622801036991530</span>
+        </div>
+        <div className="bg-white p-2 border border-zinc-200 rounded-lg w-full text-[8px] text-zinc-500 text-center">
+          <span className="font-semibold text-[#495C29]">Shopeepay/Gopay/DANA a.n yuchapratama 085694621154</span>
         </div>
       </div>
     );
