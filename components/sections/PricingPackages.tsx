@@ -47,10 +47,10 @@ export default function PricingPackages() {
       <div className="flex flex-col items-center mb-10 text-center">
         <h3 className={cn("mb-2 font-bold text-[#495C29] text-sm md:text-base transition-all duration-700 ease-out", isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0")}>Pricing & Packages</h3>
         <h2 className={cn("mb-4 font-bold text-slate-900 text-3xl md:text-5xl tracking-tight transition-all duration-700 ease-out delay-150", isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0")}>
-          Pilih Paket Promosi Terbaik Anda
+          Spill Kamar Kos Lo, Biar Netizen yang Rebutan! 💅🏻
         </h2>
         <p className={cn("max-w-2xl font-medium text-zinc-500 text-sm md:text-base leading-relaxed transition-all duration-700 ease-out delay-300", isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0")}>
-          Kami menyediakan berbagai pilihan paket media sosial yang bisa disesuaikan dengan kebutuhan branding Anda.
+          Gak zaman lagi sebar brosur di tiang listrik. Pilih paket promosi sosial media kita dan biarkan algoritma yang kerja keras buat penuhin kosan lo!
         </p>
       </div>
 

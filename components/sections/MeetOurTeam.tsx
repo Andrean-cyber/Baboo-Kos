@@ -8,42 +8,42 @@ const teamMembers = [
   {
     name: "Yucha Pratama",
     role: "Chief Executive Officer (CEO)",
-    img: "/yuca.jpg",
+    img: "/team/yuca.jpg",
   },
   {
     name: "Pranayama Sukma Fritzie Wisnu",
     role: "administrasi (ADM)",
-    img: "/pran.jpg",
+    img: "/team/pran.jpg",
   },
   {
     name: "Afifa Nur Aulia Viranti",
     role: "Human Resources Development (HRD)",
-    img: "/afifa.jpg",
+    img: "/team/afifa.jpg",
   },
   {
     name: "Atikah Azra Wahdah",
     role: "Social Media Specialist (SMS)",
-    img: "/tika.jpg",
+    img: "/team/tika.jpg",
   },
   {
     name: "Kisfa Azka Khalisa",
     role: "Content Manager (CM)",
-    img: "/lisa.jpg",
+    img: "/team/lisa.jpg",
   },
   {
     name: "Meliani Ananda Ginting",
     role: "Head of Customer Service (HCS)",
-    img: "/meli.jpg",
+    img: "/team/meli.jpg",
   },
   {
     name: "Muchammad Akmal Mustofa",
     role: "Head of Content Creator (HCC)",
-    img: "/akmal.jpg",
+    img: "/team/akmal.jpg",
   },
   {
     name: "Andrean Yogha Saputra",
     role: "WEB DEV / Digital Support (IT)",
-    img: "/andre.jpg",
+    img: "/team/andre.jpg",
   },
 ];
 
@@ -81,11 +81,11 @@ export default function MeetOurTeam() {
         <h3 className={cn("mb-2 font-bold text-[#495C29] text-sm md:text-base transition-all duration-700 ease-out", isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0")}>Meet Our Team</h3>
 
         <h2 className={cn("mb-4 font-bold text-slate-900 text-3xl md:text-4xl lg:text-5xl tracking-tight transition-all duration-700 ease-out delay-150", isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0")}>
-          Kenali Tim Profesional Kami
+          Meet the Minds Behind Baboo Kos
         </h2>
 
         <p className={cn("max-w-xl font-medium text-zinc-500 text-sm md:text-base leading-relaxed transition-all duration-700 ease-out delay-300", isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0")}>
-          Kami adalah individu yang berdedikasi dan profesional, siap memberikan pengalaman terbaik untuk Anda.
+          Bukan sekedar tim dibalik layar. Kami adalah kombinasi kreator, marketer dan tech-enthusiast yang berambisi mengubah cara orang mencari dan mempromosikan kos jadi jauh lebih seru.
         </p>
       </div>
 

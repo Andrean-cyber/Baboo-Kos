@@ -11,21 +11,21 @@ import { FaInstagram, FaTiktok } from "react-icons/fa";
 const igFeeds = [
   {
     id: 1,
-    img: "/igthumb1.png",
+    img: "/sosmed/babookos/igthumb1.png",
     title: "Top 3 + 1 Penipu Kos",
     time: "1 Years ago",
     type: "carousel",
   },
   {
     id: 2,
-    img: "/igthumb2.png",
+    img: "/sosmed/babookos/igthumb2.png",
     title: "BABOO VILLA by Baboo Kos",
     time: "2 Years ago",
     type: "reels",
   },
   {
     id: 3,
-    img: "/igthumb3.jpg",
+    img: "/sosmed/babookos//igthumb3.jpg",
     title: "BABOO VILLA KUSUMA",
     time: "1 Years ago",
     type: "carousel",
@@ -35,21 +35,21 @@ const igFeeds = [
 const tkFeeds = [
   {
     id: 1,
-    img: "/ttthumb1.png",
+    img: "/sosmed/babookos/ttthumb1.png",
     title: "Kost Putri Bu ella Batununggal",
     time: "2 Years ago",
     views: "29.7K",
   },
   {
     id: 2,
-    img: "/ttthumb2.png",
+    img: "/sosmed/babookos/ttthumb2.png",
     title: "🏡Kos Campur Graha Pura 5",
     time: "1 Years ago",
     views: "50.2K",
   },
   {
     id: 3,
-    img: "/ttthumb3.png",
+    img: "/sosmed/babookos/ttthumb3.png",
     title: "Kost Campur Bebas LV Ijan 14",
     time: "2 Years ago",
     views: "307.1K",
