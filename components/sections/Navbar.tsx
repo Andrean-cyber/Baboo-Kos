@@ -101,6 +101,12 @@ const handleWhatsapp = () => {
     pathname.startsWith("/career") || 
     pathname.startsWith("/aboutus");
 
+  // Cek apakah sedang di homepage
+  const isHomePage = pathname === "/" || pathname === "/#home";
+
+  // Tentukan apakah harus menampilkan semua menu horizontal
+  const showAllMenusHorizontal = isSubPage || (isHomePage && isScrolled);
+
   return (
     <>
       {/* ========================= */}
@@ -134,13 +140,13 @@ const handleWhatsapp = () => {
             <div 
               className={cn(
                 "hidden md:flex items-center gap-6 lg:gap-8 transition-all duration-300",
-                isSubPage 
+                showAllMenusHorizontal
                   ? "absolute left-1/2 -translate-x-1/2 justify-center" 
                   : "justify-start"
               )}
             >
-              {isSubPage ? (
-                // TAMPILAN JIKA DI SUB-PAGE (Explore Terbuka Sejajar)
+              {showAllMenusHorizontal ? (
+                // TAMPILAN JIKA DI SUB-PAGE ATAU HOME SCROLLED (Semua Menu Sejajar)
                 <>
                   {navLinks.map((link) => (
                     <Link

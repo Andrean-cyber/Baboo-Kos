@@ -18,6 +18,7 @@ export default function KosCriteriaSection() {
   const [city, setCity] = useState("");
   const [location, setLocation] = useState("");
   const [gender, setGender] = useState<string>();
+  const [budget, setBudget] = useState("");
   const sectionRef = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
   const hasAnimated = useRef(false);
@@ -68,22 +69,45 @@ export default function KosCriteriaSection() {
       }
 
       const message = `
-    Halo Baboo Kos 👋
+      Halo Baboo Kos 👋
 
-    Saya ingin mencari kos dengan kriteria berikut:
+      Saya ingin mencari kos dengan kriteria berikut:
 
-    • Jenis Kos: ${gender}
-    • Fasilitas: ${
+      *DATA PENCARI KOS*
+
+      *Nama*
+      ${name}
+
+      *Jenis Kos*
+      ${gender}
+
+      *Kabupaten/Kota*
+      ${city}
+
+      *Lokasi Spesifik*
+      ${location}
+
+      *Fasilitas*
+      ${
         facilities.length > 0
           ? facilities.join(", ")
           : "Tidak ada preferensi khusus"
       }
-    • Jumlah Rekomendasi: ${recommendation} Kos
-    • Rencana Tanggal Huni: ${date || "-"}
-    • Catatan Tambahan: ${notes || "-"}
 
-    Terima kasih 🙏
-    `;
+      *Budget per Bulan*
+      ${budget ? `Rp ${Number(budget).toLocaleString("id-ID")}` : "-"}
+
+      *Jumlah Rekomendasi*
+      ${recommendation} Kos
+
+      *Rencana Tanggal Huni*
+      ${date || "-"}
+
+      *Catatan Tambahan*
+      ${notes || "-"}
+
+      Terima kasih 🙏
+      `;
 
       const encoded = encodeURIComponent(message);
       const phone = "6287785338441";
@@ -147,7 +171,7 @@ export default function KosCriteriaSection() {
             />
             {/* Jenis Kos */}
             <div>
-              <label className="block mb-3 text-sm font-medium text-zinc-800">
+              <label className="block mb-3 text-sm font-bold text-zinc-800">
                 Jenis Kos
               </label>
               <div className="flex flex-wrap gap-3 text-zinc-800">
@@ -197,7 +221,7 @@ export default function KosCriteriaSection() {
 
           {/* ================= FASILITAS ================= */}
           <div className="mt-12">
-            <label className="block text-sm font-medium mb-4 text-zinc-800">
+            <label className="block text-sm font-bold mb-4 text-zinc-800">
               Fasilitas yang diinginkan
             </label>
 
@@ -243,13 +267,15 @@ export default function KosCriteriaSection() {
           {/* ================= BUDGET & REKOMENDASI ================= */}
           <div className="grid md:grid-cols-2 gap-8 mt-12">
             <div>
-              <label className="block text-sm font-medium mb-3 text-zinc-800">
+              <label className="block text-sm font-bold mb-3 text-zinc-800">
                 Budget per Bulan
               </label>
               <div className="flex items-center border border-zinc-200 rounded-xl overflow-hidden text-zinc-400">
                 <span className="px-4 text-zinc-500">Rp</span>
                 <input
                   type="number"
+                  value={budget}
+                  onChange={(e) => setBudget(e.target.value)}
                   placeholder="Contoh: 1.500.000"
                   className="w-full px-4 py-3 outline-none text-zinc-800"
                 />
@@ -257,7 +283,7 @@ export default function KosCriteriaSection() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium mb-3 text-zinc-800">
+              <label className="block text-sm font-bold mb-3 text-zinc-800">
                 Jumlah Rekomendasi yang diinginkan
               </label>
               <div className="flex gap-4">
@@ -294,7 +320,7 @@ export default function KosCriteriaSection() {
           {/* ================= TANGGAL & CATATAN ================= */}
           <div className="grid md:grid-cols-2 gap-8 mt-12">
             <div>
-              <label className="block text-sm font-medium mb-3 text-zinc-800">
+              <label className="block text-sm font-bold mb-3 text-zinc-800">
                 Rencana tanggal dihuni
               </label>
               <div className="relative">
@@ -303,20 +329,20 @@ export default function KosCriteriaSection() {
                   value={date}
                   min={today}
                   onChange={(e) => setDate(e.target.value)}
-                  className="w-full border border-zinc-200 rounded-xl px-4 py-3 outline-none text-zinc-800"
+                  className="w-full h-[52px] border border-zinc-200 rounded-xl px-4 outline-none text-zinc-800"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-sm font-medium mb-3 text-zinc-800">
+              <label className="block text-sm font-bold mb-3 text-zinc-800">
                 Catatan Tambahan (Opsional)
               </label>
               <textarea
                 value={notes}
                 onChange={(e) => setNotes(e.target.value)}
                 placeholder="Catatan tambahan"
-                className="w-full border border-zinc-200 rounded-xl px-4 py-3 outline-none resize-none h-[48px] text-zinc-800"
+                className="w-full h-[52px] border border-zinc-200 rounded-xl px-4 py-3 outline-none resize-none h-[48px] text-zinc-800"
               />
             </div>
           </div>
@@ -410,7 +436,7 @@ function Input({
 }) {
   return (
     <div>
-      <label className="block text-sm font-medium mb-3 text-zinc-800">
+      <label className="block text-sm font-bold mb-3 text-zinc-800">
         {label}
       </label>
       <input
