@@ -149,6 +149,9 @@ function SimulationContent() {
   const discount = isBundle ? subtotal * 0.1 : 0;
   const total = subtotal - discount;
 
+  // Cek apakah ada paket yang dipilih
+  const hasSelectedPackages = selectedPackages.length > 0;
+
   // BUILD WHATSAPP MESSAGE
   const buildWA = () => {
     let message = "Halo Baboo Kos, saya ingin memesan paket promosi:\n\n";
@@ -523,17 +526,31 @@ function SimulationContent() {
               <p className="mt-2 text-[10px] text-white/60">Harga sudah termasuk pajak jika berlaku</p>
             </div>
 
-            <a
-              target="_blank"
-              rel="noreferrer"
-              href={`https://wa.me/6285178476086?text=${buildWA()}`}
-              className="flex justify-center items-center gap-2 bg-[#F3C546] hover:bg-[#e0b641] mt-6 py-3.5 rounded-xl font-bold text-zinc-900 text-sm transition-colors"
-            >
-              <ShoppingCart size={18} />
-              Checkout Sekarang
-            </a>
+            {hasSelectedPackages ? (
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href={`https://wa.me/6285178476086?text=${buildWA()}`}
+                className="flex justify-center items-center gap-2 bg-[#F3C546] hover:bg-[#e0b641] mt-6 py-3.5 rounded-xl font-bold text-zinc-900 text-sm transition-colors"
+              >
+                <ShoppingCart size={18} />
+                Checkout Sekarang
+              </a>
+            ) : (
+              <button
+                disabled
+                className="flex justify-center items-center gap-2 bg-zinc-400 cursor-not-allowed mt-6 py-3.5 rounded-xl w-full font-bold text-zinc-600 text-sm"
+              >
+                <ShoppingCart size={18} />
+                Pilih Paket Terlebih Dahulu
+              </button>
+            )}
 
-            <p className="mt-4 px-2 text-[10px] text-white/60 text-center leading-relaxed">Tim Baboo Kos akan menghubungi Anda melalui WhatsApp untuk konfirmasi detail.</p>
+            <p className="mt-4 px-2 text-[10px] text-white/60 text-center leading-relaxed">
+              {hasSelectedPackages 
+                ? "Tim Baboo Kos akan menghubungi Anda melalui WhatsApp untuk konfirmasi detail." 
+                : "Silakan pilih minimal 1 paket untuk melanjutkan checkout."}
+            </p>
 
             {/* Trust Badges */}
             <div className="gap-2 grid grid-cols-3 mt-6 pt-6 border-white/10 border-t text-white/70">
