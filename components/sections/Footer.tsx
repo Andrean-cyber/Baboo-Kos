@@ -12,27 +12,27 @@ export default function Footer() {
   const [isVisible, setIsVisible] = useState(false);
   const hasAnimated = useRef(false);
   const pathname = usePathname();
+  
   const getFooterConfig = () => {
-  if (pathname.startsWith("/villa")) {
+    if (pathname.startsWith("/villa")) {
+      return {
+        title: "A secret space, a gentle price, your hidden slice of paradise 🚀",
+        phone: "6285852237843",
+        message:
+          "Halo kak,\n\nBisa tau informasi lebih lanjut tentang Baboo Villa?\nTerima kasih 🙏",
+      };
+    }
+
     return {
-      title: "A secret space, a gentle price, your hidden slice of paradise 🚀",
-      phone: "6285852237843",
+      title: "Cari Kos Tanpa Ribet,\nSesuai Budget 🥇",
+      phone: "6287785338441",
       message:
-        "Halo kak,\n\nBisa tau informasi lebih lanjut tentang Baboo Villa?\nTerima kasih 🙏",
+        "Halo kak,\n\nBisa tau informasi lebih lanjut tentang Baboo Kos?\nTerima kasih 🙏",
     };
-  }
-
-  return {
-    title: "Cari Kos Tanpa Ribet,\nSesuai Budget 🥇",
-    phone: "6287785338441",
-    message:
-      "Halo kak,\n\nBisa tau informasi lebih lanjut tentang Baboo Kos?\nTerima kasih 🙏",
   };
-};
 
-const footerConfig = getFooterConfig();
-
-const message = encodeURIComponent(footerConfig.message);
+  const footerConfig = getFooterConfig();
+  const message = encodeURIComponent(footerConfig.message);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -54,8 +54,8 @@ const message = encodeURIComponent(footerConfig.message);
   }, []);
 
   return (
-    <section id="contact" className="bg-slate-50/50 px-4 md:px-6 pt-4 pb-0 md:pb-0 w-full">
-      <footer ref={footerRef} className={cn("relative bg-[#495C29] shadow-lg mx-auto px-6 md:px-12 lg:px-16 py-12 md:py-14 rounded-3xl md:rounded-[2rem] w-full max-w-[1360px] overflow-hidden text-white")}>
+    <section id="contact" className="bg-slate-50/50 px-4 md:px-6 pt-4 pb-4 md:pb-6 w-full">
+      <footer ref={footerRef} className={cn("relative bg-[#495C29] shadow-lg mx-auto px-6 md:px-12 lg:px-16 pt-12 pb-8 md:pt-14 md:pb-8 rounded-3xl md:rounded-[2rem] w-full max-w-[1360px] overflow-hidden text-white")}>
         {/* ========================================================= */}
         {/* BACKGROUND ABSTRACT SVG                                   */}
         {/* ========================================================= */}
@@ -98,14 +98,14 @@ const message = encodeURIComponent(footerConfig.message);
         </div>
 
         {/* ========================================================= */}
-        {/* BOTTOM SECTION: LINKS & BRAND INFO                        */}
+        {/* MIDDLE SECTION: LINKS & BRAND INFO                        */}
         {/* ========================================================= */}
         <div
-            className={cn(
-              "z-10 relative gap-10 lg:gap-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-5 pt-8 transition-all duration-1000 ease-out delay-300 text-center lg:text-left",
-              isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0",
-            )}
-          >
+          className={cn(
+            "z-10 relative gap-10 lg:gap-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-5 pt-8 pb-10 transition-all duration-1000 ease-out delay-300 text-center lg:text-left border-white/10 border-b",
+            isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0",
+          )}
+        >
           {/* Kolom 1 & 2 (Span 2): Tentang Brand */}
           <div className={cn("flex flex-col items-center lg:items-start gap-4 lg:col-span-2")}>
             <h4 className={cn("font-bold text-sm tracking-wide")}>About Baboo Kos</h4>
@@ -135,13 +135,13 @@ const message = encodeURIComponent(footerConfig.message);
             <h4 className={cn("font-bold text-sm tracking-wide")}>Company</h4>
             <ul className="flex flex-col gap-2.5 text-zinc-200/70 text-xs">
               <li>
-                <Link href="/belum-tersedia" className="hover:text-[#F3C546] transition-colors">
+                <Link href="/aboutus" className="hover:text-[#F3C546] transition-colors">
                   About Us
                 </Link>
               </li>
               <li>
-                <Link href="/belum-tersedia" className="hover:text-[#F3C546] transition-colors">
-                  Testimoni
+                <Link href="/simulation" className="hover:text-[#F3C546] transition-colors">
+                  Partnership
                 </Link>
               </li>
               <li>
@@ -150,7 +150,7 @@ const message = encodeURIComponent(footerConfig.message);
                 </Link>
               </li>
               <li>
-                <Link href="/belum-tersedia" className="hover:text-[#F3C546] transition-colors">
+                <Link href="/contact" className="hover:text-[#F3C546] transition-colors">
                   Contact us
                 </Link>
               </li>
@@ -158,26 +158,26 @@ const message = encodeURIComponent(footerConfig.message);
           </div>
 
           {/* Kolom 4: Help Links */}
-          <div className={cn("flex flex-col gap-3")}>
+          <div className={cn("flex flex-col gap-3 items-center lg:items-start")}>
             <h4 className={cn("font-bold text-sm tracking-wide")}>Help</h4>
-            <ul className="flex flex-col gap-2.5 text-zinc-200/70 text-xs">
+            <ul className="flex flex-col gap-2.5 text-zinc-200/70 text-xs text-center lg:text-left">
               <li>
                 <Link href="/belum-tersedia" className="hover:text-[#F3C546] transition-colors">
                   Customer Support
                 </Link>
               </li>
               <li>
-                <Link href="/belum-tersedia" className="hover:text-[#F3C546] transition-colors">
+                <Link href="/#alurJasa" className="hover:text-[#F3C546] transition-colors">
                   Alur Pencarian
                 </Link>
               </li>
               <li>
-                <Link href="/belum-tersedia" className="hover:text-[#F3C546] transition-colors">
+                <Link href="/syaratKetentuan" className="hover:text-[#F3C546] transition-colors">
                   Terms & Conditions
                 </Link>
               </li>
               <li>
-                <Link href="/belum-tersedia" className="hover:text-[#F3C546] transition-colors">
+                <Link href="/privacyPolicy" className="hover:text-[#F3C546] transition-colors">
                   Privacy Policy
                 </Link>
               </li>
@@ -185,9 +185,9 @@ const message = encodeURIComponent(footerConfig.message);
           </div>
 
           {/* Kolom 5: Resources Links */}
-          <div className={cn("flex flex-col gap-3")}>
+          <div className={cn("flex flex-col gap-3 items-center lg:items-start")}>
             <h4 className={cn("font-bold text-sm tracking-wide")}>Resources</h4>
-            <ul className="flex flex-col gap-2.5 text-zinc-200/70 text-xs">
+            <ul className="flex flex-col gap-2.5 text-zinc-200/70 text-xs text-center lg:text-left">
               <li>
                 <Link href="/belum-tersedia" className="hover:text-[#F3C546] transition-colors">
                   Rekomendasi Area
@@ -210,6 +210,18 @@ const message = encodeURIComponent(footerConfig.message);
               </li>
             </ul>
           </div>
+        </div>
+
+        {/* ========================================================= */}
+        {/* BOTTOM SECTION: COPYRIGHT                                 */}
+        {/* ========================================================= */}
+        <div className="z-10 relative pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+          <p className="text-zinc-300/60 text-[11px] font-medium tracking-wide">
+            &copy; 2026 Baboo Kos Platform. All Rights Reserved. Aman, Transparan, Nyaman.
+          </p>
+          <p className="text-zinc-300/40 text-[10px]">
+            Designed with absolute transparency and mutual comfort ✨
+          </p>
         </div>
       </footer>
     </section>
