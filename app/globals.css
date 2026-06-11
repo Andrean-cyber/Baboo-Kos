@@ -28,9 +28,18 @@ html {
    ROOT COLORS
 ========================= */
 
-/* Menolak paksaan dark mode dari browser Android/Chrome */
 :root {
-  color-scheme: light;
+  /* 1. Tetap pertahankan variabel warna agar desain tidak rusak */
+  --background: #f5f5f2;
+  --foreground: #18181b;
+
+  --primary: #506232;
+  --primary-light: #ebf0e6;
+
+  --border: #e4e4e7;
+
+  /* 2. Kunci tema ke Light Mode untuk menolak force dark mode Android */
+  color-scheme: light; 
 }
 
 /* =========================
