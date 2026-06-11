@@ -144,40 +144,44 @@ export default function AboutBaboo() {
           className="[&::-webkit-scrollbar]:hidden flex items-center gap-4 md:gap-6 px-6 lg:px-[calc(50vw-425px)] pt-4 pb-8 w-full [-ms-overflow-style:none] overflow-x-auto snap-mandatory snap-x [scrollbar-width:none]"
         >
           {/* KARTU 1 */}
-          <div className="group relative flex flex-col justify-center items-center shadow-md p-6 md:p-8 rounded-[2rem] md:rounded-[2.5rem] w-[92vw] max-w-[850px] h-[520px] md:h-[420px] overflow-hidden snap-center shrink-0">
-            <video
-              autoPlay
-              loop
-              muted
-              playsInline
-              preload="auto"
-              className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-            >
-              <source src="/video.mp4" type="video/mp4" />
-            </video>
-            <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-black/30 to-black/20" />
-            <div className="relative z-10 w-full max-h-full overflow-hidden p-2 flex flex-col justify-center items-center">
-              <AnimatedList delay={1800}>
-                {managementNotifications.map((item) => (
-                  <div
-                    key={item.id}
-                    className="flex items-center gap-3 w-full bg-transparent p-3 rounded-2xl border border-white/20 shadow-lg transform transition-all duration-300 hover:scale-[1.02] hover:bg-white/5"
-                  >
-                    <div className="p-2 rounded-xl bg-white/10 text-white shrink-0">
-                      <div className="[&>svg]:text-white">{item.icon}</div>
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center justify-between gap-2 mb-0.5">
-                        <span className="font-bold text-white text-xs truncate">{item.title}</span>
-                        <span className="text-[10px] text-white/60 shrink-0">{item.time}</span>
-                      </div>
-                      <p className="text-white/80 text-[11px] leading-tight truncate">{item.desc}</p>
-                    </div>
-                  </div>
-                ))}
-              </AnimatedList>
+<div className="group relative flex flex-col justify-center items-center shadow-md p-4 sm:p-6 md:p-8 rounded-[2rem] md:rounded-[2.5rem] w-[92vw] max-w-[850px] h-[520px] md:h-[420px] overflow-hidden snap-center shrink-0">
+  <video
+    autoPlay
+    loop
+    muted
+    playsInline
+    preload="auto"
+    className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+  >
+    <source src="/video.mp4" type="video/mp4" />
+  </video>
+  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/20 to-black/40" />
+  
+  {/* PERBAIKAN: Dibuat mutlak flex center di semua ukuran layar */}
+  <div className="relative z-10 w-full h-full flex flex-col justify-center items-center py-4 px-1 overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+    <div className="w-full max-w-[400px] md:max-w-full">
+      <AnimatedList delay={1800}>
+        {managementNotifications.map((item) => (
+          <div
+            key={item.id}
+            className="flex items-center gap-2.5 md:gap-3 w-full bg-black/30 backdrop-blur-md p-2.5 md:p-3 rounded-xl border border-white/10 shadow-lg transform transition-all duration-300 hover:scale-[1.02] hover:bg-white/5 mb-2"
+          >
+            <div className="p-1.5 md:p-2 rounded-xl bg-white/10 text-white shrink-0">
+              <div className="[&>svg]:text-white [&>svg]:w-3.5 [&>svg]:h-3.5 md:[&>svg]:w-4 md:[&>svg]:h-4">{item.icon}</div>
+            </div>
+            <div className="flex-1 min-w-0">
+              <div className="flex items-center justify-between gap-1.5 mb-0.5">
+                <span className="font-bold text-white text-[11px] md:text-xs truncate">{item.title}</span>
+                <span className="text-[9px] md:text-[10px] text-white/60 shrink-0">{item.time}</span>
+              </div>
+              <p className="text-white/80 text-[10px] md:text-[11px] leading-snug break-words line-clamp-2 md:line-clamp-1 md:truncate">{item.desc}</p>
             </div>
           </div>
+        ))}
+      </AnimatedList>
+    </div>
+  </div>
+</div>
 
           {/* ======================================================== */}
           {/* KARTU 2 (Tengah) - ORBITING CIRCLES FIX NO OVERLAP */}
