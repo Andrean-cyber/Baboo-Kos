@@ -144,7 +144,7 @@ export default function AboutBaboo() {
           className="[&::-webkit-scrollbar]:hidden flex items-center gap-4 md:gap-6 px-6 lg:px-[calc(50vw-425px)] pt-4 pb-8 w-full [-ms-overflow-style:none] overflow-x-auto snap-mandatory snap-x [scrollbar-width:none]"
         >
           {/* KARTU 1 */}
-          <div className="group relative flex flex-col justify-center items-center shadow-md p-6 md:p-8 rounded-[2rem] md:rounded-[2.5rem] w-[85vw] max-w-[850px] h-[520px] md:h-[420px] overflow-hidden snap-center shrink-0">
+          <div className="group relative flex flex-col justify-center items-center shadow-md p-6 md:p-8 rounded-[2rem] md:rounded-[2.5rem] w-[92vw] max-w-[850px] h-[520px] md:h-[420px] overflow-hidden snap-center shrink-0">
             <video
               autoPlay
               loop
