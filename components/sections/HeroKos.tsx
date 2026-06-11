@@ -3,6 +3,10 @@
 import { useRef, useState, useEffect } from "react";
 import { ArrowRight, Sparkles, CheckCircle2 } from "lucide-react";
 import { ShinyButton } from "@/components/magicui/shiny-button"
+import {
+  Star,
+  StarHalf,
+} from "lucide-react";
 
 import { cn } from "@/lib/utils";
 
@@ -217,10 +221,10 @@ export default function HeroKos() {
                 isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
               )}
             >
-              A SIMPLIFIED WAY
-              TO START {" "}
+              Cari Kos
+              Tanpa Ribet {" "}
               <span className="inline-flex items-center bg-white px-4 py-0 rounded-full text-[#495C29] ">
-                FIND KOS
+                Sesuai Budget!
               </span>
             </h1>
             </div>
@@ -324,9 +328,9 @@ export default function HeroKos() {
         {/* Tambahkan justify-items-center di bawah ini */}
         <div className="md:flex md:justify-between md:items-center gap-x-6 gap-y-8 grid grid-cols-2 justify-items-center">
           <StatItem endValue={40000} suffix=" +" text={<>Pengguna <br /> Jasa</>} />
-          <StatItem endValue={2000} suffix=" +" text={<>Mitra Owner <br /> Kos</>} />
+          <StatItem endValue={8000} suffix=" +" text={<>Mitra Owner <br /> Kos</>} />
           <StatItem endValue={10} suffix=" +" text={<>Tersebar di <br /> Kota Besar</>} />
-          <StatItem endValue={4.8} suffix="/5" decimals={1} isRating text={<>Testimonial <br /> Customer</>} />
+          <StatItem endValue={4.7} suffix="/5" decimals={1} isRating text={<>Testimonial <br /> Customer</>} />
         </div>
       </section>
 
@@ -408,7 +412,15 @@ function StatItem({ endValue, suffix, text, isRating = false, decimals = 0 }: { 
       </h3>
 
       <div className="flex flex-col justify-center">
-        {isRating && <div className="flex mb-1 text-[#F3C546] text-[11px]">★★★★★</div>}
+        {isRating && (
+  <div className="flex items-center gap-0.5 mb-1 text-[#F3C546]">
+    <Star size={12} fill="currentColor" strokeWidth={1.5} />
+    <Star size={12} fill="currentColor" strokeWidth={1.5} />
+    <Star size={12} fill="currentColor" strokeWidth={1.5} />
+    <Star size={12} fill="currentColor" strokeWidth={1.5} />
+    <StarHalf size={12} fill="currentColor" strokeWidth={1.5} />
+  </div>
+)}
         <p className="max-w-[90px] md:max-w-[100px] font-semibold text-[12px] text-zinc-500 md:text-[14px] leading-[1.15]">{text}</p>
       </div>
     </div>

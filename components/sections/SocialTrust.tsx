@@ -3,8 +3,8 @@
 import { useEffect, useState, useRef } from "react";
 import { cn } from "@/lib/utils";
 import { ShieldCheck, Coins, Zap, Handshake } from "lucide-react";
-// Import Logo Asli Media Sosial dari React Icons
-import { FaWhatsapp, FaInstagram, FaTiktok } from "react-icons/fa6";
+// Import Logo Asli Media Sosial dari React Icons (FaFacebook ditambahkan di sini)
+import { FaWhatsapp, FaInstagram, FaTiktok, FaFacebook } from "react-icons/fa6";
 import { SiThreads } from "react-icons/si";
 
 const trustItems = [
@@ -31,6 +31,12 @@ const trustItems = [
     name: "TikTok", 
     isSosmed: true,
     icon: <FaTiktok className="w-5 h-5 text-black" /> 
+  },
+  { 
+    id: 9, // ID baru untuk Facebook agar tidak bentrok
+    name: "Facebook", 
+    isSosmed: true,
+    icon: <FaFacebook className="w-6 h-6 text-[#1877F2]" /> 
   },
   { id: 5, name: "Mitra Baboo", icon: <Handshake size={22} className="text-[#495C29]" />, isSosmed: false },
   { id: 6, name: "Aman & Terpercaya", icon: <ShieldCheck size={22} className="text-amber-600" />, isSosmed: false },

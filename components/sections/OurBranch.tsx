@@ -7,6 +7,12 @@ import { MapPin, Mail, MessageCircle, Home } from "lucide-react";
 // Data Cabang dan List Kos (Ditambah properti 'delay' untuk animasi kedip yang tidak barengan)
 const branches = [
   {
+    id: "Aceh",
+    city: "Aceh",
+    position: { top: "10%", left: "1%" },
+    delay: "0s",
+  },
+  {
     id: "medan",
     city: "Medan",
     position: { top: "20%", left: "10%" },
@@ -19,9 +25,51 @@ const branches = [
     delay: "0s",
   },
   {
+    id: "Bangka",
+    city: "Bangka",
+    position: { top: "48%", left: "27%" },
+    delay: "0s",
+  },
+  {
+    id: "Bengkulu",
+    city: "Bengkulu",
+    position: { top: "62%", left: "16%" },
+    delay: "0s",
+  },
+  {
+    id: "Bukit Tinggi",
+    city: "Bukit Tinggi",
+    position: { top: "52%", left: "11%" },
+    delay: "0s",
+  },
+  {
     id: "jakarta",
     city: "Jakarta",
     position: { top: "71%", left: "34%" },
+    delay: "0s",
+  },
+  {
+    id: "Cengkareng",
+    city: "Cengkareng",
+    position: { top: "71%", left: "33%" },
+    delay: "0s",
+  },
+  {
+    id: "Cawang",
+    city: "Cawang",
+    position: { top: "73%", left: "34.4%" },
+    delay: "0s",
+  },
+  {
+    id: "Bekasi",
+    city: "Bekasi",
+    position: { top: "73%", left: "35%" },
+    delay: "0s",
+  },
+  {
+    id: "Banten",
+    city: "Banten",
+    position: { top: "75%", left: "32%" },
     delay: "0s",
   },
   {
@@ -49,9 +97,45 @@ const branches = [
     delay: "0.8s",
   },
   {
+    id: "Boyolali",
+    city: "Boyolali",
+    position: { top: "77%", left: "46%" },
+    delay: "0.8s",
+  },
+  {
+    id: "Bantul",
+    city: "Bantul",
+    position: { top: "82%", left: "45.7%" },
+    delay: "0.8s",
+  },
+  {
+    id: "Banjarnegara",
+    city: "Banjarnegara",
+    position: { top: "76%", left: "43%" },
+    delay: "0.8s",
+  },
+  {
+    id: "Brebes",
+    city: "Brebes",
+    position: { top: "74%", left: "40%" },
+    delay: "0.8s",
+  },
+  {
     id: "surabaya",
     city: "Surabaya",
     position: { top: "76%", left: "50%" },
+    delay: "0.5s",
+  },
+  {
+    id: "Bojonegoro",
+    city: "Bojonegoro",
+    position: { top: "78%", left: "48%" },
+    delay: "0.5s",
+  },
+  {
+    id: "Bangil",
+    city: "Bangil",
+    position: { top: "80%", left: "50.8%" },
     delay: "0.5s",
   },
   {
@@ -61,15 +145,57 @@ const branches = [
     delay: "0.1s",
   },
   {
+    id: "Batu",
+    city: "Batu",
+    position: { top: "84.7%", left: "49%" },
+    delay: "0.1s",
+  },
+  {
+    id: "Blitar",
+    city: "Blitar",
+    position: { top: "86%", left: "48%" },
+    delay: "0.1s",
+  },
+  {
     id: "jember",
     city: "Jember",
     position: { top: "80%", left: "54%" },
     delay: "0.6s",
   },
   {
+    id: "Bulukumba",
+    city: "Bulukumba",
+    position: { top: "70%", left: "60%" },
+    delay: "0.6s",
+  },
+  {
+    id: "Banyuwangi",
+    city: "Banyuwangi",
+    position: { top: "89%", left: "56%" },
+    delay: "0.6s",
+  },
+  {
     id: "bali",
     city: "Bali",
     position: { top: "85%", left: "60%" },
+    delay: "0.4s",
+  },
+  {
+    id: "Ambon",
+    city: "Ambon",
+    position: { top: "52%", left: "67%" },
+    delay: "0.4s",
+  },
+  {
+    id: "Balikpapan",
+    city: "Balikpapan",
+    position: { top: "43%", left: "47%" },
+    delay: "0.4s",
+  },
+  {
+    id: "Banjarmasin",
+    city: "Banjarmasin",
+    position: { top: "50%", left: "40%" },
     delay: "0.4s",
   },
 ];
@@ -153,7 +279,6 @@ export default function OurBranch() {
                   <MapPin size={14} className="text-[#495C29]" />
                   <span className="font-bold text-zinc-900 text-xs">{branch.city}</span>
                 </div>
-                
               </div>
             </div>
           </div>

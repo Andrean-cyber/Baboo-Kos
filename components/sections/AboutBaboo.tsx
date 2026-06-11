@@ -1,13 +1,13 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
-import { Settings, ChevronLeft, ChevronRight, UserCheck, TrendingUp, Sparkles, ShieldCheck } from "lucide-react";
+import { Settings, ChevronLeft, ChevronRight, UserCheck, TrendingUp, Sparkles, ShieldCheck, Globe } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Link from "next/link"; 
 import { AnimatedList } from "@/components/magicui/animated-list";
 import { OrbitingCircles } from "@/components/magicui/orbiting-circles";
 // Import brand icons murni dari react-icons
-import { FaWhatsapp, FaInstagram, FaTiktok } from "react-icons/fa6";
+import { FaWhatsapp, FaInstagram, FaTiktok, FaFacebook } from "react-icons/fa6";
 import { SiThreads } from "react-icons/si";
 
 const managementNotifications = [
@@ -194,40 +194,47 @@ export default function AboutBaboo() {
 
               <div className="flex md:flex-row flex-col md:justify-center md:items-stretch gap-3 lg:gap-5 mt-4 md:mt-0 w-full">
                 
-               {/* ======================================================== */}
-{/* BLOK 1: Orbiting Circles (Optimized Size & Visuals)     */}
-{/* ======================================================== */}
-<div className="relative flex flex-col flex-1 bg-white shadow-sm p-4 rounded-2xl md:max-w-[220px] min-h-[190px] md:min-h-0 justify-between items-center overflow-hidden">
-  
-  {/* Container Orbiting Area */}
-  <div className="relative flex w-full flex-1 items-center justify-center min-h-[110px] scale-95">
-    
-    {/* Ring 1: Lingkaran Luar (Outer Orbit) - Ukuran Diperkecil & Lebih Halus */}
-    <OrbitingCircles radius={48} duration={25} path={true}>
-      <div className="flex h-5.5 w-5.5 items-center justify-center rounded-full bg-emerald-50/60 border border-emerald-100/80">
-        <FaWhatsapp className="text-[#25D366]" size={11} />
-      </div>
-      <div className="flex h-5.5 w-5.5 items-center justify-center rounded-full bg-rose-50/60 border border-rose-100/80">
-        <FaInstagram className="text-[#E1306C]" size={11} />
-      </div>
-    </OrbitingCircles>
+                {/* ======================================================== */}
+                {/* BLOK 1: Orbiting Circles (Optimized Size & Visuals)     */}
+                {/* ======================================================== */}
+                <div className="relative flex flex-col flex-1 bg-white shadow-sm p-4 rounded-2xl md:max-w-[220px] min-h-[190px] md:min-h-0 justify-between items-center overflow-hidden">
+                  
+                  {/* Container Orbiting Area */}
+                  <div className="relative flex w-full flex-1 items-center justify-center min-h-[120px] scale-95">
+                    
+                    {/* Ring 1: Lingkaran Luar (Outer Orbit - radius: 52) - Berisi 3 Item */}
+                    <OrbitingCircles radius={52} duration={25} path={true}>
+                      <div className="flex h-5.5 w-5.5 items-center justify-center rounded-full bg-emerald-50/60 border border-emerald-100/80">
+                        <FaWhatsapp className="text-[#25D366]" size={11} />
+                      </div>
+                      <div className="flex h-5.5 w-5.5 items-center justify-center rounded-full bg-rose-50/60 border border-rose-100/80">
+                        <FaInstagram className="text-[#E1306C]" size={11} />
+                      </div>
+                      <div className="flex h-5.5 w-5.5 items-center justify-center rounded-full bg-blue-50/60 border border-blue-100/80">
+                        <FaFacebook className="text-[#1877F2]" size={11} />
+                      </div>
+                    </OrbitingCircles>
 
-    {/* Ring 2: Lingkaran Dalam (Inner Orbit) - Minimalis & Berputar Terbalik */}
-    <OrbitingCircles radius={24} duration={15} reverse path={true}>
-      <div className="flex h-5 w-5 items-center justify-center rounded-full bg-zinc-50 border border-zinc-100">
-        <FaTiktok className="text-black" size={9} />
-      </div>
-      <div className="flex h-5 w-5 items-center justify-center rounded-full bg-zinc-900">
-        <SiThreads className="text-white" size={9} />
-      </div>
-    </OrbitingCircles>
-  </div>
+                    {/* Ring 2: Lingkaran Dalam (Inner Orbit - radius dinaikkan ke 28 agar lapang) - Berisi 3 Item */}
+                    <OrbitingCircles radius={28} duration={15} reverse path={true}>
+                      <div className="flex h-5 w-5 items-center justify-center rounded-full bg-zinc-50 border border-zinc-100">
+                        <FaTiktok className="text-black" size={9} />
+                      </div>
+                      <div className="flex h-5 w-5 items-center justify-center rounded-full bg-zinc-900">
+                        <SiThreads className="text-white" size={9} />
+                      </div>
+                      <div className="flex h-5 w-5 items-center justify-center rounded-full bg-blue-50 border border-blue-100">
+                        <Globe className="text-blue-600" size={9} />
+                      </div>
+                    </OrbitingCircles>
+                  </div>
 
-  {/* Bagian Teks */}
-  <p className="w-full font-medium text-[10px] text-zinc-600 xl:text-xs leading-relaxed text-center border-t border-zinc-100 pt-2 shrink-0">
-    <span className="font-bold text-zinc-900 block mb-0.5">Baboo Kos</span> ikut membangun ekosistem digital properti di Indonesia.
-  </p>
-</div>
+                  {/* Bagian Teks */}
+                  <p className="w-full font-medium text-[10px] text-zinc-600 xl:text-xs leading-relaxed text-center border-t border-zinc-100 pt-2 shrink-0">
+                    <span className="font-bold text-zinc-900 block mb-0.5">Baboo Kos</span> ikut membangun ekosistem digital properti di Indonesia.
+                  </p>
+                </div>
+
                 {/* BLOK 2 */}
                 <div className="flex flex-col flex-1 justify-center gap-3 bg-white shadow-sm p-4 rounded-2xl md:max-w-[220px]">
                   <div>
