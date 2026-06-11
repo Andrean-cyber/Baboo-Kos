@@ -139,7 +139,7 @@ const handleWhatsapp = () => {
             {/* DESKTOP MENU - Menggunakan Posisi Dinamis */}
             <div 
               className={cn(
-                "hidden md:flex items-center gap-6 lg:gap-8 transition-all duration-300",
+                "hidden md:flex items-center gap-2 lg:gap-4 transition-all duration-300",
                 showAllMenusHorizontal
                   ? "absolute left-1/2 -translate-x-1/2 justify-center" 
                   : "justify-start"
@@ -148,41 +148,44 @@ const handleWhatsapp = () => {
               {showAllMenusHorizontal ? (
                 // TAMPILAN JIKA DI SUB-PAGE ATAU HOME SCROLLED (Semua Menu Sejajar)
                 <>
-                  {navLinks.map((link) => (
-                    <Link
-                      key={link.name}
-                      href={link.href}
-                      className={cn(
-                        "font-bold text-[14px] transition-colors duration-300 whitespace-nowrap",
-                        pathname === link.href || (link.href !== "/#home" && pathname.startsWith(link.href))
-                          ? "text-[#495C29]"
-                          : "text-zinc-600 hover:text-[#495C29]"
-                      )}
-                    >
-                      {link.name}
-                    </Link>
-                  ))}
+                  {navLinks.map((link) => {
+                    const isActive = pathname === link.href || (link.href !== "/#home" && pathname.startsWith(link.href));
+                    return (
+                      <Link
+                        key={link.name}
+                        href={link.href}
+                        className={cn(
+                          "rounded-full px-3 py-2 font-bold text-[14px] transition-all duration-300 whitespace-nowrap",
+                          isActive
+                            ? "bg-[#EEF3E8] text-[#495C29]"
+                            : "text-zinc-600 hover:bg-[#EEF3E8] hover:text-[#495C29]"
+                        )}
+                      >
+                        {link.name}
+                      </Link>
+                    );
+                  })}
                 </>
               ) : (
                 // TAMPILAN AWAL/DEFAULT (Menggunakan Dropdown Explore)
                 <>
                   <Link
                     href="/#home"
-                    className="font-bold text-[14px] text-zinc-600 hover:text-[#495C29] transition-colors duration-300"
+                    className="rounded-full px-3 py-2 font-bold text-[14px] text-zinc-600 hover:bg-[#EEF3E8] hover:text-[#495C29] transition-all duration-300"
                   >
                     Baboo Kos
                   </Link>
 
                   <Link
                     href="/villa"
-                    className="font-bold text-[14px] text-zinc-600 hover:text-[#495C29] transition-colors duration-300"
+                    className="rounded-full px-3 py-2 font-bold text-[14px] text-zinc-600 hover:bg-[#EEF3E8] hover:text-[#495C29] transition-all duration-300"
                   >
                     Baboo Villa
                   </Link>
 
                   <Link
                     href="/simulation"
-                    className="font-bold text-[14px] text-zinc-600 hover:text-[#495C29] transition-colors duration-300"
+                    className="rounded-full px-3 py-2 font-bold text-[14px] text-zinc-600 hover:bg-[#EEF3E8] hover:text-[#495C29] transition-all duration-300"
                   >
                     Partnership
                   </Link>

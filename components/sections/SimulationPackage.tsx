@@ -553,31 +553,55 @@ function SimulationContent() {
             </p>
 
             {/* Trust Badges */}
-            <div className="gap-2 grid grid-cols-3 mt-6 pt-6 border-white/10 border-t text-white/70">
-              <div className="flex flex-col items-center gap-1.5 text-center">
-                <ShieldCheck size={18} />
-                <span className="font-medium text-[9px] leading-tight">
-                  Aman &<br />
-                  Terpercaya
-                </span>
-              </div>
-              <div className="flex flex-col items-center gap-1.5 text-center">
-                <BadgeDollarSign size={18} />
-                <span className="font-medium text-[9px] leading-tight">
-                  Harga
-                  <br />
-                  Transparan
-                </span>
-              </div>
-              <div className="flex flex-col items-center gap-1.5 text-center">
-                <Clock size={18} />
-                <span className="font-medium text-[9px] leading-tight">
-                  Proses
-                  <br />
-                  Cepat
-                </span>
-              </div>
-            </div>
+<div className="gap-2 grid grid-cols-4 mt-6 pt-6 border-white/10 border-t text-white/70">
+  <div className="flex flex-col items-center gap-1.5 text-center">
+    <ShieldCheck size={18} />
+    <span className="font-medium text-[9px] leading-tight">
+      Aman &<br />
+      Terpercaya
+    </span>
+  </div>
+  
+  {/* BADGE BARU: AUDIENCE ORGANIK */}
+  <div className="flex flex-col items-center gap-1.5 text-center">
+    <svg 
+      stroke="currentColor" 
+      fill="none" 
+      strokeWidth="2" 
+      viewBox="0 0 24 24" 
+      strokeLinecap="round" 
+      strokeLinejoin="round" 
+      className="w-[18px] h-[18px]"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+      <circle cx="9" cy="7" r="4" />
+      <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+      <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+    </svg>
+    <span className="font-medium text-[9px] leading-tight">
+      Audience<br />
+      Organik
+    </span>
+  </div>
+
+  <div className="flex flex-col items-center gap-1.5 text-center">
+    <BadgeDollarSign size={18} />
+    <span className="font-medium text-[9px] leading-tight">
+      Harga
+      <br />
+      Transparan
+    </span>
+  </div>
+  <div className="flex flex-col items-center gap-1.5 text-center">
+    <Clock size={18} />
+    <span className="font-medium text-[9px] leading-tight">
+      Proses
+      <br />
+      Cepat
+    </span>
+  </div>
+</div>
           </div>
         </aside>
       </div>

@@ -2,6 +2,7 @@
 
 import AboutBaboo from "@/components/sections/AboutBaboo";
 import HeroKos from "@/components/sections/HeroKos";
+import SocialTrust from "@/components/sections/SocialTrust";
 import MeetOurTeam from "@/components/sections/MeetOurTeam";
 import OurBranch from "@/components/sections/OurBranch";
 import OurTeam from "@/components/sections/OurTeam";
@@ -17,8 +18,9 @@ import { cn } from "../lib/utils";
 
 export default function Home() {
   return (
-    <main className={cn("min-h-screen", "overflow-hidden", "bg-[#FAFAFA]", "pb-16")}>
+    <main className={cn("min-h-screen", "overflow-hidden", "bg-[#FAFAFA]")}>
       <HeroKos />
+      <SocialTrust />
       <AboutBaboo />
       <Role />
       <FormKos />
