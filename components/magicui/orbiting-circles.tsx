@@ -1,5 +1,4 @@
 import React from "react"
-
 import { cn } from "@/lib/utils"
 
 export interface OrbitingCirclesProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -32,7 +31,17 @@ export function OrbitingCircles({
         <svg
           xmlns="http://www.w3.org/2000/svg"
           version="1.1"
-          className="pointer-events-none absolute inset-0 size-full"
+          /* 
+            PERBAIKAN KRUSIAL: 
+            Ganti 'inset-0 size-full' menjadi posisi absolute di tengah (top-1/2 left-1/2) 
+            dengan ukuran kotak yang dinamis mengikuti diameter radius lingkaran (2 x radius).
+            Ini menjamin titik cx="50%" cy="50%" selalu sinkron dengan pusat rotasi ikon di mobile & desktop.
+          */
+          className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 overflow-visible"
+          style={{
+            width: `${radius * 2}px`,
+            height: `${radius * 2}px`,
+          }}
         >
           <circle
             className="stroke-black/10 stroke-1 dark:stroke-white/10"
@@ -56,7 +65,7 @@ export function OrbitingCircles({
               } as React.CSSProperties
             }
             className={cn(
-              `animate-orbit absolute flex size-(--icon-size) transform-gpu items-center justify-center rounded-full`,
+              `animate-orbit absolute flex size-(--icon-size) transform-gpu items-center justify-center rounded-full z-10`,
               { "[animation-direction:reverse]": reverse },
               className
             )}
