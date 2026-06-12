@@ -189,18 +189,18 @@ export default function Footer() {
             <h4 className={cn("font-bold text-sm tracking-wide")}>Resources</h4>
             <ul className="flex flex-col gap-2.5 text-zinc-200/70 text-xs text-center lg:text-left">
               <li>
-                <Link href="/belum-tersedia" className="hover:text-[#F3C546] transition-colors">
-                  Rekomendasi Area
+                <Link href="/handbookAnakRantau" className="hover:text-[#F3C546] transition-colors">
+                  Handbook Anak Rantau
                 </Link>
               </li>
               <li>
-                <Link href="/belum-tersedia" className="hover:text-[#F3C546] transition-colors">
+                <Link href="/tipsCariKos" className="hover:text-[#F3C546] transition-colors">
                   Tips Cari Kos
                 </Link>
               </li>
               <li>
-                <Link href="/belum-tersedia" className="hover:text-[#F3C546] transition-colors">
-                  Panduan Sewa
+                <Link href="/panduanCariKos" className="hover:text-[#F3C546] transition-colors">
+                  Panduan Cari Kos
                 </Link>
               </li>
               <li>

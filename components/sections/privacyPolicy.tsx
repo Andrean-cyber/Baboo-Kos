@@ -239,7 +239,7 @@ export default function PrivacyPolicy() {
   return (
     <section className="bg-zinc-50/50 min-h-screen">
       {/* HERO BANNER */}
-      <div className="relative overflow-hidden bg-gradient-to-b from-[#EEF3E8] to-transparent pt-25 pb-12 text-center px-4">
+      <div className="relative overflow-hidden bg-gradient-to-b from-[#EEF3E8] to-transparent pt-40 pb-12 text-center px-4">
         <div className="absolute inset-x-0 top-0 h-40 bg-[radial-gradient(#495C29_1px,transparent_1px)] [background-size:16px_16px] opacity-10" />
         
         <div className="max-w-3xl mx-auto relative z-10">

@@ -184,50 +184,50 @@ export default function AboutBaboo() {
 </div>
 
           {/* ======================================================== */}
-          {/* KARTU 2 (Tengah) - ORBITING CIRCLES FIX NO OVERLAP */}
+          {/* KARTU 2 (Tengah) - FIX ORBITING LINE VISIBLE ON MOBILE   */}
           {/* ======================================================== */}
-          <div className="relative flex flex-col justify-between items-center rounded-[2rem] md:rounded-[2.5rem] w-[90vw] max-w-[850px] h-[520px] md:h-[420px] overflow-hidden snap-center shrink-0 shadow-xl">
+          <div className="relative flex flex-col justify-between items-center rounded-[2rem] md:rounded-[2.5rem] w-[90vw] max-w-[850px] h-[540px] md:h-[420px] overflow-hidden snap-center shrink-0 shadow-xl">
             <div className="absolute inset-0 bg-gradient-to-br from-[#495C29] to-[#2F3A18]" />
             <div className="absolute inset-0 opacity-40 bg-center bg-cover pointer-events-none" style={{ backgroundImage: "url('/line2.svg')" }} />
             
-            <div className="relative z-10 flex flex-col justify-between items-center px-5 md:px-10 py-8 md:py-10 w-full h-full">
-              <p className="font-medium text-[13px] text-white md:text-base text-center">
+            <div className="relative z-10 flex flex-col justify-between items-center px-5 md:px-10 py-6 md:py-10 w-full h-full">
+              <p className="font-medium text-[13px] text-white md:text-base text-center mb-2 md:mb-0">
                 We help people find 'kos' easier, while helping <br className="hidden md:block" />
                 property owners grow digitally.
               </p>
 
-              <div className="flex md:flex-row flex-col md:justify-center md:items-stretch gap-3 lg:gap-5 mt-4 md:mt-0 w-full">
+              <div className="flex md:flex-row flex-col md:justify-center md:items-stretch gap-3 lg:gap-5 mt-2 md:mt-0 w-full">
                 
                 {/* ======================================================== */}
-                {/* BLOK 1: Orbiting Circles (Optimized Size & Visuals)     */}
+                {/* BLOK 1: Orbiting Circles (Fix Padding & Overflow mobile) */}
                 {/* ======================================================== */}
-                <div className="relative flex flex-col flex-1 bg-white shadow-sm p-4 rounded-2xl md:max-w-[220px] min-h-[190px] md:min-h-0 justify-between items-center overflow-hidden">
+                <div className="relative flex flex-col flex-1 bg-white shadow-sm p-4 rounded-2xl md:max-w-[220px] min-h-[210px] md:min-h-0 justify-between items-center overflow-hidden">
                   
-                  {/* Container Orbiting Area */}
-                  <div className="relative flex w-full flex-1 items-center justify-center min-h-[120px] scale-95">
+                  {/* Container Orbiting Area - Ditambahkan py-2 dan min-h yang aman untuk mobile */}
+                  <div className="relative flex w-full flex-1 items-center justify-center min-h-[130px] md:min-h-[120px] py-2">
                     
-                    {/* Ring 1: Lingkaran Luar (Outer Orbit - radius: 52) - Berisi 3 Item */}
+                    {/* Ring 1: Lingkaran Luar (Outer Orbit - radius: 52) */}
                     <OrbitingCircles radius={52} duration={25} path={true}>
-                      <div className="flex h-5.5 w-5.5 items-center justify-center rounded-full bg-emerald-50/60 border border-emerald-100/80">
+                      <div className="flex h-5.5 w-5.5 items-center justify-center rounded-full bg-emerald-50/60 border border-emerald-100/80 shadow-sm">
                         <FaWhatsapp className="text-[#25D366]" size={11} />
                       </div>
-                      <div className="flex h-5.5 w-5.5 items-center justify-center rounded-full bg-rose-50/60 border border-rose-100/80">
+                      <div className="flex h-5.5 w-5.5 items-center justify-center rounded-full bg-rose-50/60 border border-rose-100/80 shadow-sm">
                         <FaInstagram className="text-[#E1306C]" size={11} />
                       </div>
-                      <div className="flex h-5.5 w-5.5 items-center justify-center rounded-full bg-blue-50/60 border border-blue-100/80">
+                      <div className="flex h-5.5 w-5.5 items-center justify-center rounded-full bg-blue-50/60 border border-blue-100/80 shadow-sm">
                         <FaFacebook className="text-[#1877F2]" size={11} />
                       </div>
                     </OrbitingCircles>
 
-                    {/* Ring 2: Lingkaran Dalam (Inner Orbit - radius dinaikkan ke 28 agar lapang) - Berisi 3 Item */}
+                    {/* Ring 2: Lingkaran Dalam (Inner Orbit - radius: 28) */}
                     <OrbitingCircles radius={28} duration={15} reverse path={true}>
-                      <div className="flex h-5 w-5 items-center justify-center rounded-full bg-zinc-50 border border-zinc-100">
+                      <div className="flex h-5 w-5 items-center justify-center rounded-full bg-zinc-50 border border-zinc-100 shadow-sm">
                         <FaTiktok className="text-black" size={9} />
                       </div>
-                      <div className="flex h-5 w-5 items-center justify-center rounded-full bg-zinc-900">
+                      <div className="flex h-5 w-5 items-center justify-center rounded-full bg-zinc-900 shadow-sm">
                         <SiThreads className="text-white" size={9} />
                       </div>
-                      <div className="flex h-5 w-5 items-center justify-center rounded-full bg-blue-50 border border-blue-100">
+                      <div className="flex h-5 w-5 items-center justify-center rounded-full bg-blue-50 border border-blue-100 shadow-sm">
                         <Globe className="text-blue-600" size={9} />
                       </div>
                     </OrbitingCircles>
@@ -240,7 +240,7 @@ export default function AboutBaboo() {
                 </div>
 
                 {/* BLOK 2 */}
-                <div className="flex flex-col flex-1 justify-center gap-3 bg-white shadow-sm p-4 rounded-2xl md:max-w-[220px]">
+                <div className="flex flex-col flex-1 justify-center gap-2.5 bg-white shadow-sm p-4 rounded-2xl md:max-w-[220px]">
                   <div>
                     <h4 className="mb-0.5 font-bold text-[11px] text-zinc-900 xl:text-xs">Visi</h4>
                     <p className="text-[9px] text-zinc-500 xl:text-[11px] leading-snug">Making living space search friction-less for everyone.</p>
@@ -267,7 +267,7 @@ export default function AboutBaboo() {
                 </div>
               </div>
 
-              <p className="mt-4 md:mt-0 font-medium text-[11px] text-white/90 xl:text-sm text-center">
+              <p className="mt-2 md:mt-0 font-medium text-[11px] text-white/90 xl:text-sm text-center">
                 Baboo Kos is growing as a nationwide <br className="hidden md:block" />
                 platform across Indonesia
               </p>

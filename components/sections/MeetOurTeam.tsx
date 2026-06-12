@@ -11,14 +11,19 @@ const teamMembers = [
     img: "/team/yuca.jpg",
   },
   {
-    name: "Pranayama Sukma Fritzie Wisnu",
-    role: "administrasi (ADM)",
-    img: "/team/pran.jpg",
+    name: "Dominikus Ivan Ardianto",
+    role: "Content Creative (CCR)",
+    img: "/team/ivan.jpg",
   },
   {
     name: "Afifa Nur Aulia Viranti",
     role: "Human Resources Development (HRD)",
     img: "/team/afifa.jpg",
+  },
+  {
+    name: "Pranayama Sukma Fritzie Wisnu",
+    role: "Administrator (ADM)",
+    img: "/team/pran.jpg",
   },
   {
     name: "Atikah Azra Wahdah",
@@ -42,7 +47,7 @@ const teamMembers = [
   },
   {
     name: "Andrean Yogha Saputra",
-    role: "WEB DEV / Digital Support (IT)",
+    role: "Web Developer / Digital Support (IT)",
     img: "/team/andre.jpg",
   },
 ];
@@ -90,36 +95,83 @@ export default function MeetOurTeam() {
       </div>
 
       {/* ========================= */}
-      {/* TEAM CARDS GRID */}
+      {/* TEAM CARDS GRID & FLEX LAYOUT */}
       {/* ========================= */}
-      {/* Menggunakan flex-wrap dan justify-center agar formasi otomatis menjadi 3 baris atas dan 2 baris bawah di tengah */}
-      <div className="flex flex-wrap justify-center gap-6 md:gap-8 w-full">
-        {teamMembers.map((member, index) => (
-          <div
-            key={index}
-            className={cn(
-              "flex flex-col bg-[#FAFAFA] shadow-sm border border-zinc-100 rounded-[2rem] w-full max-w-[340px] overflow-hidden transition-all duration-1000 ease-out",
-              isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0",
-            )}
-            // Inline style digunakan agar nilai delay bisa dikalkulasi dinamis per kartu
-            style={{ transitionDelay: isVisible ? `${400 + index * 150}ms` : "0ms" }}
-          >
-            {/* Image Section */}
-            <div className="w-full h-[420px] overflow-hidden">
-              <img src={member.img} alt={member.name} className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" />
-            </div>
-
-            {/* Content Section */}
-            <div className="flex flex-col flex-1 justify-between items-center bg-[#FDFDFD] p-6 text-center">
-              <div>
-                <h4 className="font-bold text-zinc-900 text-lg">{member.name}</h4>
-                <p className="mt-1 font-bold text-[#495C29] text-xs">{member.role}</p>
+      <div className="flex flex-col items-center gap-6 md:gap-8 w-full">
+        
+        {/* BARIS UTAMA (Hanya aktif di Desktop & Tablet): Khusus CEO di tengah atas */}
+        <div className="hidden md:flex justify-center w-full">
+          {teamMembers.slice(0, 1).map((member, index) => (
+            <div
+              key={index}
+              className={cn(
+                "flex flex-col bg-[#FAFAFA] shadow-sm border border-zinc-100 rounded-[2rem] w-full max-w-[340px] overflow-hidden transition-all duration-1000 ease-out",
+                isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0",
+              )}
+              style={{ transitionDelay: isVisible ? `${400 + index * 150}ms` : "0ms" }}
+            >
+              <div className="w-full h-[420px] overflow-hidden">
+                <img src={member.img} alt={member.name} className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" />
               </div>
-
-              
+              <div className="flex flex-col flex-1 justify-between items-center bg-[#FDFDFD] p-6 text-center">
+                <div>
+                  <h4 className="font-bold text-zinc-900 text-lg">{member.name}</h4>
+                  <p className="mt-1 font-bold text-[#495C29] text-xs">{member.role}</p>
+                </div>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
+
+        {/* BARIS BAWAH (Hanya aktif di Desktop & Tablet): Untuk Semua Karyawan */}
+        <div className="hidden md:flex flex-wrap justify-center gap-6 md:gap-8 w-full">
+          {teamMembers.slice(1).map((member, index) => (
+            <div
+              key={index + 1}
+              className={cn(
+                "flex flex-col bg-[#FAFAFA] shadow-sm border border-zinc-100 rounded-[2rem] w-full max-w-[340px] overflow-hidden transition-all duration-1000 ease-out",
+                isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0",
+              )}
+              
+              style={{ transitionDelay: isVisible ? `${400 + (index + 1) * 150}ms` : "0ms" }}
+            >
+              <div className="w-full h-[420px] overflow-hidden">
+                <img src={member.img} alt={member.name} className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" />
+              </div>
+              <div className="flex flex-col flex-1 justify-between items-center bg-[#FDFDFD] p-6 text-center">
+                <div>
+                  <h4 className="font-bold text-zinc-900 text-lg">{member.name}</h4>
+                  <p className="mt-1 font-bold text-[#495C29] text-xs">{member.role}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* LAYOUT MOBILE (Hanya aktif di Layar HP): Semua data mengalir biasa seperti sebelumnya */}
+        <div className="flex flex-wrap md:hidden justify-center gap-6 w-full">
+          {teamMembers.map((member, index) => (
+            <div
+              key={index}
+              className={cn(
+                "flex flex-col bg-[#FAFAFA] shadow-sm border border-zinc-100 rounded-[2rem] w-full max-w-[340px] overflow-hidden transition-all duration-1000 ease-out",
+                isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0",
+              )}
+              style={{ transitionDelay: isVisible ? `${400 + index * 150}ms` : "0ms" }}
+            >
+              <div className="w-full h-[420px] overflow-hidden">
+                <img src={member.img} alt={member.name} className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" />
+              </div>
+              <div className="flex flex-col flex-1 justify-between items-center bg-[#FDFDFD] p-6 text-center">
+                <div>
+                  <h4 className="font-bold text-zinc-900 text-lg">{member.name}</h4>
+                  <p className="mt-1 font-bold text-[#495C29] text-xs">{member.role}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
       </div>
     </section>
   );
