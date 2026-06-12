@@ -31,12 +31,6 @@ export function OrbitingCircles({
         <svg
           xmlns="http://www.w3.org/2000/svg"
           version="1.1"
-          /* 
-            PERBAIKAN KRUSIAL: 
-            Ganti 'inset-0 size-full' menjadi posisi absolute di tengah (top-1/2 left-1/2) 
-            dengan ukuran kotak yang dinamis mengikuti diameter radius lingkaran (2 x radius).
-            Ini menjamin titik cx="50%" cy="50%" selalu sinkron dengan pusat rotasi ikon di mobile & desktop.
-          */
           className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 overflow-visible"
           style={{
             width: `${radius * 2}px`,
@@ -44,7 +38,16 @@ export function OrbitingCircles({
           }}
         >
           <circle
-            className="stroke-black/10 stroke-1 dark:stroke-white/10"
+            /* 
+              PERBAIKAN ANDROID & TAILWIND v4:
+              1. Hilangkan stroke-black/10 karena di-invert otomatis oleh Force Dark Mode Android menjadi transparan/putih.
+              2. Gunakan inline style stroke dengan Hex Code (#e4e4e7 / warna border abu-abu seng) agar warnanya dikunci mati.
+              3. Tambahkan properti strokeWidth secara eksplisit (tidak hanya mengandalkan stroke-1).
+            */
+            style={{
+              stroke: "#d4d4d8", // Abu-abu solid (Zinc-300), jelas terlihat di Android & tidak hilang saat di-force dark
+              strokeWidth: "1px",
+            }}
             cx="50%"
             cy="50%"
             r={radius}
