@@ -54,7 +54,7 @@ export default function Footer() {
   }, []);
 
   return (
-    <section id="contact" className="bg-slate-50/50 px-4 md:px-6 pt-4 pb-4 md:pb-6 w-full">
+    <section id="contact" className="bg-slate-50/50 px-4 md:px-6 pt-4 pb-0 md:pb-0 w-full">
       <footer ref={footerRef} className={cn("relative bg-[#495C29] shadow-lg mx-auto px-6 md:px-12 lg:px-16 pt-12 pb-8 md:pt-14 md:pb-8 rounded-3xl md:rounded-[2rem] w-full max-w-[1360px] overflow-hidden text-white")}>
         {/* ========================================================= */}
         {/* BACKGROUND ABSTRACT SVG                                   */}
@@ -162,7 +162,7 @@ export default function Footer() {
             <h4 className={cn("font-bold text-sm tracking-wide")}>Help</h4>
             <ul className="flex flex-col gap-2.5 text-zinc-200/70 text-xs text-center lg:text-left">
               <li>
-                <Link href="/belum-tersedia" className="hover:text-[#F3C546] transition-colors">
+                <Link href="/serviceCustomer" className="hover:text-[#F3C546] transition-colors">
                   Customer Support
                 </Link>
               </li>

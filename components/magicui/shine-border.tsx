@@ -1,74 +1,63 @@
-"use client";
+"use client"
 
-import * as React from "react";
-import { cn } from "@/lib/utils";
+import * as React from "react"
+
+import { cn } from "@/lib/utils"
 
 interface ShineBorderProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
-   * Ketebalan border dalam pixel
-   * @default 1.5
+   * Width of the border in pixels
+   * @default 1
    */
-  borderWidth?: number;
+  borderWidth?: number
   /**
-   * Durasi animasi dalam detik (semakin kecil semakin cepat)
-   * @default 3
+   * Duration of the animation in seconds
+   * @default 14
    */
-  duration?: number;
+  duration?: number
   /**
-   * Warna border, bisa berupa satu warna string atau array warna
-   * @default ["#495C29", "#F3C546"]
+   * Color of the border, can be a single color or an array of colors
+   * @default "#000000"
    */
-  shineColor?: string | string[];
+  shineColor?: string | string[]
 }
 
 /**
- * Shine Border (Conic Rotation)
+ * Shine Border
  *
- * Efek animasi border melingkar mulus yang dapat disesuaikan.
+ * An animated background border effect component with configurable properties.
  */
 export function ShineBorder({
-  borderWidth = 1.5,
-  duration = 3, // Durasi 3 detik sangat pas untuk tombol Navbar
-  shineColor = ["#495C29", "#F3C546"],
+  borderWidth = 1,
+  duration = 14,
+  shineColor = "#000000",
   className,
   style,
   ...props
 }: ShineBorderProps) {
-  
-  // Membuat format warna untuk efek "ekor cahaya"
-  const gradientColors = Array.isArray(shineColor)
-    ? `transparent 40%, ${shineColor[0]} 70%, ${shineColor[1]} 100%`
-    : `transparent 60%, ${shineColor} 100%`;
-
   return (
     <div
-      style={{
-        "--border-width": `${borderWidth}px`,
-        // CSS Mask ini melubangi bagian tengah sehingga HANYA area padding (border) yang terlihat
-        mask: `linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)`,
-        WebkitMask: `linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)`,
-        WebkitMaskComposite: "xor",
-        maskComposite: "exclude",
-        padding: "var(--border-width)",
-        ...style,
-      } as React.CSSProperties}
+      style={
+        {
+          "--border-width": `${borderWidth}px`,
+          "--duration": `${duration}s`,
+          backgroundImage: `radial-gradient(transparent,transparent, ${
+            Array.isArray(shineColor) ? shineColor.join(",") : shineColor
+          },transparent,transparent)`,
+          backgroundSize: "300% 300%",
+          mask: `linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)`,
+          WebkitMask: `linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)`,
+          WebkitMaskComposite: "xor",
+          maskComposite: "exclude",
+          padding: "var(--border-width)",
+          ...style,
+        } as React.CSSProperties
+      }
       className={cn(
-        "absolute inset-0 rounded-[inherit] overflow-hidden pointer-events-none",
+        "motion-safe:animate-shine pointer-events-none absolute inset-0 size-full rounded-[inherit] will-change-[background-position]",
         className
       )}
       {...props}
-    >
-      {/* 
-        Elemen Inner: Kotak besar berisi gradient melingkar (conic) 
-        yang terus berputar (spin) searah jarum jam. 
-      */}
-      <div
-        className="top-1/2 left-1/2 absolute w-[200%] aspect-square -translate-x-1/2 -translate-y-1/2"
-        style={{
-          background: `conic-gradient(from 0deg, ${gradientColors})`,
-          animation: `spin ${duration}s linear infinite`,
-        }}
-      />
-    </div>
-  );
+    />
+  )
 }

@@ -159,6 +159,7 @@ html[data-magicui-theme-vt="active"]::view-transition-new(root) {
   --animate-gradient: gradient 8s linear infinite;
   --animate-shiny-text: shiny-text 8s infinite;
   --animate-orbit: orbit calc(var(--duration) * 1s) linear infinite;
+   --animate-shine: shine var(--duration) infinite linear;
 
   @keyframes orbit {
     0% {
@@ -188,6 +189,18 @@ html[data-magicui-theme-vt="active"]::view-transition-new(root) {
     30%,
     60% {
       background-position: calc(100% + var(--shiny-width)) 0;
+    }
+  }
+
+  @keyframes shine {
+    0% {
+      background-position: 0% 0%;
+    }
+    50% {
+      background-position: 100% 100%;
+    }
+    to {
+      background-position: 0% 0%;
     }
   }
 }
