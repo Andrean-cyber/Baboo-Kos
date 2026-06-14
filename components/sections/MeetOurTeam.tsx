@@ -11,11 +11,6 @@ const teamMembers = [
     img: "/team/yuca.jpg",
   },
   {
-    name: "Dominikus Ivan Ardianto",
-    role: "Content Creative (CCR)",
-    img: "/team/ivan.jpg",
-  },
-  {
     name: "Afifa Nur Aulia Viranti",
     role: "Human Resources Development (HRD)",
     img: "/team/afifa.jpg",
@@ -44,6 +39,16 @@ const teamMembers = [
     name: "Muchammad Akmal Mustofa",
     role: "Head of Content Creator (HCC)",
     img: "/team/akmal.jpg",
+  },
+  {
+    name: "Dominikus Ivan Ardianto",
+    role: "Content Creative (CCR)",
+    img: "/team/ivan.jpg",
+  },
+  {
+    name: "Dominikus Ivan Ardianto",
+    role: "Content Creative (CCR)",
+    img: "/team/ivan.jpg",
   },
   {
     name: "Andrean Yogha Saputra",
@@ -86,7 +91,7 @@ export default function MeetOurTeam() {
         <h3 className={cn("mb-2 font-bold text-[#495C29] text-sm md:text-base transition-all duration-700 ease-out", isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0")}>Meet Our Team</h3>
 
         <h2 className={cn("mb-4 font-bold text-slate-900 text-3xl md:text-4xl lg:text-5xl tracking-tight transition-all duration-700 ease-out delay-150", isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0")}>
-          Meet the Minds Behind Baboo Kos
+          The Minds Behind Baboo Kos
         </h2>
 
         <p className={cn("max-w-xl font-medium text-zinc-500 text-sm md:text-base leading-relaxed transition-all duration-700 ease-out delay-300", isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0")}>

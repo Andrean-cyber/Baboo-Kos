@@ -144,10 +144,10 @@ export default function OurBranch() {
           Our Networks
         </h3>
         <h2 className={cn("mb-4 font-bold text-slate-900 text-3xl md:text-5xl tracking-tight transition-all duration-700 ease-out delay-150", isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0")}>
-          We're a distributed team
+          Our Growing Footprints
         </h2>
         <p className={cn("font-medium text-zinc-500 text-sm md:text-base transition-all duration-700 ease-out delay-300", isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0")}>
-          We have teams almost all over Indonesia.
+          Proudly serving communities nationwide, spanning all major cities and regions across Indonesia.
         </p>
       </div>
 

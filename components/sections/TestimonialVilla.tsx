@@ -130,8 +130,8 @@ export default function Testimonial() {
               : "translate-y-6 opacity-0"
           )}
         >
-          Apa kata mereka tentang{" "}
-          <span className="text-[#495C29]">Kami</span>
+          How did they{" "}
+          <span className="text-[#495C29]">Experience</span>
         </h2>
 
         <p

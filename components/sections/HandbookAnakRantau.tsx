@@ -287,7 +287,6 @@ export default function HandbookAnakRantau() {
               </div>
               
               <div className="flex flex-wrap items-center justify-between gap-4 pt-2 border-t border-white/10 text-[11px] text-white/70">
-                <span>Baboo Kos Team</span>
                 <span className="font-medium text-white/90">Baboo Kos — The Ultimate Anak Rantau Handbook</span>
               </div>
             </div>

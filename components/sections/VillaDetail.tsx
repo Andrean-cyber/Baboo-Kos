@@ -4,7 +4,7 @@ import { useRef, useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { 
   Maximize, Bed, Bath, ChefHat, CheckCircle2, X, ChevronLeft, ChevronRight, MapPin, Info,
-  Layers, Tv, Music, Thermometer, Car, Box, Shirt, Utensils, Mountain 
+  Layers, Tv, Music, Thermometer, Car, Box, Shirt, Utensils, Mountain, Building2
 } from "lucide-react";
 import { FiWifi } from "react-icons/fi";
 import { LuHouse } from "react-icons/lu";
@@ -40,6 +40,7 @@ const villaData = {
       { label: "Lemari Pakaian", icon: <Shirt size={16} /> },
       { label: "Meja Makan", icon: <Utensils size={16} /> },
       { label: "Peralatan Memasak", icon: <ChefHat size={16} /> },
+      { label: "Balkon", icon: <Building2 size={16} /> },
     ],
     points: [" ⁠3 menit ke BNS dan Jatim Park 2", "5 menit ke Jatim Park 1, Jatim Park 3 dan Museum Angkut", "8 menit ke Alun-alun Kota Batu", "High Ceiling", "Kawasan Villa Strategis", "View Gunung Arjuna"],
     priceWeekday: "350 Ribu",
@@ -49,7 +50,8 @@ const villaData = {
       "Kapasitas max Baboo Vila 6 orang dewasa, jika lebih maka akan dikenakan biaya tambahan 30k/orang.",
       "Anak-anak di atas 5 tahun terhitung orang dewasa.",
       "Harga weekend juga berlaku untuk hari libur nasional.",
-      "Check-in jam 14.00 dan Check-out max 11.00."
+      "Check-in jam 14.00 dan Check-out max 11.00.",
+      "Kendala yang berkaitan langsung dengan pemadaman listrik (PLN) dan air (PDAM) bukan tanggung jawab management villa."
     ]
   },
   kusuma: {
@@ -98,7 +100,8 @@ const villaData = {
       "Kapasitas max Baboo Vila 7 orang dewasa, jika lebih maka akan dikenakan biaya tambahan 40k/orang.",
       "Anak-anak di atas 5 tahun terhitung orang dewasa.",
       "Harga weekend juga berlaku untuk hari libur nasional.",
-      "Check-in jam 14.00 dan Check-out max 11.00."
+      "Check-in jam 14.00 dan Check-out max 11.00.",
+"Kendala yang berkaitan langsung dengan pemadaman listrik (PLN) dan air (PDAM) bukan tanggung jawab management villa."
     ]
   },
 };
@@ -115,7 +118,7 @@ export default function VillaDetail() {
   const handleWhatsapp = () => {
     const villaName = activeTab === "pesona" ? "Baboo Villa Pesona" : "Baboo Villa Kusuma";
     const message = encodeURIComponent(`Halo kak, bisa tau informasi jadwal ketersediaan tentang ${villaName}?`);
-    window.open(`https://wa.me/6287785338441?text=${message}`, "_blank");
+    window.open(`https://wa.me/6285852237843?text=${message}`, "_blank");
   };
 
   const currentVilla = villaData[activeTab];

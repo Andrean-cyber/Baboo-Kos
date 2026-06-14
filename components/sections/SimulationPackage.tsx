@@ -403,7 +403,7 @@ function SimulationContent() {
         </div>
 
         {/* SUMMARY SIDEBAR */}
-        <aside className="top-24 sticky h-fit">
+        <aside className="sticky top-24 h-fit pt-[45px]">
           <div className="bg-[#41512A] shadow-xl p-6 md:p-8 rounded-[1.5rem] text-white">
             <h3 className="mb-6 font-bold text-lg">Ringkasan Estimasi</h3>
 

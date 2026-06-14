@@ -158,7 +158,7 @@ export default function TipsCariKos() {
 
           <div className="mt-6 flex items-center justify-center gap-2 text-zinc-400 text-[11px]">
             <Clock size={12} />
-            <span>Baboo Kos — Panduan Cari Kos Anti-Zonk</span>
+            <span>Baboo Kos — Tips Cari Kos Anti-Zonk</span>
           </div>
         </div>
       </div>
@@ -228,7 +228,7 @@ export default function TipsCariKos() {
               </div>
 
               <div className="flex flex-wrap items-center justify-between gap-4 pt-2 border-t border-white/10 text-[11px] text-white/70">
-                <span>Baboo Kos — Panduan Cari Kos Anti-Zonk</span>
+                <span>Baboo Kos — Tips Cari Kos Anti-Zonk</span>
               </div>
             </div>
           </div>

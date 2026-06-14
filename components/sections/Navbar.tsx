@@ -31,6 +31,7 @@ export default function Navbar() {
     document.removeEventListener("mousedown", handleClickOutside);
   };
 }, []);
+
   const getWhatsappConfig = () => {
   if (pathname.startsWith("/villa")) {
     return {
@@ -62,6 +63,14 @@ export default function Navbar() {
       "Halo kak, saya ingin mendapatkan informasi lebih lanjut tentang Baboo Kos."
   };
 };
+
+  const getBookingLabel = () => {
+    if (pathname.startsWith("/villa")) return "Reservasi →";
+    if (pathname.startsWith("/career")) return "Tanya HRD →";
+    if (pathname.startsWith("/simulation")) return "Tanya Kami →";
+    if (pathname.startsWith("/aboutus")) return "Company Support →";
+    return "Cari Kos →";
+  };
 
 const handleWhatsapp = () => {
   const config = getWhatsappConfig();
@@ -263,7 +272,7 @@ const handleWhatsapp = () => {
                 "hidden md:flex justify-center items-center bg-white/80 hover:bg-[#495C29] backdrop-blur-md px-8 py-3 border border-[#495C29]/20 rounded-full font-bold text-[#495C29] text-[15px] hover:text-white transition-all",
               )}
             >
-              Booking →
+              {getBookingLabel()}
             </button>
 
             {/* MOBILE HAMBURGER */}
@@ -306,7 +315,9 @@ const handleWhatsapp = () => {
                 <div className="bg-zinc-200 my-2 w-full h-px" />
 
                 {/* MOBILE BUTTON */}
-                <button onClick={handleWhatsapp} className="bg-[#495C29] shadow-lg rounded-full h-14 font-bold text-[15px] text-white active:scale-[0.98] transition-transform">Booking Now</button>
+                <button onClick={handleWhatsapp} className="bg-[#495C29] shadow-lg rounded-full h-14 font-bold text-[15px] text-white active:scale-[0.98] transition-transform">
+                  {getBookingLabel()}
+                </button>
                 
               </div>
             </motion.div>

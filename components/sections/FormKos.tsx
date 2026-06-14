@@ -29,6 +29,13 @@ export default function KosCriteriaSection() {
     ? date.split("-").reverse().join("-") : "-";
   const [notes, setNotes] = useState("");
   const today = new Date().toISOString().split("T")[0];
+  const formatRupiah = (value: string) => {
+  // Hanya angka
+  const number = value.replace(/\D/g, "");
+
+  // Tambahkan titik setiap 3 digit
+  return new Intl.NumberFormat("id-ID").format(Number(number || 0));
+};
   const bannedWords = [
   "anjing",
   "bangsat",
@@ -213,11 +220,14 @@ export default function KosCriteriaSection() {
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-zinc-800">
               {[
                 "Kamar Mandi Dalam",
+                "Kamar Mandi Luar",
+                "Fully Furnished",
                 "Water Heater",
                 "AC",
                 "Listrik Token",
                 "Dapur Bersama",
                 "Parkir",
+                "Akses 24 Jam",
               ].map((item) => {
                 const active = facilities.includes(item);
                 return (
@@ -255,15 +265,21 @@ export default function KosCriteriaSection() {
               <label className="block text-sm font-bold mb-3 text-zinc-800">
                 Budget per Bulan
               </label>
+
               <div className="flex items-center border border-zinc-200 rounded-xl overflow-hidden text-zinc-400">
                 <span className="px-4 text-zinc-500">Rp</span>
+
                 <input
-                  type="number"
-                  value={budget}
-                  onChange={(e) => setBudget(e.target.value)}
-                  placeholder="Contoh: 1.500.000"
-                  className="w-full px-4 py-3 outline-none text-zinc-800"
-                />
+              type="text"
+              inputMode="numeric"
+              value={budget ? new Intl.NumberFormat("id-ID").format(Number(budget)) : ""}
+              onChange={(e) => {
+                const raw = e.target.value.replace(/\D/g, "");
+                setBudget(raw);
+              }}
+              placeholder="Contoh: 1.500.000"
+              className="w-full px-4 py-3 outline-none text-zinc-800"
+            />
               </div>
             </div>
 
@@ -303,7 +319,7 @@ export default function KosCriteriaSection() {
           </div>
 
           {/* ================= TANGGAL & CATATAN ================= */}
-          <div className="grid md:grid-cols-2 gap-8 mt-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-12">
             <div>
               <label className="block text-sm font-bold mb-3 text-zinc-800">
                 Rencana tanggal dihuni
@@ -327,7 +343,7 @@ export default function KosCriteriaSection() {
                 value={notes}
                 onChange={(e) => setNotes(e.target.value)}
                 placeholder="Catatan tambahan"
-                className="w-full h-[52px] border border-zinc-200 rounded-xl px-4 py-3 outline-none resize-none h-[48px] text-zinc-800"
+                className="w-full h-[52px] border border-zinc-200 rounded-xl px-4 py-3 outline-none resize-none text-zinc-800"
               />
             </div>
           </div>
@@ -381,7 +397,7 @@ export default function KosCriteriaSection() {
               </div>
 
               <p className="mt-4 text-sm text-white/80">
-                10.000+ Customer Puas
+                33.000+ Customer Puas
               </p>
             </div>
           </div>
@@ -399,6 +415,7 @@ export default function KosCriteriaSection() {
             <ul className="text-sm text-zinc-600 space-y-2 list-disc pl-5">
               <li>Kriteria dan budget harus realistis.</li>
               <li>Kami proses sesuai isi form.</li>
+              <li>Form ini akan di konsultasikan ulang oleh admin whatsapp Baboo Kos.</li>
               <li>Customer Service Baboo Kos akan menghubungi Anda melalui WhatsApp dari nomor operasional tim kami.</li>
             </ul>
           </div>

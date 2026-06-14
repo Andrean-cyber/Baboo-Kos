@@ -12,7 +12,7 @@ const faqData = [
   },
   {
     question: "Bagaimana cara kerja Baboo Kos?",
-    answer: "Baboo Kos membantu pengguna menemukan pilihan kos terbaik melalui sistem pencarian yang mudah. Anda dapat melihat informasi kos, fasilitas, lokasi, hingga menghubungi owner atau tim kami untuk proses lebih lanjut.",
+    answer: "Baboo Kos membantu pengguna menemukan pilihan kos terbaik melalui sistem pencarian yang mudah dan berstandart tinggi. Anda dapat melihat informasi kos, fasilitas, lokasi, hingga menghubungi owner atau tim kami untuk proses lebih lanjut.",
   },
   {
     question: "Di kota mana saja Baboo Kos tersedia?",
@@ -68,10 +68,7 @@ export default function Faq() {
 
           {/* BIG TITLE */}
           <h2 className={cn("mb-8 font-bold text-zinc-900 text-3xl md:text-4xl lg:text-5xl leading-tight tracking-tight transition-all duration-700 ease-out delay-150", isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0")}>
-            <span className="inline">Pertanyaan yang</span>
-            <span className="inline md:hidden"> </span>
-            <br className="hidden md:block" />
-            <span className="inline">Sering Diajukan</span>
+            <span className="inline">Masih Bingung?</span>
           </h2>
 
           {/* CTA BOX */}
@@ -79,9 +76,9 @@ export default function Faq() {
             className={cn("flex flex-col justify-between bg-[#495C29] shadow-sm p-6 md:p-8 rounded-[2rem] text-white transition-all duration-1000 ease-out delay-300", isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0")}
           >
             <div>
-              <h4 className="mb-3 font-bold text-xl md:text-2xl">Masih ada pertanyaan lain?</h4>
+              <h4 className="mb-3 font-bold text-xl md:text-2xl">Tenang, kita spill semuanya di sini, Biar Nggak Overthinking </h4>
 
-              <p className="mb-8 font-normal text-zinc-200/80 text-xs md:text-sm leading-relaxed">Tidak menemukan jawaban yang Anda cari? Silakan hubungi tim kami untuk mendapatkan bantuan lebih lanjut.</p>
+              <p className="mb-8 font-normal text-zinc-200/80 text-xs md:text-sm leading-relaxed">Semua pertanyaan yang paling sering ditanyain udah kita rangkum di bawah. Kalau masih penasaran, tinggal chat aja!.</p>
             </div>
 
             <button

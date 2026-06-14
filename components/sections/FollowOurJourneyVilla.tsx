@@ -117,11 +117,38 @@ export default function FollowOurJourney() {
   return (
     <section ref={sectionRef} className={cn("flex", "flex-col", "items-center", "bg-[#FAFAFA]", "mx-auto", "px-4", "md:px-8", "py-16", "md:py-24", "w-full", "max-w-[1280px]", "overflow-hidden")}>
       {/* HEADER */}
-      <div className={cn("flex", "flex-col", "items-center", "mb-10", "max-w-2xl", "text-center")}>
+      <div className={cn("flex", "flex-col", "items-center", "mb-10", "max-w-[1280px]", "text-center")}>
         <h3 className={cn("mb-2 font-bold text-[#495C29] text-sm md:text-base transition-all duration-700 ease-out", isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0")}>Follow Our Journey</h3>
 
-        <h2 className={cn("mb-4", "font-bold", "text-slate-900", "text-3xl", "md:text-5xl", "tracking-tight", "transition-all", "duration-700", "ease-out", "delay-150", isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0")}>
-          Stay Connected with Baboo
+        <h2
+          className={cn(
+            "mb-4",
+            "flex",
+            "flex-wrap",
+            "items-center",
+            "justify-center",
+            "gap-0",
+            "font-bold",
+            "text-slate-900",
+            "text-3xl",
+            "md:text-5xl",
+            "tracking-tight",
+            "transition-all",
+            "duration-700",
+            "ease-out",
+            "delay-150",
+            isVisible
+              ? "translate-y-0 opacity-100"
+              : "translate-y-6 opacity-0"
+          )}
+        >
+          <span>Stay Connected with</span>
+
+          <img
+            src="/baboovilla.png"
+            alt="Baboo Villa"
+            className="h-16 md:h-22 w-auto object-contain"
+          />
         </h2>
 
         <p className={cn("mb-6", "font-medium", "text-zinc-500", "text-sm", "md:text-base", "leading-relaxed", "transition-all", "duration-700", "ease-out", "delay-300", isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0")}>
@@ -300,9 +327,9 @@ export default function FollowOurJourney() {
           </div>
 
           <div>
-            <h4 className="font-semibold text-zinc-900 text-sm">Baboo Kos & Baboo Villa</h4>
+            <h4 className="font-semibold text-zinc-900 text-sm">Baboo Villa</h4>
 
-            <p className="mt-0.5 font-medium text-[10px] text-zinc-500 leading-relaxed">Menciptakan pengalaman menginap terbaik dan membangun komunitas yang solid.</p>
+            <p className="mt-0.5 font-medium text-[10px] text-zinc-500 leading-relaxed">Menciptakan pengalaman menginap terbaik di villa hidden gem kota batu.</p>
           </div>
         </div>
 

@@ -50,8 +50,8 @@ const steps = [
     charImg: "/ilustrasi/ill4.webp",
     mockupType: "list",
     footerIcon: Handshake,
-    footerTitle: "Dibantu Sampai Deal",
-    footerDesc: "Tim kami siap membantu sampai kamu menemukan kos yang cocok.",
+    footerTitle: "Rekomendasi Variatif",
+    footerDesc: "Tim kami siap membantu kamu menemukan rekomendasi kos yang terbaik.",
   },
 ];
 
@@ -302,35 +302,52 @@ function MockupRenderer({ type }: { type: string }) {
 
   if (type === "payment") {
     return (
-      <div className="flex flex-col items-center justify-between h-full w-full pointer-events-none py-1">
+      <div className="flex flex-col justify-center items-center gap-3 h-full pointer-events-none">
         
-        {/* Ilustrasi Centang Berhasil / Terverifikasi */}
-        <div className="flex flex-col items-center justify-center flex-1 gap-2">
-          <div className="flex items-center justify-center bg-[#EEF3E8] text-[#495C29] rounded-full w-12 h-12 shadow-sm border border-[#E3EBCB]">
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-            </svg>
-          </div>
-          <span className="font-bold text-zinc-700 text-[11px] tracking-wide mt-1">
-            Pembayaran Berhasil! Terverifikasi
-          </span>
+        <div className="text-center">
+          <div className="text-[10px] text-zinc-500">Total Pembayaran</div>
+          <div className="font-bold text-zinc-900 text-sm">Rp110.000</div>
         </div>
-
-        {/* Informasi Rekening BCA (Melayang di bawah) */}
-        <div className="flex items-center gap-2.5 bg-white p-2.5 border border-zinc-200/80 shadow-sm rounded-xl w-full">
-          {/* Logo BCA */}
-          <div className="bg-[#005EAF] text-white font-black text-[7px] tracking-tighter px-1.5 py-1 rounded-md shrink-0">
-            BCA
-          </div>
-          <div className="flex flex-col min-w-0 text-left">
-            <span className="font-bold text-zinc-800 text-[10px] tracking-wide">3680362199</span>
-            <span className="text-[8px] text-zinc-500 truncate">a.n Yucha Pratama</span>
-          </div>
+        <div className="my-1 border-zinc-300 border-t border-dashed w-full"></div>
+        <div className="bg-white p-2 border border-zinc-200 rounded-lg w-full text-[8px] text-zinc-500 text-center">
+          Pembayaran diterima <br />
+          <span className="font-semibold text-[#495C29]">BCA - a.n Yucha Pratama</span>
         </div>
-
       </div>
     );
   }
+
+  // if (type === "payment") {
+  //   return (
+  //     <div className="flex flex-col items-center justify-between h-full w-full pointer-events-none py-1">
+        
+  //       {/* Ilustrasi Centang Berhasil / Terverifikasi */}
+  //       <div className="flex flex-col items-center justify-center flex-1 gap-2">
+  //         <div className="flex items-center justify-center bg-[#EEF3E8] text-[#495C29] rounded-full w-12 h-12 shadow-sm border border-[#E3EBCB]">
+  //           <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
+  //             <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+  //           </svg>
+  //         </div>
+  //         <span className="font-bold text-zinc-700 text-[11px] tracking-wide mt-1">
+  //           Pembayaran Berhasil! Terverifikasi
+  //         </span>
+  //       </div>
+
+  //       {/* Informasi Rekening BCA (Melayang di bawah) */}
+  //       <div className="flex items-center gap-2.5 bg-white p-2.5 border border-zinc-200/80 shadow-sm rounded-xl w-full">
+  //         {/* Logo BCA */}
+  //         <div className="bg-[#005EAF] text-white font-black text-[7px] tracking-tighter px-1.5 py-1 rounded-md shrink-0">
+  //           BCA
+  //         </div>
+  //         <div className="flex flex-col min-w-0 text-left">
+  //           <span className="font-bold text-zinc-800 text-[10px] tracking-wide">3680362199</span>
+  //           <span className="text-[8px] text-zinc-500 truncate">a.n Yucha Pratama</span>
+  //         </div>
+  //       </div>
+
+  //     </div>
+  //   );
+  // }
 
   if (type === "list") {
   return (

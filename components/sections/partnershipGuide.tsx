@@ -72,32 +72,55 @@ export default function PartnershipGuide() {
         {/* ========================================================= */}
         {/* QUICK CHEAT SHEET (RANGKUMAN CEPAT)                       */}
         {/* ========================================================= */}
-        <div className="bg-zinc-900 rounded-3xl p-6 md:p-8 text-white mb-10 shadow-xl relative overflow-hidden">
-          <div className="absolute right-0 top-0 w-32 h-32 bg-[#495C29]/20 rounded-full blur-3xl pointer-events-none" />
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6 border-b border-white/10 pb-4">
+        <div className="bg-[#F3C546] rounded-3xl p-6 md:p-8 text-[#495C29] mb-10 shadow-xl relative overflow-hidden">
+          <div className="absolute right-0 top-0 w-32 h-32 bg-white/20 rounded-full blur-3xl pointer-events-none" />
+
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6 border-b border-black/10 pb-4">
             <div className="flex items-center gap-2">
-              <Info size={16} className="text-[#F3C546]" />
-              <h3 className="font-bold text-xs md:text-sm uppercase tracking-wider text-zinc-400">Rangkuman Instan (Biar Gak Ketuker)</h3>
+              <Info size={16} className="text-[#495C29]" />
+
+              <h3 className="font-bold text-xs md:text-sm uppercase tracking-wider text-[#495C29]">
+                Rangkuman Instan (Biar Gak Ketuker)
+              </h3>
             </div>
-            <span className="text-[10px] bg-white/10 px-2.5 py-1 rounded-md text-zinc-300">💡 Tip Cepat</span>
+
+            <span className="text-[10px] bg-black/10 px-2.5 py-1 rounded-md text-[#495C29] font-semibold">
+              💡 Tip Cepat
+            </span>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="space-y-1">
-              <span className="text-[10px] font-bold text-amber-400 tracking-widest uppercase block">📢 Endorse</span>
-              <p className="text-sm font-semibold text-zinc-100">“Tolong promosiin bisnis aku ya.”</p>
+              <span className="text-[10px] font-bold text-[#495C29] tracking-widest uppercase block">
+                📢 Endorse
+              </span>
+
+              <p className="text-sm font-semibold text-zinc-800">
+                “Tolong promosiin bisnis aku ya.”
+              </p>
             </div>
-            <div className="space-y-1 border-y md:border-y-0 md:border-x border-white/10 py-4 md:py-0 md:px-6">
-              <span className="text-[10px] font-bold text-blue-400 tracking-widest uppercase block">📜 Kerja Sama / MoU</span>
-              <p className="text-sm font-semibold text-zinc-100">“Yuk sinergi & saling bantu dalam periode tertentu.”</p>
+
+            <div className="space-y-1 border-y md:border-y-0 md:border-x border-black/10 py-4 md:py-0 md:px-6">
+              <span className="text-[10px] font-bold text-[#495C29] tracking-widest uppercase block">
+                📜 Kerja Sama / MoU
+              </span>
+
+              <p className="text-sm font-semibold text-zinc-800">
+                “Yuk sinergi & saling bantu dalam periode tertentu.”
+              </p>
             </div>
+
             <div className="space-y-1 md:pl-2">
-              <span className="text-[10px] font-bold text-[#b4cf86] tracking-widest uppercase block">🤝 Mitra</span>
-              <p className="text-sm font-semibold text-zinc-100">Hubungan/status resmi sebagai partner jangka panjang.</p>
+              <span className="text-[10px] font-bold text-[#495C29] tracking-widest uppercase block">
+                🤝 Mitra
+              </span>
+
+              <p className="text-sm font-semibold text-zinc-800">
+                Hubungan/status resmi sebagai partner jangka panjang.
+              </p>
             </div>
           </div>
         </div>
-
         {/* ========================================================= */}
         {/* MAIN BENTO GRID PENJELASAN                                */}
         {/* ========================================================= */}
