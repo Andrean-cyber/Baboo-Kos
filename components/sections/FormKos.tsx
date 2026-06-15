@@ -330,7 +330,11 @@ export default function KosCriteriaSection() {
                   value={date}
                   min={today}
                   onChange={(e) => setDate(e.target.value)}
-                  className="w-full h-[52px] border border-zinc-200 rounded-xl px-4 outline-none text-zinc-800"
+                  className="w-full h-[52px] border border-zinc-200 rounded-xl px-4 pr-12 outline-none text-zinc-800 appearance-none [&::-webkit-calendar-picker-indicator]:opacity-0 [&::-webkit-calendar-picker-indicator]:absolute [&::-webkit-calendar-picker-indicator]:right-0 [&::-webkit-calendar-picker-indicator]:w-12 [&::-webkit-calendar-picker-indicator]:h-full [&::-webkit-calendar-picker-indicator]:cursor-pointer"
+                />
+                <Calendar
+                  size={18}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-zinc-400 pointer-events-none"
                 />
               </div>
             </div>

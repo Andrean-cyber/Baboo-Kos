@@ -11,48 +11,48 @@ import { FaInstagram, FaTiktok } from "react-icons/fa";
 const igFeeds = [
   {
     id: 1,
-    img: "/sosmed/baboovilla/igthumb1.png",
-    title: "BABOO VILLA by Baboo Kos",
-    time: "1 Years ago",
-    type: "carousel",
+    img: "/sosmed/baboopeeps/thmbig1.jpg",
+    title: "GRWM long ver. 👀",
+    time: "1 Week ago",
+    type: "reels`",
   },
   {
     id: 2,
-    img: "/sosmed/baboovilla/igthumb2.png",
-    title: "BABOO VILLA by Baboo Kos",
-    time: "2 Years ago",
+    img: "/sosmed/baboopeeps/thmbig2.jpg",
+    title: "Lost in the beauty of Banyuwangi ✨🌾",
+    time: "1 Week ago",
     type: "reels",
   },
   {
     id: 3,
-    img: "/sosmed/baboovilla/igthumb3.png",
-    title: "Staycation ✨",
-    time: "1 Month ago",
-    type: "carousel",
+    img: "/sosmed/baboopeeps/thmbig3.jpg",
+    title: "Monthly meeting & planning the next move ⚡️🙌🏻",
+    time: "1 Week ago",
+    type: "reels",
   },
 ];
 
 const tkFeeds = [
   {
     id: 1,
-    img: "/sosmed/baboovilla/ttthumb1.png",
-    title: "Review villa 400k masih tipu!?",
-    time: "1 Years ago",
-    views: "739.3 rb",
+    img: "/sosmed/baboopeeps/thmbig1.jpg",
+    title: "GRWM long ver. 👀",
+    time: "1 Week ago",
+    views: "622",
   },
   {
     id: 2,
-    img: "/sosmed/baboovilla/ttthumb2.png",
-    title: "Villa Hidden Gem",
-    time: "2 Years ago",
-    views: "180 rb",
+    img: "/sosmed/baboopeeps/thmbig2.jpg",
+    title: "Lost in the beauty of Banyuwangi ✨🌾",
+    time: "1 Week ago",
+    views: "890",
   },
   {
     id: 3,
-    img: "/sosmed/baboovilla/ttthumb3.png",
-    title: "Villa 2 Lantai di Batu Cuma 300k aja?!",
-    time: "2 Years ago",
-    views: "805.9 rb",
+    img: "/sosmed/baboopeeps/thmbig3.jpg",
+    title: "Monthly meeting & planning the next move ⚡️🙌🏻",
+    time: "1 Week ago",
+    views: "344",
   },
 ];
 
@@ -171,21 +171,17 @@ export default function FollowOurJourney() {
                 <h4 className="font-semibold text-zinc-900 text-sm">Instagram</h4>
 
                 <div className="flex items-center gap-1 font-semibold text-[13px] text-zinc-700">
-                  @baboo_villa
+                  @baboopeeps
                 </div>
 
                 <p className="mt-0.5 font-medium text-[9px] text-zinc-500 leading-tight">
                   A part of @baboo_kos ✨
                   <br />
-                  📍 Baboo Villa Pesona 350K/malam
+                  🎥 Life behind @baboo_kos — a little chaos, a lot of fun!
                   <br />
-                  📍 Baboo Villa Pesona 450K/malam
+                  @baboo_villa
                   <br />
-                  Rekening a.n Yucha Pratama
-                  <br />
-                  Reservasi 0858-5223-7843/klik link ⬇️
-                  <br />
-                  linktr.ee/baboovilla
+                  www.linkedin.com/company/babookos.   @baboopeeps
                 </p>
               </div>
             </div>
@@ -193,14 +189,14 @@ export default function FollowOurJourney() {
             <div className="flex items-center gap-6 text-center shrink-0">
               <div className="flex flex-col">
                 <span className="font-bold text-zinc-900 text-sm">
-                  <CountUp end={116} />
+                  <CountUp end={59} />
                 </span>
                 <span className="text-[10px] text-zinc-500">Posts</span>
               </div>
 
               <div className="flex flex-col">
                 <span className="font-bold text-zinc-900 text-sm">
-                  <CountUp end={1884} />
+                  <CountUp end={92} />
                 </span>
                 <span className="text-[10px] text-zinc-500">Followers</span>
               </div>
@@ -234,7 +230,7 @@ export default function FollowOurJourney() {
           </div>
 
           {/* FOOTER BUTTON */}
-          <a href="https://instagram.com/baboo_villa" target="_blank" className="flex justify-center items-center gap-2 bg-pink-50/50 hover:bg-pink-100/50 mt-8 py-3 rounded-xl w-full font-semibold text-[11px] text-pink-600 transition-colors">
+          <a href="https://instagram.com/baboopeeps" target="_blank" className="flex justify-center items-center gap-2 bg-pink-50/50 hover:bg-pink-100/50 mt-8 py-3 rounded-xl w-full font-semibold text-[11px] text-pink-600 transition-colors">
             View more on Instagram <FaInstagram size={14} /> <ArrowRight size={14} />
           </a>
         </div>
@@ -251,19 +247,11 @@ export default function FollowOurJourney() {
                 <h4 className="font-semibold text-zinc-900 text-sm">TikTok</h4>
 
                 <div className="flex items-center gap-1 font-semibold text-[13px] text-zinc-700">
-                  @baboo_villa
+                  @baboopeeps
                 </div>
 
                 <p className="mt-0.5 font-medium text-[9px] text-zinc-500 leading-tight">
-                  A part of @Baboo Kos ✨
-                  <br />
-                  Rekening a.n Yucha Pratama
-                  <br />
-                  Reservasi 0858-5223-7843
-                  <br />
-                  ⬇️
-                  <br />
-                  https://linktr.ee/baboovilla
+                  🎥 life behind @Baboo Kos — a little chaos, a lot of fun!
                 </p>
               </div>
             </div>
@@ -271,21 +259,21 @@ export default function FollowOurJourney() {
             <div className="flex items-center gap-6 text-center shrink-0">
               <div className="flex flex-col">
                 <span className="font-bold text-zinc-900 text-sm">
-                  <CountUp end={10} />
+                  <CountUp end={11} />
                 </span>
                 <span className="text-[10px] text-zinc-500">Following</span>
               </div>
 
               <div className="flex flex-col">
                 <span className="font-bold text-zinc-900 text-sm">
-                  <CountUp end={7043} />
+                  <CountUp end={35} />
                 </span>
                 <span className="text-[10px] text-zinc-500">Followers</span>
               </div>
 
               <div className="flex flex-col">
                 <span className="font-bold text-zinc-900 text-sm">
-                  <CountUp end={126.8} suffix="rb" />
+                  <CountUp end={933} />
                 </span>
                 <span className="text-[10px] text-zinc-500">Likes</span>
               </div>
@@ -313,66 +301,9 @@ export default function FollowOurJourney() {
             ))}
           </div>
 
-          <a href="https://tiktok.com/@baboo_villa" target="_blank" className="flex justify-center items-center gap-2 bg-zinc-50 hover:bg-zinc-100 mt-8 py-3 rounded-xl w-full font-semibold text-[11px] text-zinc-700 transition-colors">
+          <a href="https://tiktok.com/@baboopeeps" target="_blank" className="flex justify-center items-center gap-2 bg-zinc-50 hover:bg-zinc-100 mt-8 py-3 rounded-xl w-full font-semibold text-[11px] text-zinc-700 transition-colors">
             View more on TikTok <FaTiktok size={14} /> <ArrowRight size={14} />
           </a>
-        </div>
-      </div>
-
-      {/* BOTTOM STATS */}
-      <div className={cn("gap-6", "grid", "grid-cols-1", "md:grid-cols-2", "lg:grid-cols-5", "bg-[#F8F9F5]", "shadow-sm", "mt-10", "p-6", "border", "border-[#495C29]/10", "rounded-[2rem]", "w-full")}>
-        <div className="flex items-center gap-4 md:col-span-2">
-          <div className="flex justify-center items-center bg-[#495C29] rounded-full w-14 h-14 text-white shrink-0">
-            <Home size={24} />
-          </div>
-
-          <div>
-            <h4 className="font-semibold text-zinc-900 text-sm">Baboo Villa</h4>
-
-            <p className="mt-0.5 font-medium text-[10px] text-zinc-500 leading-relaxed">Menciptakan pengalaman menginap terbaik di villa hidden gem kota batu.</p>
-          </div>
-        </div>
-
-        <div className="flex lg:justify-center items-center gap-4 pl-6 lg:pl-0 border-zinc-200/50 border-l lg:border-l-0">
-          <div className="flex justify-center items-center bg-white shadow-sm rounded-full w-10 h-10 text-zinc-400">
-            <FaInstagram size={18} />
-          </div>
-
-          <div>
-            <h4 className="font-bold text-zinc-900 text-lg leading-none">
-              <CountUp end={239} suffix="K" />
-            </h4>
-
-            <p className="mt-1 font-medium text-[10px] text-zinc-500">Instagram Followers</p>
-          </div>
-        </div>
-
-        <div className="flex lg:justify-center items-center gap-4 pl-6 lg:pl-0 border-zinc-200/50 border-l lg:border-l-0">
-          <div className="flex justify-center items-center bg-white shadow-sm rounded-full w-10 h-10 text-zinc-900">
-            <FaTiktok size={16} />
-          </div>
-
-          <div>
-            <h4 className="font-bold text-zinc-900 text-lg leading-none">
-              <CountUp end={112} suffix="K" />
-            </h4>
-
-            <p className="mt-1 font-medium text-[10px] text-zinc-500">TikTok Followers</p>
-          </div>
-        </div>
-
-        <div className="flex lg:justify-center items-center gap-4 pl-6 lg:pl-0 border-zinc-200/50 border-l lg:border-l-0">
-          <div className="flex justify-center items-center bg-white shadow-sm rounded-full w-10 h-10 text-zinc-400">
-            <Heart size={18} />
-          </div>
-
-          <div>
-            <h4 className="font-bold text-zinc-900 text-lg leading-none">
-              <CountUp end={4.8} suffix="M" />
-            </h4>
-
-            <p className="mt-1 font-medium text-[10px] text-zinc-500">TikTok Likes</p>
-          </div>
         </div>
       </div>
     </section>
