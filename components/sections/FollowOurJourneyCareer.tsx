@@ -88,36 +88,44 @@ export default function FollowOurJourney() {
       )}
     >
       {/* HEADER */}
-      <div className="flex flex-col items-center mb-10 max-w-[1280px] text-center">
-        <h3
-          className={cn(
-            "mb-2 font-bold text-[#495C29] text-sm md:text-base transition-all duration-700 ease-out",
-            isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0",
-          )}
-        >
-          Follow Our Journey
-        </h3>
+      <div className={cn("flex", "flex-col", "items-center", "mb-10", "max-w-[1280px]", "text-center")}>
+        <h3 className={cn("mb-2 font-bold text-[#495C29] text-sm md:text-base transition-all duration-700 ease-out", isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0")}>Follow Our Journey</h3>
 
         <h2
           className={cn(
-            "mb-4 flex flex-wrap items-center justify-center gap-0 font-bold text-slate-900 text-3xl md:text-5xl tracking-tight transition-all duration-700 ease-out delay-150",
-            isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0",
+            "mb-4",
+            "flex",
+            "flex-wrap",
+            "items-center",
+            "justify-center",
+            "gap-3",
+            "font-bold",
+            "text-slate-900",
+            "text-3xl",
+            "md:text-5xl",
+            "tracking-tight",
+            "transition-all",
+            "duration-700",
+            "ease-out",
+            "delay-150",
+            isVisible
+              ? "translate-y-0 opacity-100"
+              : "translate-y-6 opacity-0"
           )}
         >
           <span>Stay Connected with</span>
-          <img src="/baboovilla.png" alt="Baboo Kos" className="h-16 md:h-22 w-auto object-contain" />
+
+          <img
+            src="/babookos.png"
+            alt="Baboo Kos"
+            className="h-10 md:h-14 w-auto object-contain"
+          />
         </h2>
 
-        <p
-          className={cn(
-            "mb-6 font-medium text-zinc-500 text-sm md:text-base leading-relaxed transition-all duration-700 ease-out delay-300",
-            isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0",
-          )}
-        >
-          Ikuti perkembangan terbaru, lowongan kerja, dan pencapaian kami secara real-time di LinkedIn.
+        <p className={cn("mb-6", "font-medium", "text-zinc-500", "text-sm", "md:text-base", "leading-relaxed", "transition-all", "duration-700", "ease-out", "delay-300", isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0")}>
+          Ikuti keseruan, aktivitas terbaru dan momen terbaik kami secara real-time di Instagram & Tiktok
         </p>
       </div>
-
       {/* LINKEDIN CARD — full width, single column */}
       <div className="w-full max-w-[860px]">
         <div className="flex flex-col bg-white shadow-sm p-6 md:p-8 border border-zinc-200 rounded-[2rem]">

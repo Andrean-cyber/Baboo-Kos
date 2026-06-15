@@ -82,21 +82,21 @@ export default function KosCriteriaSection() {
       "",
       "Saya ingin mencari kos dengan kriteria berikut:",
       "",
-      `*Nama: ${name}*`,
-      `*Jenis Kos: ${gender}*`,
-      `*Kabupaten/Kota: ${city}*`,
-      `*Lokasi Spesifik: ${location}*`,
-      `*Fasilitas: ${
+      `*Nama:* ${name}`,
+      `*Jenis Kos:* ${gender}`,
+      `*Kabupaten/Kota:* ${city}`,
+      `*Lokasi Spesifik:* ${location}`,
+      `*Fasilitas:* ${
         facilities.length > 0
           ? facilities.join(", ")
           : "Tidak ada preferensi khusus"
-      }*`,
-      `*Budget per Bulan: ${
+      }`,
+      `*Budget per Bulan:* ${
         budget ? `Rp ${Number(budget).toLocaleString("id-ID")}` : "-"
-      }*`,
-      `*Jumlah Rekomendasi: ${recommendation} Kos*`,
-      `*Rencana Tanggal Huni: ${formattedDate}*`,
-      `*Catatan Tambahan: ${notes || "-"}*`,
+      }`,
+      `*Jumlah Rekomendasi:* ${recommendation} Kos`,
+      `*Rencana Tanggal Huni:* ${formattedDate}`,
+      `*Catatan Tambahan:* ${notes || "-"}`,
       "",
       "Terima kasih 🙏",
     ].join("\n");

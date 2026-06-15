@@ -67,7 +67,7 @@ export default function Navbar() {
   const getBookingLabel = () => {
     if (pathname.startsWith("/villa")) return "Reservasi →";
     if (pathname.startsWith("/career")) return "Tanya HRD →";
-    if (pathname.startsWith("/simulation")) return "Tanya Kami →";
+    if (pathname.startsWith("/simulation")) return "Tanya Marketing →";
     if (pathname.startsWith("/aboutus")) return "Company Support →";
     return "Cari Kos →";
   };
@@ -108,7 +108,13 @@ const handleWhatsapp = () => {
     pathname.startsWith("/villa") || 
     pathname.startsWith("/simulation") || 
     pathname.startsWith("/career") || 
-    pathname.startsWith("/aboutus");
+    pathname.startsWith("/aboutus") ||
+    pathname.startsWith("/serviceCustomer") ||
+    pathname.startsWith("/syaratKetentuan") ||
+    pathname.startsWith("/privacyPolicy") ||
+    pathname.startsWith("/handbookAnakRantau") ||
+    pathname.startsWith("/tipsCariKos") ||
+    pathname.startsWith("/panduanCariKos"); 
 
   // Cek apakah sedang di homepage
   const isHomePage = pathname === "/" || pathname === "/#home";

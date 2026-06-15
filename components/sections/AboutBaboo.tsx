@@ -130,7 +130,7 @@ export default function AboutBaboo() {
       <div className="flex flex-col items-center mb-12 px-4 text-center">
         <h3 className={cn("mb-2 font-bold text-[#495C29] text-sm md:text-base transition-all duration-700 ease-out", isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0")}>About Baboo Kos</h3>
         <h2 className={cn("mb-4 font-bold text-slate-900 text-3xl md:text-4xl lg:text-5xl tracking-tight transition-all duration-700 ease-out delay-150", isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0")}>
-          Anti-Zonk Cari Kos, Anti-Sepi Cari penghuni
+          Anti-Zonk Cari Kos, Anti-Sepi Cari Penghuni
         </h2>
         <p className={cn("font-medium text-zinc-500 text-sm md:text-base transition-all duration-700 ease-out delay-300", isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0")}>
           Platform dua arah yang mempertemukan pencari hunian jujur dengan pemilik kos yang siap go-digital tanpa drama.

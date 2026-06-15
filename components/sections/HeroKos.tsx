@@ -282,7 +282,7 @@ export default function HeroKos() {
             {/* FLOATING LEFT (Membangun Kepercayaan) */}
             <div
               className={cn(
-                "top-[55%] left-[-15%] z-20 absolute flex items-center gap-4 bg-white/92 shadow-xl backdrop-blur-xl px-4 py-3 border border-zinc-100 rounded-xl transition-all duration-1000 ease-out delay-[600ms]",
+                "top-[55%] left-[-15%] z-20 absolute flex items-center gap-4 bg-white/92 shadow-xl backdrop-blur-xl px-4 py-3 border border-zinc-100 rounded-3xl transition-all duration-1000 ease-out delay-[600ms]",
                 isLoaded ? "opacity-100 translate-y-0 -translate-x-6" : "opacity-0 translate-y-16 -translate-x-6",
               )}
             >
