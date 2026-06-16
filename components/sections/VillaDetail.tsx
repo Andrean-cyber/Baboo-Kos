@@ -2,6 +2,7 @@
 
 import { useRef, useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 import { 
   Maximize, Bed, Bath, ChefHat, CheckCircle2, X, ChevronLeft, ChevronRight, MapPin, Info,
   Layers, Tv, Music, Thermometer, Car, Box, Shirt, Utensils, Mountain, Building2
@@ -170,11 +171,14 @@ export default function VillaDetail() {
           >
             <X size={40} />
           </button>
-          <img 
-            src={selectedImg} 
-            alt="Zoomed Villa" 
-            className="max-w-full max-h-[85vh] rounded-2xl shadow-2xl object-contain animate-in zoom-in-95 duration-300"
-          />
+          <div className="relative w-full max-w-4xl h-[85vh]">
+            <Image 
+              src={selectedImg} 
+              alt="Zoomed Villa" 
+              fill
+              className="rounded-2xl shadow-2xl object-contain animate-in zoom-in-95 duration-300"
+            />
+          </div>
         </div>
       )}
 
@@ -215,17 +219,13 @@ export default function VillaDetail() {
           </button>
 
           {/* Main Image */}
-          <div className="relative max-w-5xl w-full" onClick={(e) => e.stopPropagation()}>
-            <img 
+          <div className="relative max-w-5xl w-full h-[80vh]" onClick={(e) => e.stopPropagation()}>
+            <Image 
               src={currentVilla.gallery[currentGalleryIndex]} 
               alt={`Gallery ${currentGalleryIndex + 1}`}
-              className="w-full max-h-[80vh] rounded-2xl shadow-2xl object-contain"
+              fill
+              className="rounded-2xl shadow-2xl object-contain"
             />
-            
-            {/* Counter */}
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/50 backdrop-blur-sm px-4 py-2 rounded-full text-white text-sm">
-              {currentGalleryIndex + 1} / {currentVilla.gallery.length}
-            </div>
           </div>
 
           {/* Thumbnails */}
@@ -233,16 +233,13 @@ export default function VillaDetail() {
             {currentVilla.gallery.map((img, i) => (
               <button
                 key={i}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setCurrentGalleryIndex(i);
-                }}
+                onClick={(e) => { e.stopPropagation(); setCurrentGalleryIndex(i); }}
                 className={cn(
-                  "w-16 h-16 rounded-lg overflow-hidden flex-shrink-0 transition-all",
+                  "relative w-16 h-16 rounded-lg overflow-hidden flex-shrink-0 transition-all",
                   currentGalleryIndex === i ? "ring-2 ring-white scale-110" : "opacity-50 hover:opacity-100"
                 )}
               >
-                <img src={img} alt={`Thumb ${i + 1}`} className="w-full h-full object-cover" />
+                <Image src={img} alt={`Thumb ${i + 1}`} fill className="object-cover" />
               </button>
             ))}
           </div>
@@ -275,26 +272,34 @@ export default function VillaDetail() {
         {/* LEFT: IMAGE & GALLERY */}
         <div className="lg:col-span-5">
           <div 
-            className="relative shadow-[0_8px_30px_rgb(0,0,0,0.08)] rounded-3xl overflow-hidden cursor-zoom-in"
-            onClick={() => setSelectedImg(currentVilla.img)}
+            className="relative shadow-[0_8px_30px_rgb(0,0,0,0.08)] rounded-3xl overflow-hidden cursor-zoom-in h-[350px] md:h-[500px] min-h-[350px]"
+    onClick={() => setSelectedImg(currentVilla.img)}
           >
-            <img src={currentVilla.img} alt={currentVilla.name} className="w-full h-[350px] md:h-[500px] object-cover hover:scale-105 transition-transform duration-700" />
+            <Image 
+              src={currentVilla.img} 
+              alt={currentVilla.name} 
+              fill
+              priority
+              sizes="(max-width: 768px) 100vw, 500px"
+              className="object-cover hover:scale-105 transition-transform duration-700" 
+            />
             <div className="bottom-0 absolute inset-x-0 bg-gradient-to-t from-[#495C29]/80 to-transparent opacity-80 h-32 pointer-events-none" />
             <div className="top-8 right-10 absolute bg-[#495C29]/90 shadow-sm backdrop-blur-md px-4 py-1.5 rounded-full font-bold text-[10px] text-white tracking-wide">Cek Ketersediaan</div>
           </div>
 
-          {/* Sub Gallery - Show 2 images + More button */}
           <div className="grid grid-cols-3 gap-3 md:gap-4 mt-4 md:mt-6">
             {currentVilla.gallery.slice(0, 2).map((img, i) => (
               <div 
                 key={i} 
-                className="aspect-[4/3] rounded-2xl overflow-hidden shadow-sm cursor-zoom-in group"
+                className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-sm cursor-zoom-in group"
                 onClick={() => setSelectedImg(img)}
               >
-                <img
+                <Image
                   src={img}
                   alt={`${currentVilla.name} Gallery ${i + 1}`}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  fill
+                  sizes="(max-width: 768px) 33vw, 150px"
+                  className="object-cover group-hover:scale-110 transition-transform duration-500"
                 />
               </div>
             ))}

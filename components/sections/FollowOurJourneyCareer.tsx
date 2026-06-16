@@ -2,6 +2,7 @@
 
 import { useRef, useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 import { Home, Briefcase, Users, ArrowRight, ThumbsUp, MessageSquare, Repeat2, Send } from "lucide-react";
 import { FaLinkedin } from "react-icons/fa";
 
@@ -115,11 +116,7 @@ export default function FollowOurJourney() {
         >
           <span>Stay Connected with</span>
 
-          <img
-            src="/babookos.png"
-            alt="Baboo Kos"
-            className="h-10 md:h-14 w-auto object-contain"
-          />
+          <Image src="/babookos.png" alt="Baboo Kos" width={120} height={56} className="h-10 md:h-14 w-auto object-contain" />
         </h2>
 
         <p className={cn("mb-6", "font-medium", "text-zinc-500", "text-sm", "md:text-base", "leading-relaxed", "transition-all", "duration-700", "ease-out", "delay-300", isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0")}>
@@ -185,10 +182,12 @@ export default function FollowOurJourney() {
               <div key={post.id} className="group flex flex-col cursor-pointer">
                 {/* Thumbnail */}
                 <div className="relative bg-zinc-100 rounded-xl w-full aspect-[4/3] overflow-hidden">
-                  <img
+                  <Image
                     src={post.img}
                     alt={post.caption}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    fill
+                    sizes="(max-width: 768px) 50vw, 25vw"
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>
 

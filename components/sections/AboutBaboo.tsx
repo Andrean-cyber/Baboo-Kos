@@ -4,6 +4,7 @@ import { useRef, useState, useEffect } from "react";
 import { Settings, ChevronLeft, ChevronRight, UserCheck, TrendingUp, Sparkles, ShieldCheck, Globe } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Link from "next/link"; 
+import Image from "next/image";
 import { AnimatedList } from "@/components/magicui/animated-list";
 import { OrbitingCircles } from "@/components/magicui/orbiting-circles";
 import { ShineBorder } from "@/components/magicui/shine-border"
@@ -261,7 +262,7 @@ export default function AboutBaboo() {
                 {/* BLOK 3: Mini Info */}
                 <div className="flex flex-row md:flex-col flex-1 gap-2.5 md:max-w-[220px]">
                   <div className="flex items-center bg-white shadow-sm p-2 md:pr-4 rounded-2xl md:rounded-full w-1/2 md:w-full">
-                    <img src="/about.jpg" alt="Baboo Kos" className="rounded-full w-7 h-7 object-cover shrink-0" />
+                    <Image src="/about.jpg" alt="Baboo Kos" width={28} height={28} className="rounded-full w-7 h-7 object-cover shrink-0" />
                     <div className="ml-2">
                       <h4 className="font-bold text-[10px] text-zinc-900 xl:text-xs leading-none">Baboo Kos</h4>
                       <p className="mt-0.5 text-[8px] text-zinc-500 xl:text-[10px]">Find it easier</p>
@@ -289,7 +290,10 @@ export default function AboutBaboo() {
             href="/simulation"
             className="group relative block bg-zinc-200 shadow-sm rounded-[2rem] md:rounded-[2.5rem] w-[85vw] max-w-[850px] h-[530px] md:h-[420px] overflow-hidden snap-center shrink-0 cursor-pointer active:scale-[0.99] transition-transform duration-200"
           >
-            <img src="/about.jpg" alt="Partnership" className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+
+<Image src="/about.jpg" alt="Partnership" fill priority
+  sizes="(max-width: 768px) 85vw, 850px"
+  className="object-cover group-hover:scale-105 transition-transform duration-700" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
             <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-8 z-10">
               <Settings className="mb-3 text-white group-hover:rotate-45 transition-transform duration-500" size={32} />

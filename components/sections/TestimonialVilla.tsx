@@ -3,6 +3,7 @@
 import { useRef, useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 export default function Testimonial() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -13,10 +14,10 @@ export default function Testimonial() {
   const [isVisible, setIsVisible] = useState(false);
 
   // ✅ START dari gambar 10 (index 9)
-  const [activeIndex, setActiveIndex] = useState(9);
+  const [activeIndex, setActiveIndex] = useState(5);
   const [previewImage, setPreviewImage] = useState<string | null>(null);
 
-  const properties = Array.from({ length: 15 }).map((_, i) => ({
+  const properties = Array.from({ length: 10 }).map((_, i) => ({
     img: `/testimoni/villa/BV - Testimoni - Testimoni - ${i + 1}.PNG`,
   }));
 
@@ -166,16 +167,17 @@ export default function Testimonial() {
                   setPreviewImage(item.img);
                 }}
                 className={cn(
-                  "snap-center shrink-0 rounded-3xl overflow-hidden transition-all duration-500 cursor-pointer",
-                  isActive
-                    ? "w-[300px] h-[420px] scale-100 opacity-100 shadow-xl"
-                    : "w-[250px] h-[360px] scale-95 opacity-60"
+                  "relative snap-center shrink-0 rounded-3xl overflow-hidden transition-all duration-500 cursor-pointer",
+                  isActive ? "w-[300px] h-[420px] scale-100 opacity-100 shadow-xl" : "w-[250px] h-[360px] scale-95 opacity-60"
                 )}
               >
-                <img
+                <Image
                   src={item.img}
-                  alt="Testimoni"
-                  className="w-full h-full object-cover"
+                  alt={`Testimoni Villa ${index + 1}`}
+                  fill
+                  sizes="(max-width: 768px) 250px, 300px"
+                  className="object-cover"
+                  priority={index === 0 || index === 8} // Prioritaskan gambar awal
                 />
               </div>
             );
@@ -184,62 +186,22 @@ export default function Testimonial() {
 
         {/* ================= CONTROLS ================= */}
         <div className="shrink-0 flex justify-center items-center gap-6 mt-8">
-
-          <button
-            onClick={() => scrollToCard(activeIndex - 1)}
-            className="shrink-0 flex justify-center items-center bg-[#EEF3E8] hover:bg-[#dce3d4] shadow-sm rounded-full w-12 h-12 text-[#495C29]"
-          >
-            <ChevronLeft size={24} />
-          </button>
-
+          <button onClick={() => scrollToCard(activeIndex - 1)} className="shrink-0 flex justify-center items-center bg-[#EEF3E8] hover:bg-[#dce3d4] shadow-sm rounded-full w-12 h-12 text-[#495C29]"><ChevronLeft size={24} /></button>
           <div className="flex md:hidden items-center gap-2">
             {Array.from({ length: 5 }).map((_, i) => {
               const current = Math.floor((activeIndex / (properties.length - 1)) * 4);
-
-              return (
-                <div
-                  key={i}
-                  className={cn(
-                    "w-2.5 h-2.5 rounded-full transition-all",
-                    current === i ? "bg-[#495C29]" : "bg-zinc-300"
-                  )}
-                />
-              );
+              return <div key={i} className={cn("w-2.5 h-2.5 rounded-full transition-all", current === i ? "bg-[#495C29]" : "bg-zinc-300")} />;
             })}
           </div>
-
-          <button
-            onClick={() => scrollToCard(activeIndex + 1)}
-            className="shrink-0 flex justify-center items-center bg-[#EEF3E8] hover:bg-[#dce3d4] shadow-sm rounded-full w-12 h-12 text-[#495C29]"
-          >
-            <ChevronRight size={24} />
-          </button>
-
+          <button onClick={() => scrollToCard(activeIndex + 1)} className="shrink-0 flex justify-center items-center bg-[#EEF3E8] hover:bg-[#dce3d4] shadow-sm rounded-full w-12 h-12 text-[#495C29]"><ChevronRight size={24} /></button>
         </div>
       </div>
-      {/* ================= PREVIEW MODAL ================= */}
-      {previewImage && (
-        <div
-          onClick={() => setPreviewImage(null)}
-          className="fixed inset-0 z-[200] flex items-center justify-center bg-black/70 backdrop-blur-md p-4"
-        >
-          <div
-            onClick={(e) => e.stopPropagation()}
-            className="relative w-full max-w-5xl max-h-[90vh] flex items-center justify-center"
-          >
-            <img
-              src={previewImage}
-              alt="Preview"
-              className="max-h-[90vh] max-w-full object-contain rounded-2xl"
-            />
 
-            {/* CLOSE BUTTON */}
-            <button
-              onClick={() => setPreviewImage(null)}
-              className="absolute top-3 right-3 bg-white/80 backdrop-blur rounded-full w-10 h-10 flex items-center justify-center text-black font-bold shadow-md"
-            >
-              ✕
-            </button>
+      {previewImage && (
+        <div onClick={() => setPreviewImage(null)} className="fixed inset-0 z-[200] flex items-center justify-center bg-black/70 backdrop-blur-md p-4">
+          <div onClick={(e) => e.stopPropagation()} className="relative w-full max-w-5xl h-[80vh] flex items-center justify-center">
+            <Image src={previewImage} alt="Preview" fill className="object-contain" />
+            <button onClick={() => setPreviewImage(null)} className="absolute top-3 right-3 bg-white/80 backdrop-blur rounded-full w-10 h-10 flex items-center justify-center text-black font-bold shadow-md z-10">✕</button>
           </div>
         </div>
       )}

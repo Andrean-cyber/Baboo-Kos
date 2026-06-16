@@ -196,10 +196,12 @@ function MockupRenderer({ type }: { type: string }) {
         {/* Header Profile */}
         <div className="flex items-center gap-3 pb-3 border-zinc-200 border-b">
           <div className="relative bg-white rounded-full w-12 h-12 shrink-0 flex items-center justify-center overflow-hidden border border-zinc-200">
-            <img 
+            <Image 
               src="/icon.png" 
               alt="Baboo Kos" 
-              className="w-full h-full object-cover"
+              fill 
+              sizes="48px"
+              className="object-cover"
             />
           </div>
           <div className="flex flex-col gap-1.5 w-full">

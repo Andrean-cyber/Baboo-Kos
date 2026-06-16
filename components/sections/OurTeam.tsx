@@ -2,6 +2,7 @@
 
 import { useRef, useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 import {
   CalendarDays,
   Users,
@@ -167,26 +168,28 @@ export default function OurTeam() {
 
           {/* RIGHT COLUMN GALLERY */}
           <div className="flex flex-col gap-4 w-full lg:w-[60%]">
-            {/* Gambar utama — pakai key agar hanya img yang re-mount, bukan container */}
-            <div className="rounded-2xl w-full h-[250px] md:h-[350px] overflow-hidden bg-zinc-100">
-              <img
+            
+            {/* Gambar utama */}
+            <div className="relative rounded-2xl w-full h-[250px] md:h-[350px] overflow-hidden bg-zinc-100">
+              <Image
                 key={agendas[activeAgenda].images[0]}
                 src={agendas[activeAgenda].images[0]}
-                alt="Gallery"
-                className="w-full h-full object-cover"
+                alt="Gallery Main"
+                fill
+                sizes="(max-width: 768px) 100vw, 60vw"
+                className="object-cover"
               />
             </div>
 
             <div className="grid grid-cols-4 gap-2 md:gap-4">
               {agendas[activeAgenda].images.slice(1, 5).map((img, index) => (
-                <div
-                  key={`${activeAgenda}-${index}`}
-                  className="rounded-xl aspect-[4/5] overflow-hidden bg-zinc-100"
-                >
-                  <img
+                <div key={`${activeAgenda}-${index}`} className="relative rounded-xl aspect-[4/5] overflow-hidden bg-zinc-100">
+                  <Image
                     src={img}
-                    alt="Gallery"
-                    className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+                    alt={`Gallery Thumbnail ${index}`}
+                    fill
+                    sizes="(max-width: 768px) 25vw, 15vw"
+                    className="object-cover hover:scale-110 transition-transform duration-500"
                   />
                 </div>
               ))}

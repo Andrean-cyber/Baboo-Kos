@@ -2,6 +2,7 @@
 
 import { useRef, useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 import { Heart, Play, CheckCircle, ArrowRight, Home, Copy, Clapperboard } from "lucide-react";
 import { FaInstagram, FaTiktok } from "react-icons/fa";
 
@@ -11,21 +12,21 @@ import { FaInstagram, FaTiktok } from "react-icons/fa";
 const igFeeds = [
   {
     id: 1,
-    img: "/sosmed/babookos/igthumb1.png",
+    img: "/sosmed/babookos/igthumb1.jpg",
     title: "Top 3 + 1 Penipu Kos",
     time: "1 Years ago",
     type: "carousel",
   },
   {
     id: 2,
-    img: "/sosmed/babookos/igthumb2.png",
+    img: "/sosmed/babookos/igthumb2.jpg",
     title: "BABOO VILLA by Baboo Kos",
     time: "2 Years ago",
     type: "reels",
   },
   {
     id: 3,
-    img: "/sosmed/babookos//igthumb3.jpg",
+    img: "/sosmed/babookos/igthumb3.jpg",
     title: "BABOO VILLA KUSUMA",
     time: "1 Years ago",
     type: "carousel",
@@ -144,11 +145,7 @@ export default function FollowOurJourney() {
         >
           <span>Stay Connected with</span>
 
-          <img
-            src="/babookos.png"
-            alt="Baboo Kos"
-            className="h-10 md:h-14 w-auto object-contain"
-          />
+          <Image src="/babookos.png" alt="Baboo Kos" width={120} height={56} className="h-10 md:h-14 w-auto object-contain" />
         </h2>
 
         <p className={cn("mb-6", "font-medium", "text-zinc-500", "text-sm", "md:text-base", "leading-relaxed", "transition-all", "duration-700", "ease-out", "delay-300", isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0")}>
@@ -220,7 +217,7 @@ export default function FollowOurJourney() {
             {igFeeds.map((feed) => (
               <div key={feed.id} className="group flex flex-col cursor-pointer">
                 <div className="relative bg-zinc-100 rounded-xl w-full aspect-[3/4] overflow-hidden">
-                  <img src={feed.img} alt={feed.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                 <Image src={feed.img} alt={feed.title} fill sizes="(max-width: 768px) 33vw, 20vw" className="object-cover group-hover:scale-105 transition-transform duration-500" />
 
                   <div className="top-2 right-2 absolute drop-shadow-md text-white">{feed.type === "reels" ? <Clapperboard size={16} fill="white" /> : <Copy size={16} fill="white" />}</div>
                 </div>
@@ -294,7 +291,7 @@ export default function FollowOurJourney() {
             {tkFeeds.map((feed) => (
               <div key={feed.id} className="group flex flex-col cursor-pointer">
                 <div className="relative bg-zinc-100 rounded-xl w-full aspect-[3/4] overflow-hidden">
-                  <img src={feed.img} alt={feed.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <Image src={feed.img} alt={feed.title} fill sizes="(max-width: 768px) 33vw, 20vw" className="object-cover group-hover:scale-105 transition-transform duration-500" />
 
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
 

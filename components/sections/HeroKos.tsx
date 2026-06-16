@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 // Data sampel gambar avatar untuk Avatar Circles
 const avatarImages = [
@@ -175,12 +176,7 @@ export default function HeroKos() {
           <div className={cn("flex items-center gap-4 mt-8 transition-all duration-1000 ease-out delay-[800ms]", isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6")}>
             <div className="flex -space-x-3.5 overflow-hidden object-cover">
               {avatarImages.map((src, idx) => (
-                <img
-                  key={idx}
-                  className="inline-block h-10 w-10 rounded-full ring-2 ring-white object-cover"
-                  src={src}
-                  alt={`User avatar ${idx + 1}`}
-                />
+                <Image key={idx} width={40} height={40} className="inline-block h-10 w-10 rounded-full ring-2 ring-white object-cover" src={src} alt={`User avatar ${idx + 1}`} />
               ))}
               <div className="flex h-10 w-10 items-center justify-center rounded-full bg-black font-bold text-white text-xs ring-2 ring-white">
                 +99
@@ -199,7 +195,7 @@ export default function HeroKos() {
         {/* ========================= */}
         <div className="lg:hidden block relative w-full">
           <div className={cn("relative mt-20 rounded-[2rem] h-[560px] overflow-hidden transition-all duration-1000 ease-out mtshadow-[0_10px_40px_rgba(0,0,0,0.08)]", isLoaded ? "opacity-100 scale-100" : "opacity-0 scale-95")}>
-            <img src="/heroo.jpg" alt="Baboo Kos" className="absolute inset-0 w-full h-full object-cover" />
+            <Image src="/heroo.jpg" sizes="(max-width: 1024px) 100vw, 0vw" alt="Baboo Kos" fill className="object-cover" priority loading="eager" />
             <div className="absolute inset-0 bg-black/28" />
 
             <div className="z-20 absolute inset-0 flex flex-col justify-end px-5 pb-28">
@@ -243,11 +239,7 @@ export default function HeroKos() {
               )}
             >
               <div className="flex flex-1 items-center bg-[#FAFAFA]/95 shadow-xl backdrop-blur-xl py-1.5 pr-3 pl-2 lg:py-2 lg:pr-4 border border-white/40 rounded-full">
-                <img
-                  src="/heroo.jpg"
-                  alt="Agent"
-                  className="border-2 border-white rounded-full w-9 h-9 lg:w-12 lg:h-12 object-cover"
-                />
+                <Image src="/heroo.jpg" sizes="100vw" alt="Agent" width={48} height={48} className="border-2 border-white rounded-full w-9 h-9 lg:w-12 lg:h-12 object-cover" loading="eager"  />
                 <div className="ml-2 lg:ml-3">
                   <p className="font-extrabold text-[#495C29] text-[13px] lg:text-[15px]">
                     Baboo Kos
@@ -271,7 +263,7 @@ export default function HeroKos() {
         <div className="hidden lg:block relative w-[52%]">
           <div className={cn("relative rounded-[2.5rem] w-full h-[650px] transition-all duration-1000 ease-out", isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10")}>
             <div className="absolute inset-0 rounded-[2.5rem] overflow-hidden">
-              <img src="/heroo.jpg" alt="BabooKos" className="brightness-[0.95] w-full h-full object-cover" />
+              <Image src="/heroo.jpg" sizes="52vw" alt="BabooKos" fill className="brightness-[0.95] object-cover" priority loading="eager" />
             </div>
 
             <div className="top-0 right-0 z-5 absolute bg-[#FAFAFA] rounded-bl-[2.5rem] w-[180px] h-[84px]">
@@ -307,7 +299,7 @@ export default function HeroKos() {
             {/* FLOATING BOTTOM RIGHT */}
             <div className={cn("right-8 bottom-8 z-20 absolute flex items-center w-[420px] transition-all duration-1000 ease-out delay-[900ms]", isLoaded ? "opacity-100 translate-x-0" : "opacity-0 translate-x-24")}>
               <div className="flex flex-1 items-center bg-[#FAFAFA]/95 shadow-xl backdrop-blur-xl py-2 pr-5 pl-2 border border-white/50 rounded-full">
-                <img src="/heroo.jpg" alt="Agent" className="shadow-sm border-2 border-white rounded-full w-12 h-12 object-cover" />
+                <Image src="/heroo.jpg" sizes="52vw" alt="Agent" width={48} height={48} className="shadow-sm border-2 border-white rounded-full w-12 h-12 object-cover"  loading="eager" />
                 <div className="ml-3">
                   <p className="font-bold text-[#495C29] text-[15px]">Baboo Kos</p>
                   <p className="font-medium text-[12px] text-zinc-500">Find Kos is Easier</p>

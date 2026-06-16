@@ -2,6 +2,7 @@
 
 import { useRef, useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 const teamMembers = [
   {
@@ -76,11 +77,14 @@ function TeamCard({
       )}
       style={{ transitionDelay: isVisible ? `${delayBase + index * 150}ms` : "0ms" }}
     >
-      <div className="w-full h-[420px] overflow-hidden">
-        <img
+      <div className="relative w-full h-[420px] overflow-hidden">
+        <Image
           src={member.img}
           alt={member.name}
-          className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+          fill
+          sizes="(max-width: 768px) 90vw, 340px"
+          {...(index === 0 ? { priority: true, loading: "eager" } : {})}
+          className="object-cover hover:scale-105 transition-transform duration-700"
         />
       </div>
       <div className="flex flex-col flex-1 justify-between items-center bg-[#FDFDFD] p-6 text-center">

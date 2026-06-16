@@ -2,6 +2,7 @@
 
 import { useRef, useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 import { MapPin } from "lucide-react";
 
 const branches = [
@@ -153,7 +154,14 @@ export default function OurBranch() {
 
       {/* MAP CONTAINER */}
       <div className={cn("relative mt-8 w-full max-w-[1000px] overflow-visible transition-all duration-1000 ease-out delay-500", isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0")}>
-        <img src="/map-indonesia.svg" alt="Map Indonesia" className="opacity-50 w-full h-auto pointer-events-none select-none" />
+        <Image 
+          src="/map-indonesia.svg" 
+          alt="Map Indonesia" 
+          width={1000} 
+          height={600} // Sesuaikan dengan aspek rasio gambar Anda
+          className="opacity-50 w-full h-auto pointer-events-none select-none"
+          priority // Opsional: Tambahkan jika ingin memuat gambar lebih cepat
+        />
 
         {branches.map((branch) => {
           const isHovered = hoveredBranch === branch.id;

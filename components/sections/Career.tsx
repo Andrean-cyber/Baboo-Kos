@@ -2,6 +2,7 @@
 
 import { useRef, useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 import { Briefcase, GraduationCap, MapPin, ChevronRight, Users2, TrendingUp, Award, Gift, Home, Building, Smile } from "lucide-react";
 
 // Data Pekerjaan
@@ -202,7 +203,13 @@ export default function Career() {
             </div>
 
             <div className="group relative shadow-sm rounded-[2rem] h-[220px] overflow-hidden">
-              <img src="/outbond1-1.jpg" alt="Work Culture" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+              <Image 
+                src="/outbond1-1.jpg" 
+                alt="Work Culture" 
+                fill 
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover group-hover:scale-105 transition-transform duration-700" 
+              />
               <div className="bottom-4 left-1/2 absolute flex items-center gap-3 bg-white/95 shadow-lg backdrop-blur-md px-4 py-2.5 rounded-2xl -translate-x-1/2">
                 <div className="bg-[#495C29] p-1.5 rounded-md text-white">
                   <Smile size={16} />

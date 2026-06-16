@@ -3,6 +3,7 @@
 import { useRef, useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 export default function Testimonial() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -165,17 +166,23 @@ export default function Testimonial() {
                   scrollToCard(index);
                   setPreviewImage(item.img);
                 }}
+                // Pastikan "relative" ada di sini sebagai class utama
                 className={cn(
-                  "snap-center shrink-0 rounded-3xl overflow-hidden transition-all duration-500 cursor-pointer",
+                  "relative snap-center shrink-0 rounded-3xl overflow-hidden transition-all duration-500 cursor-pointer",
                   isActive
                     ? "w-[300px] h-[420px] scale-100 opacity-100 shadow-xl"
                     : "w-[250px] h-[360px] scale-95 opacity-60"
                 )}
               >
-                <img
+                <Image
                   src={item.img}
-                  alt="Testimoni"
-                  className="w-full h-full object-cover"
+                  alt={`Testimoni ${index + 1}`}
+                  fill
+                  // Tambahkan priority hanya pada gambar yang benar-benar ada di posisi pertama
+                  // Dan hapus loading="eager" secara manual, karena priority sudah otomatis menjadikannya eager
+                  priority={index === 9} // Karena Anda memulai dengan activeIndex 9, prioritaskan gambar ini
+                  sizes="(max-width: 768px) 250px, 300px"
+                  className="object-cover"
                 />
               </div>
             );
@@ -227,10 +234,11 @@ export default function Testimonial() {
             onClick={(e) => e.stopPropagation()}
             className="relative w-full max-w-5xl max-h-[90vh] flex items-center justify-center"
           >
-            <img
+            <Image
               src={previewImage}
               alt="Preview"
-              className="max-h-[90vh] max-w-full object-contain rounded-2xl"
+              fill
+              className="object-contain"
             />
 
             {/* CLOSE BUTTON */}

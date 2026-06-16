@@ -1,8 +1,15 @@
-export default function sitemap() {
+import { MetadataRoute } from 'next'
+
+export default function sitemap(): MetadataRoute.Sitemap {
+  const baseUrl = 'https://babookos.com'; // Sesuaikan dengan domain Anda
+
   return [
-    {
-      url: 'https://babookos.com',
-      lastModified: new Date(),
-    },
+    { url: baseUrl, lastModified: new Date(), changeFrequency: 'daily', priority: 1 },
+    { url: `${baseUrl}/aboutus`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${baseUrl}/career`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.5 },
+    { url: `${baseUrl}/villa`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${baseUrl}/syaratKetentuan`, lastModified: new Date(), changeFrequency: 'yearly', priority: 0.3 },
+    { url: `${baseUrl}/privacyPolicy`, lastModified: new Date(), changeFrequency: 'yearly', priority: 0.3 },
+    { url: `${baseUrl}/serviceCustomer`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.5 },
   ]
 }

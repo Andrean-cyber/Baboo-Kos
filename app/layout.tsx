@@ -4,9 +4,24 @@ import Navbar from "@/components/sections/Navbar";
 import ScrollToTop from "@/components/sections/ScrollToTop";
 
 export const metadata: Metadata = {
-  title: "Babookos - Exclusive Stay",
-  description: "Find your perfect stay at Babookos",
-  
+  title: "Babookos",
+  description: "Platform pencarian kos yang menghadirkan pilihan hunian terbaik dengan kenyamanan, lokasi strategis, dan pengalaman mencari tempat tinggal yang praktis untuk keseharian Anda.",
+  metadataBase: new URL('https://babookos.com'), // Ganti dengan domain asli Anda
+  openGraph: {
+    title: "Babookos",
+    description: "Platform pencarian kos yang menghadirkan pilihan hunian terbaik dengan kenyamanan, lokasi strategis, dan pengalaman mencari tempat tinggal yang praktis untuk keseharian Anda.",
+    url: 'https://babookos.com',
+    siteName: 'Babookos',
+    images: [
+      {
+        url: '/og-image.png', // Pastikan Anda punya gambar ini di folder public
+        width: 1200,
+        height: 630,
+      },
+    ],
+    locale: 'id_ID',
+    type: 'website',
+  },
 };
 
 export default function RootLayout({
@@ -15,7 +30,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className="light" style={{ colorScheme: 'light'}}>
+    <html lang="en" data-scroll-behavior="smooth" suppressHydrationWarning className="light" style={{ colorScheme: 'light'}}>
       <body className="bg-[#F5F5F2] overflow-x-hidden font-sans text-zinc-900 antialiased">
         <Navbar />
         {children}
