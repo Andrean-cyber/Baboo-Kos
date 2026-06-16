@@ -2,13 +2,17 @@
 nixPkgs = ["nodejs_22", "pnpm"]
 
 [phases.install]
-# Menjalankan instalasi di root agar workspace terdeteksi
+# Paksa pnpm untuk menginstal hanya di folder app saja
 cmds = ["pnpm install --frozen-lockfile"]
 
 [phases.build]
-# Membangun aplikasi yang ada di dalam folder app
-cmds = ["pnpm --filter ./app run build"]
+# Build aplikasi di dalam app
+cmds = ["pnpm run build"]
 
 [start]
-# Menjalankan aplikasi yang ada di dalam folder app
-cmd = "pnpm --filter ./app run start"
+# Start aplikasi di dalam app
+cmd = "pnpm run start"
+
+# Tambahkan ini untuk memastikan Nixpacks tidak bingung
+[variables]
+NIXPACKS_BUILD_DIR = "/app"
