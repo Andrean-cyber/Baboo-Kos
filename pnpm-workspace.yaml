@@ -1,6 +1,11 @@
-allowBuilds:
-  sharp: true
-  unrs-resolver: true
-ignoredBuiltDependencies:
-  - sharp
-  - unrs-resolver
+# allowBuilds:
+#   sharp: true
+#   unrs-resolver: true
+# ignoredBuiltDependencies:
+#   - sharp
+#   - unrs-resolver
+
+packages:
+  - 'app'
+  # Tambahkan folder lain jika diperlukan, contoh:
+  # - 'components'
