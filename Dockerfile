@@ -32,18 +32,27 @@ COPY . .
 
 RUN pnpm build
 
-# =========================
+# ===============================
 
-FROM node:22-slim AS runner
+FROM node:22-slim
+
+ENV PNPM_HOME="/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
+ENV NODE_ENV=production
+
+RUN corepack enable
 
 WORKDIR /app
 
-ENV NODE_ENV=production
+COPY package.json pnpm-lock.yaml ./
 
+RUN pnpm install --prod --frozen-lockfile
+
+COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/public ./public
-COPY --from=builder /app/.next/static ./.next/static
-COPY --from=builder /app/.next/standalone ./
+COPY --from=builder /app/next.config.* ./
+COPY --from=builder /app/package.json ./
 
 EXPOSE 3000
 
-CMD ["node", "server.js"]
+CMD ["pnpm", "start"]
