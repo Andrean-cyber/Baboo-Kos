@@ -96,7 +96,7 @@ const handleWhatsapp = () => {
   }, []);
 
   const navLinks = [
-    { name: "Baboo Kos", href: "/#home" },
+    { name: "Baboo Kos", href: "/" },
     { name: "Baboo Villa", href: "/villa" },
     { name: "Partnership", href: "/simulation" },
     { name: "Career", href: "/career" },

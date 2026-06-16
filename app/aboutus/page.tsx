@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils"; // Pastikan path utils benar
 
 export default function simulationPage() {
   return (
-    <main className={cn("min-h-screen","bg-[#FAFAFA]")}>
+    <main className={cn("min-h-screen","overflow-x-hidden","bg-[#FAFAFA]")}>
       
       <div className="pt-10 md:pt-10">
         <MeetOurTeam />
