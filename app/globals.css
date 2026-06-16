@@ -4,22 +4,6 @@
   --font-sans: Arial, ui-sans-serif, system-ui, sans-serif;
 }
 
-@theme inline {
-  --animate-shine: shine var(--duration) infinite linear;
-
-  @keyframes shine {
-    0% {
-      background-position: 0% 0%;
-    }
-    50% {
-      background-position: 100% 100%;
-    }
-    to {
-      background-position: 0% 0%;
-    }
-  }
-}
-
 html {
   scroll-behavior: smooth;
 }
@@ -29,7 +13,6 @@ html {
 ========================= */
 
 :root {
-  /* 1. Tetap pertahankan variabel warna agar desain tidak rusak */
   --background: #f5f5f2;
   --foreground: #18181b;
 
@@ -38,28 +21,7 @@ html {
 
   --border: #e4e4e7;
 
-  /* 2. Kunci tema ke Light Mode untuk menolak force dark mode Android */
-  color-scheme: light; 
-}
-
-/* =========================
-   DARK MODE
-========================= */
-
-.dark {
-  --background: #0f0f10;
-  --foreground: #fafafa;
-
-  --border: #27272a;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not(.light) {
-    --background: #0f0f10;
-    --foreground: #fafafa;
-
-    --border: #27272a;
-  }
+  color-scheme: light;
 }
 
 /* =========================
@@ -68,30 +30,40 @@ html {
 
 * {
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
 }
 
-html {
-  scroll-behavior: smooth;
+*:focus,
+*:focus-visible {
+  outline: none;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-
   font-family: var(--font-sans);
-
   overflow-x: hidden;
-
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
-  transition:
-    background-color 0.3s ease,
-    color 0.3s ease;
+  -webkit-tap-highlight-color: transparent;
 }
 
-/* Tambahkan ini ke global.css kamu */
+/* =========================
+   VIEW TRANSITIONS — DISABLED
+========================= */
+
+::view-transition-old(root),
+::view-transition-new(root),
+::view-transition-group(*),
+::view-transition-image-pair(*) {
+  animation: none !important;
+  mix-blend-mode: normal !important;
+}
+
+/* =========================
+   MARQUEE ANIMATION
+========================= */
 
 @keyframes marquee {
   0%   { transform: translateX(0%); }
@@ -103,7 +75,7 @@ body {
 }
 
 /* =========================
-   IMAGE OPTIMIZATION
+   IMAGE
 ========================= */
 
 img {
@@ -112,7 +84,7 @@ img {
 }
 
 /* =========================
-   CLEAN SELECTION
+   SELECTION
 ========================= */
 
 ::selection {
@@ -142,24 +114,6 @@ img {
 }
 
 /* =========================
-   MAGIC UI VIEW TRANSITION
-========================= */
-
-::view-transition-old(root),
-::view-transition-new(root) {
-  animation: none;
-  mix-blend-mode: normal;
-}
-
-html[data-magicui-theme-vt="active"]::view-transition-group(root) {
-  animation-duration: var(--magicui-theme-toggle-vt-duration);
-}
-
-html[data-magicui-theme-vt="active"]::view-transition-new(root) {
-  clip-path: var(--magicui-theme-vt-clip-from);
-}
-
-/* =========================
    EXTRA ANIMATIONS
 ========================= */
 
@@ -170,7 +124,7 @@ html[data-magicui-theme-vt="active"]::view-transition-new(root) {
   --animate-gradient: gradient 8s linear infinite;
   --animate-shiny-text: shiny-text 8s infinite;
   --animate-orbit: orbit calc(var(--duration) * 1s) linear infinite;
-   --animate-shine: shine var(--duration) infinite linear;
+  --animate-shine: shine var(--duration) infinite linear;
 
   @keyframes orbit {
     0% {
@@ -191,14 +145,10 @@ html[data-magicui-theme-vt="active"]::view-transition-new(root) {
   }
 
   @keyframes shiny-text {
-    0%,
-    90%,
-    100% {
+    0%, 90%, 100% {
       background-position: calc(-100% - var(--shiny-width)) 0;
     }
-
-    30%,
-    60% {
+    30%, 60% {
       background-position: calc(100% + var(--shiny-width)) 0;
     }
   }
@@ -215,6 +165,10 @@ html[data-magicui-theme-vt="active"]::view-transition-new(root) {
     }
   }
 }
+
+/* =========================
+   SCROLLBAR HIDE UTILITY
+========================= */
 
 .scrollbar-hide {
   -ms-overflow-style: none;

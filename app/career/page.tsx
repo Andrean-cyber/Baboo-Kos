@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils"; // Pastikan path utils benar
 
 export default function CareerPage() {
   return (
-    <main className={cn("min-h-screen", "overflow-hidden", "bg-[#FAFAFA]")}>
+    <main className={cn("min-h-screen", "overflow-x-hidden", "bg-[#FAFAFA]")}>
       {/* Tambahkan padding-top agar bagian atas komponen Career tidak tertutup Navbar yang melayang */}
       <div className="pt-10 md:pt-10">
         <Career />

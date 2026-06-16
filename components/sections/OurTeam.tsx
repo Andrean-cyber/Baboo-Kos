@@ -5,8 +5,6 @@ import { cn } from "@/lib/utils";
 import {
   CalendarDays,
   Users,
-  Flame,
-  Ship,
   Heart,
   Trophy,
 } from "lucide-react";
@@ -20,7 +18,6 @@ export default function OurTeam() {
 
   const [activeAgenda, setActiveAgenda] = useState(1);
 
-  // Animasi saat di-scroll
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -43,48 +40,45 @@ export default function OurTeam() {
     };
   }, []);
 
-const agendas = [
-  {
-    icon: <CalendarDays size={18} className="text-zinc-500" />,
-    date: "12 Jan 2024",
-    title: "Beach Day 🏖️",
-    desc: "Bersantai dan menikmati keindahan pantai bersama.",
-
-    images: [
-      "/beach-1.jpg",
-      "/beach-2.jpg",
-      "/beach-3.jpg",
-      "/beach-4.jpg",
-      "/beach-5.jpg",
-    ],
-  },
-
-  {
-    icon: <Users size={18} className="text-[#495C29]" />,
-    date: "24 Mar 2024",
-    title: "Team Building 🧩",
-    desc: "Games seru untuk membangun kerja sama dan komunikasi tim.",
-
-    images: [
-      "/team-1.jpg",
-      "/team-2.jpg",
-      "/team-3.jpg",
-      "/team-4.jpg",
-      "/team-5.jpg",
-    ],
-  },
-];
+  const agendas = [
+    {
+      icon: <CalendarDays size={18} className="text-zinc-500" />,
+      date: "12 Jan 2024",
+      title: "Beach Day 🏖️",
+      desc: "Bersantai dan menikmati keindahan pantai bersama.",
+      images: [
+        "/outbond/BusinessTripBali/BusinessTripBali1.JPG",
+        "/outbond/BusinessTripBali/BusinessTripBali2.JPG",
+        "/outbond/BusinessTripBali/BusinessTripBali3.JPG",
+        "/outbond/BusinessTripBali/BusinessTripBali4.JPG",
+        "/outbond/BusinessTripBali/BusinessTripBali4.JPG",
+      ],
+    },
+    {
+      icon: <Users size={18} className="text-[#495C29]" />,
+      date: "24 Mar 2024",
+      title: "Team Building 🧩",
+      desc: "Games seru untuk membangun kerja sama dan komunikasi tim.",
+      images: [
+        "/team-1.jpg",
+        "/team-2.jpg",
+        "/team-3.jpg",
+        "/team-4.jpg",
+        "/team-5.jpg",
+      ],
+    },
+  ];
 
   return (
     <section
       ref={sectionRef}
-      className="flex flex-col items-center mx-auto px-4 md:px-8 py-16 md:py-24 w-full max-w-[1280px] overflow-hidden"
+      className="flex flex-col items-center mx-auto px-4 md:px-8 py-16 md:py-24 w-full max-w-[1280px]"
     >
       {/* HEADER */}
       <div className="flex flex-col items-center mb-10 md:mb-14 text-center">
         <h3
           className={cn(
-            "mb-2 font-bold text-[#495C29] text-sm md:text-base transition-all duration-700",
+            "mb-2 font-bold text-[#495C29] text-sm md:text-base transition-[transform,opacity] duration-700",
             isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
           )}
         >
@@ -93,7 +87,7 @@ const agendas = [
 
         <h2
           className={cn(
-            "mb-4 font-bold text-slate-900 text-3xl md:text-4xl lg:text-5xl tracking-tight transition-all duration-700 delay-150",
+            "mb-4 font-bold text-slate-900 text-3xl md:text-4xl lg:text-5xl tracking-tight transition-[transform,opacity] duration-700 delay-150",
             isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
           )}
         >
@@ -102,7 +96,7 @@ const agendas = [
 
         <p
           className={cn(
-            "font-medium text-zinc-500 text-sm md:text-base transition-all duration-700 delay-300",
+            "font-medium text-zinc-500 text-sm md:text-base transition-[transform,opacity] duration-700 delay-300",
             isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
           )}
         >
@@ -110,10 +104,11 @@ const agendas = [
         </p>
       </div>
 
-      {/* MAIN CONTAINER */}
+      {/* MAIN CONTAINER — NO transition-all, hanya translate-y & opacity untuk scroll-in */}
       <div
         className={cn(
-          "flex flex-col bg-white shadow-[0_8px_30px_rgb(0,0,0,0.04)] p-5 md:p-8 border border-zinc-100 rounded-[2rem] w-full transition-all duration-1000 delay-500",
+          "flex flex-col bg-white shadow-[0_8px_30px_rgb(0,0,0,0.04)] p-5 md:p-8 border border-zinc-100 rounded-[2rem] w-full",
+          "transition-[transform,opacity] duration-1000 delay-500",
           isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
         )}
       >
@@ -133,14 +128,15 @@ const agendas = [
               Kami percaya, kebersamaan di luar rutinitas membuat kerja sama semakin kuat.
             </p>
 
-            {/* ✅ SCROLLABLE TIMELINE */}
+            {/* SCROLLABLE TIMELINE */}
             <div
               ref={timelineRef}
-              className="relative flex flex-col gap-8 max-h-[380px] overflow-y-auto pl-2 pr-4 pb-6"style={{ overflowY: "overlay" }}
+              className="relative flex flex-col gap-8 max-h-[380px] overflow-y-auto pl-2 pr-4 pb-6 scrollbar-hide"
             >
               {/* Vertical Line */}
-              <div className="absolute left-7 md:left-8 top-6 h-full w-px bg-zinc-200"
-                  style={{ height: `${agendas.length * 110}px` }}
+              <div
+                className="absolute left-7 md:left-8 top-6 w-px bg-zinc-200"
+                style={{ height: `${agendas.length * 110}px` }}
               />
 
               {agendas.map((item, index) => (
@@ -148,7 +144,6 @@ const agendas = [
                   key={index}
                   onClick={() => {
                     setActiveAgenda(index);
-
                     const el = timelineRef.current?.children[index + 1] as HTMLElement;
                     if (el && timelineRef.current) {
                       timelineRef.current.scrollTo({
@@ -172,36 +167,67 @@ const agendas = [
 
           {/* RIGHT COLUMN GALLERY */}
           <div className="flex flex-col gap-4 w-full lg:w-[60%]">
-            <div className="rounded-2xl w-full h-[250px] md:h-[350px]">
+            {/* Gambar utama — pakai key agar hanya img yang re-mount, bukan container */}
+            <div className="rounded-2xl w-full h-[250px] md:h-[350px] overflow-hidden bg-zinc-100">
               <img
+                key={agendas[activeAgenda].images[0]}
                 src={agendas[activeAgenda].images[0]}
                 alt="Gallery"
-                className="w-full h-full object-cover transition-all duration-500"
+                className="w-full h-full object-cover"
               />
             </div>
 
             <div className="grid grid-cols-4 gap-2 md:gap-4">
-              {agendas[activeAgenda].images
-                .slice(1, 5)
-                .map((img, index) => (
-                  <div key={index} className="rounded-xl aspect-[4/5] overflow-hidden">
-                    <img
-                      src={img}
-                      alt="Gallery"
-                      className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
-                    />
-                  </div>
-                ))}
+              {agendas[activeAgenda].images.slice(1, 5).map((img, index) => (
+                <div
+                  key={`${activeAgenda}-${index}`}
+                  className="rounded-xl aspect-[4/5] overflow-hidden bg-zinc-100"
+                >
+                  <img
+                    src={img}
+                    alt="Gallery"
+                    className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+                  />
+                </div>
+              ))}
             </div>
           </div>
         </div>
 
         {/* BOTTOM STATS */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 bg-[#EEF3E8] mt-10 p-6 md:p-8 rounded-2xl w-full">
-          <StatBox icon={<CalendarDays size={24} className="text-[#495C29]" />} endValue={12} suffix="+" title="Agenda Outing" desc="Kebersamaan yang selalu kami jaga" isVisible={isVisible} />
-          <StatBox icon={<Users size={24} className="text-[#495C29]" />} endValue={25} suffix="+" title="Team Members" desc="Individu hebat dengan tujuan yang sama" isVisible={isVisible} />
-          <StatBox icon={<Heart size={24} className="text-[#495C29]" />} endValue={100} suffix="%" title="Teamwork" desc="Kolaborasi dan kepercayaan" isVisible={isVisible} />
-          <StatBox icon={<Trophy size={24} className="text-[#495C29]" />} endValue={1} suffix=" Goal" title="Memberikan yang" desc="Terbaik untuk Baboo Kos & Villa" isVisible={isVisible} />
+          <StatBox
+            icon={<CalendarDays size={24} className="text-[#495C29]" />}
+            endValue={12}
+            suffix="+"
+            title="Agenda Outing"
+            desc="Kebersamaan yang selalu kami jaga"
+            isVisible={isVisible}
+          />
+          <StatBox
+            icon={<Users size={24} className="text-[#495C29]" />}
+            endValue={25}
+            suffix="+"
+            title="Team Members"
+            desc="Individu hebat dengan tujuan yang sama"
+            isVisible={isVisible}
+          />
+          <StatBox
+            icon={<Heart size={24} className="text-[#495C29]" />}
+            endValue={100}
+            suffix="%"
+            title="Teamwork"
+            desc="Kolaborasi dan kepercayaan"
+            isVisible={isVisible}
+          />
+          <StatBox
+            icon={<Trophy size={24} className="text-[#495C29]" />}
+            endValue={1}
+            suffix=" Goal"
+            title="Memberikan yang"
+            desc="Terbaik untuk Baboo Kos & Villa"
+            isVisible={isVisible}
+          />
         </div>
       </div>
     </section>
@@ -225,10 +251,9 @@ function TimelineItem({
 }) {
   return (
     <div className="relative flex gap-4 md:gap-6 cursor-pointer">
-
-     <div
+      <div
         className={cn(
-          "relative z-10 flex justify-center items-center bg-white rounded-full w-10 h-10 md:w-12 md:h-12 shrink-0 transition-all",
+          "relative z-10 flex justify-center items-center bg-white rounded-full w-10 h-10 md:w-12 md:h-12 shrink-0 transition-[border-color,border-width] duration-300",
           isActive
             ? "border-[4px] border-[#495C29]"
             : "border-[3px] border-zinc-200"

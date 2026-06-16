@@ -1,0 +1,14 @@
+[phases.setup]
+nixPkgs = ["nodejs_22", "pnpm"]
+
+[phases.install]
+# Menjalankan instalasi di root agar workspace terdeteksi
+cmds = ["pnpm install --frozen-lockfile"]
+
+[phases.build]
+# Membangun aplikasi yang ada di dalam folder app
+cmds = ["pnpm --filter ./app run build"]
+
+[start]
+# Menjalankan aplikasi yang ada di dalam folder app
+cmd = "pnpm --filter ./app run start"
