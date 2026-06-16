@@ -60,11 +60,11 @@ export default function OurTeam() {
       title: "Team Building 🧩",
       desc: "Games seru untuk membangun kerja sama dan komunikasi tim.",
       images: [
-        "/team-1.jpg",
-        "/team-2.jpg",
-        "/team-3.jpg",
-        "/team-4.jpg",
-        "/team-5.jpg",
+        "/outbond/BusinessTripBali/BusinessTripBali1.JPG",
+        "/outbond/BusinessTripBali/BusinessTripBali2.JPG",
+        "/outbond/BusinessTripBali/BusinessTripBali3.JPG",
+        "/outbond/BusinessTripBali/BusinessTripBali4.JPG",
+        "/outbond/BusinessTripBali/BusinessTripBali4.JPG",
       ],
     },
   ];
