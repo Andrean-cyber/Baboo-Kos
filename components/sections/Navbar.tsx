@@ -164,7 +164,7 @@ const handleWhatsapp = () => {
                 // TAMPILAN JIKA DI SUB-PAGE ATAU HOME SCROLLED (Semua Menu Sejajar)
                 <>
                   {navLinks.map((link) => {
-                    const isActive = pathname === link.href || (link.href !== "/#home" && pathname.startsWith(link.href));
+                    const isActive = pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href));
                     return (
                       <Link
                         key={link.name}
@@ -185,7 +185,7 @@ const handleWhatsapp = () => {
                 // TAMPILAN AWAL/DEFAULT (Menggunakan Dropdown Explore)
                 <>
                   <Link
-                    href="/#home"
+                    href="/"
                     className="rounded-full px-3 py-2 font-bold text-[14px] text-zinc-600 hover:bg-[#EEF3E8] hover:text-[#495C29] transition-all duration-300"
                   >
                     Baboo Kos
