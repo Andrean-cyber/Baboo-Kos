@@ -3,15 +3,7 @@
 import { useRef, useState, useEffect, useCallback } from "react";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
-import {
-  CalendarDays,
-  Users,
-  Heart,
-  Trophy,
-  X,
-  ChevronLeft,
-  ChevronRight,
-} from "lucide-react";
+import { CalendarDays, Users, Heart, Trophy, X, ChevronLeft, ChevronRight } from "lucide-react";
 
 /* ================= TYPES ================= */
 
@@ -25,15 +17,7 @@ interface AgendaItem {
 
 /* ================= LIGHTBOX ================= */
 
-function Lightbox({
-  images,
-  initialIndex,
-  onClose,
-}: {
-  images: string[];
-  initialIndex: number;
-  onClose: () => void;
-}) {
+function Lightbox({ images, initialIndex, onClose }: { images: string[]; initialIndex: number; onClose: () => void }) {
   const [current, setCurrent] = useState(initialIndex);
 
   const prev = useCallback(() => {
@@ -58,79 +42,69 @@ function Lightbox({
   // Prevent body scroll
   useEffect(() => {
     document.body.style.overflow = "hidden";
-    return () => { document.body.style.overflow = ""; };
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, []);
 
   return (
-    <div
-      className="fixed inset-0 z-50 flex items-center justify-center"
-      onClick={onClose}
-    >
-      {/* Blur backdrop */}
-      <div className="absolute inset-0 bg-black/70 backdrop-blur-md" />
-
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm" onClick={onClose}>
       {/* Close button */}
-      <button
-        onClick={onClose}
-        className="absolute top-4 right-4 z-10 flex items-center justify-center w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
-      >
-        <X size={20} />
+      <button onClick={onClose} className="fixed top-4 right-4 z-50 flex items-center justify-center w-12 h-12 rounded-full bg-white/20 hover:bg-white/30 text-white transition-colors">
+        <X size={24} />
       </button>
 
       {/* Counter */}
-      <div className="absolute top-4 left-1/2 -translate-x-1/2 z-10 text-white/80 text-sm font-medium">
+      <div className="fixed top-4 left-1/2 -translate-x-1/2 z-50 text-white text-sm font-medium bg-black/40 px-4 py-2 rounded-full">
         {current + 1} / {images.length}
       </div>
 
       {/* Prev */}
       {images.length > 1 && (
         <button
-          onClick={(e) => { e.stopPropagation(); prev(); }}
-          className="absolute left-4 z-10 flex items-center justify-center w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
+          onClick={(e) => {
+            e.stopPropagation();
+            prev();
+          }}
+          className="fixed left-4 z-50 flex items-center justify-center w-12 h-12 rounded-full bg-white/20 hover:bg-white/30 text-white transition-colors"
         >
-          <ChevronLeft size={22} />
+          <ChevronLeft size={24} />
         </button>
       )}
 
       {/* Image */}
-      <div
-        className="relative z-10 w-[90vw] max-w-3xl h-[75vh] rounded-2xl overflow-hidden"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <Image
-          key={current}
-          src={images[current]}
-          alt={`Preview ${current + 1}`}
-          fill
-          sizes="90vw"
-          className="object-contain"
-          priority
-        />
+      <div className="relative z-10 w-screen h-screen overflow-auto flex items-center justify-center" onClick={(e) => e.stopPropagation()}>
+        <div className="relative w-full h-full max-w-4xl max-h-[90vh] flex items-center justify-center">
+          <Image key={current} src={images[current]} alt={`Preview ${current + 1}`} fill sizes="100vw" className="object-contain" priority />
+        </div>
       </div>
 
       {/* Next */}
       {images.length > 1 && (
         <button
-          onClick={(e) => { e.stopPropagation(); next(); }}
-          className="absolute right-4 z-10 flex items-center justify-center w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
+          onClick={(e) => {
+            e.stopPropagation();
+            next();
+          }}
+          className="fixed right-4 z-50 flex items-center justify-center w-12 h-12 rounded-full bg-white/20 hover:bg-white/30 text-white transition-colors"
         >
-          <ChevronRight size={22} />
+          <ChevronRight size={24} />
         </button>
       )}
 
       {/* Thumbnail strip */}
       {images.length > 1 && (
-        <div className="absolute bottom-4 z-10 flex gap-2 max-w-[90vw] overflow-x-auto px-4">
+        <div className="fixed bottom-6 z-40 flex gap-2 max-w-[80vw] overflow-x-auto px-4">
           {images.map((img, i) => (
             <button
               key={i}
-              onClick={(e) => { e.stopPropagation(); setCurrent(i); }}
-              className={cn(
-                "relative w-14 h-14 rounded-lg overflow-hidden shrink-0 transition-all duration-200",
-                i === current ? "ring-2 ring-white scale-105" : "opacity-60 hover:opacity-90"
-              )}
+              onClick={(e) => {
+                e.stopPropagation();
+                setCurrent(i);
+              }}
+              className={cn("relative w-16 h-16 rounded-lg overflow-hidden shrink-0 transition-all duration-200", i === current ? "ring-2 ring-white scale-110" : "opacity-60 hover:opacity-90")}
             >
-              <Image src={img} alt={`Thumb ${i + 1}`} fill sizes="56px" className="object-cover" />
+              <Image src={img} alt={`Thumb ${i + 1}`} fill sizes="64px" className="object-cover" />
             </button>
           ))}
         </div>
@@ -141,7 +115,7 @@ function Lightbox({
 
 /* ================= GALLERY ================= */
 
-function Gallery({ images }: { images: string[] }) {
+function Gallery({ images, onImageClick }: { images: string[]; onImageClick: (img: string) => void }) {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   // Show max 5 thumbnails (1 main + 4 grid). The 4th grid slot shows "+N" if more exist.
@@ -153,18 +127,8 @@ function Gallery({ images }: { images: string[] }) {
     <>
       <div className="flex flex-col gap-4 w-full lg:w-[60%]">
         {/* Main image */}
-        <div
-          className="relative rounded-2xl w-full h-[250px] md:h-[350px] overflow-hidden bg-zinc-100 cursor-pointer"
-          onClick={() => setLightboxIndex(0)}
-        >
-          <Image
-            key={mainImage}
-            src={mainImage}
-            alt="Gallery Main"
-            fill
-            sizes="(max-width: 768px) 100vw, 60vw"
-            className="object-cover hover:scale-105 transition-transform duration-500"
-          />
+        <div className="relative rounded-2xl w-full h-[250px] md:h-[350px] overflow-hidden bg-zinc-100 cursor-pointer hover:shadow-lg transition-shadow" onClick={() => onImageClick(mainImage)}>
+          <Image key={mainImage} src={mainImage} alt="Gallery Main" fill sizes="(max-width: 768px) 100vw, 60vw" className="object-cover hover:scale-105 transition-transform duration-500" />
         </div>
 
         {/* Thumbnail grid */}
@@ -172,24 +136,18 @@ function Gallery({ images }: { images: string[] }) {
           {gridImages.map((img, index) => {
             const isLastVisible = index === 3 && extraCount > 0;
             return (
-              <div
-                key={`grid-${index}`}
-                className="relative rounded-xl aspect-[4/5] overflow-hidden bg-zinc-100 cursor-pointer"
-                onClick={() => setLightboxIndex(index + 1)}
-              >
-                <Image
-                  src={img}
-                  alt={`Gallery Thumbnail ${index + 1}`}
-                  fill
-                  sizes="(max-width: 768px) 25vw, 15vw"
-                  className="object-cover hover:scale-110 transition-transform duration-500"
-                />
+              <div key={`grid-${index}`} className="relative rounded-xl aspect-[4/5] overflow-hidden bg-zinc-100 cursor-pointer hover:shadow-lg transition-shadow" onClick={() => onImageClick(img)}>
+                <Image src={img} alt={`Gallery Thumbnail ${index + 1}`} fill sizes="(max-width: 768px) 25vw, 15vw" className="object-cover hover:scale-110 transition-transform duration-500" />
                 {/* Overlay "+N" on last visible thumb if there are more photos */}
                 {isLastVisible && (
-                  <div className="absolute inset-0 flex items-center justify-center bg-black/50 rounded-xl">
-                    <span className="text-white font-bold text-xl">
-                      +{extraCount + 1}
-                    </span>
+                  <div
+                    className="absolute inset-0 flex items-center justify-center bg-black/50 rounded-xl cursor-pointer hover:bg-black/60 transition-colors"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setLightboxIndex(index + 1);
+                    }}
+                  >
+                    <span className="text-white font-bold text-xl">+{extraCount + 1}</span>
                   </div>
                 )}
               </div>
@@ -198,13 +156,7 @@ function Gallery({ images }: { images: string[] }) {
         </div>
       </div>
 
-      {lightboxIndex !== null && (
-        <Lightbox
-          images={images}
-          initialIndex={lightboxIndex}
-          onClose={() => setLightboxIndex(null)}
-        />
-      )}
+      {lightboxIndex !== null && <Lightbox images={images} initialIndex={lightboxIndex} onClose={() => setLightboxIndex(null)} />}
     </>
   );
 }
@@ -219,6 +171,7 @@ export default function OurTeam() {
   const hasAnimated = useRef(false);
 
   const [activeAgenda, setActiveAgenda] = useState(0);
+  const [selectedImg, setSelectedImg] = useState<string | null>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -229,7 +182,7 @@ export default function OurTeam() {
           setIsVisible(true);
         }
       },
-      { threshold: 0.15 }
+      { threshold: 0.15 },
     );
 
     const currentRef = sectionRef.current;
@@ -319,36 +272,29 @@ export default function OurTeam() {
   ];
 
   return (
-    <section
-      ref={sectionRef}
-      className="flex flex-col items-center mx-auto px-4 md:px-8 py-16 md:py-24 w-full max-w-[1280px]"
-    >
+    <section ref={sectionRef} className="flex flex-col items-center mx-auto px-4 md:px-8 py-16 md:py-24 w-full max-w-[1280px]">
+      {/* ========================= */}
+      {/* FULLSCREEN PREVIEW MODAL */}
+      {/* ========================= */}
+      {selectedImg && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 backdrop-blur-md p-4 transition-all duration-300" onClick={() => setSelectedImg(null)}>
+          <button className="fixed top-6 right-6 text-white hover:rotate-90 transition-transform duration-300 z-50 flex items-center justify-center w-12 h-12 rounded-full bg-white/20 hover:bg-white/30" onClick={() => setSelectedImg(null)}>
+            <X size={28} />
+          </button>
+          <div className="relative w-full max-w-5xl h-[85vh]" onClick={(e) => e.stopPropagation()}>
+            <Image src={selectedImg} alt="Preview" fill className="rounded-2xl shadow-2xl object-contain" priority sizes="90vw" />
+          </div>
+        </div>
+      )}
       {/* HEADER */}
       <div className="flex flex-col items-center mb-10 md:mb-14 text-center">
-        <h3
-          className={cn(
-            "mb-2 font-bold text-[#495C29] text-sm md:text-base transition-[transform,opacity] duration-700",
-            isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
-          )}
-        >
-          Our Team
-        </h3>
+        <h3 className={cn("mb-2 font-bold text-[#495C29] text-sm md:text-base transition-[transform,opacity] duration-700", isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0")}>Our Team</h3>
 
-        <h2
-          className={cn(
-            "mb-4 font-bold text-slate-900 text-3xl md:text-4xl lg:text-5xl tracking-tight transition-[transform,opacity] duration-700 delay-150",
-            isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
-          )}
-        >
+        <h2 className={cn("mb-4 font-bold text-slate-900 text-3xl md:text-4xl lg:text-5xl tracking-tight transition-[transform,opacity] duration-700 delay-150", isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0")}>
           Stronger Together, Better Every Day
         </h2>
 
-        <p
-          className={cn(
-            "font-medium text-zinc-500 text-sm md:text-base transition-[transform,opacity] duration-700 delay-300",
-            isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
-          )}
-        >
+        <p className={cn("font-medium text-zinc-500 text-sm md:text-base transition-[transform,opacity] duration-700 delay-300", isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0")}>
           Tim solid yang saling mendukung dan selalu berusaha memberikan yang terbaik
         </p>
       </div>
@@ -358,35 +304,25 @@ export default function OurTeam() {
         className={cn(
           "flex flex-col bg-white shadow-[0_8px_30px_rgb(0,0,0,0.04)] p-5 md:p-8 border border-zinc-100 rounded-[2rem] w-full",
           "transition-[transform,opacity] duration-1000 delay-500",
-          isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
+          isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0",
         )}
       >
         <div className="flex lg:flex-row flex-col gap-8 lg:gap-10">
           {/* LEFT COLUMN */}
           <div className="flex flex-col w-full lg:w-[40%]">
-            <h4 className="mb-2 font-extrabold text-[#495C29] text-xs uppercase tracking-widest">
-              Our Outing Agenda
-            </h4>
+            <h4 className="mb-2 font-extrabold text-[#495C29] text-xs uppercase tracking-widest">Our Outing Agenda</h4>
 
             <h3 className="mb-3 font-bold text-zinc-900 text-2xl md:text-3xl leading-tight">
               Momen Kebersamaan <br className="hidden md:block" />
               yang Memperkuat Tim
             </h3>
 
-            <p className="mb-6 font-medium text-zinc-500 text-sm leading-relaxed">
-              Kami percaya, kebersamaan di luar rutinitas membuat kerja sama semakin kuat.
-            </p>
+            <p className="mb-6 font-medium text-zinc-500 text-sm leading-relaxed">Kami percaya, kebersamaan di luar rutinitas membuat kerja sama semakin kuat.</p>
 
             {/* SCROLLABLE TIMELINE */}
-            <div
-              ref={timelineRef}
-              className="relative flex flex-col gap-8 max-h-[420px] overflow-y-auto pl-2 pr-4 pb-6 scrollbar-hide"
-            >
+            <div ref={timelineRef} className="relative flex flex-col gap-8 max-h-[420px] overflow-y-auto pl-2 pr-4 pb-6 scrollbar-hide">
               {/* Vertical Line */}
-              <div
-                className="absolute left-7 md:left-8 top-6 w-px bg-zinc-200"
-                style={{ height: `${agendas.length * 110}px` }}
-              />
+              <div className="absolute left-7 md:left-8 top-6 w-px bg-zinc-200" style={{ height: `${agendas.length * 110}px` }} />
 
               {agendas.map((item, index) => (
                 <div
@@ -402,56 +338,22 @@ export default function OurTeam() {
                     }
                   }}
                 >
-                  <TimelineItem
-                    icon={item.icon}
-                    date={item.date}
-                    title={item.title}
-                    desc={item.desc}
-                    isActive={activeAgenda === index}
-                  />
+                  <TimelineItem icon={item.icon} date={item.date} title={item.title} desc={item.desc} isActive={activeAgenda === index} />
                 </div>
               ))}
             </div>
           </div>
 
           {/* RIGHT COLUMN GALLERY */}
-          <Gallery key={activeAgenda} images={agendas[activeAgenda].images} />
+          <Gallery key={activeAgenda} images={agendas[activeAgenda].images} onImageClick={setSelectedImg} />
         </div>
 
         {/* BOTTOM STATS */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 bg-[#EEF3E8] mt-10 p-6 md:p-8 rounded-2xl w-full">
-          <StatBox
-            icon={<CalendarDays size={24} className="text-[#495C29]" />}
-            endValue={12}
-            suffix="+"
-            title="Agenda Outing"
-            desc="Kebersamaan yang selalu kami jaga"
-            isVisible={isVisible}
-          />
-          <StatBox
-            icon={<Users size={24} className="text-[#495C29]" />}
-            endValue={25}
-            suffix="+"
-            title="Team Members"
-            desc="Individu hebat dengan tujuan yang sama"
-            isVisible={isVisible}
-          />
-          <StatBox
-            icon={<Heart size={24} className="text-[#495C29]" />}
-            endValue={100}
-            suffix="%"
-            title="Teamwork"
-            desc="Kolaborasi dan kepercayaan"
-            isVisible={isVisible}
-          />
-          <StatBox
-            icon={<Trophy size={24} className="text-[#495C29]" />}
-            endValue={1}
-            suffix=" Goal"
-            title="Memberikan yang"
-            desc="Terbaik untuk Baboo Kos & Villa"
-            isVisible={isVisible}
-          />
+          <StatBox icon={<CalendarDays size={24} className="text-[#495C29]" />} endValue={12} suffix="+" title="Agenda Outing" desc="Kebersamaan yang selalu kami jaga" isVisible={isVisible} />
+          <StatBox icon={<Users size={24} className="text-[#495C29]" />} endValue={25} suffix="+" title="Team Members" desc="Individu hebat dengan tujuan yang sama" isVisible={isVisible} />
+          <StatBox icon={<Heart size={24} className="text-[#495C29]" />} endValue={100} suffix="%" title="Teamwork" desc="Kolaborasi dan kepercayaan" isVisible={isVisible} />
+          <StatBox icon={<Trophy size={24} className="text-[#495C29]" />} endValue={1} suffix=" Goal" title="Memberikan yang" desc="Terbaik untuk Baboo Kos & Villa" isVisible={isVisible} />
         </div>
       </div>
     </section>
@@ -460,44 +362,22 @@ export default function OurTeam() {
 
 /* ================= TIMELINE ITEM ================= */
 
-function TimelineItem({
-  icon,
-  date,
-  title,
-  desc,
-  isActive = false,
-}: {
-  icon: React.ReactNode;
-  date: string;
-  title: string;
-  desc: string;
-  isActive?: boolean;
-}) {
+function TimelineItem({ icon, date, title, desc, isActive = false }: { icon: React.ReactNode; date: string; title: string; desc: string; isActive?: boolean }) {
   return (
     <div className="relative flex gap-4 md:gap-6 cursor-pointer">
       <div
         className={cn(
           "relative z-10 flex justify-center items-center bg-white rounded-full w-10 h-10 md:w-12 md:h-12 shrink-0 transition-[border-color,border-width] duration-300",
-          isActive
-            ? "border-[4px] border-[#495C29]"
-            : "border-[3px] border-zinc-200"
+          isActive ? "border-[4px] border-[#495C29]" : "border-[3px] border-zinc-200",
         )}
       >
         {icon}
       </div>
 
       <div className="flex flex-col pb-2">
-        {date && (
-          <span className="font-bold text-[10px] md:text-xs text-zinc-400">
-            {date}
-          </span>
-        )}
-        <h5 className="mt-1 font-bold text-sm md:text-base text-zinc-900">
-          {title}
-        </h5>
-        <p className="mt-1 text-xs md:text-sm text-zinc-500 leading-relaxed">
-          {desc}
-        </p>
+        {date && <span className="font-bold text-[10px] md:text-xs text-zinc-400">{date}</span>}
+        <h5 className="mt-1 font-bold text-sm md:text-base text-zinc-900">{title}</h5>
+        <p className="mt-1 text-xs md:text-sm text-zinc-500 leading-relaxed">{desc}</p>
       </div>
     </div>
   );
@@ -505,21 +385,7 @@ function TimelineItem({
 
 /* ================= STAT BOX ================= */
 
-function StatBox({
-  icon,
-  endValue,
-  suffix,
-  title,
-  desc,
-  isVisible,
-}: {
-  icon: React.ReactNode;
-  endValue: number;
-  suffix: string;
-  title: string;
-  desc: string;
-  isVisible: boolean;
-}) {
+function StatBox({ icon, endValue, suffix, title, desc, isVisible }: { icon: React.ReactNode; endValue: number; suffix: string; title: string; desc: string; isVisible: boolean }) {
   const [count, setCount] = useState(0);
   const isAnimated = useRef(false);
 
@@ -549,7 +415,8 @@ function StatBox({
       {icon}
       <div>
         <h4 className="font-bold text-zinc-900 text-2xl md:text-3xl">
-          {count}{suffix}
+          {count}
+          {suffix}
         </h4>
         <p className="mt-1 font-bold text-xs md:text-sm text-zinc-800">{title}</p>
         <p className="mt-1 text-[10px] md:text-xs text-zinc-500">{desc}</p>
