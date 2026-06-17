@@ -3,7 +3,7 @@
 import { usePathname } from "next/navigation";
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ChevronDown} from "lucide-react";
+import { Menu, X, ChevronDown, Headset} from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
@@ -69,7 +69,12 @@ export default function Navbar() {
     if (pathname.startsWith("/villa")) return "Reservasi →";
     if (pathname.startsWith("/career")) return "Tanya HRD →";
     if (pathname.startsWith("/simulation")) return "Tanya Marketing →";
-    if (pathname.startsWith("/aboutus")) return "Company Support →";
+    if (pathname.startsWith("/aboutus")) return (
+      <div className="flex items-center gap-2">
+        <Headset size={18} />
+        <span>Support →</span>
+      </div>
+    );
     return "Cari Kos →";
   };
 

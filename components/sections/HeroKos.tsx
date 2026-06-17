@@ -14,12 +14,12 @@ import Image from "next/image";
 
 // Data sampel gambar avatar untuk Avatar Circles
 const avatarImages = [
-  "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80",
-  "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=80",
-  "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&auto=format&fit=crop&q=80",
-  "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&auto=format&fit=crop&q=80",
-  "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=100&auto=format&fit=crop&q=80",
-  "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&auto=format&fit=crop&q=80",
+  "/avatar/avatar1.jpg",
+  "/avatar/avatar2.jpg",
+  "/avatar/avatar3.jpg",
+  "/avatar/avatar4.jpg",
+  "/avatar/avatar5.jpg",
+  "/avatar/avatar6.jpg",
 ];
 
 export default function HeroKos() {
@@ -334,10 +334,10 @@ export default function HeroKos() {
       {/* STATS */}
       {/* ========================= */}
       <section className="mx-auto mt-8 md:mt-14 px-5 md:px-10 lg:px-16 w-full max-w-[1240px]">
-        <div className="md:flex md:justify-between md:items-center gap-x-6 gap-y-8 grid grid-cols-2 justify-items-center">
+        <div className="md:flex md:justify-between md:items-center gap-x-8 gap-y-8 grid grid-cols-2 justify-items-center">
           <StatItem endValue={40000} suffix=" +" text={<>Pengguna <br /> Jasa</>} />
           <StatItem endValue={8000} suffix=" +" text={<>Mitra Owner <br /> Kos</>} />
-          <StatItem endValue={10} suffix=" +" text={<>Tersebar di <br /> Kota Besar</>} />
+          <StatItem endValue={137} suffix=" +" text={<>Networking Accros <br /> Indonesia</>} />
           <StatItem endValue={4.7} suffix="/5" decimals={1} isRating text={<>Testimonial <br /> Customer</>} />
         </div>
       </section>

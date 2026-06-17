@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, useCallback } from "react";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import {
@@ -8,7 +8,208 @@ import {
   Users,
   Heart,
   Trophy,
+  X,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
+
+/* ================= TYPES ================= */
+
+interface AgendaItem {
+  icon: React.ReactNode;
+  date: string;
+  title: string;
+  desc: string;
+  images: string[];
+}
+
+/* ================= LIGHTBOX ================= */
+
+function Lightbox({
+  images,
+  initialIndex,
+  onClose,
+}: {
+  images: string[];
+  initialIndex: number;
+  onClose: () => void;
+}) {
+  const [current, setCurrent] = useState(initialIndex);
+
+  const prev = useCallback(() => {
+    setCurrent((c) => (c - 1 + images.length) % images.length);
+  }, [images.length]);
+
+  const next = useCallback(() => {
+    setCurrent((c) => (c + 1) % images.length);
+  }, [images.length]);
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === "ArrowLeft") prev();
+      if (e.key === "ArrowRight") next();
+      if (e.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", handleKey);
+    return () => window.removeEventListener("keydown", handleKey);
+  }, [prev, next, onClose]);
+
+  // Prevent body scroll
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => { document.body.style.overflow = ""; };
+  }, []);
+
+  return (
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center"
+      onClick={onClose}
+    >
+      {/* Blur backdrop */}
+      <div className="absolute inset-0 bg-black/70 backdrop-blur-md" />
+
+      {/* Close button */}
+      <button
+        onClick={onClose}
+        className="absolute top-4 right-4 z-10 flex items-center justify-center w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
+      >
+        <X size={20} />
+      </button>
+
+      {/* Counter */}
+      <div className="absolute top-4 left-1/2 -translate-x-1/2 z-10 text-white/80 text-sm font-medium">
+        {current + 1} / {images.length}
+      </div>
+
+      {/* Prev */}
+      {images.length > 1 && (
+        <button
+          onClick={(e) => { e.stopPropagation(); prev(); }}
+          className="absolute left-4 z-10 flex items-center justify-center w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
+        >
+          <ChevronLeft size={22} />
+        </button>
+      )}
+
+      {/* Image */}
+      <div
+        className="relative z-10 w-[90vw] max-w-3xl h-[75vh] rounded-2xl overflow-hidden"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <Image
+          key={current}
+          src={images[current]}
+          alt={`Preview ${current + 1}`}
+          fill
+          sizes="90vw"
+          className="object-contain"
+          priority
+        />
+      </div>
+
+      {/* Next */}
+      {images.length > 1 && (
+        <button
+          onClick={(e) => { e.stopPropagation(); next(); }}
+          className="absolute right-4 z-10 flex items-center justify-center w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
+        >
+          <ChevronRight size={22} />
+        </button>
+      )}
+
+      {/* Thumbnail strip */}
+      {images.length > 1 && (
+        <div className="absolute bottom-4 z-10 flex gap-2 max-w-[90vw] overflow-x-auto px-4">
+          {images.map((img, i) => (
+            <button
+              key={i}
+              onClick={(e) => { e.stopPropagation(); setCurrent(i); }}
+              className={cn(
+                "relative w-14 h-14 rounded-lg overflow-hidden shrink-0 transition-all duration-200",
+                i === current ? "ring-2 ring-white scale-105" : "opacity-60 hover:opacity-90"
+              )}
+            >
+              <Image src={img} alt={`Thumb ${i + 1}`} fill sizes="56px" className="object-cover" />
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+/* ================= GALLERY ================= */
+
+function Gallery({ images }: { images: string[] }) {
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+
+  // Show max 5 thumbnails (1 main + 4 grid). The 4th grid slot shows "+N" if more exist.
+  const mainImage = images[0];
+  const gridImages = images.slice(1, 5);
+  const extraCount = images.length - 5; // images beyond index 4
+
+  return (
+    <>
+      <div className="flex flex-col gap-4 w-full lg:w-[60%]">
+        {/* Main image */}
+        <div
+          className="relative rounded-2xl w-full h-[250px] md:h-[350px] overflow-hidden bg-zinc-100 cursor-pointer"
+          onClick={() => setLightboxIndex(0)}
+        >
+          <Image
+            key={mainImage}
+            src={mainImage}
+            alt="Gallery Main"
+            fill
+            sizes="(max-width: 768px) 100vw, 60vw"
+            className="object-cover hover:scale-105 transition-transform duration-500"
+          />
+        </div>
+
+        {/* Thumbnail grid */}
+        <div className="grid grid-cols-4 gap-2 md:gap-4">
+          {gridImages.map((img, index) => {
+            const isLastVisible = index === 3 && extraCount > 0;
+            return (
+              <div
+                key={`grid-${index}`}
+                className="relative rounded-xl aspect-[4/5] overflow-hidden bg-zinc-100 cursor-pointer"
+                onClick={() => setLightboxIndex(index + 1)}
+              >
+                <Image
+                  src={img}
+                  alt={`Gallery Thumbnail ${index + 1}`}
+                  fill
+                  sizes="(max-width: 768px) 25vw, 15vw"
+                  className="object-cover hover:scale-110 transition-transform duration-500"
+                />
+                {/* Overlay "+N" on last visible thumb if there are more photos */}
+                {isLastVisible && (
+                  <div className="absolute inset-0 flex items-center justify-center bg-black/50 rounded-xl">
+                    <span className="text-white font-bold text-xl">
+                      +{extraCount + 1}
+                    </span>
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      {lightboxIndex !== null && (
+        <Lightbox
+          images={images}
+          initialIndex={lightboxIndex}
+          onClose={() => setLightboxIndex(null)}
+        />
+      )}
+    </>
+  );
+}
+
+/* ================= MAIN COMPONENT ================= */
 
 export default function OurTeam() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -17,7 +218,7 @@ export default function OurTeam() {
   const [isVisible, setIsVisible] = useState(false);
   const hasAnimated = useRef(false);
 
-  const [activeAgenda, setActiveAgenda] = useState(1);
+  const [activeAgenda, setActiveAgenda] = useState(0);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -41,31 +242,78 @@ export default function OurTeam() {
     };
   }, []);
 
-  const agendas = [
+  const agendas: AgendaItem[] = [
     {
       icon: <CalendarDays size={18} className="text-zinc-500" />,
-      date: "12 Jan 2024",
-      title: "Beach Day 🏖️",
-      desc: "Bersantai dan menikmati keindahan pantai bersama.",
+      date: "30 Juli 2025",
+      title: "Business Trip Bali 🌴",
+      desc: "Perjalanan bisnis sekaligus eksplorasi keindahan Pulau Dewata bersama tim.",
       images: [
-        "/outbond/BusinessTripBali/BusinessTripBali1.JPG",
-        "/outbond/BusinessTripBali/BusinessTripBali2.JPG",
-        "/outbond/BusinessTripBali/BusinessTripBali3.JPG",
-        "/outbond/BusinessTripBali/BusinessTripBali4.JPG",
-        "/outbond/BusinessTripBali/BusinessTripBali4.JPG",
+        "/outbond/BusinessTripBali/BusinessTripBali1.jpg",
+        "/outbond/BusinessTripBali/BusinessTripBali2.jpg",
+        "/outbond/BusinessTripBali/BusinessTripBali3.jpg",
+        "/outbond/BusinessTripBali/BusinessTripBali4.jpg",
+        "/outbond/BusinessTripBali/BusinessTripBali5.jpg",
       ],
     },
     {
       icon: <Users size={18} className="text-[#495C29]" />,
-      date: "24 Mar 2024",
-      title: "Team Building 🧩",
-      desc: "Games seru untuk membangun kerja sama dan komunikasi tim.",
+      date: "5 Juni 2026",
+      title: "Business Trip Banyuwangi 🌿",
+      desc: "Menjelajahi pesona Banyuwangi sambil mempererat hubungan tim.",
       images: [
-        "/outbond/BusinessTripBali/BusinessTripBali1.JPG",
-        "/outbond/BusinessTripBali/BusinessTripBali2.JPG",
-        "/outbond/BusinessTripBali/BusinessTripBali3.JPG",
-        "/outbond/BusinessTripBali/BusinessTripBali4.JPG",
-        "/outbond/BusinessTripBali/BusinessTripBali4.JPG",
+        "/outbond/BusinessTripBanyuwangi/BusinessTripBanyuwangi1.jpg",
+        "/outbond/BusinessTripBanyuwangi/BusinessTripBanyuwangi2.jpg",
+        "/outbond/BusinessTripBanyuwangi/BusinessTripBanyuwangi3.jpg",
+        "/outbond/BusinessTripBanyuwangi/BusinessTripBanyuwangi4.jpg",
+        "/outbond/BusinessTripBanyuwangi/BusinessTripBanyuwangi5.jpg",
+      ],
+    },
+    {
+      icon: <Heart size={18} className="text-[#495C29]" />,
+      date: "3 Mei 2026",
+      title: "Interactive Talkshow 🎤",
+      desc: "Sesi diskusi interaktif dan berbagi inspirasi bersama seluruh anggota tim.",
+      images: [
+        "/outbond/InteractiveTalkshow/InteractiveTalkshow1.jpg",
+        "/outbond/InteractiveTalkshow/InteractiveTalkshow2.jpg",
+        "/outbond/InteractiveTalkshow/InteractiveTalkshow3.jpg",
+        "/outbond/InteractiveTalkshow/InteractiveTalkshow4.jpg",
+        "/outbond/InteractiveTalkshow/InteractiveTalkshow5.jpg",
+        "/outbond/InteractiveTalkshow/InteractiveTalkshow6.jpg",
+      ],
+    },
+    {
+      icon: <Trophy size={18} className="text-[#495C29]" />,
+      date: "",
+      title: "Outing Day 🏕️",
+      desc: "Satu hari penuh keseruan dan petualangan bersama seluruh tim.",
+      images: [
+        "/outbond/OutingDay/OutingDay1.jpg",
+        "/outbond/OutingDay/OutingDay2.jpg",
+        "/outbond/OutingDay/OutingDay3.jpg",
+        "/outbond/OutingDay/OutingDay4.jpg",
+        "/outbond/OutingDay/OutingDay5.jpg",
+        "/outbond/OutingDay/OutingDay6.jpg",
+        "/outbond/OutingDay/OutingDay7.jpg",
+      ],
+    },
+    {
+      icon: <CalendarDays size={18} className="text-zinc-500" />,
+      date: "",
+      title: "Work From Anywhere 💻",
+      desc: "Fleksibel bekerja dari mana saja sambil tetap produktif dan terhubung.",
+      images: [
+        "/outbond/WorkFromAnywhere/WorkFromAnywhere1.jpg",
+        "/outbond/WorkFromAnywhere/WorkFromAnywhere2.jpg",
+        "/outbond/WorkFromAnywhere/WorkFromAnywhere3.jpg",
+        "/outbond/WorkFromAnywhere/WorkFromAnywhere4.jpg",
+        "/outbond/WorkFromAnywhere/WorkFromAnywhere5.jpg",
+        "/outbond/WorkFromAnywhere/WorkFromAnywhere6.jpg",
+        "/outbond/WorkFromAnywhere/WorkFromAnywhere7.jpg",
+        "/outbond/WorkFromAnywhere/WorkFromAnywhere8.jpg",
+        "/outbond/WorkFromAnywhere/WorkFromAnywhere9.jpg",
+        "/outbond/WorkFromAnywhere/WorkFromAnywhere10.jpg",
       ],
     },
   ];
@@ -105,7 +353,7 @@ export default function OurTeam() {
         </p>
       </div>
 
-      {/* MAIN CONTAINER — NO transition-all, hanya translate-y & opacity untuk scroll-in */}
+      {/* MAIN CONTAINER */}
       <div
         className={cn(
           "flex flex-col bg-white shadow-[0_8px_30px_rgb(0,0,0,0.04)] p-5 md:p-8 border border-zinc-100 rounded-[2rem] w-full",
@@ -132,7 +380,7 @@ export default function OurTeam() {
             {/* SCROLLABLE TIMELINE */}
             <div
               ref={timelineRef}
-              className="relative flex flex-col gap-8 max-h-[380px] overflow-y-auto pl-2 pr-4 pb-6 scrollbar-hide"
+              className="relative flex flex-col gap-8 max-h-[420px] overflow-y-auto pl-2 pr-4 pb-6 scrollbar-hide"
             >
               {/* Vertical Line */}
               <div
@@ -167,34 +415,7 @@ export default function OurTeam() {
           </div>
 
           {/* RIGHT COLUMN GALLERY */}
-          <div className="flex flex-col gap-4 w-full lg:w-[60%]">
-            
-            {/* Gambar utama */}
-            <div className="relative rounded-2xl w-full h-[250px] md:h-[350px] overflow-hidden bg-zinc-100">
-              <Image
-                key={agendas[activeAgenda].images[0]}
-                src={agendas[activeAgenda].images[0]}
-                alt="Gallery Main"
-                fill
-                sizes="(max-width: 768px) 100vw, 60vw"
-                className="object-cover"
-              />
-            </div>
-
-            <div className="grid grid-cols-4 gap-2 md:gap-4">
-              {agendas[activeAgenda].images.slice(1, 5).map((img, index) => (
-                <div key={`${activeAgenda}-${index}`} className="relative rounded-xl aspect-[4/5] overflow-hidden bg-zinc-100">
-                  <Image
-                    src={img}
-                    alt={`Gallery Thumbnail ${index}`}
-                    fill
-                    sizes="(max-width: 768px) 25vw, 15vw"
-                    className="object-cover hover:scale-110 transition-transform duration-500"
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
+          <Gallery key={activeAgenda} images={agendas[activeAgenda].images} />
         </div>
 
         {/* BOTTOM STATS */}
@@ -266,9 +487,11 @@ function TimelineItem({
       </div>
 
       <div className="flex flex-col pb-2">
-        <span className="font-bold text-[10px] md:text-xs text-zinc-400">
-          {date}
-        </span>
+        {date && (
+          <span className="font-bold text-[10px] md:text-xs text-zinc-400">
+            {date}
+          </span>
+        )}
         <h5 className="mt-1 font-bold text-sm md:text-base text-zinc-900">
           {title}
         </h5>

@@ -26,7 +26,7 @@ const teamMembers = [
     img: "/team/tika.jpg",
   },
   {
-    name: "Kisfa Azka Khalisa",
+    name: "Kisfa Azka Khalisha",
     role: "Content Manager (CM)",
     img: "/team/lisa.jpg",
   },
@@ -46,9 +46,9 @@ const teamMembers = [
     img: "/team/ivan.jpg",
   },
   {
-    name: "Dominikus Ivan Ardianto",
-    role: "Content Creative (CCR)",
-    img: "/team/ivan.jpg",
+    name: "Difa Aisyah Putri",
+    role: "Marketing Executive (ME)",
+    img: "/team/diva.jpg",
   },
   {
     name: "Andrean Yogha Saputra",
