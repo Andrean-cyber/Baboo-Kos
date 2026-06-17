@@ -109,12 +109,13 @@ export default function HeroKos() {
         
         {/* ========================= */}
         {/* LEFT CONTENT (DESKTOP) */}
+        {/* PERBAIKAN: Mengubah flex menjadi hidden lg:flex agar tidak muncul di mobile */}
         {/* ========================= */}
-        <div className="hidden z-10 lg:flex flex-col pt-28 w-[48%]">
+        <div className="z-10 hidden lg:flex flex-col items-center lg:items-start text-center lg:text-left w-full lg:w-[48%] mt-8 lg:mt-20">   
           {/* Badge */}
           <ShinyButton
             className={cn(
-              "inline-flex items-center gap-2 bg-[#FAFAFA] mb-7 px-4 py-2 rounded-full w-max font-bold text-[#495C29] text-sm transition-all duration-1000 ease-out",
+              "inline-flex items-center gap-2 bg-[#FAFAFA] mb-5 lg:mb-7 px-4 py-2 rounded-full w-max font-bold text-[#495C29] text-sm transition-all duration-1000 ease-out border border-zinc-200",
               isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6",
             )}
           >
@@ -133,7 +134,6 @@ export default function HeroKos() {
           >
             Cari Kos
             <span className="text-yellow-500"> Tanpa Ribet,</span> 
-            {/* Perbaikan: Mengirimkan textColor agar hasil akhir animasi tetap hijau tema Baboo Kos */}
             <DiaTextReveal text=" Sesuai Budget!" textColor="#495C29" className="font-bold tracking-[-0.05em]" />
           </h1>
 
@@ -191,28 +191,29 @@ export default function HeroKos() {
         </div>
 
         {/* ========================= */}
-        {/* MOBILE HERO */}
+        {/* MOBILE HERO                */}
         {/* ========================= */}
         <div className="lg:hidden block relative w-full">
-          <div className={cn("relative mt-20 rounded-[2rem] h-[560px] overflow-hidden transition-all duration-1000 ease-out mtshadow-[0_10px_40px_rgba(0,0,0,0.08)]", isLoaded ? "opacity-100 scale-100" : "opacity-0 scale-95")}>
+          {/* Hero Image */}
+          <div className={cn("relative mt-20 rounded-[2rem] h-[420px] overflow-hidden transition-all duration-1000 ease-out shadow-[0_10px_40px_rgba(0,0,0,0.08)]", isLoaded ? "opacity-100 scale-100" : "opacity-0 scale-95")}>
             <Image src="/heroo.jpg" sizes="(max-width: 1024px) 100vw, 0vw" alt="Baboo Kos" fill className="object-cover" priority loading="eager" />
-            <div className="absolute inset-0 bg-black/28" />
+            <div className="absolute inset-0 bg-black/20" />
 
-            <div className="z-20 absolute inset-0 flex flex-col justify-end px-5 pb-28">
+            <div className="z-20 absolute inset-0 flex flex-col justify-end px-5 pb-6">
               
               {/* Badge kanan atas */}
               <ShinyButton
                 className={cn(
-                  "absolute top-8 right-8 z-30",
+                  "absolute top-6 right-6 z-30",
                   "inline-flex items-center gap-1.5",
                   "bg-[#FAFAFA]/20 backdrop-blur-md",
                   "px-3 py-2 rounded-full",
-                  "font-bold text-[#FFFFFF] text-[1.1rem]",
+                  "font-bold text-[#FFFFFF] text-[0.85rem]",
                   "transition-all duration-1000 ease-out delay-300",
                   isLoaded ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-6"
                 )}
               >
-                <Sparkles size={12} className="relative z-10 text-[#FFFFFF] text-[1.1rem]" />
+                <Sparkles size={12} className="relative z-10 text-[#FFFFFF]" />
                 Unlimited comfort
               </ShinyButton>
 
@@ -224,35 +225,50 @@ export default function HeroKos() {
                 )}
               >
                 Cari Kos Tanpa Ribet{" "}
-                <span className="inline-flex items-center bg-white px-4 py-0 rounded-full text-[#495C29] ">
+                <span className="inline-flex items-center bg-white px-4 py-0 rounded-full text-[#495C29]">
                   Sesuai Budget!
                 </span>
               </h1>
             </div>
+          </div>
 
-            {/* Mobile Floating Card */}
-            <div
-              className={cn(
-                "absolute bottom-10 left-1/2 z-30 flex items-center transition-all duration-1000 ease-out delay-[800ms]",
-                "w-[90%] max-w-[420px] lg:w-[92%]",
-                isLoaded ? "opacity-100 -translate-x-1/2" : "opacity-0 translate-x-[50%]"
-              )}
+          {/* Deskripsi — ditampilkan di mobile */}
+          <p className={cn("mt-5 text-center font-medium text-zinc-500 text-sm leading-relaxed transition-all duration-1000 ease-out delay-[500ms]", isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6")}>
+            Standar baru cari tempat tinggal anak muda. Prosesnya digital, fasilitasnya riil, dan harganya transparan dari awal sampai kamu terima kunci.
+          </p>
+
+          {/* Form Pencarian Mobile — dipindah masuk ke dalam hero section */}
+          <div className={cn("flex items-center bg-white shadow-sm mt-5 p-1.5 border border-zinc-200 rounded-full w-full transition-all duration-1000 ease-out delay-[600ms]", isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6")}>
+            <input 
+              type="text" 
+              value={inputValue}
+              onChange={(e) => setInputValue(e.target.value)}
+              onKeyDown={handleKeyDown}
+              placeholder={placeholderText} 
+              className="flex-1 bg-transparent px-5 py-3 outline-none font-semibold text-[#495C29] text-[15px] placeholder:text-[#495C29]/60" 
+            />
+            <button 
+              onClick={handleWhatsAppRedirect}
+              className={cn("flex justify-center items-center bg-[#495C29] rounded-full w-24 h-14 text-white transition-all duration-1000 ease-out delay-[500ms]", isLoaded ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10")}
             >
-              <div className="flex flex-1 items-center bg-[#FAFAFA]/95 shadow-xl backdrop-blur-xl py-1.5 pr-3 pl-2 lg:py-2 lg:pr-4 border border-white/40 rounded-full">
-                <Image src="/heroo.jpg" sizes="100vw" alt="Agent" width={48} height={48} className="border-2 border-white rounded-full w-9 h-9 lg:w-12 lg:h-12 object-cover" loading="eager"  />
-                <div className="ml-2 lg:ml-3">
-                  <p className="font-extrabold text-[#495C29] text-[13px] lg:text-[15px]">
-                    Baboo Kos
-                  </p>
-                  <p className="font-medium text-[12px] lg:text-[12px] text-zinc-500">
-                    Find kos is easier
-                  </p>
-                </div>
-              </div>
+              <ArrowRight size={22} />
+            </button>
+          </div>
 
-              <button className="flex justify-center items-center bg-white/90 shadow-lg backdrop-blur-xl ml-2 lg:ml-3 border border-white/40 rounded-full w-12 h-12 lg:w-16 lg:h-16 active:scale-95 transition-all shrink-0">
-                <ArrowRight size={16} className="text-[#495C29]" />
-              </button>
+          {/* Avatar Circles — ditampilkan di mobile */}
+          <div className={cn("flex items-center justify-center gap-4 mt-6 mb-2 transition-all duration-1000 ease-out delay-[800ms]", isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6")}>
+            <div className="flex -space-x-3.5 overflow-hidden">
+              {avatarImages.map((src, idx) => (
+                <Image key={idx} width={36} height={36} className="inline-block h-9 w-9 rounded-full ring-2 ring-white object-cover" src={src} alt={`User avatar ${idx + 1}`} />
+              ))}
+              <div className="flex h-9 w-9 items-center justify-center rounded-full bg-black font-bold text-white text-[10px] ring-2 ring-white">
+                +99
+              </div>
+            </div>
+            
+            <div className="flex flex-col justify-center leading-tight">
+              <p className="font-extrabold text-zinc-800 text-xs">Dipercayai oleh 40k+ pencari hunian</p>
+              <p className="text-zinc-400 text-[10px] font-medium">Rating kepuasan 4.7/5 di seluruh Indonesia</p>
             </div>
           </div>
         </div>
@@ -323,28 +339,6 @@ export default function HeroKos() {
           <StatItem endValue={8000} suffix=" +" text={<>Mitra Owner <br /> Kos</>} />
           <StatItem endValue={10} suffix=" +" text={<>Tersebar di <br /> Kota Besar</>} />
           <StatItem endValue={4.7} suffix="/5" decimals={1} isRating text={<>Testimonial <br /> Customer</>} />
-        </div>
-      </section>
-
-      {/* ========================= */}
-      {/* MOBILE SEARCH */}
-      {/* ========================= */}
-      <section className="lg:hidden mt-10 px-4 md:px-6 pb-10">
-        <div className={cn("flex items-center bg-white shadow-sm p-1.5 border border-[#FAFAFA] rounded-full transition-all duration-1000 ease-out", isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6")}>
-          <input 
-            type="text" 
-            value={inputValue}
-            onChange={(e) => setInputValue(e.target.value)}
-            onKeyDown={handleKeyDown}
-            placeholder={placeholderText} 
-            className="flex-1 bg-transparent px-5 py-3 outline-none font-semibold text-[#495C29] text-[15px] placeholder:text-[#495C29]/60" 
-          />
-          <button 
-            onClick={handleWhatsAppRedirect}
-            className={cn("flex justify-center items-center bg-[#495C29] rounded-full w-24 h-14 text-white transition-all duration-1000 ease-out delay-[500ms]", isLoaded ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10")}
-          >
-            <ArrowRight size={22} />
-          </button>
         </div>
       </section>
     </>
