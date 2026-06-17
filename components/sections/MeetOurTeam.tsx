@@ -75,7 +75,7 @@ function TeamCard({
         "transition-[transform,opacity] duration-1000 ease-out",
         isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0",
       )}
-      style={{ transitionDelay: isVisible ? `${delayBase + index * 150}ms` : "0ms" }}
+      style={{ transitionDelay: isVisible ? `${delayBase + index * 100}ms` : "0ms" }} // Dikurangi ke 100ms agar di mobile tidak terlalu lama menunggu kartu bawah muncul
     >
       <div className="relative w-full h-[420px] overflow-hidden">
         <Image
@@ -83,7 +83,7 @@ function TeamCard({
           alt={member.name}
           fill
           sizes="(max-width: 768px) 90vw, 340px"
-          {...(index === 0 ? { priority: true, loading: "eager" } : {})}
+          priority={index < 2} // Berikan priority untuk 2 foto pertama di mobile agar LCP bagus
           className="object-cover hover:scale-105 transition-transform duration-700"
         />
       </div>
@@ -103,6 +103,14 @@ export default function MeetOurTeam() {
   const hasAnimated = useRef(false);
 
   useEffect(() => {
+    // Jalankan pengecekan posisi scroll saat pertama kali render
+    // Jika posisi scroll berada di paling atas halaman, langsung aktifkan visibility
+    if (typeof window !== "undefined" && window.scrollY < 100) {
+      hasAnimated.current = true;
+      setIsVisible(true);
+      return;
+    }
+
     const observer = new IntersectionObserver(
       (entries) => {
         const [entry] = entries;
@@ -111,7 +119,12 @@ export default function MeetOurTeam() {
           setIsVisible(true);
         }
       },
-      { threshold: 0.15 },
+      { 
+        // Menggunakan rootMargin atau threshold yang sangat kecil (0.01) 
+        // sehingga jika ada 1% saja bagian komponen yang masuk layar, animasi langsung jalan
+        threshold: 0.01, 
+        rootMargin: "0px 0px -50px 0px"
+      },
     );
 
     if (sectionRef.current) {
@@ -166,7 +179,7 @@ export default function MeetOurTeam() {
             member={teamMembers[0]}
             index={0}
             isVisible={isVisible}
-            delayBase={400}
+            delayBase={200}
           />
         </div>
 
@@ -178,7 +191,7 @@ export default function MeetOurTeam() {
               member={member}
               index={index + 1}
               isVisible={isVisible}
-              delayBase={400}
+              delayBase={200}
             />
           ))}
         </div>
@@ -191,7 +204,7 @@ export default function MeetOurTeam() {
               member={member}
               index={index}
               isVisible={isVisible}
-              delayBase={400}
+              delayBase={100}
             />
           ))}
         </div>
