@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, useEffect, useCallback } from "react";
+import { useRef, useState, useEffect, useMemo } from "react";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { CalendarDays, Users, Heart, Trophy, X, ChevronLeft, ChevronRight } from "lucide-react";
@@ -15,149 +15,46 @@ interface AgendaItem {
   images: string[];
 }
 
-/* ================= LIGHTBOX ================= */
-
-function Lightbox({ images, initialIndex, onClose }: { images: string[]; initialIndex: number; onClose: () => void }) {
-  const [current, setCurrent] = useState(initialIndex);
-
-  const prev = useCallback(() => {
-    setCurrent((c) => (c - 1 + images.length) % images.length);
-  }, [images.length]);
-
-  const next = useCallback(() => {
-    setCurrent((c) => (c + 1) % images.length);
-  }, [images.length]);
-
-  // Keyboard navigation
-  useEffect(() => {
-    const handleKey = (e: KeyboardEvent) => {
-      if (e.key === "ArrowLeft") prev();
-      if (e.key === "ArrowRight") next();
-      if (e.key === "Escape") onClose();
-    };
-    window.addEventListener("keydown", handleKey);
-    return () => window.removeEventListener("keydown", handleKey);
-  }, [prev, next, onClose]);
-
-  // Prevent body scroll
-  useEffect(() => {
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, []);
-
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm" onClick={onClose}>
-      {/* Close button */}
-      <button onClick={onClose} className="fixed top-4 right-4 z-50 flex items-center justify-center w-12 h-12 rounded-full bg-white/20 hover:bg-white/30 text-white transition-colors">
-        <X size={24} />
-      </button>
-
-      {/* Counter */}
-      <div className="fixed top-4 left-1/2 -translate-x-1/2 z-50 text-white text-sm font-medium bg-black/40 px-4 py-2 rounded-full">
-        {current + 1} / {images.length}
-      </div>
-
-      {/* Prev */}
-      {images.length > 1 && (
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            prev();
-          }}
-          className="fixed left-4 z-50 flex items-center justify-center w-12 h-12 rounded-full bg-white/20 hover:bg-white/30 text-white transition-colors"
-        >
-          <ChevronLeft size={24} />
-        </button>
-      )}
-
-      {/* Image */}
-      <div className="relative z-10 w-screen h-screen overflow-auto flex items-center justify-center" onClick={(e) => e.stopPropagation()}>
-        <div className="relative w-full h-full max-w-4xl max-h-[90vh] flex items-center justify-center">
-          <Image key={current} src={images[current]} alt={`Preview ${current + 1}`} fill sizes="100vw" className="object-contain" priority />
-        </div>
-      </div>
-
-      {/* Next */}
-      {images.length > 1 && (
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            next();
-          }}
-          className="fixed right-4 z-50 flex items-center justify-center w-12 h-12 rounded-full bg-white/20 hover:bg-white/30 text-white transition-colors"
-        >
-          <ChevronRight size={24} />
-        </button>
-      )}
-
-      {/* Thumbnail strip */}
-      {images.length > 1 && (
-        <div className="fixed bottom-6 z-40 flex gap-2 max-w-[80vw] overflow-x-auto px-4">
-          {images.map((img, i) => (
-            <button
-              key={i}
-              onClick={(e) => {
-                e.stopPropagation();
-                setCurrent(i);
-              }}
-              className={cn("relative w-16 h-16 rounded-lg overflow-hidden shrink-0 transition-all duration-200", i === current ? "ring-2 ring-white scale-110" : "opacity-60 hover:opacity-90")}
-            >
-              <Image src={img} alt={`Thumb ${i + 1}`} fill sizes="64px" className="object-cover" />
-            </button>
-          ))}
-        </div>
-      )}
-    </div>
-  );
-}
-
 /* ================= GALLERY ================= */
 
-function Gallery({ images, onImageClick }: { images: string[]; onImageClick: (img: string) => void }) {
-  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
-
+function Gallery({ images, onImageClick }: { images: string[]; onImageClick: (img: string, index: number) => void }) {
   // Show max 5 thumbnails (1 main + 4 grid). The 4th grid slot shows "+N" if more exist.
   const mainImage = images[0];
   const gridImages = images.slice(1, 5);
   const extraCount = images.length - 5; // images beyond index 4
 
   return (
-    <>
-      <div className="flex flex-col gap-4 w-full lg:w-[60%]">
-        {/* Main image */}
-        <div className="relative rounded-2xl w-full h-[250px] md:h-[350px] overflow-hidden bg-zinc-100 cursor-pointer hover:shadow-lg transition-shadow" onClick={() => onImageClick(mainImage)}>
-          <Image key={mainImage} src={mainImage} alt="Gallery Main" fill sizes="(max-width: 768px) 100vw, 60vw" className="object-cover hover:scale-105 transition-transform duration-500" />
-        </div>
-
-        {/* Thumbnail grid */}
-        <div className="grid grid-cols-4 gap-2 md:gap-4">
-          {gridImages.map((img, index) => {
-            const isLastVisible = index === 3 && extraCount > 0;
-            return (
-              <div key={`grid-${index}`} className="relative rounded-xl aspect-[4/5] overflow-hidden bg-zinc-100 cursor-pointer hover:shadow-lg transition-shadow" onClick={() => onImageClick(img)}>
-                <Image src={img} alt={`Gallery Thumbnail ${index + 1}`} fill sizes="(max-width: 768px) 25vw, 15vw" className="object-cover hover:scale-110 transition-transform duration-500" />
-                {/* Overlay "+N" on last visible thumb if there are more photos */}
-                {isLastVisible && (
-                  <div
-                    className="absolute inset-0 flex items-center justify-center bg-black/50 rounded-xl cursor-pointer hover:bg-black/60 transition-colors"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setLightboxIndex(index + 1);
-                    }}
-                  >
-                    <span className="text-white font-bold text-xl">+{extraCount + 1}</span>
-                  </div>
-                )}
-              </div>
-            );
-          })}
-        </div>
+    <div className="flex flex-col gap-4 w-full lg:w-[60%]">
+      {/* Main image */}
+      <div className="relative rounded-2xl w-full h-[250px] md:h-[350px] overflow-hidden bg-zinc-100 cursor-pointer hover:shadow-lg transition-shadow" onClick={() => onImageClick(mainImage, 0)}>
+        <Image key={mainImage} src={mainImage} alt="Gallery Main" fill sizes="(max-width: 768px) 100vw, 60vw" className="object-cover hover:scale-105 transition-transform duration-500" />
       </div>
 
-      {lightboxIndex !== null && <Lightbox images={images} initialIndex={lightboxIndex} onClose={() => setLightboxIndex(null)} />}
-    </>
+      {/* Thumbnail grid */}
+      <div className="grid grid-cols-4 gap-2 md:gap-4">
+        {gridImages.map((img, index) => {
+          const isLastVisible = index === 3 && extraCount > 0;
+          const actualIndex = index + 1;
+          return (
+            <div key={`grid-${index}`} className="relative rounded-xl aspect-[4/5] overflow-hidden bg-zinc-100 cursor-pointer hover:shadow-lg transition-shadow" onClick={() => onImageClick(img, actualIndex)}>
+              <Image src={img} alt={`Gallery Thumbnail ${index + 1}`} fill sizes="(max-width: 768px) 25vw, 15vw" className="object-cover hover:scale-110 transition-transform duration-500" />
+              {/* Overlay "+N" on last visible thumb if there are more photos */}
+              {isLastVisible && (
+                <div
+                  className="absolute inset-0 flex items-center justify-center bg-black/50 rounded-xl cursor-pointer hover:bg-black/60 transition-colors"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onImageClick(images[5], 5);
+                  }}
+                >
+                  <span className="text-white font-bold text-xl">+{extraCount + 1}</span>
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </div>
   );
 }
 
@@ -172,6 +69,86 @@ export default function OurTeam() {
 
   const [activeAgenda, setActiveAgenda] = useState(0);
   const [selectedImg, setSelectedImg] = useState<string | null>(null);
+  const [selectedImgIndex, setSelectedImgIndex] = useState<number | null>(null);
+
+  const agendas: AgendaItem[] = useMemo(
+    () => [
+      {
+        icon: <CalendarDays size={18} className="text-zinc-500" />,
+        date: "30 Juli 2025",
+        title: "Business Trip Bali 🌴",
+        desc: "Perjalanan bisnis sekaligus eksplorasi keindahan Pulau Dewata bersama tim.",
+        images: [
+          "/outbond/BusinessTripBali/BusinessTripBali1.webp",
+          "/outbond/BusinessTripBali/BusinessTripBali2.webp",
+          "/outbond/BusinessTripBali/BusinessTripBali3.webp",
+          "/outbond/BusinessTripBali/BusinessTripBali4.webp",
+          "/outbond/BusinessTripBali/BusinessTripBali5.webp",
+        ],
+      },
+      {
+        icon: <Users size={18} className="text-[#495C29]" />,
+        date: "5 Juni 2026",
+        title: "Business Trip Banyuwangi 🌿",
+        desc: "Menjelajahi pesona Banyuwangi sambil mempererat hubungan tim.",
+        images: [
+          "/outbond/BusinessTripBanyuwangi/BusinessTripBanyuwangi1.webp",
+          "/outbond/BusinessTripBanyuwangi/BusinessTripBanyuwangi2.webp",
+          "/outbond/BusinessTripBanyuwangi/BusinessTripBanyuwangi3.webp",
+          "/outbond/BusinessTripBanyuwangi/BusinessTripBanyuwangi4.webp",
+          "/outbond/BusinessTripBanyuwangi/BusinessTripBanyuwangi5.webp",
+        ],
+      },
+      {
+        icon: <Heart size={18} className="text-[#495C29]" />,
+        date: "3 Mei 2026",
+        title: "Interactive Talkshow 🎤",
+        desc: "Sesi diskusi interaktif dan berbagi inspirasi bersama seluruh anggota tim.",
+        images: [
+          "/outbond/InteractiveTalkshow/InteractiveTalkshow1.webp",
+          "/outbond/InteractiveTalkshow/InteractiveTalkshow2.webp",
+          "/outbond/InteractiveTalkshow/InteractiveTalkshow3.webp",
+          "/outbond/InteractiveTalkshow/InteractiveTalkshow4.webp",
+          "/outbond/InteractiveTalkshow/InteractiveTalkshow5.webp",
+          "/outbond/InteractiveTalkshow/InteractiveTalkshow6.webp",
+        ],
+      },
+      {
+        icon: <Trophy size={18} className="text-[#495C29]" />,
+        date: "",
+        title: "Outing Day 🏕️",
+        desc: "Satu hari penuh keseruan dan petualangan bersama seluruh tim.",
+        images: [
+          "/outbond/OutingDay/OutingDay1.webp",
+          "/outbond/OutingDay/OutingDay2.webp",
+          "/outbond/OutingDay/OutingDay3.webp",
+          "/outbond/OutingDay/OutingDay4.webp",
+          "/outbond/OutingDay/OutingDay5.webp",
+          "/outbond/OutingDay/OutingDay6.webp",
+          "/outbond/OutingDay/OutingDay7.webp",
+        ],
+      },
+      {
+        icon: <CalendarDays size={18} className="text-zinc-500" />,
+        date: "",
+        title: "Work From Anywhere 💻",
+        desc: "Fleksibel bekerja dari mana saja sambil tetap produktif dan terhubung.",
+        images: [
+          "/outbond/WorkFromAnywhere/WorkFromAnywhere1.webp",
+          "/outbond/WorkFromAnywhere/WorkFromAnywhere2.webp",
+          "/outbond/WorkFromAnywhere/WorkFromAnywhere3.webp",
+          "/outbond/WorkFromAnywhere/WorkFromAnywhere4.webp",
+          "/outbond/WorkFromAnywhere/WorkFromAnywhere5.webp",
+          "/outbond/WorkFromAnywhere/WorkFromAnywhere6.webp",
+          "/outbond/WorkFromAnywhere/WorkFromAnywhere7.webp",
+          "/outbond/WorkFromAnywhere/WorkFromAnywhere8.webp",
+          "/outbond/WorkFromAnywhere/WorkFromAnywhere9.webp",
+          "/outbond/WorkFromAnywhere/WorkFromAnywhere10.webp",
+        ],
+      },
+    ],
+    [],
+  );
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -195,81 +172,38 @@ export default function OurTeam() {
     };
   }, []);
 
-  const agendas: AgendaItem[] = [
-    {
-      icon: <CalendarDays size={18} className="text-zinc-500" />,
-      date: "30 Juli 2025",
-      title: "Business Trip Bali 🌴",
-      desc: "Perjalanan bisnis sekaligus eksplorasi keindahan Pulau Dewata bersama tim.",
-      images: [
-        "/outbond/BusinessTripBali/BusinessTripBali1.webp",
-        "/outbond/BusinessTripBali/BusinessTripBali2.webp",
-        "/outbond/BusinessTripBali/BusinessTripBali3.webp",
-        "/outbond/BusinessTripBali/BusinessTripBali4.webp",
-        "/outbond/BusinessTripBali/BusinessTripBali5.webp",
-      ],
-    },
-    {
-      icon: <Users size={18} className="text-[#495C29]" />,
-      date: "5 Juni 2026",
-      title: "Business Trip Banyuwangi 🌿",
-      desc: "Menjelajahi pesona Banyuwangi sambil mempererat hubungan tim.",
-      images: [
-        "/outbond/BusinessTripBanyuwangi/BusinessTripBanyuwangi1.webp",
-        "/outbond/BusinessTripBanyuwangi/BusinessTripBanyuwangi2.webp",
-        "/outbond/BusinessTripBanyuwangi/BusinessTripBanyuwangi3.webp",
-        "/outbond/BusinessTripBanyuwangi/BusinessTripBanyuwangi4.webp",
-        "/outbond/BusinessTripBanyuwangi/BusinessTripBanyuwangi5.webp",
-      ],
-    },
-    {
-      icon: <Heart size={18} className="text-[#495C29]" />,
-      date: "3 Mei 2026",
-      title: "Interactive Talkshow 🎤",
-      desc: "Sesi diskusi interaktif dan berbagi inspirasi bersama seluruh anggota tim.",
-      images: [
-        "/outbond/InteractiveTalkshow/InteractiveTalkshow1.webp",
-        "/outbond/InteractiveTalkshow/InteractiveTalkshow2.webp",
-        "/outbond/InteractiveTalkshow/InteractiveTalkshow3.webp",
-        "/outbond/InteractiveTalkshow/InteractiveTalkshow4.webp",
-        "/outbond/InteractiveTalkshow/InteractiveTalkshow5.webp",
-        "/outbond/InteractiveTalkshow/InteractiveTalkshow6.webp",
-      ],
-    },
-    {
-      icon: <Trophy size={18} className="text-[#495C29]" />,
-      date: "",
-      title: "Outing Day 🏕️",
-      desc: "Satu hari penuh keseruan dan petualangan bersama seluruh tim.",
-      images: [
-        "/outbond/OutingDay/OutingDay1.webp",
-        "/outbond/OutingDay/OutingDay2.webp",
-        "/outbond/OutingDay/OutingDay3.webp",
-        "/outbond/OutingDay/OutingDay4.webp",
-        "/outbond/OutingDay/OutingDay5.webp",
-        "/outbond/OutingDay/OutingDay6.webp",
-        "/outbond/OutingDay/OutingDay7.webp",
-      ],
-    },
-    {
-      icon: <CalendarDays size={18} className="text-zinc-500" />,
-      date: "",
-      title: "Work From Anywhere 💻",
-      desc: "Fleksibel bekerja dari mana saja sambil tetap produktif dan terhubung.",
-      images: [
-        "/outbond/WorkFromAnywhere/WorkFromAnywhere1.webp",
-        "/outbond/WorkFromAnywhere/WorkFromAnywhere2.webp",
-        "/outbond/WorkFromAnywhere/WorkFromAnywhere3.webp",
-        "/outbond/WorkFromAnywhere/WorkFromAnywhere4.webp",
-        "/outbond/WorkFromAnywhere/WorkFromAnywhere5.webp",
-        "/outbond/WorkFromAnywhere/WorkFromAnywhere6.webp",
-        "/outbond/WorkFromAnywhere/WorkFromAnywhere7.webp",
-        "/outbond/WorkFromAnywhere/WorkFromAnywhere8.webp",
-        "/outbond/WorkFromAnywhere/WorkFromAnywhere9.webp",
-        "/outbond/WorkFromAnywhere/WorkFromAnywhere10.webp",
-      ],
-    },
-  ];
+  // Keyboard navigation and body scroll prevention for preview
+  useEffect(() => {
+    if (!selectedImg) return;
+
+    // Prevent body scroll
+    document.body.style.overflow = "hidden";
+
+    // Keyboard navigation
+    const handleKey = (e: KeyboardEvent) => {
+      if (selectedImgIndex === null) return;
+
+      if (e.key === "ArrowLeft") {
+        const newIndex = (selectedImgIndex - 1 + agendas[activeAgenda].images.length) % agendas[activeAgenda].images.length;
+        setSelectedImgIndex(newIndex);
+        setSelectedImg(agendas[activeAgenda].images[newIndex]);
+      } else if (e.key === "ArrowRight") {
+        const newIndex = (selectedImgIndex + 1) % agendas[activeAgenda].images.length;
+        setSelectedImgIndex(newIndex);
+        setSelectedImg(agendas[activeAgenda].images[newIndex]);
+      } else if (e.key === "Escape") {
+        setSelectedImg(null);
+        setSelectedImgIndex(null);
+      }
+    };
+
+    window.addEventListener("keydown", handleKey);
+
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", handleKey);
+    };
+  }, [selectedImg, selectedImgIndex, activeAgenda, agendas]);
 
   return (
     <section ref={sectionRef} className="flex flex-col items-center mx-auto px-4 md:px-8 py-16 md:py-24 w-full max-w-[1280px]">
@@ -277,10 +211,60 @@ export default function OurTeam() {
       {/* FULLSCREEN PREVIEW MODAL */}
       {/* ========================= */}
       {selectedImg && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 backdrop-blur-md p-4 transition-all duration-300" onClick={() => setSelectedImg(null)}>
-          <button className="fixed top-6 right-6 text-white hover:rotate-90 transition-transform duration-300 z-50 flex items-center justify-center w-12 h-12 rounded-full bg-white/20 hover:bg-white/30" onClick={() => setSelectedImg(null)}>
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 backdrop-blur-md p-4 transition-all duration-300"
+          onClick={() => {
+            setSelectedImg(null);
+            setSelectedImgIndex(null);
+          }}
+        >
+          <button
+            className="fixed top-6 right-6 text-white hover:rotate-90 transition-transform duration-300 z-50 flex items-center justify-center w-12 h-12 rounded-full bg-white/20 hover:bg-white/30"
+            onClick={() => {
+              setSelectedImg(null);
+              setSelectedImgIndex(null);
+            }}
+          >
             <X size={28} />
           </button>
+
+          {/* Navigation Prev */}
+          {selectedImgIndex !== null && agendas[activeAgenda].images.length > 1 && (
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                const newIndex = (selectedImgIndex - 1 + agendas[activeAgenda].images.length) % agendas[activeAgenda].images.length;
+                setSelectedImgIndex(newIndex);
+                setSelectedImg(agendas[activeAgenda].images[newIndex]);
+              }}
+              className="fixed left-4 z-50 flex items-center justify-center w-12 h-12 rounded-full bg-white/20 hover:bg-white/30 text-white transition-colors"
+            >
+              <ChevronLeft size={24} />
+            </button>
+          )}
+
+          {/* Counter */}
+          {selectedImgIndex !== null && agendas[activeAgenda].images.length > 1 && (
+            <div className="fixed top-6 left-1/2 -translate-x-1/2 z-50 text-white text-sm font-medium bg-black/40 px-4 py-2 rounded-full">
+              {selectedImgIndex + 1} / {agendas[activeAgenda].images.length}
+            </div>
+          )}
+
+          {/* Navigation Next */}
+          {selectedImgIndex !== null && agendas[activeAgenda].images.length > 1 && (
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                const newIndex = (selectedImgIndex + 1) % agendas[activeAgenda].images.length;
+                setSelectedImgIndex(newIndex);
+                setSelectedImg(agendas[activeAgenda].images[newIndex]);
+              }}
+              className="fixed right-4 z-50 flex items-center justify-center w-12 h-12 rounded-full bg-white/20 hover:bg-white/30 text-white transition-colors"
+            >
+              <ChevronRight size={24} />
+            </button>
+          )}
+
           <div className="relative w-full max-w-5xl h-[85vh]" onClick={(e) => e.stopPropagation()}>
             <Image src={selectedImg} alt="Preview" fill className="rounded-2xl shadow-2xl object-contain" priority sizes="90vw" />
           </div>
@@ -345,7 +329,14 @@ export default function OurTeam() {
           </div>
 
           {/* RIGHT COLUMN GALLERY */}
-          <Gallery key={activeAgenda} images={agendas[activeAgenda].images} onImageClick={setSelectedImg} />
+          <Gallery
+            key={activeAgenda}
+            images={agendas[activeAgenda].images}
+            onImageClick={(img, index) => {
+              setSelectedImg(img);
+              setSelectedImgIndex(index);
+            }}
+          />
         </div>
 
         {/* BOTTOM STATS */}
