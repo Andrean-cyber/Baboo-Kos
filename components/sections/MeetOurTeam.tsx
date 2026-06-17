@@ -8,52 +8,52 @@ const teamMembers = [
   {
     name: "Yucha Pratama",
     role: "Chief Executive Officer (CEO)",
-    img: "/team/yuca.jpg",
+    img: "/team/yuca.webp",
   },
   {
     name: "Afifa Nur Aulia Viranti",
     role: "Human Resources Development (HRD)",
-    img: "/team/afifa.jpg",
+    img: "/team/afifa.webp",
   },
   {
     name: "Pranayama Sukma Fritzie Wisnu",
     role: "Administrator (ADM)",
-    img: "/team/pran.jpg",
+    img: "/team/pran.webp",
   },
   {
     name: "Atikah Azra Wahdah",
     role: "Social Media Specialist (SMS)",
-    img: "/team/tika.jpg",
+    img: "/team/tika.webp",
   },
   {
     name: "Kisfa Azka Khalisha",
     role: "Content Manager (CM)",
-    img: "/team/lisa.jpg",
+    img: "/team/lisa.webp",
   },
   {
     name: "Meliani Ananda Ginting",
     role: "Head of Customer Service (HCS)",
-    img: "/team/meli.jpg",
+    img: "/team/meli.webp",
   },
   {
     name: "Muchammad Akmal Mustofa",
     role: "Head of Content Creator (HCC)",
-    img: "/team/akmal.jpg",
+    img: "/team/akmal.webp",
   },
   {
     name: "Dominikus Ivan Ardianto",
     role: "Content Creative (CCR)",
-    img: "/team/ivan.jpg",
+    img: "/team/ivan.webp",
   },
   {
     name: "Difa Aisyah Putri",
     role: "Marketing Executive (ME)",
-    img: "/team/diva.jpg",
+    img: "/team/diva.webp",
   },
   {
     name: "Andrean Yogha Saputra",
     role: "Web Developer / Digital Support (IT)",
-    img: "/team/andre.jpg",
+    img: "/team/andre.webp",
   },
 ];
 
