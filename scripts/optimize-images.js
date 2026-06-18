@@ -1,7 +1,13 @@
 const fs = require("fs").promises;
 const path = require("path");
 const sharp = require("sharp");
-const pLimit = require("p-limit").default;
+
+// kompatibel semua versi p-limit
+const pLimitModule = require("p-limit");
+const pLimit =
+  typeof pLimitModule === "function"
+    ? pLimitModule
+    : pLimitModule.default;
 
 const TARGET_DIRS = [
   "public/team",
@@ -12,14 +18,14 @@ const TARGET_DIRS = [
 ];
 
 const SIZES = [
-  400,  // thumbnail
-  600,  // team card
-  1200, // gallery
-  1600, // fullscreen modal
+  400,   // thumbnail
+  600,   // card
+  1200,  // gallery / hero
+  1600,  // fullscreen
 ];
 
-const WEBP_QUALITY = 75;
-const AVIF_QUALITY = 55;
+const WEBP_QUALITY = 80;
+const AVIF_QUALITY = 60;
 
 const CONCURRENCY = 4;
 
@@ -48,7 +54,9 @@ function isImage(file) {
 }
 
 function isGeneratedVariant(file) {
-  return /-w\d+\.(webp|avif)$/i.test(path.basename(file));
+  return /-w\d+\.(webp|avif)$/i.test(
+    path.basename(file)
+  );
 }
 
 async function fileExists(file) {
@@ -60,7 +68,12 @@ async function fileExists(file) {
   }
 }
 
-async function generateVariant(image, outputPath, width, format) {
+async function generateVariant(
+  image,
+  outputPath,
+  width,
+  format
+) {
   const quality =
     format === "avif"
       ? AVIF_QUALITY
@@ -71,7 +84,9 @@ async function generateVariant(image, outputPath, width, format) {
     .resize({
       width,
       fit: "inside",
-      withoutEnlargement: true,
+      // penting:
+      // jangan pakai withoutEnlargement
+      // agar file 1200 & 1600 tetap dibuat
     })
     .toFormat(format, { quality })
     .toFile(outputPath);
@@ -92,15 +107,14 @@ async function processFile(file) {
     const metadata = await image.metadata();
 
     if (!metadata.width) {
-      console.warn("Skip (unknown width):", file);
+      console.warn(
+        "Skip (cannot read width):",
+        file
+      );
       return;
     }
 
     for (const width of SIZES) {
-      if (metadata.width < width) {
-        continue;
-      }
-
       const webpOutput = path.join(
         parsed.dir,
         `${parsed.name}-w${width}.webp`
@@ -132,7 +146,7 @@ async function processFile(file) {
   } catch (error) {
     console.error(
       `✗ Error processing ${file}`,
-      error.message
+      error
     );
   }
 }
@@ -150,7 +164,9 @@ async function main() {
         continue;
       }
     } catch {
-      console.warn(`Skip (not found): ${dir}`);
+      console.warn(
+        `Skip (directory not found): ${dir}`
+      );
       continue;
     }
 

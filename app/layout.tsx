@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import "./globals.css";
 import Navbar from "@/components/sections/Navbar";
 import ScrollToTop from "@/components/sections/ScrollToTop";
@@ -7,14 +8,15 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://babookos.com"),
 
   title: {
-    default: "BabooKos - Cari Kos Tanpa Ribet",
-    template: "%s | BabooKos",
+    default: "Baboo Kos - Cari Kos Tanpa Ribet",
+    template: "%s | Baboo Kos",
   },
 
   description:
-    "BabooKos adalah platform pencarian kos yang menghadirkan pilihan hunian terbaik dengan lokasi strategis, harga transparan, dan proses pencarian yang mudah.",
+    "Baboo Kos adalah platform pencarian kos yang menghadirkan pilihan hunian terbaik dengan lokasi strategis, harga transparan, dan proses pencarian yang mudah.",
 
   keywords: [
+    "Baboo Kos",
     "BabooKos",
     "Kos",
     "Cari Kos",
@@ -27,17 +29,17 @@ export const metadata: Metadata = {
     "Tempat Tinggal",
   ],
 
-  applicationName: "BabooKos",
+  applicationName: "Baboo Kos",
 
   authors: [
     {
-      name: "BabooKos",
+      name: "Baboo Kos",
       url: "https://babookos.com",
     },
   ],
 
-  creator: "BabooKos",
-  publisher: "BabooKos",
+  creator: "Baboo Kos",
+  publisher: "Baboo Kos",
 
   robots: {
     index: true,
@@ -56,11 +58,11 @@ export const metadata: Metadata = {
   },
 
   openGraph: {
-    title: "BabooKos - Cari Kos Tanpa Ribet",
+    title: "Baboo Kos - Cari Kos Tanpa Ribet",
     description:
-      "Temukan kos terbaik dengan lokasi strategis, harga transparan, dan proses pencarian yang mudah bersama BabooKos.",
+      "Temukan kos terbaik dengan lokasi strategis, harga transparan, dan proses pencarian yang mudah bersama Baboo Kos.",
     url: "https://babookos.com",
-    siteName: "BabooKos",
+    siteName: "Baboo Kos",
     locale: "id_ID",
     type: "website",
     images: [
@@ -68,17 +70,17 @@ export const metadata: Metadata = {
         url: "/og-image.webp",
         width: 1200,
         height: 630,
-        alt: "BabooKos",
+        alt: "Baboo Kos",
       },
     ],
   },
 
   twitter: {
     card: "summary_large_image",
-    title: "BabooKos - Cari Kos Tanpa Ribet",
+    title: "Baboo Kos - Cari Kos Tanpa Ribet",
     description:
-      "Temukan kos terbaik dengan lokasi strategis, harga transparan, dan proses pencarian yang mudah bersama BabooKos.",
-    images: ["/og-image.png"],
+      "Temukan kos terbaik dengan lokasi strategis, harga transparan, dan proses pencarian yang mudah bersama Baboo Kos.",
+    images: ["/og-image.webp"],
   },
 
   icons: {
@@ -96,12 +98,55 @@ export default function RootLayout({
   return (
     <html
       lang="id"
-      data-scroll-behavior="smooth"
-      suppressHydrationWarning
       className="light"
+      suppressHydrationWarning
+      data-scroll-behavior="smooth"
       style={{ colorScheme: "light" }}
     >
       <body className="bg-[#F5F5F2] overflow-x-hidden font-sans text-zinc-900 antialiased">
+
+        {/* Organization Schema */}
+        <Script
+          id="organization-schema"
+          type="application/ld+json"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: "Baboo Kos",
+              alternateName: "BabooKos",
+              url: "https://babookos.com",
+              logo: "https://babookos.com/icon.png",
+              sameAs: [
+                "https://www.tiktok.com/@baboo_kos"
+              ]
+            }),
+          }}
+        />
+
+        {/* Website Schema */}
+        <Script
+          id="website-schema"
+          type="application/ld+json"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              name: "Baboo Kos",
+              alternateName: "BabooKos",
+              url: "https://babookos.com",
+              potentialAction: {
+                "@type": "SearchAction",
+                target:
+                  "https://babookos.com/?q={search_term_string}",
+                "query-input": "required name=search_term_string",
+              },
+            }),
+          }}
+        />
+
         <Navbar />
         {children}
         <ScrollToTop />
