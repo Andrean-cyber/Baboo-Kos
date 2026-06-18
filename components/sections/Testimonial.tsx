@@ -227,33 +227,23 @@ export default function Testimonial() {
       </div>
       {/* ================= PREVIEW MODAL ================= */}
       {previewImage && (
-        <div
-          onClick={() => setPreviewImage(null)}
-          className="fixed inset-0 z-[200] flex items-center justify-center bg-black/70 backdrop-blur-md p-4"
-        >
-          <div
-            onClick={(e) => e.stopPropagation()}
-            className="relative w-full max-w-5xl max-h-[90vh] flex items-center justify-center"
-          >
-            <Image
-              src={getOptimizedImage(previewImage, "fullscreen")}
-              alt="Preview"
-              fill
-              sizes="90vw"
-              quality={80}
-              className="object-contain"
-            />
-
-            {/* CLOSE BUTTON */}
-            <button
-              onClick={() => setPreviewImage(null)}
-              className="absolute top-3 right-3 bg-white/80 backdrop-blur rounded-full w-10 h-10 flex items-center justify-center text-black font-bold shadow-md"
-            >
-              ✕
-            </button>
-          </div>
-        </div>
-      )}
+              <div onClick={() => setPreviewImage(null)} className="fixed inset-0 z-[200] flex items-center justify-center bg-black/70 backdrop-blur-md p-4">
+                <div onClick={(e) => e.stopPropagation()} className="relative w-full max-w-5xl h-[80vh] flex items-center justify-center">
+                  <Image
+                    src={getOptimizedImage(
+                      previewImage,
+                      "fullscreen"
+                    )}
+                    alt="Preview"
+                    fill
+                    sizes="90vw"
+                    quality={80}
+                    className="object-contain"
+                  />
+                  <button onClick={() => setPreviewImage(null)} className="absolute top-3 right-3 bg-white/80 backdrop-blur rounded-full w-10 h-10 flex items-center justify-center text-black font-bold shadow-md z-10">✕</button>
+                </div>
+              </div>
+            )}
     </section>
   );
 }
