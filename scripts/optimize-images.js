@@ -1,74 +1,174 @@
 const fs = require("fs").promises;
 const path = require("path");
 const sharp = require("sharp");
+const pLimit = require("p-limit").default;
 
-// Folders to process relative to project root
-const TARGET_DIRS = ["public/team", "public/outbond", "public/sosmed"];
+const TARGET_DIRS = [
+  "public/team",
+  "public/outbond",
+  "public/sosmed",
+  "public/testimoni",
+  "public/villa",
+];
 
-// Sizes to generate (width in px)
-const SIZES = [400, 800, 1200];
+const SIZES = [
+  400,  // thumbnail
+  600,  // team card
+  1200, // gallery
+  1600, // fullscreen modal
+];
+
+const WEBP_QUALITY = 75;
+const AVIF_QUALITY = 55;
+
+const CONCURRENCY = 4;
 
 async function walk(dir) {
-  const entries = await fs.readdir(dir, { withFileTypes: true });
+  const entries = await fs.readdir(dir, {
+    withFileTypes: true,
+  });
+
   const files = [];
+
   for (const entry of entries) {
-    const res = path.resolve(dir, entry.name);
-    if (entry.isDirectory()) files.push(...(await walk(res)));
-    else files.push(res);
+    const fullPath = path.join(dir, entry.name);
+
+    if (entry.isDirectory()) {
+      files.push(...(await walk(fullPath)));
+    } else {
+      files.push(fullPath);
+    }
   }
+
   return files;
 }
 
 function isImage(file) {
-  return /\.(jpe?g|png|webp|avif|gif)$/i.test(file);
+  return /\.(jpg|jpeg|png|webp|avif)$/i.test(file);
+}
+
+function isGeneratedVariant(file) {
+  return /-w\d+\.(webp|avif)$/i.test(path.basename(file));
+}
+
+async function fileExists(file) {
+  try {
+    await fs.access(file);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+async function generateVariant(image, outputPath, width, format) {
+  const quality =
+    format === "avif"
+      ? AVIF_QUALITY
+      : WEBP_QUALITY;
+
+  await image
+    .clone()
+    .resize({
+      width,
+      fit: "inside",
+      withoutEnlargement: true,
+    })
+    .toFormat(format, { quality })
+    .toFile(outputPath);
+
+  console.log("✓", outputPath);
 }
 
 async function processFile(file) {
   try {
     if (!isImage(file)) return;
-    const parsed = path.parse(file);
-    // Skip already-processed variants
-    if (/-(w|w)\d+\.(jpe?g|png|webp|avif)$/i.test(parsed.base)) return;
 
-    const pipeline = sharp(file).rotate();
-    for (const w of SIZES) {
-      const outName = path.join(parsed.dir, `${parsed.name}-w${w}.webp`);
-      // If exists, skip
-      try {
-        await fs.access(outName);
-        console.log("Skip (exists):", outName);
+    if (isGeneratedVariant(file)) return;
+
+    const parsed = path.parse(file);
+
+    const image = sharp(file).rotate();
+
+    const metadata = await image.metadata();
+
+    if (!metadata.width) {
+      console.warn("Skip (unknown width):", file);
+      return;
+    }
+
+    for (const width of SIZES) {
+      if (metadata.width < width) {
         continue;
-      } catch (e) {
-        // not exists, proceed
       }
 
-      await pipeline.resize({ width: w }).toFormat("webp", { quality: 78 }).toFile(outName);
-      console.log("Wrote:", outName);
+      const webpOutput = path.join(
+        parsed.dir,
+        `${parsed.name}-w${width}.webp`
+      );
+
+      const avifOutput = path.join(
+        parsed.dir,
+        `${parsed.name}-w${width}.avif`
+      );
+
+      if (!(await fileExists(webpOutput))) {
+        await generateVariant(
+          image,
+          webpOutput,
+          width,
+          "webp"
+        );
+      }
+
+      if (!(await fileExists(avifOutput))) {
+        await generateVariant(
+          image,
+          avifOutput,
+          width,
+          "avif"
+        );
+      }
     }
-  } catch (err) {
-    console.error("Error processing", file, err.message);
+  } catch (error) {
+    console.error(
+      `✗ Error processing ${file}`,
+      error.message
+    );
   }
 }
 
 async function main() {
+  const limit = pLimit(CONCURRENCY);
+
   for (const dir of TARGET_DIRS) {
-    const abs = path.resolve(dir);
+    const absPath = path.resolve(dir);
+
     try {
-      const stats = await fs.stat(abs);
-      if (!stats.isDirectory()) continue;
-    } catch (e) {
-      console.warn("Skipping (not found):", dir);
+      const stat = await fs.stat(absPath);
+
+      if (!stat.isDirectory()) {
+        continue;
+      }
+    } catch {
+      console.warn(`Skip (not found): ${dir}`);
       continue;
     }
 
-    const files = await walk(abs);
-    for (const f of files) {
-      await processFile(f);
-    }
+    console.log(`\nProcessing: ${dir}`);
+
+    const files = await walk(absPath);
+
+    await Promise.all(
+      files.map((file) =>
+        limit(() => processFile(file))
+      )
+    );
   }
+
+  console.log("\nDone.");
 }
 
-main().catch((e) => {
-  console.error(e);
+main().catch((err) => {
+  console.error(err);
   process.exit(1);
 });

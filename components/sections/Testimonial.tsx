@@ -4,6 +4,7 @@ import { useRef, useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
+import { getOptimizedImage, getImageSizes } from "@/lib/imageUtils";
 
 export default function Testimonial() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -175,13 +176,13 @@ export default function Testimonial() {
                 )}
               >
                 <Image
-                  src={item.img}
+                  src={getOptimizedImage(item.img, "thumbnail")}
                   alt={`Testimoni ${index + 1}`}
                   fill
                   // Tambahkan priority hanya pada gambar yang benar-benar ada di posisi pertama
                   // Dan hapus loading="eager" secara manual, karena priority sudah otomatis menjadikannya eager
                   priority={index === 9} // Karena Anda memulai dengan activeIndex 9, prioritaskan gambar ini
-                  sizes="(max-width: 768px) 250px, 300px"
+                  sizes={getImageSizes("thumbnail")}
                   className="object-cover"
                 />
               </div>
@@ -235,9 +236,11 @@ export default function Testimonial() {
             className="relative w-full max-w-5xl max-h-[90vh] flex items-center justify-center"
           >
             <Image
-              src={previewImage}
+              src={getOptimizedImage(previewImage, "fullscreen")}
               alt="Preview"
               fill
+              sizes="90vw"
+              quality={80}
               className="object-contain"
             />
 

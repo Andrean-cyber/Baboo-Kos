@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { Home, Briefcase, Users, ArrowRight, ThumbsUp, MessageSquare, Repeat2, Send } from "lucide-react";
 import { FaLinkedin } from "react-icons/fa";
+import { getOptimizedImage, getImageSizes } from "@/lib/imageUtils";
 
 // =======================
 // DATA STATIC (MOCKUP)
@@ -183,10 +184,10 @@ export default function FollowOurJourney() {
                 {/* Thumbnail */}
                 <div className="relative bg-zinc-100 rounded-xl w-full aspect-[4/3] overflow-hidden">
                   <Image
-                    src={post.img}
+                    src={getOptimizedImage(post.img, "thumbnail")}
                     alt={post.caption}
                     fill
-                    sizes="(max-width: 768px) 50vw, 25vw"
+                    sizes={getImageSizes("thumbnail")}
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>

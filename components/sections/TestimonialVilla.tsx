@@ -4,6 +4,7 @@ import { useRef, useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
+import { getOptimizedImage, getImageSizes } from "@/lib/imageUtils";
 
 export default function Testimonial() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -17,9 +18,9 @@ export default function Testimonial() {
   const [activeIndex, setActiveIndex] = useState(5);
   const [previewImage, setPreviewImage] = useState<string | null>(null);
 
-  const properties = Array.from({ length: 10 }).map((_, i) => ({
-    img: `/testimoni/villa/BV - Testimoni - Testimoni - ${i + 1}.webp`,
-  }));
+const properties = Array.from({ length: 10 }).map((_, i) => ({
+  img: `/testimoni/villa/BV - Testimoni - Testimoni - ${i + 1}.webp`,
+}));
 
   /* ================= CENTER HELPER ================= */
   const centerCard = (index: number, smooth = true) => {
@@ -90,7 +91,9 @@ export default function Testimonial() {
       }
     });
 
-    setActiveIndex(closest);
+    if (closest !== activeIndex) {
+        setActiveIndex(closest);
+      }
   };
 
   /* ================= ARROWS ================= */
@@ -172,12 +175,12 @@ export default function Testimonial() {
                 )}
               >
                 <Image
-                  src={item.img}
+                  src={getOptimizedImage(item.img, "thumbnail")}
                   alt={`Testimoni Villa ${index + 1}`}
                   fill
-                  sizes="(max-width: 768px) 250px, 300px"
+                  sizes={getImageSizes("thumbnail")}
                   className="object-cover"
-                  priority={index === 0 || index === 8} // Prioritaskan gambar awal
+                  priority={index === activeIndex} // Prioritaskan gambar awal
                 />
               </div>
             );
@@ -200,7 +203,17 @@ export default function Testimonial() {
       {previewImage && (
         <div onClick={() => setPreviewImage(null)} className="fixed inset-0 z-[200] flex items-center justify-center bg-black/70 backdrop-blur-md p-4">
           <div onClick={(e) => e.stopPropagation()} className="relative w-full max-w-5xl h-[80vh] flex items-center justify-center">
-            <Image src={previewImage} alt="Preview" fill className="object-contain" />
+            <Image
+              src={getOptimizedImage(
+                previewImage,
+                "fullscreen"
+              )}
+              alt="Preview"
+              fill
+              sizes="90vw"
+              quality={80}
+              className="object-contain"
+            />
             <button onClick={() => setPreviewImage(null)} className="absolute top-3 right-3 bg-white/80 backdrop-blur rounded-full w-10 h-10 flex items-center justify-center text-black font-bold shadow-md z-10">✕</button>
           </div>
         </div>

@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { Heart, Play, CheckCircle, ArrowRight, Home, Copy, Clapperboard } from "lucide-react";
 import { FaInstagram, FaTiktok } from "react-icons/fa";
+import { getOptimizedImage, getImageSizes } from "@/lib/imageUtils";
 
 // =======================
 // DATA STATIC (MOCKUP)
@@ -218,7 +219,7 @@ export default function FollowOurJourney() {
             {igFeeds.map((feed) => (
               <div key={feed.id} className="group flex flex-col cursor-pointer">
                 <div className="relative bg-zinc-100 rounded-xl w-full aspect-[3/4] overflow-hidden">
-                  <Image src={feed.img} alt={feed.title} fill sizes="(max-width: 768px) priority={index === 0} 33vw, 20vw" className="object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <Image src={getOptimizedImage(feed.img, "thumbnail")} alt={feed.title} fill sizes={getImageSizes("thumbnail")} className="object-cover group-hover:scale-105 transition-transform duration-500" />
 
                   <div className="top-2 right-2 absolute drop-shadow-md text-white">{feed.type === "reels" ? <Clapperboard size={16} fill="white" /> : <Copy size={16} fill="white" />}</div>
                 </div>
@@ -294,7 +295,7 @@ export default function FollowOurJourney() {
             {tkFeeds.map((feed) => (
               <div key={feed.id} className="group flex flex-col cursor-pointer">
                 <div className="relative bg-zinc-100 rounded-xl w-full aspect-[3/4] overflow-hidden">
-                  <Image src={feed.img} alt={feed.title} fill sizes="(max-width: 768px) 33vw, 20vw" className="object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <Image src={getOptimizedImage(feed.img, "thumbnail")} alt={feed.title} fill sizes={getImageSizes("thumbnail")} className="object-cover group-hover:scale-105 transition-transform duration-500" />
 
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
 

@@ -2,6 +2,7 @@
 
 import { useRef, useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
+import { getOptimizedImage, getImageSizes } from "@/lib/imageUtils";
 import Image from "next/image";
 import { 
   Maximize, Bed, Bath, ChefHat, CheckCircle2, X, ChevronLeft, ChevronRight, MapPin, Info,
@@ -172,11 +173,14 @@ export default function VillaDetail() {
             <X size={40} />
           </button>
           <div className="relative w-full max-w-4xl h-[85vh]">
-            <Image 
-              src={selectedImg} 
-              alt="Zoomed Villa" 
+            <Image
+              src={getOptimizedImage(currentVilla.img, "gallery")}
+              alt={currentVilla.name}
               fill
-              className="rounded-2xl shadow-2xl object-contain animate-in zoom-in-95 duration-300"
+              priority
+              sizes={getImageSizes("gallery")}
+              quality={75}
+              className="object-cover hover:scale-105 transition-transform duration-700"
             />
           </div>
         </div>
@@ -221,7 +225,7 @@ export default function VillaDetail() {
           {/* Main Image */}
           <div className="relative max-w-5xl w-full h-[80vh]" onClick={(e) => e.stopPropagation()}>
             <Image 
-              src={currentVilla.gallery[currentGalleryIndex]} 
+              src={getOptimizedImage(currentVilla.gallery[currentGalleryIndex], "gallery")} 
               alt={`Gallery ${currentGalleryIndex + 1}`}
               fill
               className="rounded-2xl shadow-2xl object-contain"
@@ -239,7 +243,7 @@ export default function VillaDetail() {
                   currentGalleryIndex === i ? "ring-2 ring-white scale-110" : "opacity-50 hover:opacity-100"
                 )}
               >
-                <Image src={img} alt={`Thumb ${i + 1}`} fill className="object-cover" />
+                <Image src={getOptimizedImage(img, "thumbnail")} alt={`Thumb ${i + 1}`} fill className="object-cover" />
               </button>
             ))}
           </div>
@@ -276,11 +280,11 @@ export default function VillaDetail() {
     onClick={() => setSelectedImg(currentVilla.img)}
           >
             <Image 
-              src={currentVilla.img} 
+              src={getOptimizedImage(currentVilla.img, "gallery")} 
               alt={currentVilla.name} 
               fill
               priority
-              sizes="(max-width: 768px) 100vw, 500px"
+              sizes={getImageSizes("gallery")}
               className="object-cover hover:scale-105 transition-transform duration-700" 
             />
             <div className="bottom-0 absolute inset-x-0 bg-gradient-to-t from-[#495C29]/80 to-transparent opacity-80 h-32 pointer-events-none" />
@@ -295,10 +299,10 @@ export default function VillaDetail() {
                 onClick={() => setSelectedImg(img)}
               >
                 <Image
-                  src={img}
+                  src={getOptimizedImage(img, "thumbnail")}
                   alt={`${currentVilla.name} Gallery ${i + 1}`}
                   fill
-                  sizes="(max-width: 768px) 33vw, 150px"
+                  sizes={getImageSizes("thumbnail")}
                   className="object-cover group-hover:scale-110 transition-transform duration-500"
                 />
               </div>
