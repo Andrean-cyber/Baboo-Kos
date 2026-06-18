@@ -4,6 +4,7 @@ import { useRef, useState, useEffect, useMemo } from "react";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { CalendarDays, Users, Heart, Trophy, X, ChevronLeft, ChevronRight } from "lucide-react";
+import { getOptimizedImage, getImageSizes } from "@/lib/imageUtils";
 
 /* ================= TYPES ================= */
 
@@ -27,7 +28,7 @@ function Gallery({ images, onImageClick }: { images: string[]; onImageClick: (im
     <div className="flex flex-col gap-4 w-full lg:w-[60%]">
       {/* Main image */}
       <div className="relative rounded-2xl w-full h-[250px] md:h-[350px] overflow-hidden bg-zinc-100 cursor-pointer hover:shadow-lg transition-shadow" onClick={() => onImageClick(mainImage, 0)}>
-        <Image key={mainImage} src={mainImage} alt="Gallery Main" fill sizes="(max-width: 768px) 100vw, 60vw" className="object-cover hover:scale-105 transition-transform duration-500" />
+        <Image key={mainImage} src={getOptimizedImage(mainImage, "gallery")} alt="Gallery Main" fill sizes={getImageSizes("gallery")} loading="lazy" className="object-cover hover:scale-105 transition-transform duration-500" />
       </div>
 
       {/* Thumbnail grid */}
@@ -37,7 +38,7 @@ function Gallery({ images, onImageClick }: { images: string[]; onImageClick: (im
           const actualIndex = index + 1;
           return (
             <div key={`grid-${index}`} className="relative rounded-xl aspect-[4/5] overflow-hidden bg-zinc-100 cursor-pointer hover:shadow-lg transition-shadow" onClick={() => onImageClick(img, actualIndex)}>
-              <Image src={img} alt={`Gallery Thumbnail ${index + 1}`} fill sizes="(max-width: 768px) 25vw, 15vw" className="object-cover hover:scale-110 transition-transform duration-500" />
+              <Image src={getOptimizedImage(img, "thumbnail")} alt={`Gallery Thumbnail ${index + 1}`} fill sizes={getImageSizes("thumbnail")} loading="lazy" className="object-cover hover:scale-110 transition-transform duration-500" />
               {/* Overlay "+N" on last visible thumb if there are more photos */}
               {isLastVisible && (
                 <div

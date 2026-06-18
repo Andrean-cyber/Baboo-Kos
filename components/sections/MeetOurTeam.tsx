@@ -3,6 +3,7 @@
 import { useRef, useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
+import { getOptimizedImage, getImageSizes } from "@/lib/imageUtils";
 
 const teamMembers = [
   {
@@ -70,7 +71,15 @@ function TeamCard({ member, index, isVisible, delayBase = 0 }: { member: (typeof
       style={{ transitionDelay: isVisible ? `${delayBase + index * 100}ms` : "0ms" }}
     >
       <div className="relative w-full h-[420px] overflow-hidden">
-        <Image src={member.img} alt={member.name} fill sizes="(max-width: 768px) 90vw, 340px" priority={index < 2} className="object-cover hover:scale-105 transition-transform duration-700" />
+        <Image
+          src={getOptimizedImage(member.img, "card")}
+          alt={member.name}
+          fill
+          sizes={getImageSizes("card")}
+          priority={index === 0}
+          loading={index === 0 ? "eager" : "lazy"}
+          className="object-cover hover:scale-105 transition-transform duration-700"
+        />
       </div>
       <div className="flex flex-col flex-1 justify-between items-center bg-[#FDFDFD] p-6 text-center">
         <div>
