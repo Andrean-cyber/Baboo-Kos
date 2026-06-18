@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, useEffect } from "react";
+import { memo, useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { getOptimizedImage, getImageSizes } from "@/lib/imageUtils";
@@ -60,7 +60,17 @@ const teamMembers = [
 
 /* ================= TEAM CARD ================= */
 
-function TeamCard({ member, index, isVisible, delayBase = 0 }: { member: (typeof teamMembers)[0]; index: number; isVisible: boolean; delayBase?: number }) {
+const TeamCard = memo(function TeamCard({
+  member,
+  index,
+  isVisible,
+  delayBase = 0,
+}: {
+  member: (typeof teamMembers)[0];
+  index: number;
+  isVisible: boolean;
+  delayBase?: number;
+}) {
   return (
     <div
       className={cn(
@@ -77,8 +87,9 @@ function TeamCard({ member, index, isVisible, delayBase = 0 }: { member: (typeof
           fill
           sizes={getImageSizes("card")}
           priority={index === 0}
+          fetchPriority={index === 0 ? "high" : "low"}
           loading={index === 0 ? "eager" : "lazy"}
-          className="object-cover hover:scale-105 transition-transform duration-700"
+          className="object-cover md:hover:scale-105 transition-transform duration-700"
         />
       </div>
       <div className="flex flex-col flex-1 justify-between items-center bg-[#FDFDFD] p-6 text-center">
@@ -89,18 +100,17 @@ function TeamCard({ member, index, isVisible, delayBase = 0 }: { member: (typeof
       </div>
     </div>
   );
-}
+});
 
 /* ================= MAIN COMPONENT ================= */
 
 export default function MeetOurTeam() {
   const sectionRef = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
-  const hasAnimated = useRef(false);
+ 
 
   useEffect(() => {
     if (typeof window !== "undefined" && window.scrollY < 100) {
-      hasAnimated.current = true;
       setIsVisible(true);
       return;
     }
@@ -108,9 +118,9 @@ export default function MeetOurTeam() {
     const observer = new IntersectionObserver(
       (entries) => {
         const [entry] = entries;
-        if (entry.isIntersecting && !hasAnimated.current) {
-          hasAnimated.current = true;
-          setIsVisible(true);
+        if (entry.isIntersecting) {
+            setIsVisible(true);
+            observer.disconnect();
         }
       },
       { threshold: 0.01, rootMargin: "0px 0px -50px 0px" },
@@ -143,14 +153,26 @@ export default function MeetOurTeam() {
         </div>
 
         {/* DESKTOP: Anggota lainnya */}
-        <div className="hidden md:flex flex-wrap justify-center gap-6 md:gap-8 w-full">
-          {teamMembers.slice(1).map((member, index) => (
+        <div
+          className="hidden md:flex flex-wrap justify-center gap-6 md:gap-8 w-full"
+          style={{
+            contentVisibility: "auto",
+            containIntrinsicSize: "2000px",
+          }}
+        > 
+        {teamMembers.slice(1).map((member, index) => (
             <TeamCard key={index + 1} member={member} index={index + 1} isVisible={isVisible} delayBase={200} />
           ))}
         </div>
 
         {/* MOBILE: Semua anggota */}
-        <div className="flex flex-wrap md:hidden justify-center gap-6 w-full">
+        <div
+            className="flex flex-wrap md:hidden justify-center gap-6 w-full"
+            style={{
+              contentVisibility: "auto",
+              containIntrinsicSize: "2000px",
+            }}
+          >
           {teamMembers.map((member, index) => (
             <TeamCard key={index} member={member} index={index} isVisible={isVisible} delayBase={100} />
           ))}

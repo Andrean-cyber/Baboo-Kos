@@ -204,7 +204,7 @@ export default function Career() {
 
             <div className="group relative shadow-sm rounded-[2rem] h-[220px] overflow-hidden">
               <Image 
-                src="/outbond/BusinessTripBali/BusinessTripBali2.JPG" 
+                src="/outbond/BusinessTripBali/BusinessTripBali2.webp" 
                 alt="Work Culture" 
                 fill 
                 sizes="(max-width: 768px) 100vw, 50vw"

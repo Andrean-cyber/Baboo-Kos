@@ -12,21 +12,21 @@ import { FaInstagram, FaTiktok } from "react-icons/fa";
 const igFeeds = [
   {
     id: 1,
-    img: "/sosmed/baboovilla/igthumb1.png",
+    img: "/sosmed/baboovilla/igthumb1.webp",
     title: "BABOO VILLA by Baboo Kos",
     time: "1 Years ago",
     type: "carousel",
   },
   {
     id: 2,
-    img: "/sosmed/baboovilla/igthumb2.png",
+    img: "/sosmed/baboovilla/igthumb2.webp",
     title: "BABOO VILLA by Baboo Kos",
     time: "2 Years ago",
     type: "reels",
   },
   {
     id: 3,
-    img: "/sosmed/baboovilla/igthumb3.png",
+    img: "/sosmed/baboovilla/igthumb3.webp",
     title: "Staycation ✨",
     time: "1 Month ago",
     type: "carousel",
@@ -36,21 +36,21 @@ const igFeeds = [
 const tkFeeds = [
   {
     id: 1,
-    img: "/sosmed/baboovilla/ttthumb1.png",
+    img: "/sosmed/baboovilla/ttthumb1.webp",
     title: "Review villa 400k masih tipu!?",
     time: "1 Years ago",
     views: "739.3 rb",
   },
   {
     id: 2,
-    img: "/sosmed/baboovilla/ttthumb2.png",
+    img: "/sosmed/baboovilla/ttthumb2.webp",
     title: "Villa Hidden Gem",
     time: "2 Years ago",
     views: "180 rb",
   },
   {
     id: 3,
-    img: "/sosmed/baboovilla/ttthumb3.png",
+    img: "/sosmed/baboovilla/ttthumb3.webp",
     title: "Villa 2 Lantai di Batu Cuma 300k aja?!",
     time: "2 Years ago",
     views: "805.9 rb",
@@ -145,7 +145,7 @@ export default function FollowOurJourney() {
         >
           <span>Stay Connected with</span>
 
-          <Image src="/baboovilla.png" alt="Baboo Villa" width={120} height={56} className="h-10 md:h-14 w-auto object-contain" />
+          <Image src="/baboovilla.webp" alt="Baboo Villa" width={120} height={56} className="h-30 md:h-40 w-auto object-contain" />
         </h2>
 
         <p className={cn("mb-6", "font-medium", "text-zinc-500", "text-sm", "md:text-base", "leading-relaxed", "transition-all", "duration-700", "ease-out", "delay-300", isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0")}>

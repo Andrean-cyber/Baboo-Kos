@@ -3,6 +3,7 @@
 import { useRef, useState, useEffect, useMemo } from "react";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
+import { memo } from "react";
 import { CalendarDays, Users, Heart, Trophy, X, ChevronLeft, ChevronRight } from "lucide-react";
 import { getOptimizedImage, getImageSizes } from "@/lib/imageUtils";
 
@@ -18,7 +19,7 @@ interface AgendaItem {
 
 /* ================= GALLERY ================= */
 
-function Gallery({ images, onImageClick }: { images: string[]; onImageClick: (img: string, index: number) => void }) {
+const Gallery = memo(function Gallery({ images, onImageClick }: { images: string[]; onImageClick: (img: string, index: number) => void }) {
   // Show max 5 thumbnails (1 main + 4 grid). The 4th grid slot shows "+N" if more exist.
   const mainImage = images[0];
   const gridImages = images.slice(1, 5);
@@ -28,7 +29,7 @@ function Gallery({ images, onImageClick }: { images: string[]; onImageClick: (im
     <div className="flex flex-col gap-4 w-full lg:w-[60%]">
       {/* Main image */}
       <div className="relative rounded-2xl w-full h-[250px] md:h-[350px] overflow-hidden bg-zinc-100 cursor-pointer hover:shadow-lg transition-shadow" onClick={() => onImageClick(mainImage, 0)}>
-        <Image key={mainImage} src={getOptimizedImage(mainImage, "gallery")} alt="Gallery Main" fill sizes={getImageSizes("gallery")} loading="lazy" className="object-cover hover:scale-105 transition-transform duration-500" />
+        <Image key={mainImage} src={getOptimizedImage(mainImage, "gallery")} alt="Gallery Main" fill sizes={getImageSizes("gallery")}fetchPriority="high" className="object-cover md:hover:scale-105 transition-transform duration-500" />
       </div>
 
       {/* Thumbnail grid */}
@@ -38,7 +39,7 @@ function Gallery({ images, onImageClick }: { images: string[]; onImageClick: (im
           const actualIndex = index + 1;
           return (
             <div key={`grid-${index}`} className="relative rounded-xl aspect-[4/5] overflow-hidden bg-zinc-100 cursor-pointer hover:shadow-lg transition-shadow" onClick={() => onImageClick(img, actualIndex)}>
-              <Image src={getOptimizedImage(img, "thumbnail")} alt={`Gallery Thumbnail ${index + 1}`} fill sizes={getImageSizes("thumbnail")} loading="lazy" className="object-cover hover:scale-110 transition-transform duration-500" />
+              <Image src={getOptimizedImage(img, "thumbnail")} alt={`Gallery Thumbnail ${index + 1}`} fill sizes={getImageSizes("thumbnail")} loading="lazy" className="object-cover md:hover:scale-110 transition-transform duration-500" />
               {/* Overlay "+N" on last visible thumb if there are more photos */}
               {isLastVisible && (
                 <div
@@ -57,7 +58,7 @@ function Gallery({ images, onImageClick }: { images: string[]; onImageClick: (im
       </div>
     </div>
   );
-}
+});
 
 /* ================= MAIN COMPONENT ================= */
 
@@ -66,7 +67,7 @@ export default function OurTeam() {
   const timelineRef = useRef<HTMLDivElement>(null);
 
   const [isVisible, setIsVisible] = useState(false);
-  const hasAnimated = useRef(false);
+
 
   const [activeAgenda, setActiveAgenda] = useState(0);
   const [selectedImg, setSelectedImg] = useState<string | null>(null);
@@ -106,8 +107,8 @@ export default function OurTeam() {
         title: "Interactive Talkshow 🎤",
         desc: "Sesi diskusi interaktif dan berbagi inspirasi bersama seluruh anggota tim.",
         images: [
-          "/outbond/InteractiveTalkshow/InteractiveTalkshow1.webp",
           "/outbond/InteractiveTalkshow/InteractiveTalkshow2.webp",
+          "/outbond/InteractiveTalkshow/InteractiveTalkshow1.webp",
           "/outbond/InteractiveTalkshow/InteractiveTalkshow3.webp",
           "/outbond/InteractiveTalkshow/InteractiveTalkshow4.webp",
           "/outbond/InteractiveTalkshow/InteractiveTalkshow5.webp",
@@ -152,26 +153,24 @@ export default function OurTeam() {
   );
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const [entry] = entries;
-        if (entry.isIntersecting && !hasAnimated.current) {
-          hasAnimated.current = true;
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.15 },
-    );
-
-    const currentRef = sectionRef.current;
-    if (currentRef) {
-      observer.observe(currentRef);
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      if (entry.isIntersecting) {
+        setIsVisible(true);
+        observer.disconnect();
+      }
+    },
+    {
+      threshold: 0.15,
     }
+  );
 
-    return () => {
-      if (currentRef) observer.unobserve(currentRef);
-    };
-  }, []);
+  if (sectionRef.current) {
+    observer.observe(sectionRef.current);
+  }
+
+  return () => observer.disconnect();
+}, []);
 
   // Keyboard navigation and body scroll prevention for preview
   useEffect(() => {
@@ -267,7 +266,15 @@ export default function OurTeam() {
           )}
 
           <div className="relative w-full max-w-5xl h-[85vh]" onClick={(e) => e.stopPropagation()}>
-            <Image src={selectedImg} alt="Preview" fill className="rounded-2xl shadow-2xl object-contain" priority sizes="90vw" />
+            <Image
+              src={selectedImg}
+              alt="Preview"
+              fill
+              priority
+              fetchPriority="high"
+              sizes="90vw"
+              className="rounded-2xl shadow-2xl object-contain"
+          />
           </div>
         </div>
       )}
@@ -292,7 +299,7 @@ export default function OurTeam() {
           isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0",
         )}
       >
-        <div className="flex lg:flex-row flex-col gap-8 lg:gap-10">
+        <div className="flex lg:flex-row flex-col gap-8 lg:gap-10 ">
           {/* LEFT COLUMN */}
           <div className="flex flex-col w-full lg:w-[40%]">
             <h4 className="mb-2 font-extrabold text-[#495C29] text-xs uppercase tracking-widest">Our Outing Agenda</h4>
@@ -331,7 +338,6 @@ export default function OurTeam() {
 
           {/* RIGHT COLUMN GALLERY */}
           <Gallery
-            key={activeAgenda}
             images={agendas[activeAgenda].images}
             onImageClick={(img, index) => {
               setSelectedImg(img);
@@ -354,7 +360,7 @@ export default function OurTeam() {
 
 /* ================= TIMELINE ITEM ================= */
 
-function TimelineItem({ icon, date, title, desc, isActive = false }: { icon: React.ReactNode; date: string; title: string; desc: string; isActive?: boolean }) {
+const TimelineItem = memo(function TimelineItem({ icon, date, title, desc, isActive = false }: { icon: React.ReactNode; date: string; title: string; desc: string; isActive?: boolean }) {
   return (
     <div className="relative flex gap-4 md:gap-6 cursor-pointer">
       <div
@@ -373,11 +379,11 @@ function TimelineItem({ icon, date, title, desc, isActive = false }: { icon: Rea
       </div>
     </div>
   );
-}
+});
 
 /* ================= STAT BOX ================= */
 
-function StatBox({ icon, endValue, suffix, title, desc, isVisible }: { icon: React.ReactNode; endValue: number; suffix: string; title: string; desc: string; isVisible: boolean }) {
+const StatBox = memo(function StatBox({ icon, endValue, suffix, title, desc, isVisible }: { icon: React.ReactNode; endValue: number; suffix: string; title: string; desc: string; isVisible: boolean }) {
   const [count, setCount] = useState(0);
   const isAnimated = useRef(false);
 
@@ -415,4 +421,4 @@ function StatBox({ icon, endValue, suffix, title, desc, isVisible }: { icon: Rea
       </div>
     </div>
   );
-}
+});

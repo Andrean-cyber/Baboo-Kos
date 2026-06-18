@@ -12,21 +12,21 @@ import { FaInstagram, FaTiktok } from "react-icons/fa";
 const igFeeds = [
   {
     id: 1,
-    img: "/sosmed/baboopeeps/thmbig1.jpg",
+    img: "/sosmed/baboopeeps/thmbig1.webp",
     title: "GRWM long ver. 👀",
     time: "1 Week ago",
     type: "reels`",
   },
   {
     id: 2,
-    img: "/sosmed/baboopeeps/thmbig2.jpg",
+    img: "/sosmed/baboopeeps/thmbig2.webp",
     title: "Lost in the beauty of Banyuwangi ✨🌾",
     time: "1 Week ago",
     type: "reels",
   },
   {
     id: 3,
-    img: "/sosmed/baboopeeps/thmbig3.jpg",
+    img: "/sosmed/baboopeeps/thmbig3.webp",
     title: "Monthly meeting & planning the next move ⚡️🙌🏻",
     time: "1 Week ago",
     type: "reels",
@@ -36,21 +36,21 @@ const igFeeds = [
 const tkFeeds = [
   {
     id: 1,
-    img: "/sosmed/baboopeeps/thmbig1.jpg",
+    img: "/sosmed/baboopeeps/thmbig1.webp",
     title: "GRWM long ver. 👀",
     time: "1 Week ago",
     views: "622",
   },
   {
     id: 2,
-    img: "/sosmed/baboopeeps/thmbig2.jpg",
+    img: "/sosmed/baboopeeps/thmbig2.webp",
     title: "Lost in the beauty of Banyuwangi ✨🌾",
     time: "1 Week ago",
     views: "890",
   },
   {
     id: 3,
-    img: "/sosmed/baboopeeps/thmbig3.jpg",
+    img: "/sosmed/baboopeeps/thmbig3.webp",
     title: "Monthly meeting & planning the next move ⚡️🙌🏻",
     time: "1 Week ago",
     views: "344",
@@ -145,7 +145,7 @@ export default function FollowOurJourney() {
         >
           <span>Stay Connected with</span>
 
-          <Image src="/babookos.png" alt="Baboo Kos" width={120} height={56} className="h-10 md:h-14 w-auto object-contain" />
+          <Image src="/babookos.webp" alt="Baboo Kos" width={120} height={56} className="h-15 md:h-25 w-auto object-contain" />
         </h2>
 
         <p className={cn("mb-6", "font-medium", "text-zinc-500", "text-sm", "md:text-base", "leading-relaxed", "transition-all", "duration-700", "ease-out", "delay-300", isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0")}>

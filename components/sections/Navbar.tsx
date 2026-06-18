@@ -154,7 +154,7 @@ const handleWhatsapp = () => {
           <div className="flex items-center gap-12 lg:gap-16">
             {/* LOGO */}
             <Link href="/" className="flex justify-center items-center bg-white/80 md:bg-transparent shadow-md md:shadow-none backdrop-blur-xl md:backdrop-blur-none p-2 md:p-0 border border-white/50 md:border-0 rounded-full md:rounded-none w-11 md:w-auto h-11 md:h-auto">
-              <Image src="/babookos.png" alt="Baboo Kos Logo" width={120} height={40} priority className="w-auto h-7 md:h-10 object-contain" />
+              <Image src="/babookos.webp" alt="Baboo Kos Logo" width={120} height={40} priority className="w-auto h-7 md:h-10 object-contain" />
             </Link>
 
             {/* DESKTOP MENU - Menggunakan Posisi Dinamis */}

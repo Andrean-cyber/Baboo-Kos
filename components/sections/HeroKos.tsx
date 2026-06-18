@@ -14,12 +14,12 @@ import Image from "next/image";
 
 // Data sampel gambar avatar untuk Avatar Circles
 const avatarImages = [
-  "/avatar/avatar1.jpg",
-  "/avatar/avatar2.jpg",
-  "/avatar/avatar3.jpg",
-  "/avatar/avatar4.jpg",
-  "/avatar/avatar5.jpg",
-  "/avatar/avatar6.jpg",
+  "/avatar/avatar1.webp",
+  "/avatar/avatar2.webp",
+  "/avatar/avatar3.webp",
+  "/avatar/avatar4.webp",
+  "/avatar/avatar5.webp",
+  "/avatar/avatar6.webp",
 ];
 
 export default function HeroKos() {
@@ -111,7 +111,7 @@ export default function HeroKos() {
         {/* LEFT CONTENT (DESKTOP) */}
         {/* PERBAIKAN: Mengubah flex menjadi hidden lg:flex agar tidak muncul di mobile */}
         {/* ========================= */}
-        <div className="z-10 hidden lg:flex flex-col items-center lg:items-start text-center lg:text-left w-full lg:w-[48%] mt-8 lg:mt-20">   
+        <div className="z-10 hidden lg:flex flex-col items-center lg:items-start text-center lg:text-left w-full lg:w-[48%] mt-8 lg:mt-25">   
           {/* Badge */}
           <ShinyButton
             className={cn(
@@ -276,7 +276,7 @@ export default function HeroKos() {
         {/* ========================= */}
         {/* DESKTOP IMAGE */}
         {/* ========================= */}
-        <div className="hidden lg:block relative w-[52%]">
+        <div className="hidden lg:block relative w-[46%]">
           <div className={cn("relative rounded-[2.5rem] w-full h-[650px] transition-all duration-1000 ease-out", isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10")}>
             <div className="absolute inset-0 rounded-[2.5rem] overflow-hidden">
               <Image src="/hero.webp" sizes="52vw" alt="BabooKos" fill className="brightness-[0.95] object-cover" priority loading="eager" />

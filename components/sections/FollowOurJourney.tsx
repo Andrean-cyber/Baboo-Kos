@@ -12,21 +12,21 @@ import { FaInstagram, FaTiktok } from "react-icons/fa";
 const igFeeds = [
   {
     id: 1,
-    img: "/sosmed/babookos/igthumb1.jpg",
+    img: "/sosmed/babookos/igthumb1.webp",
     title: "Top 3 + 1 Penipu Kos",
     time: "1 Years ago",
     type: "carousel",
   },
   {
     id: 2,
-    img: "/sosmed/babookos/igthumb2.jpg",
+    img: "/sosmed/babookos/igthumb2.webp",
     title: "BABOO VILLA by Baboo Kos",
     time: "2 Years ago",
     type: "reels",
   },
   {
     id: 3,
-    img: "/sosmed/babookos/igthumb3.jpg",
+    img: "/sosmed/babookos/igthumb3.webp",
     title: "BABOO VILLA KUSUMA",
     time: "1 Years ago",
     type: "carousel",
@@ -36,21 +36,21 @@ const igFeeds = [
 const tkFeeds = [
   {
     id: 1,
-    img: "/sosmed/babookos/ttthumb1.png",
+    img: "/sosmed/babookos/ttthumb1.webp",
     title: "Kost Putri Bu ella Batununggal",
     time: "2 Years ago",
     views: "29.7K",
   },
   {
     id: 2,
-    img: "/sosmed/babookos/ttthumb2.png",
+    img: "/sosmed/babookos/ttthumb2.webp",
     title: "🏡Kos Campur Graha Pura 5",
     time: "1 Years ago",
     views: "50.2K",
   },
   {
     id: 3,
-    img: "/sosmed/babookos/ttthumb3.png",
+    img: "/sosmed/babookos/ttthumb3.webp",
     title: "Kost Campur Bebas LV Ijan 14",
     time: "2 Years ago",
     views: "307.1K",
@@ -145,7 +145,7 @@ export default function FollowOurJourney() {
         >
           <span>Stay Connected with</span>
 
-          <Image src="/babookos.png" alt="Baboo Kos" width={120} height={56} className="h-10 md:h-14 w-auto object-contain" />
+          <Image src="/babookos.webp" alt="Baboo Kos" width={120} height={56} className="h-15 md:h-25 w-auto object-contain" />
         </h2>
 
         <p className={cn("mb-6", "font-medium", "text-zinc-500", "text-sm", "md:text-base", "leading-relaxed", "transition-all", "duration-700", "ease-out", "delay-300", isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0")}>
