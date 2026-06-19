@@ -129,7 +129,7 @@ export default function FollowOurJourney() {
             "flex-wrap",
             "items-center",
             "justify-center",
-            "gap-0",
+            "gap-3",
             "font-bold",
             "text-slate-900",
             "text-3xl",
@@ -146,7 +146,7 @@ export default function FollowOurJourney() {
         >
           <span>Stay Connected with</span>
 
-          <Image src="/baboovilla.webp" alt="Baboo Villa" width={120} height={56} className="h-30 md:h-40 w-auto object-contain" />
+          <Image src="/baboovillaa.png" alt="Baboo Villa" width={120} height={56} className="h-15 md:h-25 w-auto object-contain" />
         </h2>
 
         <p className={cn("mb-6", "font-medium", "text-zinc-500", "text-sm", "md:text-base", "leading-relaxed", "transition-all", "duration-700", "ease-out", "delay-300", isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0")}>
@@ -338,7 +338,7 @@ export default function FollowOurJourney() {
 
           <div>
             <h4 className="font-bold text-zinc-900 text-lg leading-none">
-              <CountUp end={239} suffix="K" />
+              <CountUp end={1884}  />
             </h4>
 
             <p className="mt-1 font-medium text-[10px] text-zinc-500">Instagram Followers</p>
@@ -352,7 +352,7 @@ export default function FollowOurJourney() {
 
           <div>
             <h4 className="font-bold text-zinc-900 text-lg leading-none">
-              <CountUp end={112} suffix="K" />
+              <CountUp end={7043} />
             </h4>
 
             <p className="mt-1 font-medium text-[10px] text-zinc-500">TikTok Followers</p>
@@ -366,7 +366,7 @@ export default function FollowOurJourney() {
 
           <div>
             <h4 className="font-bold text-zinc-900 text-lg leading-none">
-              <CountUp end={4.8} suffix="M" />
+              <CountUp end={126.8} suffix="rb" />
             </h4>
 
             <p className="mt-1 font-medium text-[10px] text-zinc-500">TikTok Likes</p>

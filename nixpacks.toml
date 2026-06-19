@@ -1,0 +1,18 @@
+[phases.setup]
+nixPkgs = ["nodejs_22", "pnpm"]
+
+[phases.install]
+# Paksa pnpm untuk menginstal hanya di folder app saja
+cmds = ["pnpm install --frozen-lockfile"]
+
+[phases.build]
+# Build aplikasi di dalam app
+cmds = ["pnpm run build"]
+
+[start]
+# Start aplikasi di dalam app
+cmd = "pnpm run start"
+
+# Tambahkan ini untuk memastikan Nixpacks tidak bingung
+[variables]
+NIXPACKS_BUILD_DIR = "/app"
