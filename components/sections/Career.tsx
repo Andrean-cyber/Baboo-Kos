@@ -204,7 +204,7 @@ export default function Career() {
 
             <div className="group relative shadow-sm rounded-[2rem] h-[220px] overflow-hidden">
               <Image 
-                src="/outbond/BusinessTripBali/BusinessTripBali2.webp" 
+                src="/outbond/BusinessTripBali/BusinessTripBali1-w400.webp" 
                 alt="Work Culture" 
                 fill 
                 sizes="(max-width: 768px) 100vw, 50vw"
@@ -224,7 +224,7 @@ export default function Career() {
 
           {/* Bottom Banner (10+) */}
           <div className="flex items-center gap-6 bg-[#EEF3E8] shadow-sm p-6 md:px-10 rounded-[2rem]">
-            <h2 className="font-extrabold text-[#495C29] text-5xl md:text-6xl tracking-tighter">10+</h2>
+            <h2 className="font-extrabold text-[#495C29] text-5xl md:text-6xl tracking-tighter">137+</h2>
             <p className="max-w-[280px] font-medium text-[#495C29] text-[13px] leading-relaxed">Cabang yang tersebar di seluruh wilayah Indonesia dan bergabunglah menjadi bagian dari kami</p>
           </div>
         </div>
