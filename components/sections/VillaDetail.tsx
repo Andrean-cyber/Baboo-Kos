@@ -254,20 +254,52 @@ export default function VillaDetail() {
         <h3 className={cn("mb-2 font-bold text-[#495C29] text-sm md:text-base transition-all duration-700 ease-out", isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0")}>
           Property Breakdown
         </h3>
-        <h2 className={cn("mb-15 font-bold text-slate-900 text-3xl md:text-5xl tracking-tight transition-all duration-700 ease-out delay-150", isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0")}>
+        <h2 className={cn("mb-0 font-bold text-slate-900 text-3xl md:text-5xl tracking-tight transition-all duration-700 ease-out delay-150", isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0")}>
           Vibes-nya Dapet, Spek-nya Jelas ✨
         </h2>
 
-        <div className={cn("flex justify-center items-center gap-12 md:gap-20 border-zinc-200 border-b w-full max-w-2xl transition-all duration-700 delay-300", isVisible ? "opacity-100" : "opacity-0")}>
-          {["pesona", "kusuma"].map((tab) => (
-            <button
-              key={tab}
-              onClick={() => setActiveTab(tab as "kusuma" | "pesona")}
-              className={cn("pb-4 font-bold text-xs md:text-sm uppercase tracking-widest transition-all", activeTab === tab ? "border-b-2 border-[#495C29] text-[#495C29]" : "text-zinc-400 hover:text-zinc-500")}
-            >
-              Baboo Villa {tab}
-            </button>
-          ))}
+        <div className={cn("flex flex-wrap justify-center gap-4 mt-8 w-full transition-all duration-700 ease-out delay-300", isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0")}>
+          {/* Tombol Baboo Villa Pesona */}
+          <button
+            onClick={() => setActiveTab("pesona")}
+            className={cn(
+              "flex items-center gap-3 px-6 py-2 border rounded-full transition-all duration-300 w-full sm:w-auto",
+              activeTab === "pesona" 
+                ? "border-[#495C29]/20 bg-[#F4F7EF] shadow-sm" 
+                : "border-zinc-200 bg-white text-zinc-400 hover:bg-zinc-50",
+            )}
+          >
+            <Building2 size={20} className={activeTab === "pesona" ? "text-[#495C29]" : "text-zinc-400"} />
+            <div className="text-left">
+              <div className={cn("font-bold text-xs leading-tight uppercase tracking-wider", activeTab === "pesona" ? "text-[#495C29]" : "text-zinc-500")}>
+                Villa Pesona
+              </div>
+              <div className={cn("font-medium text-[9px]", activeTab === "pesona" ? "text-[#495C29]/70" : "text-zinc-400")}>
+                View Gunung Arjuna
+              </div>
+            </div>
+          </button>
+
+          {/* Tombol Baboo Villa Kusuma */}
+          <button
+            onClick={() => setActiveTab("kusuma")}
+            className={cn(
+              "flex items-center gap-3 px-6 py-2 border rounded-full transition-all duration-300 w-full sm:w-auto",
+              activeTab === "kusuma" 
+                ? "border-[#495C29]/20 bg-[#F4F7EF] shadow-sm" 
+                : "border-zinc-200 bg-white text-zinc-400 hover:bg-zinc-50",
+            )}
+          >
+            <LuHouse size={20} className={activeTab === "kusuma" ? "text-[#495C29]" : "text-zinc-400"} />
+            <div className="text-left">
+              <div className={cn("font-bold text-xs leading-tight uppercase tracking-wider", activeTab === "kusuma" ? "text-[#495C29]" : "text-zinc-500")}>
+                Villa Kusuma
+              </div>
+              <div className={cn("font-medium text-[9px]", activeTab === "kusuma" ? "text-[#495C29]/70" : "text-zinc-400")}>
+                Kawasan Eksklusif
+              </div>
+            </div>
+          </button>
         </div>
       </div>
 

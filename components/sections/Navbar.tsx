@@ -70,7 +70,7 @@ export default function Navbar() {
     if (pathname.startsWith("/career")) return "Tanya HRD →";
     if (pathname.startsWith("/simulation")) return "Tanya Marketing →";
     if (pathname.startsWith("/aboutus")) return (
-      <div className="flex items-center gap-2">
+      <div className="flex items-center justify-center gap-2 w-full">
         <Headset size={18} />
         <span>Support →</span>
       </div>
