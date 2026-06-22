@@ -146,7 +146,7 @@ export default function FollowOurJourney() {
         >
           <span>Stay Connected with</span>
 
-          <Image src="/baboovillaa.png" alt="Baboo Villa" width={120} height={56} className="h-15 md:h-25 w-auto object-contain" />
+          <Image src="/baboovillaa.png" alt="Baboo Villa" width={120} height={56} className="h-12 md:h-18 w-auto object-contain" />
         </h2>
 
         <p className={cn("mb-6", "font-medium", "text-zinc-500", "text-sm", "md:text-base", "leading-relaxed", "transition-all", "duration-700", "ease-out", "delay-300", isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0")}>

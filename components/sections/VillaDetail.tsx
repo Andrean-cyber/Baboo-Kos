@@ -258,7 +258,7 @@ export default function VillaDetail() {
           Vibes-nya Dapet, Spek-nya Jelas ✨
         </h2>
 
-        <div className={cn("flex flex-wrap justify-center gap-4 mt-8 transition-all duration-700 ease-out delay-500", isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0")}>
+        <div className={cn("flex justify-center gap-4 mt-8 transition-all duration-700 ease-out delay-500", isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0")}>
           <button
             onClick={() => setActiveTab("pesona")}
             className={cn(

@@ -105,8 +105,15 @@ const tcSections = [
           <p className="text-zinc-600 text-xs leading-relaxed">Semua transaksi pembelian paket promosi media sosial wajib diselesaikan di awal (<span className="font-bold text-[#495C29]">full payment</span>) sebelum tim kami menjadwalkan syuting atau memulai proses editing.</p>
         </div>
         <div className="border-l-2 border-red-500 pl-3 py-0.5">
-          <strong className="text-red-900 text-xs block mb-0.5">⚠️ Kebijakan Pembatalan</strong>
-          <p className="text-zinc-600 text-xs leading-relaxed">Pembatalan sepihak sebelum/setelah tim Baboo Kos melakukan kunjungan lokasi dan/ setelah proses editing dimulai, <span className="font-semibold text-red-600">tidak dapat di-refund dengan alasan apa pun.</span></p>
+          <strong className="text-red-900 text-xs block mb-1.5">⚠️ Kebijakan Pembatalan</strong>
+          <ul className="list-disc list-inside text-zinc-600 text-xs leading-relaxed space-y-2">
+            <li>
+              Setelah pembayaran dikonfirmasi, pembatalan sepihak oleh pihak <span className="font-semibold text-zinc-800">klien</span>, baik sebelum maupun sesudah tim Baboo Kos melakukan kunjungan lokasi dan/atau setelah proses editing dimulai, <span className="font-semibold text-red-600">tidak dapat di-refund dengan alasan apa pun.</span>
+            </li>
+            <li>
+              Setelah pembayaran dikonfirmasi, pembatalan sepihak oleh pihak <span className="font-semibold text-zinc-800">partner</span>, baik sebelum maupun sesudah tim Baboo Kos melakukan kunjungan lokasi dan/atau setelah proses editing dimulai, <span className="font-semibold text-red-600">tidak dapat di-refund dengan alasan apa pun.</span>
+            </li>
+          </ul>
         </div>
         <div className="border-l-2 border-amber-500 pl-3 py-0.5">
           <strong className="text-amber-900 text-xs block mb-0.5">🗓️ Reschedule Jadwal</strong>

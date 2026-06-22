@@ -60,17 +60,7 @@ const teamMembers = [
 
 /* ================= TEAM CARD ================= */
 
-const TeamCard = memo(function TeamCard({
-  member,
-  index,
-  isVisible,
-  delayBase = 0,
-}: {
-  member: (typeof teamMembers)[0];
-  index: number;
-  isVisible: boolean;
-  delayBase?: number;
-}) {
+const TeamCard = memo(function TeamCard({ member, index, isVisible, delayBase = 0 }: { member: (typeof teamMembers)[0]; index: number; isVisible: boolean; delayBase?: number }) {
   return (
     <div
       className={cn(
@@ -107,7 +97,6 @@ const TeamCard = memo(function TeamCard({
 export default function MeetOurTeam() {
   const sectionRef = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
- 
 
   useEffect(() => {
     if (typeof window !== "undefined" && window.scrollY < 100) {
@@ -119,8 +108,8 @@ export default function MeetOurTeam() {
       (entries) => {
         const [entry] = entries;
         if (entry.isIntersecting) {
-            setIsVisible(true);
-            observer.disconnect();
+          setIsVisible(true);
+          observer.disconnect();
         }
       },
       { threshold: 0.01, rootMargin: "0px 0px -50px 0px" },
@@ -159,20 +148,20 @@ export default function MeetOurTeam() {
             contentVisibility: "auto",
             containIntrinsicSize: "2000px",
           }}
-        > 
-        {teamMembers.slice(1).map((member, index) => (
+        >
+          {teamMembers.slice(1).map((member, index) => (
             <TeamCard key={index + 1} member={member} index={index + 1} isVisible={isVisible} delayBase={200} />
           ))}
         </div>
 
         {/* MOBILE: Semua anggota */}
         <div
-            className="flex flex-wrap md:hidden justify-center gap-6 w-full"
-            style={{
-              contentVisibility: "auto",
-              containIntrinsicSize: "2000px",
-            }}
-          >
+          className="flex flex-wrap md:hidden justify-center gap-6 w-full"
+          style={{
+            contentVisibility: "auto",
+            containIntrinsicSize: "2000px",
+          }}
+        >
           {teamMembers.map((member, index) => (
             <TeamCard key={index} member={member} index={index} isVisible={isVisible} delayBase={100} />
           ))}
