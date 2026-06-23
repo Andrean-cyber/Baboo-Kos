@@ -153,14 +153,14 @@ const handleWhatsapp = () => {
           {/* ========================= */}
           <div className="flex items-center gap-12 lg:gap-16">
             {/* LOGO */}
-            <Link href="/" className="flex justify-center items-center bg-white/80 md:bg-transparent shadow-md md:shadow-none backdrop-blur-xl md:backdrop-blur-none p-2 md:p-0 border border-white/50 md:border-0 rounded-full md:rounded-none w-11 md:w-auto h-11 md:h-auto">
-              <Image src="/babookos.webp" alt="Baboo Kos Logo" width={120} height={40} priority className="w-auto h-7 md:h-10 object-contain" />
+            <Link href="/" className="flex justify-center items-center bg-white/80 lg:bg-transparent shadow-md lg:shadow-none backdrop-blur-xl lg:backdrop-blur-none p-2 lg:p-0 border border-white/50 lg:border-0 rounded-full lg:rounded-none w-11 lg:w-auto h-11 lg:h-auto">
+              <Image src="/babookos.webp" alt="Baboo Kos Logo" width={120} height={40} priority className="w-auto h-7 lg:h-10 object-contain" />
             </Link>
 
             {/* DESKTOP MENU - Menggunakan Posisi Dinamis */}
             <div 
               className={cn(
-                "hidden md:flex items-center gap-2 lg:gap-4 transition-all duration-300",
+                "hidden lg:flex items-center gap-2 lg:gap-4 transition-all duration-300",
                 showAllMenusHorizontal
                   ? "absolute left-1/2 -translate-x-1/2 justify-center" 
                   : "justify-start"
@@ -281,14 +281,14 @@ const handleWhatsapp = () => {
             <button
               onClick={handleWhatsapp}
               className={cn(
-                "hidden md:flex justify-center items-center bg-white/80 hover:bg-[#495C29] backdrop-blur-md px-8 py-3 border border-[#495C29]/20 rounded-full font-bold text-[#495C29] text-[15px] hover:text-white transition-all",
+                "hidden lg:flex justify-center items-center bg-white/80 hover:bg-[#495C29] backdrop-blur-md px-8 py-3 border border-[#495C29]/20 rounded-full font-bold text-[#495C29] text-[15px] hover:text-white transition-all",
               )}
             >
               {getBookingLabel()}
             </button>
 
             {/* MOBILE HAMBURGER */}
-            <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="md:hidden flex justify-center items-center bg-white/80 shadow-md backdrop-blur-xl border border-white/50 rounded-full w-11 h-11">
+            <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="lg:hidden flex justify-center items-center bg-white/80 shadow-md backdrop-blur-xl border border-white/50 rounded-full w-11 h-11">
               {isMobileMenuOpen ? <X size={22} className="text-zinc-900" /> : <Menu size={22} className="text-zinc-900" />}
             </button>
           </div>

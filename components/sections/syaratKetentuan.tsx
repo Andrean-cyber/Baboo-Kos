@@ -108,10 +108,10 @@ const tcSections = [
           <strong className="text-red-900 text-xs block mb-1.5">⚠️ Kebijakan Pembatalan</strong>
           <ul className="list-disc list-inside text-zinc-600 text-xs leading-relaxed space-y-2">
             <li>
-              Setelah pembayaran dikonfirmasi, pembatalan sepihak oleh pihak <span className="font-semibold text-zinc-800">klien</span>, baik sebelum maupun sesudah tim Baboo Kos melakukan kunjungan lokasi dan/atau setelah proses editing dimulai, <span className="font-semibold text-red-600">tidak dapat di-refund dengan alasan apa pun.</span>
+              Setelah pembayaran dikonfirmasi <span className="font-semibold text-zinc-800">Partnership</span>, pembatalan sepihak oleh pihak <span className="font-semibold text-zinc-800">klien</span>, baik sebelum maupun sesudah tim Baboo Kos melakukan kunjungan lokasi dan/atau setelah proses editing dimulai, <span className="font-semibold text-red-600">tidak dapat di-refund dengan alasan apa pun.</span>
             </li>
             <li>
-              Setelah pembayaran dikonfirmasi, pembatalan sepihak oleh pihak <span className="font-semibold text-zinc-800">partner</span>, baik sebelum maupun sesudah tim Baboo Kos melakukan kunjungan lokasi dan/atau setelah proses editing dimulai, <span className="font-semibold text-red-600">tidak dapat di-refund dengan alasan apa pun.</span>
+              Setelah pembayaran dikonfirmasi <span className="font-semibold text-zinc-800">Jasa Pencarian Kos</span>, pembatalan sepihak oleh pihak <span className="font-semibold text-zinc-800">konsumen</span>, <span className="font-semibold text-red-600">tidak dapat di-refund dengan alasan apa pun.</span> karena data yang sudah diberikan akan otomatis terinput dan di proses pada sistem kami.
             </li>
           </ul>
         </div>

@@ -225,9 +225,10 @@ export default function HeroKos() {
                 )}
               >
                 Cari Kos Tanpa Ribet{" "}
-                <span className="inline-flex items-center bg-white px-4 py-0 rounded-full text-[#495C29]">
-                  Sesuai Budget!
-                </span>
+                <span className="inline-flex items-center gap-1 bg-white px-4 py-0 rounded-full text-[#495C29]">
+                <span className="text-yellow-500">Sesuai</span>
+                <span>Budget!</span>
+              </span>
               </h1>
             </div>
           </div>

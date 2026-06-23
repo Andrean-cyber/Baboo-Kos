@@ -218,7 +218,7 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/belum-tersedia" className="hover:text-[#F3C546] transition-colors">
+                <Link href="/blogBerita" className="hover:text-[#F3C546] transition-colors">
                   Blog & Berita
                 </Link>
               </li>
