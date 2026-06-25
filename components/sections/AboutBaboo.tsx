@@ -49,46 +49,48 @@ export default function AboutBaboo() {
 
   const [activeIndex, setActiveIndex] = useState(2);
   const [isVisible, setIsVisible] = useState(false);
+  const [isInView, setIsInView] = useState(false); // BARU: untuk play/pause loop animations
   const hasAnimated = useRef(false);
 
-  useEffect(() => {
-    const container = scrollRef.current;
-    if (!container) return;
+useEffect(() => {
+  const container = scrollRef.current;
+  if (!container) return;
 
-    const card3 = container.children[2] as HTMLElement;
-    if (card3) {
-      const pos3 = card3.offsetLeft - (container.clientWidth - card3.clientWidth) / 2;
-      container.scrollTo({ left: pos3, behavior: "instant" });
-    }
+  const card3 = container.children[2] as HTMLElement;
+  if (card3) {
+    const pos3 = card3.offsetLeft - (container.clientWidth - card3.clientWidth) / 2;
+    container.scrollTo({ left: pos3, behavior: "instant" });
+  }
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const [entry] = entries;
+  const observer = new IntersectionObserver(
+    (entries) => {
+      const [entry] = entries;
+      setIsInView(entry.isIntersecting); // BARU: selalu update sesuai status terkini
 
-        if (entry.isIntersecting && !hasAnimated.current) {
-          hasAnimated.current = true;
-          setIsVisible(true);
+      if (entry.isIntersecting && !hasAnimated.current) {
+        hasAnimated.current = true;
+        setIsVisible(true);
 
-          setTimeout(() => {
-            const card2 = container.children[1] as HTMLElement;
-            if (card2) {
-              const pos2 = card2.offsetLeft - (container.clientWidth - card2.clientWidth) / 2;
-              container.scrollTo({ left: pos2, behavior: "smooth" });
-            }
-          }, 600);
-        }
-      },
-      { threshold: 0.15 }, // Sedikit diturunkan agar trigger berjalan lebih cepat saat di-scroll
-    );
+        setTimeout(() => {
+          const card2 = container.children[1] as HTMLElement;
+          if (card2) {
+            const pos2 = card2.offsetLeft - (container.clientWidth - card2.clientWidth) / 2;
+            container.scrollTo({ left: pos2, behavior: "smooth" });
+          }
+        }, 600);
+      }
+    },
+    { threshold: 0.15 },
+  );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
+  if (sectionRef.current) {
+    observer.observe(sectionRef.current);
+  }
 
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
+  return () => {
+    observer.disconnect();
+  };
+}, []);
 
   const handleScroll = () => {
     if (!scrollRef.current) return;
@@ -209,7 +211,7 @@ export default function AboutBaboo() {
                 {/* BLOK 1: Orbiting Circles */}
                 <div className="relative flex flex-col flex-1 bg-white shadow-sm p-3 md:p-4 rounded-2xl md:max-w-[220px] min-h-[175px] md:min-h-0 justify-between items-center overflow-hidden">
                   <div className="relative flex w-full flex-1 items-center justify-center min-h-[105px] md:min-h-[120px] py-1">
-                    <OrbitingCircles radius={45} duration={25} path={true}>
+                    <OrbitingCircles radius={45} duration={25} path={true} isPaused={!isInView}>
                       <div className="flex h-5.5 w-5.5 items-center justify-center rounded-full bg-emerald-50/60 border border-emerald-100/80 shadow-sm">
                         <FaWhatsapp className="text-[#25D366]" size={11} />
                       </div>
@@ -221,7 +223,7 @@ export default function AboutBaboo() {
                       </div>
                     </OrbitingCircles>
 
-                    <OrbitingCircles radius={24} duration={15} reverse path={true}>
+                    <OrbitingCircles radius={24} duration={15} reverse path={true} isPaused={!isInView}>
                       <div className="flex h-5 w-5 items-center justify-center rounded-full bg-zinc-50 border border-zinc-100 shadow-sm">
                         <FaTiktok className="text-black" size={9} />
                       </div>
@@ -256,6 +258,7 @@ export default function AboutBaboo() {
                     duration={15} 
                     shineColor={["#A07CFE", "#FE8FB5", "#FFBE7B"]} 
                     className="absolute inset-0 z-0"
+                    isPaused={!isInView}
                   />
                 </div>
 

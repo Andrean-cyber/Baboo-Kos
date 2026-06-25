@@ -27,10 +27,22 @@ export default function HeroKos() {
   // STATE ANIMASI LOAD HERO
   // ==========================================
   const [isLoaded, setIsLoaded] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+  const [isSectionVisible, setIsSectionVisible] = useState(false)
 
   useEffect(() => {
     const timer = setTimeout(() => setIsLoaded(true), 100);
     return () => clearTimeout(timer);
+  }, []);
+
+  // Observer untuk mendeteksi apakah hero section terlihat
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsSectionVisible(entry.isIntersecting),
+      { threshold: 0.1 }
+    );
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => observer.disconnect();
   }, []);
 
   // ==========================================
@@ -41,7 +53,11 @@ export default function HeroKos() {
   const [phraseIndex, setPhraseIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
 
+
   useEffect(() => {
+    // Berhenti total kalau section tidak terlihat
+    if (!isSectionVisible) return;
+
     const currentPhrase = placeholderPhrases[phraseIndex];
     let typingSpeed = isDeleting ? 50 : 100;
 
@@ -63,7 +79,7 @@ export default function HeroKos() {
     }, typingSpeed);
 
     return () => clearTimeout(timeout);
-  }, [placeholderText, isDeleting, phraseIndex]);
+  }, [placeholderText, isDeleting, phraseIndex, isSectionVisible]);
 
   // ==========================================
   // LOGIKA WHATSAPP & FILTER KATA KASAR
@@ -105,7 +121,7 @@ export default function HeroKos() {
       {/* ========================= */}
       {/* HERO SECTION */}
       {/* ========================= */}
-      <section id="home" className="relative flex lg:flex-row flex-col lg:items-start gap-8 lg:gap-10 lg:mx-auto px-4 sm:px-6 md:px-10 lg:px-12 pt-4 lg:pt-6 w-full max-w-[1280px] overflow-hidden">
+      <section id="home" ref={sectionRef} className="relative flex lg:flex-row flex-col lg:items-start gap-8 lg:gap-10 lg:mx-auto px-4 sm:px-6 md:px-10 lg:px-12 pt-4 lg:pt-6 w-full max-w-[1280px] overflow-hidden">
         
         {/* ========================= */}
         {/* LEFT CONTENT (DESKTOP) */}

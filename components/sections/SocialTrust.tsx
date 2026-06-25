@@ -46,19 +46,17 @@ const trustItems = [
 
 export default function SocialTrust() {
   const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setIsVisible(true);
-      },
-      { threshold: 0.1 }
-    );
+useEffect(() => {
+  const observer = new IntersectionObserver(
+    ([entry]) => setIsVisible(entry.isIntersecting), // tanpa if, biar bisa balik false juga
+    { threshold: 0.1 }
+  );
 
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => observer.disconnect();
-  }, []);
+  if (sectionRef.current) observer.observe(sectionRef.current);
+  return () => observer.disconnect();
+}, []);
 
   return (
     <section 
@@ -75,6 +73,10 @@ export default function SocialTrust() {
           display: flex;
           width: max-content;
           animation: marquee 25s linear infinite;
+          animation-play-state: paused; /* default paused */
+        }
+        .animate-marquee-loop.is-running {
+          animation-play-state: running;
         }
         .animate-marquee-loop:hover {
           animation-play-state: paused;
@@ -86,7 +88,7 @@ export default function SocialTrust() {
       <div className="relative w-full overflow-hidden before:absolute before:left-0 before:top-0 before:z-10 before:h-full before:w-20 md:before:w-40 before:bg-gradient-to-r before:from-[#f5f5f2] before:to-transparent after:absolute after:right-0 after:top-0 after:z-10 after:h-full after:w-20 md:after:w-40 after:bg-gradient-to-l after:from-[#f5f5f2] after:to-transparent py-2">
         
         {/* Wrapper List Utama */}
-        <div className="animate-marquee-loop gap-8 md:gap-12 px-2 items-center">
+        <div className={cn("animate-marquee-loop gap-8 md:gap-12 px-2 items-center", isVisible && "is-running")}>
           
           {/* BARIS PERTAMA (Original) */}
           {trustItems.map((item) => (

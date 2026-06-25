@@ -11,6 +11,7 @@ export interface OrbitingCirclesProps extends React.HTMLAttributes<HTMLDivElemen
   path?: boolean
   iconSize?: number
   speed?: number
+  isPaused?: boolean // BARU: kontrol play/pause dari luar
 }
 
 export function OrbitingCircles({
@@ -22,6 +23,7 @@ export function OrbitingCircles({
   path = true,
   iconSize = 30,
   speed = 1,
+  isPaused = false,
   ...props
 }: OrbitingCirclesProps) {
   const calculatedDuration = duration / speed
@@ -38,14 +40,8 @@ export function OrbitingCircles({
           }}
         >
           <circle
-            /* 
-              PERBAIKAN ANDROID & TAILWIND v4:
-              1. Hilangkan stroke-black/10 karena di-invert otomatis oleh Force Dark Mode Android menjadi transparan/putih.
-              2. Gunakan inline style stroke dengan Hex Code (#e4e4e7 / warna border abu-abu seng) agar warnanya dikunci mati.
-              3. Tambahkan properti strokeWidth secara eksplisit (tidak hanya mengandalkan stroke-1).
-            */
             style={{
-              stroke: "#d4d4d8", // Abu-abu solid (Zinc-300), jelas terlihat di Android & tidak hilang saat di-force dark
+              stroke: "#d4d4d8",
               strokeWidth: "1px",
             }}
             cx="50%"
@@ -65,6 +61,7 @@ export function OrbitingCircles({
                 "--radius": radius,
                 "--angle": angle,
                 "--icon-size": `${iconSize}px`,
+                animationPlayState: isPaused ? "paused" : "running", // BARU
               } as React.CSSProperties
             }
             className={cn(

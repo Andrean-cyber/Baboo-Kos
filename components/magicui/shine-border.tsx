@@ -1,36 +1,20 @@
 "use client"
 
 import * as React from "react"
-
 import { cn } from "@/lib/utils"
 
 interface ShineBorderProps extends React.HTMLAttributes<HTMLDivElement> {
-  /**
-   * Width of the border in pixels
-   * @default 1
-   */
   borderWidth?: number
-  /**
-   * Duration of the animation in seconds
-   * @default 14
-   */
   duration?: number
-  /**
-   * Color of the border, can be a single color or an array of colors
-   * @default "#000000"
-   */
   shineColor?: string | string[]
+  isPaused?: boolean // BARU
 }
 
-/**
- * Shine Border
- *
- * An animated background border effect component with configurable properties.
- */
 export function ShineBorder({
   borderWidth = 1,
   duration = 14,
   shineColor = "#000000",
+  isPaused = false,
   className,
   style,
   ...props
@@ -50,6 +34,7 @@ export function ShineBorder({
           WebkitMaskComposite: "xor",
           maskComposite: "exclude",
           padding: "var(--border-width)",
+          animationPlayState: isPaused ? "paused" : "running", // BARU
           ...style,
         } as React.CSSProperties
       }

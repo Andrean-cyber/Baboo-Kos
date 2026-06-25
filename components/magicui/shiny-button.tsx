@@ -1,31 +1,9 @@
 "use client";
 
-import React from "react";
-import { motion, type MotionProps } from "motion/react";
+import React, { useEffect, useRef, useState } from "react";
+import { motion, type MotionProps, useAnimation } from "motion/react";
 
 import { cn } from "@/lib/utils";
-
-const animationProps: MotionProps = {
-  initial: { "--x": "100%", scale: 0.8 },
-  animate: { "--x": "-100%", scale: 1 },
-  whileTap: { scale: 0.95 },
-  transition: {
-    repeat: Infinity,
-    repeatType: "loop",
-    repeatDelay: 5, // Menunggu 10 detik setelah kilatan selesai sebelum mulai lagi
-    type: "tween", // Wajib murni tween agar duration berfungsi
-    ease: "linear",
-    duration: 2, // Ubah ke 4 atau 5 detik jika 2 detik dirasa masih terlalu cepat
-
-    // Properti spring di bawah ini khusus untuk efek mengecil saat tombol DIKLIK (whileTap)
-    scale: {
-      type: "spring",
-      stiffness: 200,
-      damping: 5,
-      mass: 0.5,
-    },
-  },
-};
 
 interface ShinyButtonProps extends Omit<React.HTMLAttributes<HTMLElement>, keyof MotionProps>, MotionProps {
   children: React.ReactNode;
@@ -33,14 +11,54 @@ interface ShinyButtonProps extends Omit<React.HTMLAttributes<HTMLElement>, keyof
 }
 
 export const ShinyButton = React.forwardRef<HTMLButtonElement, ShinyButtonProps>(({ children, className, ...props }, ref) => {
+  const innerRef = useRef<HTMLButtonElement>(null);
+  const controls = useAnimation();
+  const [isVisible, setIsVisible] = useState(false);
+
+  // Gabungkan forwarded ref dengan innerRef
+  React.useImperativeHandle(ref, () => innerRef.current as HTMLButtonElement);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsVisible(entry.isIntersecting),
+      { threshold: 0.1 }
+    );
+    if (innerRef.current) observer.observe(innerRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (isVisible) {
+      controls.start({
+        "--x": "-100%",
+        scale: 1,
+        transition: {
+          repeat: Infinity,
+          repeatType: "loop",
+          repeatDelay: 5,
+          type: "tween",
+          ease: "linear",
+          duration: 2,
+        },
+      });
+    } else {
+      controls.stop(); // Hentikan animasi saat tidak terlihat
+    }
+  }, [isVisible, controls]);
+
   return (
     <motion.button
-      ref={ref}
+      ref={innerRef}
       className={cn(
         "relative dark:bg-[radial-gradient(circle_at_50%_0%,var(--primary)/10%_0%,transparent_60%)] hover:shadow dark:hover:shadow-[0_0_20px_var(--primary)/10%] backdrop-blur-xl px-6 py-2 border rounded-lg font-medium transition-shadow duration-300 ease-in-out cursor-pointer",
         className,
       )}
-      {...animationProps}
+      initial={{ "--x": "100%", scale: 0.8 }}
+      animate={controls}
+      whileTap={{
+        scale: 0.95,
+        transition: { type: "spring", stiffness: 200, damping: 5, mass: 0.5 },
+      }}
       {...props}
     >
       <span
