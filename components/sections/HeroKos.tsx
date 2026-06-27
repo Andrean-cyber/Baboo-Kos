@@ -48,7 +48,7 @@ export default function HeroKos() {
   // ==========================================
   // STATE & LOGIKA ANIMASI TYPING (PLACEHOLDER)
   // ==========================================
-  const placeholderPhrases = ["Hi, Baboo Kos...", "Hi, Baboo Villa...", "informasi lebih lanjut..."];
+  const placeholderPhrases = ["Hi, Baboo Kos...", "informasi lebih lanjut..."];
   const [placeholderText, setPlaceholderText] = useState("");
   const [phraseIndex, setPhraseIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
