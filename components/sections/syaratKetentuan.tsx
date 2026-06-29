@@ -61,6 +61,20 @@ const tcSections = [
             <p className="text-zinc-600 text-xs leading-relaxed">Tombol "Booking" atau "Cek Ketersediaan" di platform kami mengarahkan kamu pada sistem reservasi langsung. Status ketersediaan unit bersifat <span className="italic font-semibold text-[#495C29]">real-time</span> dan kamar baru dianggap "aman" jika kamu sudah menyelesaikan proses administrasi resmi sesuai alur yang difinalisasi dengan pembayaran.</p>
           </div>
         </div>
+        <div className="flex gap-3 items-start p-1">
+          <CheckCircle2 size={16} className="text-[#495C29] shrink-0 mt-0.5" />
+          <div>
+            <strong className="text-zinc-800 text-sm block mb-0.5">Komplain Rekomendasi Kos</strong>
+            <p className="text-zinc-600 text-xs leading-relaxed">Jika ada kendala terkait rekomendasi kos, waktu maksimal komplain adalah 4 hari (H+4) setelah hasil rekomendasi dikirim oleh tim Customer Service (CS).</p>
+          </div>
+        </div>
+        <div className="flex gap-3 items-start p-1">
+          <CheckCircle2 size={16} className="text-[#495C29] shrink-0 mt-0.5" />
+          <div>
+            <strong className="text-zinc-800 text-sm block mb-0.5">Kritik & Saran</strong>
+            <p className="text-zinc-600 text-xs leading-relaxed">Jika ada kritik dan saran dan/komplain, customer wajib menggunakan kata-kata yang baik dan sopan untuk menghindari kesalah pahaman, konflik dan menyakiti perasaan antar individu.</p>
+          </div>
+        </div>
       </div>
     )
   },
