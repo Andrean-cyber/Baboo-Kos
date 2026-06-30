@@ -60,19 +60,19 @@ const teamMembers = [
 
 /* ================= TEAM CARD ================= */
 
-const TeamCard = memo(function TeamCard({ member, index, isVisible, delayBase = 0 }: { member: (typeof teamMembers)[0]; index: number; isVisible: boolean; delayBase?: number }) {
+const TeamCard = memo(function TeamCard({ member, index, isVisible, delayBase = 0, fullWidth = false, }: { member: (typeof teamMembers)[0]; index: number; isVisible: boolean; delayBase?: number;fullWidth?: boolean; }) {
   return (
     <div
       className={cn(
         // Tambahkan w-[calc(50%-8px)] untuk mobile, kembalikan max-w di md ke atas
-        "flex flex-col bg-[#FAFAFA] shadow-sm border border-zinc-100 rounded-[1.5rem] overflow-hidden",
-        "w-[calc(50%-8px)] md:w-full md:max-w-[340px]",  // ← ini kuncinya
+        "flex flex-col bg-[#FAFAFA] shadow-sm border border-zinc-100 rounded-[1.3rem] overflow-hidden",
+        "w-[calc(50%-8px)] sm:w-[calc(50%-12px)] md:w-full md:max-w-[280px] lg:max-w-[340px]",  // ← ini kuncinya
         "transition-[transform,opacity] duration-1000 ease-out",
         isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0",
       )}
       style={{ transitionDelay: isVisible ? `${delayBase + index * 100}ms` : "0ms" }}
     >
-      <div className="relative w-full h-[200px] md:h-[420px] overflow-hidden">
+      <div className="relative w-full h-[200px] sm:h-[280px] md:h-[380px] lg:h-[420px] overflow-hidden">
         <Image
           src={getOptimizedImage(member.img, "card")}
           alt={member.name}
