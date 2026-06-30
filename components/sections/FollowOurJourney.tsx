@@ -14,23 +14,23 @@ const igFeeds = [
   {
     id: 1,
     img: "/sosmed/babookos/igthumb1.webp",
-    title: "Top 3 + 1 Penipu Kos",
-    time: "1 Years ago",
-    type: "carousel",
+    title: "Kost Harumi Living house | Putri",
+    time: "3 Month ago",
+    type: "reels",
   },
   {
     id: 2,
     img: "/sosmed/babookos/igthumb2.webp",
-    title: "BABOO VILLA by Baboo Kos",
-    time: "2 Years ago",
+    title: "Paltrow City Tembalang | Kos Putra/Putri/Pasutri",
+    time: "1 Month ago",
     type: "reels",
   },
   {
     id: 3,
     img: "/sosmed/babookos/igthumb3.webp",
-    title: "BABOO VILLA KUSUMA",
-    time: "1 Years ago",
-    type: "carousel",
+    title: "Atap Hijau House (Campur no LV) Bangunan Baru",
+    time: "4 Month ago",
+    type: "reels",
   },
 ];
 
@@ -38,23 +38,23 @@ const tkFeeds = [
   {
     id: 1,
     img: "/sosmed/babookos/ttthumb1.webp",
-    title: "Kost Putri Bu ella Batununggal",
-    time: "2 Years ago",
-    views: "29.7K",
+    title: "Hidden Gem",
+    time: "5 Years ago",
+    views: "2,2 jt",
   },
   {
     id: 2,
     img: "/sosmed/babookos/ttthumb2.webp",
-    title: "🏡Kos Campur Graha Pura 5",
-    time: "1 Years ago",
-    views: "50.2K",
+    title: "Kos Campur KM dalam dan luas",
+    time: "4 Years ago",
+    views: "6,2 jt",
   },
   {
     id: 3,
     img: "/sosmed/babookos/ttthumb3.webp",
-    title: "Kost Campur Bebas LV Ijan 14",
-    time: "2 Years ago",
-    views: "307.1K",
+    title: "Kost Putri Mezzanine ala Apartement",
+    time: "4 Years ago",
+    views: "6,9 jt",
   },
 ];
 
@@ -190,14 +190,14 @@ export default function FollowOurJourney() {
             <div className="flex items-center gap-6 text-center shrink-0">
               <div className="flex flex-col">
                 <span className="font-bold text-zinc-900 text-sm">
-                  <CountUp end={2003} />
+                  <CountUp end={2135} />
                 </span>
                 <span className="text-[10px] text-zinc-500">Posts</span>
               </div>
 
               <div className="flex flex-col">
                 <span className="font-bold text-zinc-900 text-sm">
-                  <CountUp end={239} suffix="K" />
+                  <CountUp end={249} suffix="K" />
                 </span>
                 <span className="text-[10px] text-zinc-500">Followers</span>
               </div>
@@ -266,21 +266,21 @@ export default function FollowOurJourney() {
             <div className="flex items-center gap-6 text-center shrink-0">
               <div className="flex flex-col">
                 <span className="font-bold text-zinc-900 text-sm">
-                  <CountUp end={10} />
+                  <CountUp end={12} />
                 </span>
                 <span className="text-[10px] text-zinc-500">Following</span>
               </div>
 
               <div className="flex flex-col">
                 <span className="font-bold text-zinc-900 text-sm">
-                  <CountUp end={112} suffix="K" />
+                  <CountUp end={111.8} suffix="K" />
                 </span>
                 <span className="text-[10px] text-zinc-500">Followers</span>
               </div>
 
               <div className="flex flex-col">
                 <span className="font-bold text-zinc-900 text-sm">
-                  <CountUp end={4.8} suffix="M" />
+                  <CountUp end={4.9} suffix="M" />
                 </span>
                 <span className="text-[10px] text-zinc-500">Likes</span>
               </div>
@@ -335,7 +335,7 @@ export default function FollowOurJourney() {
 
           <div>
             <h4 className="font-bold text-zinc-900 text-lg leading-none">
-              <CountUp end={239} suffix="K" />
+              <CountUp end={249} suffix="K" />
             </h4>
 
             <p className="mt-1 font-medium text-[10px] text-zinc-500">Instagram Followers</p>
@@ -363,7 +363,7 @@ export default function FollowOurJourney() {
 
           <div>
             <h4 className="font-bold text-zinc-900 text-lg leading-none">
-              <CountUp end={4.8} suffix="M" />
+              <CountUp end={6.9} suffix="jt" />
             </h4>
 
             <p className="mt-1 font-medium text-[10px] text-zinc-500">TikTok Likes</p>

@@ -204,13 +204,13 @@ export default function Career() {
 
             <div className="group relative shadow-sm rounded-[2rem] h-[220px] overflow-hidden">
               <Image 
-                src="/outbond/BusinessTripBali/BusinessTripBali1-w400.webp" 
+                src="/outbond/BusinessTripBali/BusinessTripBali3.webp" 
                 alt="Work Culture" 
                 fill 
                 sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover group-hover:scale-105 transition-transform duration-700" 
               />
-              <div className="bottom-4 left-1/2 absolute flex items-center gap-3 bg-white/95 shadow-lg backdrop-blur-md px-4 py-2.5 rounded-2xl -translate-x-1/2">
+              {/* <div className="bottom-4 left-1/2 absolute flex items-center gap-3 bg-white/95 shadow-lg backdrop-blur-md px-4 py-2.5 rounded-2xl -translate-x-1/2">
                 <div className="bg-[#495C29] p-1.5 rounded-md text-white">
                   <Smile size={16} />
                 </div>
@@ -218,7 +218,7 @@ export default function Career() {
                   <span className="font-bold text-[11px] text-zinc-900 leading-none">BUDAYA KERJA</span>
                   <span className="mt-1 font-medium text-[8px] text-zinc-500">Lingkungan Kerja yang Suportif & Nyaman</span>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
 

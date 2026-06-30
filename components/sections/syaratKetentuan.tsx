@@ -58,7 +58,7 @@ const tcSections = [
           <CheckCircle2 size={16} className="text-[#495C29] shrink-0 mt-0.5" />
           <div>
             <strong className="text-zinc-800 text-sm block mb-0.5">Sistem Booking & Ketersediaan</strong>
-            <p className="text-zinc-600 text-xs leading-relaxed">Tombol "Booking" atau "Cek Ketersediaan" di platform kami mengarahkan kamu pada sistem reservasi langsung. Status ketersediaan unit bersifat <span className="italic font-semibold text-[#495C29]">real-time</span> dan kamar baru dianggap "aman" jika kamu sudah menyelesaikan proses administrasi resmi sesuai alur yang difinalisasi dengan pembayaran.</p>
+            <p className="text-zinc-600 text-xs leading-relaxed">Untuk proses booking, kamu bisa langsung hubungi pihak kos (owner/manajemen) lewat info kontak yang udah dikasih sama tim Customer Service (CS), sesegera mungkin biar ga kehabisan kamarnya yah! Semua kos yang direkomendasiin tim CS juga udah dipastiin available kok. Tapi, kalau karena satu dan lain hal kamarnya ternyata tiba-tiba full, bisa langsung chat tim CS lagi aja ya buat minta rekomendasi unit baru.</p>
           </div>
         </div>
         <div className="flex gap-3 items-start p-1">
@@ -122,10 +122,10 @@ const tcSections = [
           <strong className="text-red-900 text-xs block mb-1.5">⚠️ Kebijakan Pembatalan</strong>
           <ul className="list-disc list-inside text-zinc-600 text-xs leading-relaxed space-y-2">
             <li>
-              Setelah pembayaran dikonfirmasi <span className="font-semibold text-zinc-800">Partnership</span>, pembatalan sepihak oleh pihak <span className="font-semibold text-zinc-800">klien</span>, baik sebelum maupun sesudah tim Baboo Kos melakukan kunjungan lokasi dan/atau setelah proses editing dimulai, <span className="font-semibold text-red-600">tidak dapat di-refund dengan alasan apa pun.</span>
+              Setelah pembayaran <span className="font-semibold text-zinc-800">Partnership</span> dikonfirmasi, pembatalan sepihak oleh pihak <span className="font-semibold text-zinc-800">klien</span>, baik sebelum maupun sesudah tim Baboo Kos melakukan kunjungan lokasi dan/atau setelah proses editing dimulai, <span className="font-semibold text-red-600">tidak dapat di-refund dengan alasan apa pun.</span>
             </li>
             <li>
-              Setelah pembayaran dikonfirmasi <span className="font-semibold text-zinc-800">Jasa Pencarian Kos</span>, pembatalan sepihak oleh pihak <span className="font-semibold text-zinc-800">konsumen</span>, <span className="font-semibold text-red-600">tidak dapat di-refund dengan alasan apa pun.</span> karena data yang sudah diberikan akan otomatis terinput dan di proses pada sistem kami.
+              Setelah pembayaran <span className="font-semibold text-zinc-800">Jasa Pencarian Kos</span> dikonfirmasi, pembatalan sepihak oleh pihak <span className="font-semibold text-zinc-800">konsumen</span>, <span className="font-semibold text-red-600">tidak dapat di-refund dengan alasan apa pun.</span> karena data yang sudah diberikan akan otomatis terinput dan di proses pada sistem kami.
             </li>
           </ul>
         </div>

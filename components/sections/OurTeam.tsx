@@ -351,7 +351,7 @@ export default function OurTeam() {
           <StatBox icon={<CalendarDays size={24} className="text-[#495C29]" />} endValue={12} suffix="+" title="Agenda Outing" desc="Kebersamaan yang selalu kami jaga" isVisible={isVisible} />
           <StatBox icon={<Users size={24} className="text-[#495C29]" />} endValue={25} suffix="+" title="Team Members" desc="Individu hebat dengan tujuan yang sama" isVisible={isVisible} />
           <StatBox icon={<Heart size={24} className="text-[#495C29]" />} endValue={100} suffix="%" title="Teamwork" desc="Kolaborasi dan kepercayaan" isVisible={isVisible} />
-          <StatBox icon={<Trophy size={24} className="text-[#495C29]" />} endValue={1} suffix=" Goal" title="Memberikan yang" desc="Terbaik untuk Baboo Kos & Villa" isVisible={isVisible} />
+          <StatBox icon={<Trophy size={24} className="text-[#495C29]" />} endValue={1} suffix=" Goal" title="Memberikan yang" desc="Terbaik untuk Baboo Kos & Baboo Villa" isVisible={isVisible} />
         </div>
       </div>
     </section>

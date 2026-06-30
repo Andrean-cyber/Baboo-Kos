@@ -25,7 +25,6 @@ const SIZES = [
 ];
 
 const WEBP_QUALITY = 80;
-const AVIF_QUALITY = 60;
 
 const CONCURRENCY = 4;
 
@@ -74,10 +73,7 @@ async function generateVariant(
   width,
   format
 ) {
-  const quality =
-    format === "avif"
-      ? AVIF_QUALITY
-      : WEBP_QUALITY;
+  const quality = WEBP_QUALITY;
 
   await image
     .clone()
@@ -120,26 +116,12 @@ async function processFile(file) {
         `${parsed.name}-w${width}.webp`
       );
 
-      const avifOutput = path.join(
-        parsed.dir,
-        `${parsed.name}-w${width}.avif`
-      );
-
       if (!(await fileExists(webpOutput))) {
         await generateVariant(
           image,
           webpOutput,
           width,
           "webp"
-        );
-      }
-
-      if (!(await fileExists(avifOutput))) {
-        await generateVariant(
-          image,
-          avifOutput,
-          width,
-          "avif"
         );
       }
     }
