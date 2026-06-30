@@ -302,7 +302,7 @@ const handleWhatsapp = () => {
         {isMobileMenuOpen && (
           <>
             {/* BACKDROP */}
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setIsMobileMenuOpen(false)} className="z-[90] fixed inset-0 bg-black/30 backdrop-blur-sm" />
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setIsMobileMenuOpen(false)} className="z-[90] fixed inset-0 bg-black/50" />
 
             {/* SHEET */}
             <motion.div
@@ -314,6 +314,7 @@ const handleWhatsapp = () => {
                 damping: 22,
                 stiffness: 180,
               }}
+              style={{ willChange: "transform" }}
               className="bottom-0 z-[100] fixed inset-x-0 bg-white shadow-2xl p-8 pb-10 rounded-t-[2rem]"
             >
               <div className="flex flex-col gap-5 pt-2">
