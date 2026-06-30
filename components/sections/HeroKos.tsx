@@ -293,7 +293,7 @@ export default function HeroKos() {
         {/* ========================= */}
         {/* DESKTOP IMAGE */}
         {/* ========================= */}
-        <div className="hidden lg:block relative w-[46%]">
+        <div className="hidden lg:block relative w-[52%]">
           <div className={cn("relative rounded-[2.5rem] w-full h-[650px] transition-all duration-1000 ease-out", isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10")}>
             <div className="absolute inset-0 rounded-[2.5rem] overflow-hidden">
               <Image src="/hero.webp" sizes="52vw" alt="BabooKos" fill className="brightness-[0.95] object-cover" priority loading="eager" />
