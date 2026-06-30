@@ -132,7 +132,7 @@ export default function MeetOurTeam() {
         <h2 className={cn("mb-4 font-bold text-slate-900 text-3xl md:text-4xl lg:text-5xl tracking-tight transition-[transform,opacity] duration-700 ease-out delay-150", isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0")}>
           The Minds Behind Baboo Kos
         </h2>
-        <p className={cn("max-w-xl font-medium text-zinc-500 text-sm md:text-base leading-relaxed transition-[transform,opacity] duration-700 ease-out delay-300", isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0")}>
+        <p className={cn("max-w-[800px] font-medium text-zinc-500 text-sm md:text-base leading-relaxed transition-[transform,opacity] duration-700 ease-out delay-300", isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0")}>
           Bukan sekedar tim dibalik layar. Kami adalah kombinasi kreator, marketer dan tech-enthusiast yang berambisi mengubah cara orang mencari dan mempromosikan kos jadi jauh lebih seru.
         </p>
       </div>
