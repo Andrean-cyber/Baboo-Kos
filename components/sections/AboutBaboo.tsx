@@ -251,7 +251,7 @@ useEffect(() => {
                     <div>
                       <h4 className="mb-0.5 font-bold text-[10px] sm:text-[11px] text-zinc-900 xl:text-xs">Misi</h4>
                       <p className="text-[9px] leading-snug text-zinc-500 xl:text-[11px]">
-                        Jadi mak comblang digital yang paling sat-set buat nemuin kamu sama kos impianmu lewat platform yang super{" "}
+                        Jadi mak comblang digital yang paling sat-set buat nemuin kamu sama kos impianmu lewat <span className="font-bold italic"> platform</span> yang super{" "}
                         <span className="font-bold italic">user-friendly</span>.
                       </p>
                     </div>

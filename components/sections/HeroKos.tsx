@@ -48,7 +48,7 @@ export default function HeroKos() {
   // ==========================================
   // STATE & LOGIKA ANIMASI TYPING (PLACEHOLDER)
   // ==========================================
-  const placeholderPhrases = ["Hi, Baboo Kos...", "informasi lebih lanjut..."];
+  const placeholderPhrases = ["Hi, Baboo Kos...", "Mau dicariin kos donggg..."];
   const [placeholderText, setPlaceholderText] = useState("");
   const [phraseIndex, setPhraseIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
@@ -94,7 +94,7 @@ export default function HeroKos() {
     let message = inputValue.trim();
 
     if (!message) {
-      message = "Halo Baboo Kos, saya ingin bertanya...";
+      message = "Halo Baboo Kos, aku mau dicariin kos dong...";
     } else {
       badWordsDictionary.forEach((word) => {
         const escapedWord = word.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
