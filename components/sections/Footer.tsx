@@ -234,9 +234,6 @@ export default function Footer() {
             &copy; 2026 {isVillaPage ? "Baboo Villa" : "Baboo Kos Platform"}.
             All Rights Reserved. Aman, Nyaman, Transparan.
           </p>
-          <p className="text-zinc-300/40 text-[10px]">
-            Designed with absolute transparency and mutual comfort ✨
-          </p>
         </div>
       </footer>
     </section>
