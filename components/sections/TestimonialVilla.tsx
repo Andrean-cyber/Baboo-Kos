@@ -175,10 +175,10 @@ const properties = Array.from({ length: 10 }).map((_, i) => ({
                 )}
               >
                 <Image
-                  src={getOptimizedImage(item.img, "thumbnail")}
+                  src={getOptimizedImage(item.img, "gallery")}
                   alt={`Testimoni Villa ${index + 1}`}
                   fill
-                  sizes={getImageSizes("thumbnail")}
+                  sizes={getImageSizes("gallery")}
                   className="object-cover"
                   priority={index === activeIndex} // Prioritaskan gambar awal
                 />

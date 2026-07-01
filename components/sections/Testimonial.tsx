@@ -182,7 +182,7 @@ export default function Testimonial() {
                   // Tambahkan priority hanya pada gambar yang benar-benar ada di posisi pertama
                   // Dan hapus loading="eager" secara manual, karena priority sudah otomatis menjadikannya eager
                   priority={index === 9} // Karena Anda memulai dengan activeIndex 9, prioritaskan gambar ini
-                  sizes={getImageSizes("thumbnail")}
+                  sizes={getImageSizes("gallery")}
                   className="object-cover"
                 />
               </div>
