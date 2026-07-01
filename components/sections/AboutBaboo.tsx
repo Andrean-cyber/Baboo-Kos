@@ -242,15 +242,15 @@ useEffect(() => {
                 </div>
 
                 {/* BLOK 2: Visi Misi */}
-                <div className="relative flex flex-col flex-1 justify-center gap-2 bg-white shadow-sm p-3.5 rounded-2xl md:max-w-[220px] overflow-hidden group">
+                <div className="relative flex flex-col flex-1 justify-center gap-2 bg-white shadow-sm p-5.5 rounded-2xl md:max-w-[220px] overflow-hidden group">
                   <div className="relative z-10 space-y-2">
                     <div>
                       <h4 className="mb-0.5 font-bold text-[10px] sm:text-[11px] text-zinc-900 xl:text-xs">Visi</h4>
-                      <p className="text-[9px] text-zinc-500 xl:text-[11px] leading-snug">Making living space search friction-less for everyone.</p>
+                      <p className="text-[9px] text-zinc-500 xl:text-[11px] leading-snug">Ngabulin mimpi semua anak kosan: dapet hunian yang pas, jujur dan bebas ribet.</p>
                     </div>
                     <div>
                       <h4 className="mb-0.5 font-bold text-[10px] sm:text-[11px] text-zinc-900 xl:text-xs">Misi</h4>
-                      <p className="text-[9px] text-zinc-500 xl:text-[11px] leading-snug">Connecting people with curated spaces through great UX & technology.</p>
+                      <p className="text-[9px] text-zinc-500 xl:text-[11px] leading-snug">Jadi mak comblang digital yang paling sat-set buat nemuin kamu sama kos impianmu lewat platform yang super user-friendly.</p>
                     </div>
                   </div>
                   <ShineBorder 
@@ -271,9 +271,9 @@ useEffect(() => {
                       <p className="mt-0.5 text-[8px] text-zinc-500 xl:text-[10px]">Find it easier</p>
                     </div>
                   </div>
-                  <div className="flex flex-col justify-center bg-white shadow-sm p-2.5 md:p-4 rounded-2xl w-1/2 md:w-full md:h-full">
+                  <div className="flex flex-col justify-center bg-white shadow-sm p-4.5 md:p-4 rounded-2xl w-1/2 md:w-full md:h-full">
                     <h4 className="mb-0.5 font-bold text-[10px] sm:text-[11px] text-zinc-900 xl:text-xs">Objective</h4>
-                    <p className="text-[9px] text-zinc-500 xl:text-[11px] leading-tight">Membantu setiap owner kos go digital.</p>
+                    <p className="text-[9px] text-zinc-500 xl:text-[11px] leading-tight">Ngebantu pemilik kos naik kelas lewat digitalisasi, biar manajemen kosan jadi se-simple sosmed-an.</p>
                   </div>
                 </div>
               </div>

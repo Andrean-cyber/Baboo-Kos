@@ -54,6 +54,26 @@ export default function Footer() {
     return () => observer.disconnect();
   }, []);
 
+  const socialIcons = (
+    <div className="flex items-center gap-5 mt-4 text-zinc-200">
+      <a href="https://www.facebook.com/profile.php?id=61577834251895" target="_blank" rel="noopener noreferrer" className="hover:text-[#F3C546] text-lg transition-colors" aria-label="Facebook">
+        <FaFacebook />
+      </a>
+      <a href="https://instagram.com/baboo_kos" target="_blank" rel="noopener noreferrer" className="hover:text-[#F3C546] text-lg transition-colors" aria-label="Instagram">
+        <FaInstagram />
+      </a>
+      <a href="https://tiktok.com/@baboo_kos" target="_blank" rel="noopener noreferrer" className="hover:text-[#F3C546] text-lg transition-colors" aria-label="TikTok">
+        <FaTiktok />
+      </a>
+      <a href="https://threads.net/@baboo_kos" target="_blank" rel="noopener noreferrer" className="hover:text-[#F3C546] text-lg transition-colors" aria-label="Threads">
+        <FaThreads />
+      </a>
+      <a href={`https://wa.me/${footerConfig.phone}`} target="_blank" rel="noopener noreferrer" className="hover:text-[#F3C546] text-lg transition-colors" aria-label="WhatsApp">
+        <FaWhatsapp />
+      </a>
+    </div>
+  );
+
   return (
     <section id="contact" className="bg-slate-50/50 px-4 md:px-6 pt-4 pb-8 md:pb-8 w-full">
       <footer ref={footerRef} className={cn("relative bg-[#495C29] shadow-lg mx-auto px-6 md:px-12 lg:px-16 pt-12 pb-8 md:pt-14 md:pb-8 rounded-3xl md:rounded-[2rem] w-full max-w-[1360px] overflow-hidden text-white")}>
@@ -103,126 +123,106 @@ export default function Footer() {
         {/* ========================================================= */}
         <div
           className={cn(
-            "z-10 relative gap-10 lg:gap-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-5 pt-8 pb-8 transition-all duration-1000 ease-out delay-300 text-center lg:text-left border-white/10 border-b",
+            "z-10 relative pt-8 pb-8 transition-all duration-1000 ease-out delay-300 border-white/10 border-b",
             isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0",
           )}
         >
-          {/* Kolom 1 & 2 (Span 2): Tentang Brand */}
-          <div className={cn("flex flex-col items-center lg:items-start gap-4 lg:col-span-2")}>
-            <h4 className={cn("font-bold text-sm tracking-wide")}>
-              {isVillaPage ? "About Baboo Villa" : "About Baboo Kos"}
-            </h4>
-            <p className={cn("max-w-sm font-normal text-zinc-200/80 text-xs leading-relaxed")}>
-              {isVillaPage
+          {/* ---------------- MOBILE & TABLET (< lg) ---------------- */}
+          <div className="lg:hidden flex flex-col gap-12">
+            {/* Brand */}
+            <div className="flex flex-col items-center gap-5 text-center">
+              <h4 className="font-bold text-sm tracking-wide">
+                {isVillaPage ? "About Baboo Villa" : "About Baboo Kos"}
+              </h4>
+              <p className="max-w-sm font-normal text-zinc-200/80 text-xs leading-relaxed">
+                {isVillaPage
                   ? "Baboo Villa menghadirkan pilihan villa terbaik untuk staycation, liburan keluarga, hingga momen spesial dengan lokasi strategis, fasilitas lengkap, dan pengalaman menginap yang nyaman."
                   : "Platform pencarian kos yang menghadirkan pilihan hunian terbaik dengan kenyamanan, lokasi strategis, dan pengalaman mencari tempat tinggal yang praktis untuk keseharian Anda."}
-            </p>
+              </p>
+              <div className="flex justify-center w-full">{socialIcons}</div>
+            </div>
 
-            {/* Social Media Icons dengan Link Aktif */}
-            <div className={cn("flex items-center justify-center lg:justify-start gap-5 mt-4 text-zinc-200")}>
-              <a href="https://www.facebook.com/profile.php?id=61577834251895" target="_blank" rel="noopener noreferrer" className={cn("hover:text-[#F3C546] text-lg transition-colors")} aria-label="WhatsApp">
-                <FaFacebook />
-              </a>
-              <a href="https://instagram.com/baboo_kos" target="_blank" rel="noopener noreferrer" className={cn("hover:text-[#F3C546] text-lg transition-colors")} aria-label="Instagram">
-                <FaInstagram />
-              </a>
-              <a href="https://tiktok.com/@baboo_kos" target="_blank" rel="noopener noreferrer" className={cn("hover:text-[#F3C546] text-lg transition-colors")} aria-label="TikTok">
-                <FaTiktok />
-              </a>
-              <a href="https://threads.net/@baboo_kos" target="_blank" rel="noopener noreferrer" className={cn("hover:text-[#F3C546] text-lg transition-colors")} aria-label="Threads">
-                <FaThreads />
-              </a>
-              <a
-                href={`https://wa.me/${footerConfig.phone}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={cn("hover:text-[#F3C546] text-lg transition-colors")}
-                aria-label="WhatsApp"
-              >
-                <FaWhatsapp />
-              </a>
+            {/* Company (kiri) | Help (tengah) | Resources (kanan) - sejajar horizontal */}
+            <div className="grid grid-cols-3 gap-x-3 gap-y-0 ">
+              <div className="flex flex-col items-start gap-4 text-left">
+                <h4 className="font-semibold text-white/60 text-[10px] uppercase tracking-widest">Company</h4>
+                <ul className="flex flex-col gap-1.5 text-zinc-100/90 text-[11px] leading-snug text-left">
+                  <li><Link href="/aboutus" className="hover:text-[#F3C546] transition-colors">About Us</Link></li>
+                  <li><Link href="/simulation" className="hover:text-[#F3C546] transition-colors">Partnership</Link></li>
+                  <li><Link href="/belum-tersedia" className="hover:text-[#F3C546] transition-colors">Mitra Kos</Link></li>
+                  <li><Link href="/contact" className="hover:text-[#F3C546] transition-colors">Contact us</Link></li>
+                </ul>
+              </div>
+
+              <div className="flex flex-col items-center gap-4 text-center">
+                <h4 className="font-semibold text-white/60 text-[10px] uppercase tracking-widest">Help</h4>
+                <ul className="flex flex-col gap-1.5 text-zinc-100/90 text-[11px] leading-snug text-center">
+                  <li><Link href="/serviceCustomer" className="hover:text-[#F3C546] transition-colors">Customer Support</Link></li>
+                  <li><Link href="/#alurJasa" className="hover:text-[#F3C546] transition-colors">Alur Pencarian</Link></li>
+                  <li><Link href="/syaratKetentuan" className="hover:text-[#F3C546] transition-colors">Terms & Conditions</Link></li>
+                  <li><Link href="/privacyPolicy" className="hover:text-[#F3C546] transition-colors">Privacy Policy</Link></li>
+                </ul>
+              </div>
+
+              <div className="flex flex-col items-end gap-4 text-right">
+                <h4 className="font-semibold text-white/60 text-[10px] uppercase tracking-widest">Resources</h4>
+                <ul className="flex flex-col gap-1.5 text-zinc-100/90 text-[11px] leading-snug text-right">
+                  <li><Link href="/handbookAnakRantau" className="hover:text-[#F3C546] transition-colors">Handbook Rantau</Link></li>
+                  <li><Link href="/tipsCariKos" className="hover:text-[#F3C546] transition-colors">Tips Cari Kos</Link></li>
+                  <li><Link href="/panduanCariKos" className="hover:text-[#F3C546] transition-colors">Panduan Kos</Link></li>
+                  <li><Link href="/blogBerita" className="hover:text-[#F3C546] transition-colors">Blog & Berita</Link></li>
+                </ul>
+              </div>
             </div>
           </div>
 
-          {/* Kolom 3: Company Links */}
-          <div className={cn("flex flex-col items-center lg:items-start gap-3")}>
-            <h4 className={cn("font-bold text-sm tracking-wide")}>Company</h4>
-            <ul className="flex flex-col gap-2.5 text-zinc-200/70 text-xs">
-              <li>
-                <Link href="/aboutus" className="hover:text-[#F3C546] transition-colors">
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link href="/simulation" className="hover:text-[#F3C546] transition-colors">
-                  Partnership
-                </Link>
-              </li>
-              <li>
-                <Link href="/belum-tersedia" className="hover:text-[#F3C546] transition-colors">
-                  Mitra Kos
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact" className="hover:text-[#F3C546] transition-colors">
-                  Contact us
-                </Link>
-              </li>
-            </ul>
-          </div>
+          {/* ---------------- DESKTOP (lg+) ---------------- */}
+          <div className="hidden lg:grid lg:grid-cols-5 lg:gap-8">
+            {/* Kolom 1 & 2 (Span 2): Tentang Brand */}
+            <div className="flex flex-col items-start gap-4 col-span-2 text-left">
+              <h4 className="font-bold text-sm tracking-wide">
+                {isVillaPage ? "About Baboo Villa" : "About Baboo Kos"}
+              </h4>
+              <p className="max-w-sm font-normal text-zinc-200/80 text-xs leading-relaxed">
+                {isVillaPage
+                  ? "Baboo Villa menghadirkan pilihan villa terbaik untuk staycation, liburan keluarga, hingga momen spesial dengan lokasi strategis, fasilitas lengkap, dan pengalaman menginap yang nyaman."
+                  : "Platform pencarian kos yang menghadirkan pilihan hunian terbaik dengan kenyamanan, lokasi strategis, dan pengalaman mencari tempat tinggal yang praktis untuk keseharian Anda."}
+              </p>
+              {socialIcons}
+            </div>
 
-          {/* Kolom 4: Help Links */}
-          <div className={cn("flex flex-col gap-3 items-center lg:items-start")}>
-            <h4 className={cn("font-bold text-sm tracking-wide")}>Help</h4>
-            <ul className="flex flex-col gap-2.5 text-zinc-200/70 text-xs text-center lg:text-left">
-              <li>
-                <Link href="/serviceCustomer" className="hover:text-[#F3C546] transition-colors">
-                  Customer Support
-                </Link>
-              </li>
-              <li>
-                <Link href="/#alurJasa" className="hover:text-[#F3C546] transition-colors">
-                  Alur Pencarian
-                </Link>
-              </li>
-              <li>
-                <Link href="/syaratKetentuan" className="hover:text-[#F3C546] transition-colors">
-                  Terms & Conditions
-                </Link>
-              </li>
-              <li>
-                <Link href="/privacyPolicy" className="hover:text-[#F3C546] transition-colors">
-                  Privacy Policy
-                </Link>
-              </li>
-            </ul>
-          </div>
+            {/* Kolom 3: Company Links */}
+            <div className="flex flex-col items-start gap-3 text-left">
+              <h4 className="font-bold text-sm tracking-wide">Company</h4>
+              <ul className="flex flex-col gap-2.5 text-zinc-200/70 text-xs text-left">
+                <li><Link href="/aboutus" className="hover:text-[#F3C546] transition-colors">About Us</Link></li>
+                <li><Link href="/simulation" className="hover:text-[#F3C546] transition-colors">Partnership</Link></li>
+                <li><Link href="/belum-tersedia" className="hover:text-[#F3C546] transition-colors">Mitra Kos</Link></li>
+                <li><Link href="/contact" className="hover:text-[#F3C546] transition-colors">Contact us</Link></li>
+              </ul>
+            </div>
 
-          {/* Kolom 5: Resources Links */}
-          <div className={cn("flex flex-col gap-3 items-center lg:items-start")}>
-            <h4 className={cn("font-bold text-sm tracking-wide")}>Resources</h4>
-            <ul className="flex flex-col gap-2.5 text-zinc-200/70 text-xs text-center lg:text-left">
-              <li>
-                <Link href="/handbookAnakRantau" className="hover:text-[#F3C546] transition-colors">
-                  Handbook Anak Rantau
-                </Link>
-              </li>
-              <li>
-                <Link href="/tipsCariKos" className="hover:text-[#F3C546] transition-colors">
-                  Tips Cari Kos
-                </Link>
-              </li>
-              <li>
-                <Link href="/panduanCariKos" className="hover:text-[#F3C546] transition-colors">
-                  Panduan Cari Kos
-                </Link>
-              </li>
-              <li>
-                <Link href="/blogBerita" className="hover:text-[#F3C546] transition-colors">
-                  Blog & Berita
-                </Link>
-              </li>
-            </ul>
+            {/* Kolom 4: Help Links */}
+            <div className="flex flex-col gap-3 items-start text-left">
+              <h4 className="font-bold text-sm tracking-wide">Help</h4>
+              <ul className="flex flex-col gap-2.5 text-zinc-200/70 text-xs text-left">
+                <li><Link href="/serviceCustomer" className="hover:text-[#F3C546] transition-colors">Customer Support</Link></li>
+                <li><Link href="/#alurJasa" className="hover:text-[#F3C546] transition-colors">Alur Pencarian</Link></li>
+                <li><Link href="/syaratKetentuan" className="hover:text-[#F3C546] transition-colors">Terms & Conditions</Link></li>
+                <li><Link href="/privacyPolicy" className="hover:text-[#F3C546] transition-colors">Privacy Policy</Link></li>
+              </ul>
+            </div>
+
+            {/* Kolom 5: Resources Links */}
+            <div className="flex flex-col gap-3 items-start text-left">
+              <h4 className="font-bold text-sm tracking-wide">Resources</h4>
+              <ul className="flex flex-col gap-2.5 text-zinc-200/70 text-xs text-left">
+                <li><Link href="/handbookAnakRantau" className="hover:text-[#F3C546] transition-colors">Handbook Anak Rantau</Link></li>
+                <li><Link href="/tipsCariKos" className="hover:text-[#F3C546] transition-colors">Tips Cari Kos</Link></li>
+                <li><Link href="/panduanCariKos" className="hover:text-[#F3C546] transition-colors">Panduan Cari Kos</Link></li>
+                <li><Link href="/blogBerita" className="hover:text-[#F3C546] transition-colors">Blog & Berita</Link></li>
+              </ul>
+            </div>
           </div>
         </div>
 
