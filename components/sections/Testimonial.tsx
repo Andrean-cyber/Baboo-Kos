@@ -176,7 +176,7 @@ export default function Testimonial() {
                 )}
               >
                 <Image
-                  src={getOptimizedImage(item.img, "thumbnail")}
+                  src={getOptimizedImage(item.img, "gallery")}
                   alt={`Testimoni ${index + 1}`}
                   fill
                   // Tambahkan priority hanya pada gambar yang benar-benar ada di posisi pertama

@@ -108,7 +108,7 @@ export default function KosCriteriaSection() {
       <div className="max-w-7xl mx-auto grid lg:grid-cols-[1fr_420px] gap-10">
         {/* ================= LEFT FORM ================= */}
         <div className="bg-white rounded-[2rem] p-10 shadow-sm border border-zinc-100">
-          <h3 className="font-bold text-[#495C29] text-lg mb-10">FORM KRITERIA KOS CUSTOMERS BABOO KOS</h3>
+          <h3 className="font-bold text-[#495C29] text-lg mb-10 text-center">FORM KRITERIA KOS CUSTOMERS BABOO KOS</h3>
 
           <div className="grid md:grid-cols-2 gap-8">
             {/* Nama */}

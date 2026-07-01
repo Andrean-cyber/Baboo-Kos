@@ -46,11 +46,23 @@ const managementNotifications = [
 export default function AboutBaboo() {
   const sectionRef = useRef<HTMLElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   const [activeIndex, setActiveIndex] = useState(2);
   const [isVisible, setIsVisible] = useState(false);
   const [isInView, setIsInView] = useState(false); // BARU: untuk play/pause loop animations
   const hasAnimated = useRef(false);
+
+useEffect(() => {
+  const video = videoRef.current;
+  if (!video) return;
+
+  if (isInView) {
+    video.play().catch(() => {});
+  } else {
+    video.pause();
+  }
+}, [isInView]);
 
 useEffect(() => {
   const container = scrollRef.current;
@@ -152,6 +164,7 @@ useEffect(() => {
           {/* ======================================================== */}
           <div className="group relative flex flex-col justify-center items-center shadow-md p-4 sm:p-6 md:p-8 rounded-[2rem] md:rounded-[2.5rem] w-[92vw] max-w-[850px] h-[530px] md:h-[420px] overflow-hidden snap-center shrink-0">
             <video
+              ref={videoRef}
               autoPlay
               loop
               muted
