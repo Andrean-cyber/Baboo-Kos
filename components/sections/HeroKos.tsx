@@ -136,7 +136,7 @@ export default function HeroKos() {
             )}
           >
             <Sparkles size={15} className="z-10 relative text-[#495C29]" />
-            Unlimited comfort
+            Trustworthy Warranty
           </ShinyButton>
 
           {/* Title */}
@@ -230,7 +230,7 @@ export default function HeroKos() {
                 )}
               >
                 <Sparkles size={12} className="relative z-10 text-[#FFFFFF]" />
-                Unlimited comfort
+                Trustworthy Warranty
               </ShinyButton>
 
               <h1
