@@ -237,7 +237,7 @@ useEffect(() => {
                   </div>
 
                   <p className="w-full font-medium text-[9px] text-zinc-600 xl:text-xs leading-relaxed text-center border-t border-zinc-100 pt-1.5 shrink-0">
-                    <span className="font-bold text-zinc-900 block mb-0.5">Baboo Kos</span> ikut membangun ekosistem digital properti di Indonesia.
+                    <span className="font-bold text-zinc-900 block mb-0.5">Baboo Kos</span> Ikut membangun ekosistem digital properti di Indonesia.
                   </p>
                 </div>
 
@@ -250,7 +250,10 @@ useEffect(() => {
                     </div>
                     <div>
                       <h4 className="mb-0.5 font-bold text-[10px] sm:text-[11px] text-zinc-900 xl:text-xs">Misi</h4>
-                      <p className="text-[9px] text-zinc-500 xl:text-[11px] leading-snug">Jadi mak comblang digital yang paling sat-set buat nemuin kamu sama kos impianmu lewat platform yang super user-friendly.</p>
+                      <p className="text-[9px] leading-snug text-zinc-500 xl:text-[11px]">
+                        Jadi mak comblang digital yang paling sat-set buat nemuin kamu sama kos impianmu lewat platform yang super{" "}
+                        <span className="font-bold italic">user-friendly</span>.
+                      </p>
                     </div>
                   </div>
                   <ShineBorder 
