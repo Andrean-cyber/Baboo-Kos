@@ -208,9 +208,8 @@ function MockupRenderer({ type }: { type: string }) {
             <div className="flex items-center gap-1.5">
               <span className="font-bold text-zinc-800 text-sm">Baboo Kos</span>
               {/* Centang Biru Verifikasi WhatsApp */}
-              <svg className="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24" fill="none">
-                <circle cx="12" cy="12" r="10" fill="#00A5F4"/>
-                <path d="M9 12l2 2 4-4" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="18" height="18" viewBox="0 0 48 48">
+              <polygon fill="#42a5f5" points="29.62,3 33.053,8.308 39.367,8.624 39.686,14.937 44.997,18.367 42.116,23.995 45,29.62 39.692,33.053 39.376,39.367 33.063,39.686 29.633,44.997 24.005,42.116 18.38,45 14.947,39.692 8.633,39.376 8.314,33.063 3.003,29.633 5.884,24.005 3,18.38 8.308,14.947 8.624,8.633 14.937,8.314 18.367,3.003 23.995,5.884"></polygon><polygon fill="#fff" points="21.396,31.255 14.899,24.76 17.021,22.639 21.428,27.046 30.996,17.772 33.084,19.926"></polygon>
               </svg>
             </div>
             <div className="flex items-center gap-1 text-[10px] text-zinc-500">
@@ -319,120 +318,92 @@ function MockupRenderer({ type }: { type: string }) {
     );
   }
 
-  // if (type === "payment") {
-  //   return (
-  //     <div className="flex flex-col items-center justify-between h-full w-full pointer-events-none py-1">
-        
-  //       {/* Ilustrasi Centang Berhasil / Terverifikasi */}
-  //       <div className="flex flex-col items-center justify-center flex-1 gap-2">
-  //         <div className="flex items-center justify-center bg-[#EEF3E8] text-[#495C29] rounded-full w-12 h-12 shadow-sm border border-[#E3EBCB]">
-  //           <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
-  //             <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-  //           </svg>
-  //         </div>
-  //         <span className="font-bold text-zinc-700 text-[11px] tracking-wide mt-1">
-  //           Pembayaran Berhasil! Terverifikasi
-  //         </span>
-  //       </div>
-
-  //       {/* Informasi Rekening BCA (Melayang di bawah) */}
-  //       <div className="flex items-center gap-2.5 bg-white p-2.5 border border-zinc-200/80 shadow-sm rounded-xl w-full">
-  //         {/* Logo BCA */}
-  //         <div className="bg-[#005EAF] text-white font-black text-[7px] tracking-tighter px-1.5 py-1 rounded-md shrink-0">
-  //           BCA
-  //         </div>
-  //         <div className="flex flex-col min-w-0 text-left">
-  //           <span className="font-bold text-zinc-800 text-[10px] tracking-wide">3680362199</span>
-  //           <span className="text-[8px] text-zinc-500 truncate">a.n Yucha Pratama</span>
-  //         </div>
-  //       </div>
-
-  //     </div>
-  //   );
-  // }
-
   if (type === "list") {
-  return (
-    <div className="flex flex-col gap-2 w-full h-full pointer-events-none">
-      {[
-        {
-          name: "Baboo Kos Gejayan",
-          price: "1.2 Jt",
-          facility: "AC, Kasur, Lemari",
-          location: "Dekat UGM",
-          image: "bg-gradient-to-br from-blue-400 to-blue-600"
-        },
-        {
-          name: "Baboo Kos Seturan",
-          price: "1.5 Jt",
-          facility: "AC, WiFi, Kamar Mandi Dalam",
-          location: "Dekat UPN",
-          image: "bg-gradient-to-br from-green-400 to-green-600"
-        }
-      ].map((kos, i) => (
-        <div key={i} className="flex gap-3 bg-white shadow-sm p-2.5 border border-zinc-200 rounded-xl overflow-hidden hover:shadow-md transition-shadow">
-          {/* Image Thumbnail */}
-          <div className={`${kos.image} rounded-lg w-20 h-20 shrink-0 flex items-center justify-center relative overflow-hidden`}>
-            <svg className="w-8 h-8 text-white opacity-40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-            </svg>
-            {/* Badge */}
-            <div className="absolute top-1 right-1 bg-[#495C29] px-1.5 py-0.5 rounded text-[7px] text-white font-semibold">
-              Ready
-            </div>
-          </div>
-
-          {/* Content */}
-          <div className="flex flex-col justify-center w-full min-w-0">
-            {/* Title */}
-            <h4 className="font-bold text-zinc-800 text-[11px] truncate mb-1">
-              {kos.name}
-            </h4>
-            
-            {/* Price */}
-            <div className="flex items-center gap-1 mb-1.5">
-              <span className="font-bold text-[#495C29] text-[10px]">Rp {kos.price}</span>
-              <span className="text-[8px] text-zinc-400">/bulan</span>
+    return (
+      <div className="flex flex-col gap-2 w-full h-full pointer-events-none">
+        {[
+          {
+            name: "Kos Assyfa",
+            price: "1.2 Jt",
+            facility: "AC, Kasur, Lemari",
+            location: "Malang",
+            image: "/fasad.webp",
+          },
+          {
+            name: "Kos Anasera Putri",
+            price: "1.5 Jt",
+            facility: "AC, WiFi, Kamar Mandi Dalam",
+            location: "Malang",
+            image: "/kamar.webp",
+          },
+        ].map((kos, i) => (
+          <div key={i} className="flex gap-3 bg-white shadow-sm p-2.5 border border-zinc-200 rounded-xl overflow-hidden hover:shadow-md transition-shadow">
+            {/* Image Thumbnail */}
+            <div className="relative bg-zinc-100 rounded-lg w-20 h-20 shrink-0 overflow-hidden">
+              <Image
+                src={kos.image}
+                alt={kos.name}
+                fill
+                sizes="80px"
+                className="object-cover"
+              />
+              {/* Badge */}
+              <div className="absolute top-1 right-1 bg-[#495C29] px-1.5 py-0.5 rounded text-[7px] text-white font-semibold z-10">
+                Ready
+              </div>
             </div>
 
-            {/* Facilities */}
-            <div className="flex items-center gap-1 mb-1">
-              <svg className="w-2.5 h-2.5 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+            {/* Content */}
+            <div className="flex flex-col justify-center w-full min-w-0">
+              {/* Title */}
+              <h4 className="font-bold text-zinc-800 text-[11px] truncate mb-1">
+                {kos.name}
+              </h4>
+              
+              {/* Price */}
+              <div className="flex items-center gap-1 mb-1.5">
+                <span className="font-bold text-[#495C29] text-[10px]">Rp {kos.price}</span>
+                <span className="text-[8px] text-zinc-400">/bulan</span>
+              </div>
+
+              {/* Facilities */}
+              <div className="flex items-center gap-1 mb-1">
+                <svg className="w-2.5 h-2.5 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
+                <span className="text-[9px] text-zinc-500 truncate">{kos.facility}</span>
+              </div>
+
+              {/* Location */}
+              <div className="flex items-center gap-1">
+                <svg className="w-2.5 h-2.5 text-zinc-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                <span className="text-[9px] text-zinc-400 truncate">{kos.location}</span>
+              </div>
+            </div>
+
+            {/* Arrow */}
+            <div className="flex items-center ml-auto">
+              <svg className="w-4 h-4 text-zinc-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
-              <span className="text-[9px] text-zinc-500 truncate">{kos.facility}</span>
-            </div>
-
-            {/* Location */}
-            <div className="flex items-center gap-1">
-              <svg className="w-2.5 h-2.5 text-zinc-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-              </svg>
-              <span className="text-[9px] text-zinc-400 truncate">{kos.location}</span>
             </div>
           </div>
+        ))}
 
-          {/* Arrow */}
-          <div className="flex items-center ml-auto">
-            <svg className="w-4 h-4 text-zinc-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
-          </div>
+        {/* Info Footer */}
+        <div className="flex items-start gap-2 bg-blue-50 mt-1 p-2 border border-blue-200 rounded-lg">
+          <svg className="w-3 h-3 text-blue-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <p className="text-[8px] text-blue-700 leading-relaxed">
+            Tim CS akan menghubungi untuk detail lengkap dan jadwal survei
+          </p>
         </div>
-      ))}
-
-      {/* Info Footer */}
-      <div className="flex items-start gap-2 bg-blue-50 mt-1 p-2 border border-blue-200 rounded-lg">
-        <svg className="w-3 h-3 text-blue-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-        </svg>
-        <p className="text-[8px] text-blue-700 leading-relaxed">
-          Tim CS akan menghubungi untuk detail lengkap dan jadwal survei
-        </p>
       </div>
-    </div>
-  );
-}
+    );
+  }
   return null;
 }

@@ -2,7 +2,7 @@
 
 import { useRef, useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
-import { Sparkles, Tag, CheckCircle, ArrowRight, Zap, Gift } from "lucide-react";
+import { Sparkles, Tag, CheckCircle, ArrowRight, Zap, Gift, CalendarClock } from "lucide-react";
 import { FaInstagram, FaTiktok } from "react-icons/fa";
 
 // =======================
@@ -13,12 +13,20 @@ const promos = [
     id: 1,
     badge: "Bundle Package",
     discount: "10%",
+    // Badge bonus terpisah — dipasang seperti "stiker tambahan" di samping angka diskon utama
+    bonusBadge: {
+      label: "Diskon Juni",
+      value: "+10%",
+      color: "#F3C546",
+      textColor: "#3D2A00",
+    },
     title: "Paket A",
     description: "Hemat lebih banyak dengan paket bundling terbaik kami!",
     features: [
       { icon: <FaTiktok size={13} />, label: "TikTok (Reels / Feeds)" },
       { icon: <FaInstagram size={13} />, label: "Instagram (Reels / Feeds)" },
       { icon: <CheckCircle size={13} />, label: "Diskon 10% dari total harga" },
+      { icon: <CalendarClock size={13} />, label: "Extra 10% khusus bulan Juni" },
     ],
     color: "from-[#495C29] to-[#6B8A3A]",
     accentColor: "bg-[#D4E6A5]",
@@ -31,11 +39,13 @@ const promos = [
 const marqueeItems = [
   { label: "Bundle Package", icon: <Tag size={14} /> },
   { label: "Hemat 10%", icon: <Sparkles size={14} /> },
+  { label: "+10% Diskon Juni", icon: <Gift size={14} /> },
   { label: "TikTok + Instagram", icon: <Zap size={14} /> },
   { label: "Paket A Tersedia", icon: <Gift size={14} /> },
   { label: "Promo Aktif Sekarang", icon: <CheckCircle size={14} /> },
   { label: "Bundle Package", icon: <Tag size={14} /> },
   { label: "Hemat 10%", icon: <Sparkles size={14} /> },
+  { label: "+10% Diskon Juni", icon: <Gift size={14} /> },
   { label: "TikTok + Instagram", icon: <Zap size={14} /> },
   { label: "Paket A Tersedia", icon: <Gift size={14} /> },
   { label: "Promo Aktif Sekarang", icon: <CheckCircle size={14} /> },
@@ -82,12 +92,12 @@ function PromoCard({ promo }: { promo: (typeof promos)[0] }) {
       {/* Sisi kiri — gradient */}
       <div
         className={cn(
-          "flex flex-col justify-between p-7 md:p-8 bg-gradient-to-br",
+          "relative flex flex-col justify-between p-7 md:p-8 bg-gradient-to-br",
           promo.color,
-          "md:w-[240px] shrink-0",
+          "md:w-[260px] shrink-0",
         )}
       >
-        {/* Badge */}
+        {/* Badge utama */}
         <div>
           <span
             className={cn(
@@ -100,9 +110,29 @@ function PromoCard({ promo }: { promo: (typeof promos)[0] }) {
             {promo.badge}
           </span>
 
-          <div className="mt-5">
-            <p className="text-white/70 text-[10px] font-semibold uppercase tracking-widest mb-1">Hemat hingga</p>
-            <p className="text-white font-black text-6xl leading-none">{promo.discount}</p>
+          <div className="mt-5 flex items-start gap-3">
+            <div>
+              <p className="text-white/70 text-[10px] font-semibold uppercase tracking-widest mb-1">Hemat hingga</p>
+              <p className="text-white font-black text-6xl leading-none">{promo.discount}</p>
+            </div>
+
+            {/* Stiker bonus diskon Juni — ditempel miring di samping angka utama */}
+            {promo.bonusBadge && (
+              <div
+                className="relative mt-1 flex flex-col items-center justify-center rounded-xl px-2.5 py-1.5 shadow-[0_4px_10px_rgba(0,0,0,0.25)] rotate-[-7deg] animate-[wiggle_4s_ease-in-out_infinite]"
+                style={{ backgroundColor: promo.bonusBadge.color, color: promo.bonusBadge.textColor }}
+              >
+                <span className="text-sm font-black leading-none">{promo.bonusBadge.value}</span>
+                <span className="text-[8px] font-bold uppercase tracking-wide leading-none mt-0.5 whitespace-nowrap">
+                  {promo.bonusBadge.label}
+                </span>
+                {/* Notch kecil ala label harga, memperkuat kesan "stiker tempel" */}
+                <span
+                  className="absolute -left-1 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-white"
+                  style={{ boxShadow: `0 0 0 2px ${promo.bonusBadge.color}` }}
+                />
+              </div>
+            )}
           </div>
         </div>
 
@@ -220,3 +250,12 @@ export default function PromoSection() {
     </section>
   );
 }
+
+/*
+  Tambahkan keyframe berikut ke globals.css (sekali saja, di luar komponen):
+
+  @keyframes wiggle {
+    0%, 100% { transform: rotate(-7deg); }
+    50% { transform: rotate(-3deg); }
+  }
+*/

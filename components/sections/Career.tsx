@@ -225,7 +225,7 @@ export default function Career() {
           {/* Bottom Banner (10+) */}
           <div className="flex items-center gap-6 bg-[#EEF3E8] shadow-sm p-6 md:px-10 rounded-[2rem]">
             <h2 className="font-extrabold text-[#495C29] text-5xl md:text-6xl tracking-tighter">137+</h2>
-            <p className="max-w-[280px] font-medium text-[#495C29] text-[13px] leading-relaxed">Cabang yang tersebar di seluruh wilayah Indonesia dan bergabunglah menjadi bagian dari kami</p>
+            <p className="max-w-[280px] font-medium text-[#495C29] text-[13px] leading-relaxed">Jaringan yang luas, siap mendukung kebutuhan Anda di seluruh Indonesia.</p>
           </div>
         </div>
 
