@@ -15,7 +15,7 @@ const promos = [
     discount: "10%",
     // Badge bonus terpisah — dipasang seperti "stiker tambahan" di samping angka diskon utama
     bonusBadge: {
-      label: "Diskon Juni",
+      label: "Diskon Juli",
       value: "+10%",
       color: "#F3C546",
       textColor: "#3D2A00",
