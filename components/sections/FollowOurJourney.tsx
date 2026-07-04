@@ -351,7 +351,7 @@ export default function FollowOurJourney() {
 
           <div>
             <h4 className="font-bold text-zinc-900 text-lg leading-none">
-              <CountUp end={112} suffix="K" />
+              <CountUp end={111.8} suffix="K" />
             </h4>
 
             <p className="mt-1 font-medium text-[10px] text-zinc-500">TikTok Followers</p>
