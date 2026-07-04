@@ -14,11 +14,18 @@ export default function PopUpPromo() {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    const lastClosed = localStorage.getItem(STORAGE_KEY);
-    const now = Date.now();
+    const isDev = process.env.NODE_ENV === "development";
 
-    if (lastClosed && now - Number(lastClosed) < TWO_DAYS_MS) {
-      return; // belum lewat 2 hari sejak terakhir ditutup, jangan tampilkan
+    // Saat development, aturan "sekali per 2 hari" di-skip supaya
+    // developer bisa lihat popup tiap reload tanpa hapus localStorage manual.
+    // Saat production (build/deploy), aturan 2 hari otomatis aktif lagi.
+    if (!isDev) {
+      const lastClosed = localStorage.getItem(STORAGE_KEY);
+      const now = Date.now();
+
+      if (lastClosed && now - Number(lastClosed) < TWO_DAYS_MS) {
+        return; // belum lewat 2 hari sejak terakhir ditutup, jangan tampilkan
+      }
     }
 
     const timer = setTimeout(() => {
