@@ -26,7 +26,7 @@ const promos = [
       { icon: <FaTiktok size={13} />, label: "TikTok (Reels / Feeds)" },
       { icon: <FaInstagram size={13} />, label: "Instagram (Reels / Feeds)" },
       { icon: <CheckCircle size={13} />, label: "Diskon 10% dari total harga" },
-      { icon: <CalendarClock size={13} />, label: "Extra 10% khusus bulan Juni" },
+      { icon: <CalendarClock size={13} />, label: "Extra 10% khusus bulan Juli" },
     ],
     color: "from-[#495C29] to-[#6B8A3A]",
     accentColor: "bg-[#D4E6A5]",
@@ -45,7 +45,7 @@ const marqueeItems = [
   { label: "Promo Aktif Sekarang", icon: <CheckCircle size={14} /> },
   { label: "Bundle Package", icon: <Tag size={14} /> },
   { label: "Hemat 10%", icon: <Sparkles size={14} /> },
-  { label: "+10% Diskon Juni", icon: <Gift size={14} /> },
+  { label: "+10% Diskon Juli", icon: <Gift size={14} /> },
   { label: "TikTok + Instagram", icon: <Zap size={14} /> },
   { label: "Paket A Tersedia", icon: <Gift size={14} /> },
   { label: "Promo Aktif Sekarang", icon: <CheckCircle size={14} /> },
@@ -67,10 +67,7 @@ function MarqueeStrip() {
         {[...Array(4)].map((_, dupIdx) => (
           <div key={dupIdx} className="flex items-center">
             {marqueeItems.map((item, i) => (
-              <div
-                key={`${dupIdx}-${i}`}
-                className="flex items-center gap-2 px-6 text-white/90 text-xs font-semibold whitespace-nowrap"
-              >
+              <div key={`${dupIdx}-${i}`} className="flex items-center gap-2 px-6 text-white/90 text-xs font-semibold whitespace-nowrap">
                 <span className="text-[#D4E6A5]">{item.icon}</span>
                 {item.label}
                 <span className="mx-2 text-white/30">•</span>
@@ -90,22 +87,10 @@ function PromoCard({ promo }: { promo: (typeof promos)[0] }) {
   return (
     <div className="relative flex flex-col md:flex-row items-stretch bg-white border border-zinc-200 rounded-[1.75rem] overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 w-full max-w-[720px]">
       {/* Sisi kiri — gradient */}
-      <div
-        className={cn(
-          "relative flex flex-col justify-between p-7 md:p-8 bg-gradient-to-br",
-          promo.color,
-          "md:w-[260px] shrink-0",
-        )}
-      >
+      <div className={cn("relative flex flex-col justify-between p-7 md:p-8 bg-gradient-to-br", promo.color, "md:w-[260px] shrink-0")}>
         {/* Badge utama */}
         <div>
-          <span
-            className={cn(
-              "inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold",
-              promo.accentColor,
-              promo.accentText,
-            )}
-          >
+          <span className={cn("inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold", promo.accentColor, promo.accentText)}>
             <Sparkles size={10} />
             {promo.badge}
           </span>
@@ -116,21 +101,16 @@ function PromoCard({ promo }: { promo: (typeof promos)[0] }) {
               <p className="text-white font-black text-6xl leading-none">{promo.discount}</p>
             </div>
 
-            {/* Stiker bonus diskon Juni — ditempel miring di samping angka utama */}
+            {/* Stiker bonus diskon Juli — ditempel miring di samping angka utama */}
             {promo.bonusBadge && (
               <div
                 className="relative mt-1 flex flex-col items-center justify-center rounded-xl px-2.5 py-1.5 shadow-[0_4px_10px_rgba(0,0,0,0.25)] rotate-[-7deg] animate-[wiggle_4s_ease-in-out_infinite]"
                 style={{ backgroundColor: promo.bonusBadge.color, color: promo.bonusBadge.textColor }}
               >
                 <span className="text-sm font-black leading-none">{promo.bonusBadge.value}</span>
-                <span className="text-[8px] font-bold uppercase tracking-wide leading-none mt-0.5 whitespace-nowrap">
-                  {promo.bonusBadge.label}
-                </span>
+                <span className="text-[8px] font-bold uppercase tracking-wide leading-none mt-0.5 whitespace-nowrap">{promo.bonusBadge.label}</span>
                 {/* Notch kecil ala label harga, memperkuat kesan "stiker tempel" */}
-                <span
-                  className="absolute -left-1 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-white"
-                  style={{ boxShadow: `0 0 0 2px ${promo.bonusBadge.color}` }}
-                />
+                <span className="absolute -left-1 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-white" style={{ boxShadow: `0 0 0 2px ${promo.bonusBadge.color}` }} />
               </div>
             )}
           </div>
@@ -152,19 +132,14 @@ function PromoCard({ promo }: { promo: (typeof promos)[0] }) {
           <ul className="flex flex-col gap-2.5">
             {promo.features.map((f, i) => (
               <li key={i} className="flex items-center gap-3">
-                <span className="flex items-center justify-center w-7 h-7 rounded-lg bg-[#F0F6E4] text-[#495C29] shrink-0">
-                  {f.icon}
-                </span>
+                <span className="flex items-center justify-center w-7 h-7 rounded-lg bg-[#F0F6E4] text-[#495C29] shrink-0">{f.icon}</span>
                 <span className="text-zinc-700 text-xs font-medium">{f.label}</span>
               </li>
             ))}
           </ul>
         </div>
 
-        <a
-          href="#contact"
-          className="mt-7 flex items-center justify-center gap-2 bg-[#495C29] hover:bg-[#3a4a20] text-white text-xs font-bold py-3 rounded-xl transition-colors duration-200"
-        >
+        <a href="#contact" className="mt-7 flex items-center justify-center gap-2 bg-[#495C29] hover:bg-[#3a4a20] text-white text-xs font-bold py-3 rounded-xl transition-colors duration-200">
           Dapatkan Promo <ArrowRight size={13} />
         </a>
       </div>
@@ -199,46 +174,21 @@ export default function PromoSection() {
 
   return (
     <section ref={sectionRef} className="w-full overflow-hidden">
-
       {/* ── Konten utama ── */}
       <div className="flex flex-col items-center mx-auto px-4 md:px-8 py-16 md:py-24 w-full max-w-[1280px]">
         {/* Header */}
         <div className="flex flex-col items-center mb-12 text-center">
-          <h3
-            className={cn(
-              "mb-2 font-bold text-[#495C29] text-sm md:text-base transition-all duration-700 ease-out",
-              isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0",
-            )}
-          >
-            Promo & Event
-          </h3>
+          <h3 className={cn("mb-2 font-bold text-[#495C29] text-sm md:text-base transition-all duration-700 ease-out", isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0")}>Promo & Event</h3>
 
-          <h2
-            className={cn(
-              "mb-4 font-bold text-slate-900 text-3xl md:text-5xl tracking-tight transition-all duration-700 ease-out delay-150",
-              isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0",
-            )}
-          >
-            Penawaran Spesial
-          </h2>
+          <h2 className={cn("mb-4 font-bold text-slate-900 text-3xl md:text-5xl tracking-tight transition-all duration-700 ease-out delay-150", isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0")}>Penawaran Spesial</h2>
 
-          <p
-            className={cn(
-              "font-medium text-zinc-500 text-sm md:text-base transition-all duration-700 max-w-[1280px] ease-out delay-300",
-              isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0",
-            )}
-          >
+          <p className={cn("font-medium text-zinc-500 text-sm md:text-base transition-all duration-700 max-w-[1280px] ease-out delay-300", isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0")}>
             Promo terbatas! Gabungkan layanan kami dan hemat lebih banyak sekarang juga.
           </p>
         </div>
 
         {/* Promo Cards */}
-        <div
-          className={cn(
-            "flex flex-col items-center gap-6 w-full transition-all duration-700 ease-out delay-500",
-            isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0",
-          )}
-        >
+        <div className={cn("flex flex-col items-center gap-6 w-full transition-all duration-700 ease-out delay-500", isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0")}>
           {promos.map((promo) => (
             <PromoCard key={promo.id} promo={promo} />
           ))}
