@@ -124,7 +124,6 @@ export default function MeetOurTeam() {
    return (
     <section ref={sectionRef} className="flex flex-col items-center mx-auto px-4 md:px-8 py-16 md:py-24 w-full max-w-[1280px]">
 
-      {/* HEADER ← ini yang hilang, sekarang dikembalikan */}
       <div className="flex flex-col items-center mb-12 md:mb-16 text-center">
         <h3 className={cn("mb-2 font-bold text-[#495C29] text-sm md:text-base transition-[transform,opacity] duration-700 ease-out", isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0")}>
           Meet Our Team

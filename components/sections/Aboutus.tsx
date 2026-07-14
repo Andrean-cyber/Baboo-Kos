@@ -57,7 +57,7 @@ export default function AboutUs() {
       <div className="-right-24 -bottom-24 absolute bg-[#495C29]/[0.05] blur-3xl rounded-full w-96 h-96 pointer-events-none" />
 
       {/* INTRO TEXT */}
-      <div className="z-10 relative flex flex-col items-center mb-14 md:mb-16 max-w-2xl text-center">
+      <div className="z-10 relative flex flex-col items-center mb-14 md:mb-0 w-full text-center">
         <h3
           className={cn(
             "mb-2 font-bold text-[#495C29] text-sm md:text-base transition-all duration-700 ease-out",
@@ -69,7 +69,7 @@ export default function AboutUs() {
 
         <h2
           className={cn(
-            "mb-4 font-bold text-slate-900 text-2xl md:text-3xl lg:text-4xl tracking-tight transition-all duration-700 ease-out delay-150",
+            "mb-4 max-w-4xl font-bold text-slate-900 text-3xl md:text-4xl lg:text-5xl tracking-tight transition-[transform,opacity] duration-700 ease-out delay-150",
             isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0",
           )}
         >
@@ -78,7 +78,7 @@ export default function AboutUs() {
 
         <p
           className={cn(
-            "font-medium text-zinc-500 text-sm md:text-base leading-relaxed transition-all duration-700 ease-out delay-300",
+            "max-w-2xl font-medium text-zinc-500 text-sm md:text-base leading-relaxed transition-all duration-700 ease-out delay-300",
             isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0",
           )}
         >
