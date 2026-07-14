@@ -11,8 +11,8 @@ export default function simulationPage() {
       <div className="pt-10 md:pt-10">
         <MeetOurTeam />
         <OurTeam />
-        <FollowOurJourneyAboutus />
         <OurBranch />
+        <FollowOurJourneyAboutus />
       </div>
 
       <Footer />

@@ -3,7 +3,7 @@
 import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
-import { MessageCircle, ClipboardList, CreditCard, Headset, Zap, FileText, CheckCircle2, Handshake, ShieldCheck, Users, Clock, HeadphonesIcon, HeartHandshake, ChevronRight } from "lucide-react";
+import { MessageCircle, ClipboardList, CreditCard, Headset, Zap, FileText, CheckCircle2, Handshake, ShieldCheck, Users, Clock, HeadphonesIcon, HeartHandshake, ChevronRight, Wallet } from "lucide-react";
 
 // ==========================================
 // DATA ALUR JASA
@@ -62,6 +62,7 @@ const features = [
   { icon: Clock, title: "Hemat Waktu", desc: "Kami yang cari, kamu tinggal pilih." },
   { icon: HeadphonesIcon, title: "CS Responsif", desc: "Layanan cepat, ramah, dan selalu siap bantu." },
   { icon: HeartHandshake, title: "Garansi Puas", desc: "Kami pastikan kamu mendapat kos terbaik." },
+  { icon: Wallet, title: "Harga Transparan", desc: "Tidak ada markup harga, harga asli dari pihak kos." }
 ];
 
 export default function Role() {
@@ -166,12 +167,12 @@ export default function Role() {
       {/* BOTTOM FEATURES BANNER */}
       <div
         className={cn(
-          "flex flex-wrap lg:flex-nowrap justify-between gap-6 md:gap-4 bg-white shadow-sm p-6 md:p-8 border border-zinc-100 rounded-3xl w-full transition-all duration-1000 ease-out delay-1000",
+          "grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 md:gap-4 bg-white shadow-sm p-6 md:p-8 border border-zinc-100 rounded-3xl w-full transition-all duration-1000 ease-out delay-1000",
           isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0",
         )}
       >
         {features.map((item, idx) => (
-          <div key={idx} className="flex flex-1 items-center gap-3 w-full md:w-auto">
+          <div key={idx} className="flex items-center gap-3 w-full">
             <div className="flex justify-center items-center border border-zinc-200 rounded-full w-10 h-10 text-[#495C29] shrink-0">
               <item.icon size={18} />
             </div>
@@ -345,7 +346,7 @@ function MockupRenderer({ type }: { type: string }) {
                 alt={kos.name}
                 fill
                 sizes="80px"
-                className="object-cover"
+                className="object-cover object-bottom"
               />
               {/* Badge */}
               <div className="absolute top-1 right-1 bg-[#495C29] px-1.5 py-0.5 rounded text-[7px] text-white font-semibold z-10">

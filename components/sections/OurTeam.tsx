@@ -279,7 +279,7 @@ export default function OurTeam() {
         </div>
       )}
       {/* HEADER */}
-      <div className="flex flex-col items-center mb-10 md:mb-14 text-center">
+      {/* <div className="flex flex-col items-center mb-10 md:mb-14 text-center">
         <h3 className={cn("mb-2 font-bold text-[#495C29] text-sm md:text-base transition-[transform,opacity] duration-700", isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0")}>Our Team</h3>
 
         <h2 className={cn("mb-4 font-bold text-slate-900 text-3xl md:text-4xl lg:text-5xl tracking-tight transition-[transform,opacity] duration-700 delay-150", isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0")}>
@@ -289,7 +289,7 @@ export default function OurTeam() {
         <p className={cn("font-medium text-zinc-500 text-sm md:text-base transition-[transform,opacity] duration-700 delay-300", isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0")}>
           Tim solid yang saling mendukung dan selalu berusaha memberikan yang terbaik
         </p>
-      </div>
+      </div> */}
 
       {/* MAIN CONTAINER */}
       <div
