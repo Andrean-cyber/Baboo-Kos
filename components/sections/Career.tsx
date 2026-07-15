@@ -3,7 +3,7 @@
 import { useRef, useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
-import { Briefcase, GraduationCap, MapPin, ChevronRight, Users2, TrendingUp, Award, Gift, Home, Building, Smile } from "lucide-react";
+import { Briefcase, GraduationCap, MapPin, ChevronRight, Users2, TrendingUp, Award, Gift, Home, Building, Smile, X, Clock } from "lucide-react";
 
 // Data Pekerjaan
 const jobData = {
@@ -37,16 +37,20 @@ export default function Career() {
   const sectionRef = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
   const hasAnimated = useRef(false);
-  const handleWhatsapp = () => {
-  const message = encodeURIComponent(
-    "Halo kak, bisa tau informasi lebih lanjut tentang lowongan pekerjaan di Baboo Kos?"
-  );
 
-  window.open(
-    `https://wa.me/6285111203894?text=${message}`,
-    "_blank"
-  );
-};
+  // State untuk modal "pendaftaran ditutup"
+  const [isClosedModalOpen, setIsClosedModalOpen] = useState(false);
+
+  const handleWhatsapp = () => {
+    const message = encodeURIComponent(
+      "Halo kak, bisa tau informasi lebih lanjut tentang lowongan pekerjaan di Baboo Kos?"
+    );
+
+    window.open(
+      `https://wa.me/6285111203894?text=${message}`,
+      "_blank"
+    );
+  };
 
   // State untuk Tab Aktif (Tombol Lowongan / Internship)
   const [activeTab, setActiveTab] = useState<"fulltime" | "internship">("fulltime");
@@ -136,7 +140,7 @@ export default function Career() {
           {/* Job List */}
           <div className="flex flex-col gap-4">
             {currentJobs.babooKos.map((job, i) => (
-              <JobRow key={i} {...job} theme="green" />
+              <JobRow key={i} {...job} theme="green" onDetailClick={() => setIsClosedModalOpen(true)} />
             ))}
             {currentJobs.babooKos.length === 0 && <p className="py-4 text-zinc-400 text-sm text-center">Belum ada posisi yang tersedia.</p>}
           </div>
@@ -163,7 +167,7 @@ export default function Career() {
           {/* Job List */}
           <div className="flex flex-col gap-4">
             {currentJobs.babooVilla.map((job, i) => (
-              <JobRow key={i} {...job} theme="yellow" />
+              <JobRow key={i} {...job} theme="yellow" onDetailClick={() => setIsClosedModalOpen(true)} />
             ))}
             {currentJobs.babooVilla.length === 0 && <p className="py-4 text-zinc-400 text-sm text-center">Belum ada posisi yang tersedia.</p>}
           </div>
@@ -210,15 +214,6 @@ export default function Career() {
                 sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover group-hover:scale-105 transition-transform duration-700" 
               />
-              {/* <div className="bottom-4 left-1/2 absolute flex items-center gap-3 bg-white/95 shadow-lg backdrop-blur-md px-4 py-2.5 rounded-2xl -translate-x-1/2">
-                <div className="bg-[#495C29] p-1.5 rounded-md text-white">
-                  <Smile size={16} />
-                </div>
-                <div className="flex flex-col">
-                  <span className="font-bold text-[11px] text-zinc-900 leading-none">BUDAYA KERJA</span>
-                  <span className="mt-1 font-medium text-[8px] text-zinc-500">Lingkungan Kerja yang Suportif & Nyaman</span>
-                </div>
-              </div> */}
             </div>
           </div>
 
@@ -248,6 +243,11 @@ export default function Career() {
           </div>
         </div>
       </div>
+
+      {/* ========================= */}
+      {/* MODAL: PENDAFTARAN DITUTUP */}
+      {/* ========================= */}
+      <ClosedModal isOpen={isClosedModalOpen} onClose={() => setIsClosedModalOpen(false)} />
     </section>
   );
 }
@@ -256,7 +256,21 @@ export default function Career() {
 // SUB-COMPONENTS
 // ==========================================
 
-function JobRow({ title, type, loc, dept, theme }: { title: string; type: string; loc: string; dept: string; theme: "green" | "yellow" }) {
+function JobRow({
+  title,
+  type,
+  loc,
+  dept,
+  theme,
+  onDetailClick,
+}: {
+  title: string;
+  type: string;
+  loc: string;
+  dept: string;
+  theme: "green" | "yellow";
+  onDetailClick: () => void;
+}) {
   const isGreen = theme === "green";
   return (
     <div className="flex justify-between items-center pb-4 last:pb-0 border-zinc-100 last:border-0 border-b">
@@ -273,6 +287,7 @@ function JobRow({ title, type, loc, dept, theme }: { title: string; type: string
         </div>
       </div>
       <button
+        onClick={onDetailClick}
         className={cn(
           "flex items-center gap-1.5 px-4 py-1.5 border rounded-full font-bold text-[10px] transition-all shrink-0",
           isGreen ? "border-[#495C29] text-[#495C29] hover:bg-[#495C29] hover:text-white" : "border-[#F3C546] text-[#F3C546] hover:bg-[#F3C546] hover:text-white",
@@ -302,6 +317,45 @@ function MacDots() {
       <div className="bg-[#E5625E] rounded-full w-2.5 h-2.5"></div>
       <div className="bg-[#F3C546] rounded-full w-2.5 h-2.5"></div>
       <div className="bg-[#5EC554] rounded-full w-2.5 h-2.5"></div>
+    </div>
+  );
+}
+
+function ClosedModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
+  if (!isOpen) return null;
+
+  return (
+    <div
+      className="z-50 fixed inset-0 flex justify-center items-center bg-black/50 p-4"
+      onClick={onClose}
+    >
+      <div
+        className="relative bg-white shadow-xl p-8 rounded-[2rem] w-full max-w-sm text-center"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <button
+          onClick={onClose}
+          className="top-4 right-4 absolute flex justify-center items-center hover:bg-zinc-100 rounded-full w-8 h-8 text-zinc-400 hover:text-zinc-700 transition-colors"
+        >
+          <X size={18} />
+        </button>
+
+        <div className="flex justify-center items-center bg-[#FFF6DD] mx-auto mb-5 rounded-full w-16 h-16 text-[#F3C546]">
+          <Clock size={28} />
+        </div>
+
+        <h4 className="mb-2 font-bold text-zinc-900 text-lg">Pendaftaran Sedang Ditutup</h4>
+        <p className="mb-6 text-zinc-500 text-sm leading-relaxed">
+          Maaf, saat ini pendaftaran untuk posisi ini belum dibuka. Silakan cek kembali secara berkala atau hubungi kami untuk info lebih lanjut.
+        </p>
+
+        <button
+          onClick={onClose}
+          className="bg-[#495C29] hover:bg-[#3c4a21] shadow-md py-3 rounded-full w-full font-bold text-white text-[13px] active:scale-95 transition-all"
+        >
+          Mengerti
+        </button>
+      </div>
     </div>
   );
 }
