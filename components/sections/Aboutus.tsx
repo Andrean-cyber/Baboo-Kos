@@ -57,7 +57,7 @@ export default function AboutUs() {
       <div className="-right-24 -bottom-24 absolute bg-[#495C29]/[0.05] blur-3xl rounded-full w-96 h-96 pointer-events-none" />
 
       {/* INTRO TEXT */}
-      <div className="z-10 relative flex flex-col items-center mb-14 md:mb-0 w-full text-center">
+      <div className="z-10 relative flex flex-col items-center mb-14 md:mb-16 w-full text-center">
         <h3
           className={cn(
             "mb-2 font-bold text-[#495C29] text-sm md:text-base transition-all duration-700 ease-out",
