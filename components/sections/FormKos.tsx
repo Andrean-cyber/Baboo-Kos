@@ -236,7 +236,7 @@ export default function KosCriteriaSection() {
             <div className="relative z-10">
               <h3 className="font-bold text-lg mb-6">Mengapa Memilih Baboo Kos?</h3>
 
-              <div className="space-y-6 text-sm">
+              <div className="grid grid-cols-2 gap-x-4 gap-y-6 text-sm lg:grid-cols-1 lg:gap-y-6">
                 <RightItem icon={<Search size={18} />} title="Pencarian Sesuai Kebutuhan" />
                 <RightItem icon={<ShieldCheck size={18} />} title="Rekomendasi Terkurasi" />
                 <RightItem icon={<Handshake size={18} />} title="Rekomendasi Variatif" />
@@ -288,9 +288,9 @@ function Input({ label, placeholder, value, onChange }: { label: string; placeho
 
 function RightItem({ icon, title }: { icon: React.ReactNode; title: string }) {
   return (
-    <div className="flex items-center gap-4">
-      <div className="bg-white/10 p-3 rounded-lg">{icon}</div>
-      <p className="font-medium">{title}</p>
+    <div className="flex flex-col items-start gap-3 lg:flex-row lg:items-center lg:gap-4">
+      <div className="bg-white/10 p-3 rounded-lg shrink-0">{icon}</div>
+      <p className="font-medium leading-snug">{title}</p>
     </div>
   );
 }

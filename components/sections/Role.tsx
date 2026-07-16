@@ -62,7 +62,7 @@ const features = [
   { icon: Clock, title: "Hemat Waktu", desc: "Kami yang cari, kamu tinggal pilih." },
   { icon: HeadphonesIcon, title: "CS Responsif", desc: "Layanan cepat, ramah, dan selalu siap bantu." },
   { icon: HeartHandshake, title: "Garansi Puas", desc: "Kami pastikan kamu mendapat kos terbaik." },
-  { icon: Wallet, title: "Harga Transparan", desc: "Tidak ada markup harga, harga asli dari pihak kos." }
+  { icon: Wallet, title: "Harga Transparan", desc: "Tidak ada markup harga, harga asli dari pihak kos." },
 ];
 
 export default function Role() {
@@ -146,7 +146,7 @@ export default function Role() {
             </div>
 
             {/* UI MOCKUPS (Skeleton visual) */}
-            <div className="relative bg-[#F8FAF7] mb-6 p-4 border border-zinc-100 rounded-2xl min-h-[200px] overflow-hidden">
+            <div aria-hidden="true" className="relative bg-[#F8FAF7] mb-6 p-4 border border-zinc-100 rounded-2xl h-[200px] min-h-[200px] overflow-hidden">
               <MockupRenderer type={step.mockupType} />
             </div>
 
@@ -197,20 +197,17 @@ function MockupRenderer({ type }: { type: string }) {
         {/* Header Profile */}
         <div className="flex items-center gap-3 pb-2.5 border-zinc-200 border-b">
           <div className="relative bg-white rounded-full w-10 h-10 shrink-0 flex items-center justify-center overflow-hidden border border-zinc-200">
-            <Image
-              src="/icon.png"
-              alt="Baboo Kos"
-              fill
-              sizes="40px"
-              className="object-cover"
-            />
+            <Image src="/icon.png" alt="Baboo Kos" fill sizes="40px" className="object-cover" />
           </div>
           <div className="flex flex-col gap-1 min-w-0">
             <div className="flex items-center gap-1.5">
               <span className="font-bold text-zinc-800 text-sm truncate">Baboo Kos</span>
               {/* Centang Biru Verifikasi WhatsApp */}
               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 48 48" className="shrink-0">
-                <polygon fill="#42a5f5" points="29.62,3 33.053,8.308 39.367,8.624 39.686,14.937 44.997,18.367 42.116,23.995 45,29.62 39.692,33.053 39.376,39.367 33.063,39.686 29.633,44.997 24.005,42.116 18.38,45 14.947,39.692 8.633,39.376 8.314,33.063 3.003,29.633 5.884,24.005 3,18.38 8.308,14.947 8.624,8.633 14.937,8.314 18.367,3.003 23.995,5.884"></polygon>
+                <polygon
+                  fill="#42a5f5"
+                  points="29.62,3 33.053,8.308 39.367,8.624 39.686,14.937 44.997,18.367 42.116,23.995 45,29.62 39.692,33.053 39.376,39.367 33.063,39.686 29.633,44.997 24.005,42.116 18.38,45 14.947,39.692 8.633,39.376 8.314,33.063 3.003,29.633 5.884,24.005 3,18.38 8.308,14.947 8.624,8.633 14.937,8.314 18.367,3.003 23.995,5.884"
+                ></polygon>
                 <polygon fill="#fff" points="21.396,31.255 14.899,24.76 17.021,22.639 21.428,27.046 30.996,17.772 33.084,19.926"></polygon>
               </svg>
             </div>
@@ -231,7 +228,12 @@ function MockupRenderer({ type }: { type: string }) {
           </div>
           <div className="flex justify-center items-center bg-zinc-100 hover:bg-zinc-200 rounded-lg w-8 h-8 shrink-0 transition-colors">
             <svg className="w-3.5 h-3.5 text-zinc-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+              />
             </svg>
           </div>
         </div>
@@ -281,7 +283,7 @@ function MockupRenderer({ type }: { type: string }) {
 
   if (type === "payment") {
     return (
-      <div className="flex flex-col justify-center items-center gap-3 w-full h-full pointer-events-none">
+      <div className="flex flex-col justify-center items-center gap-3 w-full h-[200px] min-h-[200px] pointer-events-none">
         <div className="text-center">
           <div className="text-[10px] text-zinc-500">Total Pembayaran</div>
           <div className="font-bold text-zinc-900 text-sm">Rp110.000</div>
@@ -319,25 +321,15 @@ function MockupRenderer({ type }: { type: string }) {
           <div key={i} className="flex gap-2.5 bg-white shadow-sm p-2 border border-zinc-200 rounded-xl overflow-hidden">
             {/* Image Thumbnail */}
             <div className="relative bg-zinc-100 rounded-lg w-14 h-14 shrink-0 overflow-hidden">
-              <Image
-                src={kos.image}
-                alt={kos.name}
-                fill
-                sizes="56px"
-                className="object-cover object-bottom"
-              />
+              <Image src={kos.image} alt={kos.name} fill sizes="56px" className="object-cover object-bottom" />
               {/* Badge */}
-              <div className="absolute top-0.5 right-0.5 bg-[#495C29] px-1 py-0.5 rounded text-[6px] text-white font-semibold z-10 leading-none">
-                Ready
-              </div>
+              <div className="absolute top-0.5 right-0.5 bg-[#495C29] px-1 py-0.5 rounded text-[6px] text-white font-semibold z-10 leading-none">Ready</div>
             </div>
 
             {/* Content */}
             <div className="flex flex-col justify-center w-full min-w-0 gap-0.5">
               {/* Title */}
-              <h4 className="font-bold text-zinc-800 text-[10px] truncate">
-                {kos.name}
-              </h4>
+              <h4 className="font-bold text-zinc-800 text-[10px] truncate">{kos.name}</h4>
 
               {/* Price */}
               <div className="flex items-center gap-1">
@@ -377,9 +369,7 @@ function MockupRenderer({ type }: { type: string }) {
           <svg className="w-3 h-3 text-blue-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
-          <p className="text-[8px] text-blue-700 leading-relaxed">
-            Tim CS akan menghubungi untuk detail lengkap dan jadwal survei
-          </p>
+          <p className="text-[8px] text-blue-700 leading-relaxed">Tim CS akan menghubungi untuk detail lengkap dan jadwal survei</p>
         </div>
       </div>
     );
