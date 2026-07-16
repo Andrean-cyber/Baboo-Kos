@@ -146,7 +146,7 @@ export default function Role() {
             </div>
 
             {/* UI MOCKUPS (Skeleton visual) */}
-            <div aria-hidden="true" className="relative bg-[#F8FAF7] mb-6 p-4 border border-zinc-100 rounded-2xl h-[200px] min-h-[200px] overflow-hidden">
+            <div aria-hidden="true" className="relative bg-[#F8FAF7] mb-6 p-4 border border-zinc-100 rounded-2xl h-full min-h-[200px] overflow-hidden">
               <MockupRenderer type={step.mockupType} />
             </div>
 
@@ -283,7 +283,7 @@ function MockupRenderer({ type }: { type: string }) {
 
   if (type === "payment") {
     return (
-      <div className="flex flex-col justify-center items-center gap-3 w-full h-[200px] min-h-[200px] pointer-events-none">
+      <div className="flex flex-col justify-center items-center gap-3 w-full h-full pointer-events-none">
         <div className="text-center">
           <div className="text-[10px] text-zinc-500">Total Pembayaran</div>
           <div className="font-bold text-zinc-900 text-sm">Rp110.000</div>
