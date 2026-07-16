@@ -211,7 +211,7 @@ export default function HeroKos() {
         {/* ========================= */}
         <div className="lg:hidden block relative w-full">
           {/* Hero Image */}
-          <div className={cn("relative mt-20 rounded-[2rem] h-[420px] overflow-hidden transition-all duration-1000 ease-out shadow-[0_10px_40px_rgba(0,0,0,0.08)]", isLoaded ? "opacity-100 scale-100" : "opacity-0 scale-95")}>
+          <div className={cn("relative mt-20 rounded-[1rem] h-[420px] overflow-hidden transition-all duration-1000 ease-out shadow-[0_10px_40px_rgba(0,0,0,0.08)]", isLoaded ? "opacity-100 scale-100" : "opacity-0 scale-95")}>
             <Image src="/hero.webp" sizes="(max-width: 1024px) 100vw, 0vw" alt="Baboo Kos" fill className="object-cover" priority loading="eager" />
             <div className="absolute inset-0 bg-black/20" />
 
@@ -255,37 +255,40 @@ export default function HeroKos() {
           </p>
 
           {/* Form Pencarian Mobile — dipindah masuk ke dalam hero section */}
-          <div className={cn("flex items-center bg-white shadow-sm mt-5 p-1.5 border border-zinc-200 rounded-full w-full transition-all duration-1000 ease-out delay-[600ms]", isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6")}>
+          <div className={cn("flex items-center bg-white shadow-sm mt-5 p-1 border border-zinc-200 rounded-full w-full transition-all duration-1000 ease-out delay-[600ms]", isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6")}>
             <input 
               type="text" 
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
               onKeyDown={handleKeyDown}
               placeholder={placeholderText} 
-              className="flex-1 bg-transparent px-5 py-3 outline-none font-semibold text-[#495C29] text-[15px] placeholder:text-[#495C29]/60" 
+              className="flex-1 bg-transparent px-4 py-2.5 outline-none font-semibold text-[#495C29] text-[14px] placeholder:text-[#495C29]/60" 
             />
             <button 
               onClick={handleWhatsAppRedirect}
-              className={cn("flex justify-center items-center bg-[#495C29] rounded-full w-24 h-14 text-white transition-all duration-1000 ease-out delay-[500ms]", isLoaded ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10")}
+              className={cn("flex justify-center items-center gap-1.5 bg-[#495C29] px-5 rounded-full h-11 shrink-0 font-semibold text-white text-[13px] transition-all duration-1000 ease-out delay-[500ms]", isLoaded ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10")}
             >
-              <ArrowRight size={22} />
+              Kirim
+              <ArrowRight size={18} />
             </button>
           </div>
 
-          {/* Avatar Circles — ditampilkan di mobile */}
-          <div className={cn("flex items-center justify-center gap-4 mt-6 mb-2 transition-all duration-1000 ease-out delay-[800ms]", isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6")}>
-            <div className="flex -space-x-3.5 overflow-hidden">
-              {avatarImages.map((src, idx) => (
-                <Image key={idx} width={36} height={36} className="inline-block h-9 w-9 rounded-full ring-2 ring-white object-cover" src={src} alt={`User avatar ${idx + 1}`} />
-              ))}
-              <div className="flex h-9 w-9 items-center justify-center rounded-full bg-black font-bold text-white text-[10px] ring-2 ring-white">
-                +99
+          {/* Avatar Circles — ditampilkan di mobile, avatar & teks sejajar, blok di-center di layar */}
+          <div className={cn("flex justify-center mt-6 mb-2 transition-all duration-1000 ease-out delay-[800ms]", isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6")}>
+            <div className="flex items-center gap-3 max-w-[350px]">
+              <div className="flex -space-x-3.5 overflow-hidden shrink-0">
+                {avatarImages.map((src, idx) => (
+                  <Image key={idx} width={36} height={36} className="inline-block h-9 w-9 rounded-full ring-2 ring-white object-cover" src={src} alt={`User avatar ${idx + 1}`} />
+                ))}
+                <div className="flex h-9 w-9 items-center justify-center rounded-full bg-black font-bold text-white text-[10px] ring-2 ring-white">
+                  +99
+                </div>
               </div>
-            </div>
-            
-            <div className="flex flex-col justify-center leading-tight">
-              <p className="font-extrabold text-zinc-800 text-xs">Dipercayai oleh 40k+ pencari hunian</p>
-              <p className="text-zinc-400 text-[10px] font-medium">Rating kepuasan 4.7/5 di seluruh Indonesia</p>
+
+              <div className="flex flex-col justify-center leading-tight text-left">
+                <p className="font-extrabold text-zinc-800 text-xs">Dipercayai oleh 40k+ pencari hunian</p>
+                <p className="text-zinc-400 text-[10px] font-medium">Rating kepuasan 4.7/5 di seluruh Indonesia</p>
+              </div>
             </div>
           </div>
         </div>
@@ -407,13 +410,13 @@ function StatItem({ endValue, suffix, text, isRating = false, decimals = 0 }: { 
   const formattedCount = decimals > 0 ? count.toFixed(decimals) : Math.floor(count).toLocaleString("id-ID");
 
   return (
-    <div ref={ref} className={cn("flex items-start gap-3 md:gap-4 min-w-[150px] transition-all duration-1000 ease-out", isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6")}>
+    <div ref={ref} className={cn("flex items-center gap-3 md:gap-4 min-w-[150px] transition-all duration-1000 ease-out", isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6")}>
       <h3 className="font-bold text-[1.65rem] text-zinc-900 md:text-[2rem] leading-none tracking-[-0.04em] whitespace-nowrap">
         {formattedCount}
         {suffix}
       </h3>
 
-      <div className="flex flex-col justify-center">
+      <div className="flex flex-col justify-center text-left">
         {isRating && (
           <div className="flex items-center gap-0.5 mb-1 text-[#F3C546]">
             <Star size={12} fill="currentColor" strokeWidth={1.5} />
