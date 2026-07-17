@@ -317,7 +317,8 @@ export default function FollowOurJourney() {
       </div>
 
       {/* BOTTOM STATS */}
-      <div className={cn("gap-6", "grid", "grid-cols-1", "md:grid-cols-2", "lg:grid-cols-5", "bg-[#F8F9F5]", "shadow-sm", "mt-10", "p-6", "border", "border-[#495C29]/10", "rounded-[2rem]", "w-full")}>
+      <div className={cn("gap-4 lg:gap-6", "grid", "grid-cols-1", "md:grid-cols-2", "lg:grid-cols-5", "bg-[#F8F9F5]", "shadow-sm", "mt-10", "p-6", "border", "border-[#495C29]/10", "rounded-[2rem]", "w-full")}>
+        {/* Baboo Kos - tetap baris sendiri */}
         <div className="flex items-center gap-4 md:col-span-2">
           <div className="flex justify-center items-center bg-[#495C29] rounded-full w-14 h-14 text-white shrink-0">
             <Home size={24} />
@@ -325,50 +326,49 @@ export default function FollowOurJourney() {
 
           <div>
             <h4 className="font-semibold text-zinc-900 text-sm">Baboo Kos</h4>
-
             <p className="mt-0.5 font-medium text-[10px] text-zinc-500 leading-relaxed">Menciptakan pengalaman mencari kos yang mudah dan praktis.</p>
           </div>
         </div>
 
-        <div className="flex lg:justify-center items-center gap-4 pl-6 lg:pl-0 border-zinc-200/50 border-l lg:border-l-0">
-          <div className="flex justify-center items-center bg-white shadow-sm rounded-full w-10 h-10 text-zinc-400">
-            <FaInstagram size={18} />
+        {/* 3 stat item - jadi satu baris di mobile */}
+        <div className="grid grid-cols-3 gap-2 lg:contents">
+          <div className="flex flex-col items-center text-center gap-2 lg:flex-row lg:text-left lg:justify-center pl-0 lg:pl-0 lg:col-span-1 border-l-0 lg:border-l border-zinc-200/50">
+            <div className="flex justify-center items-center bg-white shadow-sm rounded-full w-8 h-8 lg:w-10 lg:h-10 text-zinc-400 shrink-0">
+              <FaInstagram size={14} className="lg:w-[18px] lg:h-[18px]" />
+            </div>
+
+            <div>
+              <h4 className="font-bold text-zinc-900 text-sm lg:text-lg leading-none">
+                <CountUp end={249} suffix="K" />
+              </h4>
+              <p className="mt-1 font-medium text-[9px] lg:text-[10px] text-zinc-500">Instagram</p>
+            </div>
           </div>
 
-          <div>
-            <h4 className="font-bold text-zinc-900 text-lg leading-none">
-              <CountUp end={249} suffix="K" />
-            </h4>
+          <div className="flex flex-col items-center text-center gap-2 lg:flex-row lg:text-left lg:justify-center border-l border-zinc-200/50 pl-2 lg:pl-0">
+            <div className="flex justify-center items-center bg-white shadow-sm rounded-full w-8 h-8 lg:w-10 lg:h-10 text-zinc-900 shrink-0">
+              <FaTiktok size={13} className="lg:w-4 lg:h-4" />
+            </div>
 
-            <p className="mt-1 font-medium text-[10px] text-zinc-500">Instagram Followers</p>
-          </div>
-        </div>
-
-        <div className="flex lg:justify-center items-center gap-4 pl-6 lg:pl-0 border-zinc-200/50 border-l lg:border-l-0">
-          <div className="flex justify-center items-center bg-white shadow-sm rounded-full w-10 h-10 text-zinc-900">
-            <FaTiktok size={16} />
-          </div>
-
-          <div>
-            <h4 className="font-bold text-zinc-900 text-lg leading-none">
-              <CountUp end={111.8} suffix="K" />
-            </h4>
-
-            <p className="mt-1 font-medium text-[10px] text-zinc-500">TikTok Followers</p>
-          </div>
-        </div>
-
-        <div className="flex lg:justify-center items-center gap-4 pl-6 lg:pl-0 border-zinc-200/50 border-l lg:border-l-0">
-          <div className="flex justify-center items-center bg-white shadow-sm rounded-full w-10 h-10 text-zinc-400">
-            <Heart size={18} />
+            <div>
+              <h4 className="font-bold text-zinc-900 text-sm lg:text-lg leading-none">
+                <CountUp end={111.8} suffix="K" />
+              </h4>
+              <p className="mt-1 font-medium text-[9px] lg:text-[10px] text-zinc-500">TikTok</p>
+            </div>
           </div>
 
-          <div>
-            <h4 className="font-bold text-zinc-900 text-lg leading-none">
-              <CountUp end={6.9} suffix="jt" />
-            </h4>
+          <div className="flex flex-col items-center text-center gap-2 lg:flex-row lg:text-left lg:justify-center border-l border-zinc-200/50 pl-2 lg:pl-0">
+            <div className="flex justify-center items-center bg-white shadow-sm rounded-full w-8 h-8 lg:w-10 lg:h-10 text-zinc-400 shrink-0">
+              <Heart size={14} className="lg:w-[18px] lg:h-[18px]" />
+            </div>
 
-            <p className="mt-1 font-medium text-[10px] text-zinc-500">TikTok Likes</p>
+            <div>
+              <h4 className="font-bold text-zinc-900 text-sm lg:text-lg leading-none">
+                <CountUp end={6.9} suffix="jt" />
+              </h4>
+              <p className="mt-1 font-medium text-[9px] lg:text-[10px] text-zinc-500">Likes</p>
+            </div>
           </div>
         </div>
       </div>

@@ -27,6 +27,17 @@ export default function KosCriteriaSection() {
     return new Intl.NumberFormat("id-ID").format(Number(number || 0));
   };
   const bannedWords = ["anjing", "bangsat", "kontol", "memek", "ngentot", "tai", "bajingan", "goblok"];
+  const facilityOptions = [
+  { value: "Kamar Mandi Dalam", label: "KM Dalam" },
+  { value: "Kamar Mandi Luar", label: "KM Luar" },
+  { value: "Fully Furnished", label: "Furnished" },
+  { value: "Water Heater", label: "Water Heater" },
+  { value: "AC", label: "AC" },
+  { value: "Listrik Token", label: "Token Listrik" },
+  { value: "Dapur Bersama", label: "Dapur Bersama" },
+  { value: "Parkir", label: "Parkir" },
+  { value: "Akses 24 Jam", label: "Akses 24 Jam" },
+];
 
   const containsBadWord = (text: string) => {
     const normalized = text.toLowerCase().replace(/[^a-z]/g, "");
@@ -137,21 +148,26 @@ export default function KosCriteriaSection() {
           <div className="mt-12">
             <label className="block text-sm font-bold mb-4 text-zinc-800">Fasilitas yang diinginkan</label>
 
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-zinc-800">
-              {["Kamar Mandi Dalam", "Kamar Mandi Luar", "Fully Furnished", "Water Heater", "AC", "Listrik Token", "Dapur Bersama", "Parkir", "Akses 24 Jam"].map((item) => {
-                const active = facilities.includes(item);
-                return (
-                  <button
-                    key={item}
-                    onClick={() => toggleFacility(item)}
-                    className={cn("flex items-center gap-3 px-4 py-3 rounded-xl border text-sm text-left", "w-full min-h-[72px] md:min-h-[56px]", active ? "border-[#495C29] bg-[#EEF3E8]" : "border-zinc-200")}
-                  >
-                    <span className={cn("w-5 h-5 shrink-0 rounded-full border flex items-center justify-center", active ? "bg-[#495C29] border-[#495C29]" : "border-zinc-300")}>{active && <Check size={14} className="text-white" />}</span>
-                    {item}
-                  </button>
-                );
-              })}
-            </div>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-3 text-zinc-800">
+  {facilityOptions.map(({ value, label }) => {
+    const active = facilities.includes(value);
+    return (
+      <button
+        key={value}
+        onClick={() => toggleFacility(value)}
+        className={cn(
+          "flex items-center gap-2 px-3 py-3 rounded-xl border text-xs lg:text-sm text-left w-full",
+          active ? "border-[#495C29] bg-[#EEF3E8]" : "border-zinc-200"
+        )}
+      >
+        <span className={cn("w-5 h-5 shrink-0 rounded-full border flex items-center justify-center", active ? "bg-[#495C29] border-[#495C29]" : "border-zinc-300")}>
+          {active && <Check size={14} className="text-white" />}
+        </span>
+        <span className="truncate">{label}</span>
+      </button>
+    );
+  })}
+</div>
           </div>
 
           {/* ================= BUDGET & REKOMENDASI ================= */}
@@ -229,30 +245,30 @@ export default function KosCriteriaSection() {
 
         {/* ================= RIGHT PANEL ================= */}
         <div className="flex flex-col gap-6">
-          <div className="relative overflow-hidden rounded-[2rem] p-8 text-white shadow-xl bg-gradient-to-br from-[#4B5D2B] to-[#2F3A18]">
+          <div className="relative overflow-hidden rounded-[2rem] p-6 lg:p-8 text-white shadow-xl bg-gradient-to-br from-[#4B5D2B] to-[#2F3A18]">
             {/* Background Pattern */}
             <div className="absolute inset-0 opacity-40 bg-center bg-cover pointer-events-none" style={{ backgroundImage: "url('/line2.svg')" }} />
 
             <div className="relative z-10">
-              <h3 className="font-bold text-lg mb-6">Mengapa Memilih Baboo Kos?</h3>
+              <h3 className="font-bold text-lg mb-4 lg:mb-6">Mengapa Memilih Baboo Kos?</h3>
 
-              <div className="grid grid-cols-2 gap-x-4 gap-y-6 text-sm lg:grid-cols-1 lg:gap-y-6">
+              <div className="grid grid-cols-2 gap-x-4 gap-y-4 text-sm lg:grid-cols-1 lg:gap-y-6">
                 <RightItem icon={<Search size={18} />} title="Pencarian Sesuai Kebutuhan" />
                 <RightItem icon={<ShieldCheck size={18} />} title="Rekomendasi Terkurasi" />
                 <RightItem icon={<Handshake size={18} />} title="Rekomendasi Variatif" />
                 <RightItem icon={<Clock size={18} />} title="Hemat Waktu & Tenaga" />
               </div>
 
-              <div className="mt-10 pt-6 border-t border-white/20">
-                <div className="flex items-center gap-3">
-                  <Star className="text-yellow-400" />
+              <div className="mt-6 pt-4 lg:mt-10 lg:pt-6 border-t border-white/20">
+                <div className="flex items-center justify-center gap-2 lg:justify-start lg:gap-3 text-center lg:text-left">
+
                   <div>
                     <p className="text-sm">Rata-rata rekomendasi</p>
                     <p className="font-bold text-lg">dikirim dalam 2-6 hari</p>
                   </div>
                 </div>
 
-                <p className="mt-4 text-sm text-white/80">33.000+ Customer Puas</p>
+                <p className="mt-2 lg:mt-4 text-sm text-white/80 text-center lg:text-left">33.000+ Customer Puas</p>
               </div>
             </div>
           </div>
@@ -288,9 +304,9 @@ function Input({ label, placeholder, value, onChange }: { label: string; placeho
 
 function RightItem({ icon, title }: { icon: React.ReactNode; title: string }) {
   return (
-    <div className="flex flex-col items-start gap-3 lg:flex-row lg:items-center lg:gap-4">
-      <div className="bg-white/10 p-3 rounded-lg shrink-0">{icon}</div>
-      <p className="font-medium leading-snug">{title}</p>
+    <div className="flex flex-col items-center gap-1.5 lg:flex-row lg:items-center lg:gap-4">
+      <div className="bg-white/10 p-2.5 lg:p-3 rounded-lg shrink-0">{icon}</div>
+      <p className="font-medium leading-snug text-center lg:text-left text-xs lg:text-sm">{title}</p>
     </div>
   );
 }

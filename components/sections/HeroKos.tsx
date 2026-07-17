@@ -333,7 +333,7 @@ export default function HeroKos() {
             </div>
 
             {/* FLOATING BOTTOM RIGHT */}
-            <div className={cn("right-8 bottom-8 z-20 absolute flex items-center w-[420px] transition-all duration-1000 ease-out delay-[900ms]", isLoaded ? "opacity-100 translate-x-0" : "opacity-0 translate-x-24")}>
+            {/* <div className={cn("right-8 bottom-8 z-20 absolute flex items-center w-[420px] transition-all duration-1000 ease-out delay-[900ms]", isLoaded ? "opacity-100 translate-x-0" : "opacity-0 translate-x-24")}>
               <div className="flex flex-1 items-center bg-[#FAFAFA]/95 shadow-xl backdrop-blur-xl py-2 pr-5 pl-2 border border-white/50 rounded-full">
                 <Image src="/hero.webp" sizes="52vw" alt="Agent" width={48} height={48} className="shadow-sm border-2 border-white rounded-full w-12 h-12 object-cover"  loading="eager" />
                 <div className="ml-3">
@@ -345,7 +345,7 @@ export default function HeroKos() {
               <button className="flex justify-center items-center bg-white/80 hover:bg-white shadow-lg backdrop-blur-xl border border-white/50 rounded-full w-14 h-14 active:scale-95 transition-all">
                 <ArrowRight size={18} className="text-[#495C29]" />
               </button>
-            </div>
+            </div> */}
           </div>
         </div>
       </section>

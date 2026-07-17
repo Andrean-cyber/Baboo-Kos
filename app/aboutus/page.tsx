@@ -13,7 +13,7 @@ export default function simulationPage() {
         <Aboutus />
         <MeetOurTeam />
         <OurTeam />
-        <OurBranch />
+        {/* <OurBranch /> */}
         <FollowOurJourneyAboutus />
       </div>
       <Footer />

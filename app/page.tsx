@@ -27,6 +27,7 @@ export default function Home() {
       <Role />
       <FormKos />
       <Testimonial />
+      <OurBranch />
       <FollowOurJourney />
       <Faq />
       <Footer />

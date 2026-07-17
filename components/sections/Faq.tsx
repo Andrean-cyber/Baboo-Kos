@@ -62,7 +62,7 @@ export default function Faq() {
     <section ref={sectionRef} className={cn("mx-auto", "flex", "w-full", "max-w-[1280px]", "flex-col", "overflow-hidden", "px-4", "py-16", "md:px-8", "md:py-24")}>
       <div className={cn("flex", "flex-col", "gap-10", "lg:flex-row", "lg:gap-12")}>
         {/* LEFT SIDE */}
-        <div className={cn("flex", "w-full", "flex-col", "lg:w-[40%]")}>
+        <div className={cn("flex", "w-full", "flex-col", "items-center", "text-center", "lg:items-start", "lg:text-left", "lg:w-[40%]")}>
           {/* SMALL TITLE */}
           <h3 className={cn("mb-2 font-bold text-[#495C29] text-sm transition-all duration-700 ease-out", isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0")}>FAQ</h3>
 
@@ -70,11 +70,8 @@ export default function Faq() {
           <h2 className={cn("mb-8 font-bold text-zinc-900 text-3xl md:text-4xl lg:text-5xl leading-tight tracking-tight transition-all duration-700 ease-out delay-150", isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0")}>
             <span className="inline">Masih Bingung?</span>
           </h2>
-
           {/* CTA BOX */}
-          <div
-            className={cn("flex flex-col justify-between bg-[#495C29] shadow-sm p-6 md:p-8 rounded-[2rem] text-white transition-all duration-1000 ease-out delay-300", isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0")}
-          >
+<div className={cn("flex flex-col justify-between bg-[#495C29] shadow-sm p-6 md:p-8 rounded-[2rem] text-white transition-all duration-1000 ease-out delay-300 w-full", isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0")}>
             <div>
               <h4 className="mb-3 font-bold text-xl md:text-2xl">Tenang, kita spill semuanya di sini, Biar Nggak Overthinking </h4>
 
