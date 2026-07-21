@@ -220,11 +220,11 @@ export default function HeroKos() {
               {/* Badge kanan atas */}
               <ShinyButton
                 className={cn(
-                  "absolute top-6 right-6 z-30",
-                  "inline-flex items-center gap-1.5",
+                  "absolute top-5 right-5 z-30",
+                  "inline-flex items-center gap-1",
                   "bg-[#FAFAFA]/20 backdrop-blur-md",
-                  "px-3 py-2 rounded-full",
-                  "font-bold text-[#FFFFFF] text-[0.85rem]",
+                  "px-4 py-2 rounded-full",
+                  "font-bold text-[#FFFFFF] text-[0.6rem]",
                   "transition-all duration-1000 ease-out delay-300",
                   isLoaded ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-6"
                 )}
