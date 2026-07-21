@@ -4,6 +4,7 @@ import Footer from "@/components/sections/Footer";
 import { cn } from "@/lib/utils"; // Pastikan path utils benar
 import PricingPackages from "@/components/sections/PricingPackages";
 import PartnershipGuide from "@/components/sections/partnershipGuide";
+import TestimonialPartnership from "@/components/sections/TestimonialPartnership";
 
 export default function simulationPage() {
   return (
@@ -14,8 +15,8 @@ export default function simulationPage() {
         <PricingPackages />
         <SimulationPackage />
         <PartnershipGuide />
+        <TestimonialPartnership />
       </div>
-      
       <Footer />
     </main>
   );

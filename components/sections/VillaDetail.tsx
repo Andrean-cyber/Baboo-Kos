@@ -5,12 +5,11 @@ import { cn } from "@/lib/utils";
 import { getOptimizedImage, getImageSizes } from "@/lib/imageUtils";
 import Image from "next/image";
 import { 
-  Maximize, Bed, Bath, ChefHat, CheckCircle2, X, ChevronLeft, ChevronRight, MapPin, Info,
-  Layers, Tv, Music, Thermometer, Car, Box, Shirt, Utensils, Mountain, Building2
+  Bed, Bath, ChefHat, CheckCircle2, X, ChevronLeft, ChevronRight, MapPin, Info,
+  Layers, Tv, Music, Thermometer, Car, Box, Shirt, Utensils, Building2
 } from "lucide-react";
 import { FiWifi } from "react-icons/fi";
 import { LuHouse } from "react-icons/lu";
-import BalconyIcon from '@mui/icons-material/Balcony';
 
 const villaData = {
   pesona: {
