@@ -88,6 +88,11 @@ export const metadata: Metadata = {
     shortcut: "/icon.png",
     apple: "/icon.png",
   },
+
+  other: {
+    "application-name": "Baboo Kos",
+    "apple-mobile-web-app-title": "Baboo Kos",
+  },
 };
 
 export default function RootLayout({
