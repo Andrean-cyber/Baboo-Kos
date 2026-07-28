@@ -301,16 +301,16 @@ function MockupRenderer({ type }: { type: string }) {
     const items = [
       {
         name: "Kos Assyfa",
-        price: "1.2 Jt",
+        price: "900 Rb",
         facility: "AC, Kasur, Lemari",
-        location: "Malang",
+        location: "Jakarta",
         image: "/fasad.webp",
       },
       {
         name: "Kos Anasera Putri",
-        price: "1.5 Jt",
+        price: "900 Rb",
         facility: "AC, WiFi, K. Mandi Dalam",
-        location: "Malang",
+        location: "Bali",
         image: "/kamar.webp",
       },
     ];
