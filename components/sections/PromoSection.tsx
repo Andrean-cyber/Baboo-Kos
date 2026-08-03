@@ -14,12 +14,12 @@ const promos = [
     badge: "Bundle Package",
     discount: "10%",
     // Badge bonus terpisah — dipasang seperti "stiker tambahan" di samping angka diskon utama
-    bonusBadge: {
-      label: "Diskon Juli",
-      value: "+10%",
-      color: "#F3C546",
-      textColor: "#3D2A00",
-    },
+    // bonusBadge: {
+    //   label: "Diskon Juli",
+    //   value: "+10%",
+    //   color: "#F3C546",
+    //   textColor: "#3D2A00",
+    // },
     title: "Paket A",
     description: "Hemat lebih banyak dengan paket bundling terbaik kami!",
     features: [
@@ -39,13 +39,11 @@ const promos = [
 const marqueeItems = [
   { label: "Bundle Package", icon: <Tag size={14} /> },
   { label: "Hemat 10%", icon: <Sparkles size={14} /> },
-  { label: "+10% Diskon Juli", icon: <Gift size={14} /> },
   { label: "TikTok + Instagram", icon: <Zap size={14} /> },
   { label: "Paket A Tersedia", icon: <Gift size={14} /> },
   { label: "Promo Aktif Sekarang", icon: <CheckCircle size={14} /> },
   { label: "Bundle Package", icon: <Tag size={14} /> },
   { label: "Hemat 10%", icon: <Sparkles size={14} /> },
-  { label: "+10% Diskon Juli", icon: <Gift size={14} /> },
   { label: "TikTok + Instagram", icon: <Zap size={14} /> },
   { label: "Paket A Tersedia", icon: <Gift size={14} /> },
   { label: "Promo Aktif Sekarang", icon: <CheckCircle size={14} /> },
@@ -102,17 +100,16 @@ function PromoCard({ promo }: { promo: (typeof promos)[0] }) {
             </div>
 
             {/* Stiker bonus diskon Juli — ditempel miring di samping angka utama */}
-            {promo.bonusBadge && (
+            {/* {promo.bonusBadge && (
               <div
                 className="relative mt-1 flex flex-col items-center justify-center rounded-xl px-2.5 py-1.5 shadow-[0_4px_10px_rgba(0,0,0,0.25)] rotate-[-7deg] animate-[wiggle_4s_ease-in-out_infinite]"
                 style={{ backgroundColor: promo.bonusBadge.color, color: promo.bonusBadge.textColor }}
               >
                 <span className="text-sm font-black leading-none">{promo.bonusBadge.value}</span>
                 <span className="text-[8px] font-bold uppercase tracking-wide leading-none mt-0.5 whitespace-nowrap">{promo.bonusBadge.label}</span>
-                {/* Notch kecil ala label harga, memperkuat kesan "stiker tempel" */}
                 <span className="absolute -left-1 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-white" style={{ boxShadow: `0 0 0 2px ${promo.bonusBadge.color}` }} />
               </div>
-            )}
+            )} */}
           </div>
         </div>
 
