@@ -3,6 +3,7 @@ import Script from "next/script";
 import "./globals.css";
 import Navbar from "@/components/sections/Navbar";
 import ScrollToTop from "@/components/sections/ScrollToTop";
+import ConfettiIndependence from "@/components/sections/ConfettiIndependence";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://babookos.com"),
@@ -152,6 +153,7 @@ export default function RootLayout({
           }}
         />
 
+        <ConfettiIndependence />
         <Navbar />
         {children}
         <ScrollToTop />

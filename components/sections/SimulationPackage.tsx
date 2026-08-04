@@ -44,6 +44,10 @@ const addOns = [
   { id: "take", name: "Take Konten", description: "Tim Baboo Kos visit untuk pengambilan footage", price: 100000 },
 ];
 
+// KONFIGURASI DISKON BUNDLING (Promo Agustus: 10% Bundling + 7% All Package = 17%)
+const BUNDLE_DISCOUNT_RATE = 0.17;
+const BUNDLE_DISCOUNT_LABEL = "17%";
+
 function StepCard({ step, title, children }: { step: number; title: string; children: React.ReactNode }) {
   return (
     <div className="flex flex-col w-full">
@@ -146,7 +150,8 @@ function SimulationContent() {
   const hasIgMain = selectedPackages.includes("ig_feed") || selectedPackages.includes("ig_reels");
   const isBundle = hasTikTok && hasIgMain;
 
-  const discount = isBundle ? subtotal * 0.1 : 0;
+  // Promo Agustus: Diskon Bundling 10% + Extra 7% Semua Paket = 17%
+  const discount = isBundle ? subtotal * BUNDLE_DISCOUNT_RATE : 0;
   const total = subtotal - discount;
 
   // Cek apakah ada paket yang dipilih
@@ -200,7 +205,7 @@ function SimulationContent() {
     message += `Subtotal: Rp${formatPrice(subtotal)}\n`;
 
     if (discount > 0) {
-      message += `Diskon Bundling (10%): -Rp${formatPrice(discount)}\n`;
+      message += `Diskon Bundling (${BUNDLE_DISCOUNT_LABEL}): -Rp${formatPrice(discount)}\n`;
     }
 
     message += `Total Estimasi: *Rp${formatPrice(total)}*`;
@@ -209,7 +214,7 @@ function SimulationContent() {
   };
 
   return (
-    <section ref={sectionRef} className="bg-[#FAFAFA] px-4 md:px-8 py-16 md:py-24 overflow-hidden">
+    <section id="calculation" ref={sectionRef} className="bg-[#FAFAFA] px-4 md:px-8 py-16 md:py-24 overflow-hidden">
       {/* HEADER TITLE */}
       <div className="flex flex-col items-center mb-10 md:mb-14 text-center">
         <h3 className={cn("mb-2 font-bold text-[#495C29] text-sm md:text-base transition-all duration-700 ease-out", isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0")}>Simulasi Paket Endorse</h3>
@@ -396,7 +401,8 @@ function SimulationContent() {
             <div className="flex items-center gap-2 bg-[#F6F8F3] p-3 border border-[#E3EBCB] rounded-lg">
               <Info size={16} className="text-[#495C29] shrink-0" />
               <p className="text-[11px] text-zinc-600 md:text-xs">
-                Setiap paket bundling endorse TikTok + Instagram (Reels/Feeds) akan mendapat <span className="font-bold">diskon 10%</span> dari total harga.
+                Promo Bulan Kemerdekaan: setiap paket bundling endorse TikTok + Instagram (Reels/Feeds) mendapat <span className="font-bold">diskon 10% Bundling Package + Extra 7% All Package = {BUNDLE_DISCOUNT_LABEL}</span> dari total
+                harga.
               </p>
             </div>
           </StepCard>
@@ -514,7 +520,7 @@ function SimulationContent() {
               </div>
               {discount > 0 && (
                 <div className="flex justify-between text-[#B3CF58]">
-                  <span>Diskon Bundling (10%)</span>
+                  <span>Diskon Bundling ({BUNDLE_DISCOUNT_LABEL})</span>
                   <span className="font-bold">- Rp{formatPrice(discount)}</span>
                 </div>
               )}
@@ -537,71 +543,58 @@ function SimulationContent() {
                 Checkout Sekarang
               </a>
             ) : (
-              <button
-                disabled
-                className="flex justify-center items-center gap-2 bg-zinc-400 cursor-not-allowed mt-6 py-3.5 rounded-xl w-full font-bold text-zinc-600 text-sm"
-              >
+              <button disabled className="flex justify-center items-center gap-2 bg-zinc-400 cursor-not-allowed mt-6 py-3.5 rounded-xl w-full font-bold text-zinc-600 text-sm">
                 <ShoppingCart size={18} />
                 Pilih Paket Terlebih Dahulu
               </button>
             )}
 
             <p className="mt-4 px-2 text-[10px] text-white/60 text-center leading-relaxed">
-              {hasSelectedPackages 
-                ? "Tim Baboo Kos akan menghubungi Anda melalui WhatsApp untuk konfirmasi detail." 
-                : "Silakan pilih minimal 1 paket untuk melanjutkan checkout."}
+              {hasSelectedPackages ? "Tim Baboo Kos akan menghubungi Anda melalui WhatsApp untuk konfirmasi detail." : "Silakan pilih minimal 1 paket untuk melanjutkan checkout."}
             </p>
 
             {/* Trust Badges */}
-<div className="gap-2 grid grid-cols-4 mt-6 pt-6 border-white/10 border-t text-white/70">
-  <div className="flex flex-col items-center gap-1.5 text-center">
-    <ShieldCheck size={18} />
-    <span className="font-medium text-[9px] leading-tight">
-      Aman &<br />
-      Terpercaya
-    </span>
-  </div>
-  
-  {/* BADGE BARU: AUDIENCE ORGANIK */}
-  <div className="flex flex-col items-center gap-1.5 text-center">
-    <svg 
-      stroke="currentColor" 
-      fill="none" 
-      strokeWidth="2" 
-      viewBox="0 0 24 24" 
-      strokeLinecap="round" 
-      strokeLinejoin="round" 
-      className="w-[18px] h-[18px]"
-      xmlns="https://www.w3.org/2000/svg"
-    >
-      <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-      <circle cx="9" cy="7" r="4" />
-      <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
-      <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-    </svg>
-    <span className="font-medium text-[9px] leading-tight">
-      Audience<br />
-      Organik
-    </span>
-  </div>
+            <div className="gap-2 grid grid-cols-4 mt-6 pt-6 border-white/10 border-t text-white/70">
+              <div className="flex flex-col items-center gap-1.5 text-center">
+                <ShieldCheck size={18} />
+                <span className="font-medium text-[9px] leading-tight">
+                  Aman &<br />
+                  Terpercaya
+                </span>
+              </div>
 
-  <div className="flex flex-col items-center gap-1.5 text-center">
-    <BadgeDollarSign size={18} />
-    <span className="font-medium text-[9px] leading-tight">
-      Harga
-      <br />
-      Transparan
-    </span>
-  </div>
-  <div className="flex flex-col items-center gap-1.5 text-center">
-    <Clock size={18} />
-    <span className="font-medium text-[9px] leading-tight">
-      Proses
-      <br />
-      Cepat
-    </span>
-  </div>
-</div>
+              {/* BADGE BARU: AUDIENCE ORGANIK */}
+              <div className="flex flex-col items-center gap-1.5 text-center">
+                <svg stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" className="w-[18px] h-[18px]" xmlns="https://www.w3.org/2000/svg">
+                  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                  <circle cx="9" cy="7" r="4" />
+                  <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                </svg>
+                <span className="font-medium text-[9px] leading-tight">
+                  Audience
+                  <br />
+                  Organik
+                </span>
+              </div>
+
+              <div className="flex flex-col items-center gap-1.5 text-center">
+                <BadgeDollarSign size={18} />
+                <span className="font-medium text-[9px] leading-tight">
+                  Harga
+                  <br />
+                  Transparan
+                </span>
+              </div>
+              <div className="flex flex-col items-center gap-1.5 text-center">
+                <Clock size={18} />
+                <span className="font-medium text-[9px] leading-tight">
+                  Proses
+                  <br />
+                  Cepat
+                </span>
+              </div>
+            </div>
           </div>
         </aside>
       </div>

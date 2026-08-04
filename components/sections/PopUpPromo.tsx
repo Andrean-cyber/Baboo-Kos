@@ -7,7 +7,7 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 const STORAGE_KEY = "promoClosedAt";
-const TWO_DAYS_MS = 2 * 24 * 60 * 60 * 1000; // 2 hari
+const TWO_DAYS_MS = 1 * 24 * 60 * 60 * 1000; // 2 hari
 const OPEN_DELAY_MS = 1200; // delay sebelum pop-up muncul
 const DRAG_CLICK_THRESHOLD = 6; // px, batas geser sebelum dianggap "drag" bukan "klik"
 
@@ -151,7 +151,7 @@ export default function PopUpPromo() {
           draggable={false}
         >
           <Image
-            src="/promo.webp"
+            src="/id.webp"
             alt="Promo"
             width={IMAGE_NATURAL_WIDTH}
             height={IMAGE_NATURAL_HEIGHT}
