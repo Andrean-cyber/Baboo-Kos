@@ -192,14 +192,14 @@ export default function FollowOurJourney() {
             <div className="flex items-center gap-6 text-center shrink-0">
               <div className="flex flex-col">
                 <span className="font-bold text-zinc-900 text-sm">
-                  <CountUp end={2213} />
+                  <CountUp end={2276} />
                 </span>
                 <span className="text-[10px] text-zinc-500">Posts</span>
               </div>
 
               <div className="flex flex-col">
                 <span className="font-bold text-zinc-900 text-sm">
-                  <CountUp end={253} suffix="K" />
+                  <CountUp end={256} suffix="K" />
                 </span>
                 <span className="text-[10px] text-zinc-500">Followers</span>
               </div>
@@ -339,7 +339,7 @@ export default function FollowOurJourney() {
 
             <div>
               <h4 className="font-bold text-zinc-900 text-sm lg:text-lg leading-none">
-                <CountUp end={253} suffix="K" />
+                <CountUp end={256} suffix="K" />
               </h4>
               <p className="mt-1 font-medium text-[9px] lg:text-[10px] text-zinc-500">Instagram</p>
             </div>
@@ -365,7 +365,7 @@ export default function FollowOurJourney() {
 
             <div>
               <h4 className="font-bold text-zinc-900 text-sm lg:text-lg leading-none">
-                <CountUp end={6.9} suffix="jt" />
+                <CountUp end={4.9} suffix="jt" />
               </h4>
               <p className="mt-1 font-medium text-[9px] lg:text-[10px] text-zinc-500">Likes</p>
             </div>

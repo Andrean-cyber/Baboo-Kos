@@ -10,11 +10,11 @@ const pLimit =
     : pLimitModule.default;
 
 const TARGET_DIRS = [
-  "public/team",
-  "public/outbond",
-  "public/sosmed",
+  // "public/team",
+  // "public/outbond",
+  // "public/sosmed",
   "public/testimoni",
-  "public/villa",
+  // "public/villa",
 ];
 
 const SIZES = [
