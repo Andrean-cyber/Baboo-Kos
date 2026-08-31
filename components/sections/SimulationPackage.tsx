@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState, Suspense, useRef, useEffect } from "react";
-import { ShoppingCart, CheckSquare, Square, Check, ShieldCheck, BadgeDollarSign, Clock, Info } from "lucide-react";
+import { ShoppingCart, CheckSquare, Square, Check, ShieldCheck, BadgeDollarSign, Clock, Info, Gift } from "lucide-react";
 import { FaTiktok, FaInstagram, FaWhatsapp, FaHandshake } from "react-icons/fa";
 import { FaThreads } from "react-icons/fa6";
 import { cn } from "@/lib/utils";
@@ -44,9 +44,38 @@ const addOns = [
   { id: "take", name: "Take Konten", description: "Tim Baboo Kos visit untuk pengambilan footage", price: 100000 },
 ];
 
-// KONFIGURASI DISKON BUNDLING (Promo Agustus: 10% Bundling + 7% All Package = 17%)
-const BUNDLE_DISCOUNT_RATE = 0.17;
-const BUNDLE_DISCOUNT_LABEL = "17%";
+// ==========================================================
+// KONFIGURASI PROMO SEPTEMBER
+// ==========================================================
+// 1) Diskon Bundling: tetap 10%, syarat minimal TikTok + IG (Feed/Reels)
+const BUNDLE_DISCOUNT_RATE = 0.1;
+const BUNDLE_DISCOUNT_LABEL = "10%";
+
+// 2) Diskon Tier September: nominal, berdasarkan subtotal (semua paket + add on),
+//    berlaku untuk SEMUA pembelian (tidak wajib bundling). Hanya tier tertinggi yg dicapai yang berlaku.
+type SeptemberTier = {
+  id: number;
+  label: string;
+  minSubtotal: number;
+  discount: number;
+  bonus?: string;
+};
+
+const SEPTEMBER_TIERS: SeptemberTier[] = [
+  { id: 3, label: "Most Profitable", minSubtotal: 1500000, discount: 100000, bonus: "Free TikTok (Cabang Baboo Kos)" },
+  { id: 2, label: "Best Seller", minSubtotal: 1000000, discount: 75000, bonus: "Free Story Instagram 1x" },
+  { id: 1, label: "Starter Deal", minSubtotal: 500000, discount: 50000 },
+];
+
+function getActiveTier(subtotal: number): SeptemberTier | null {
+  return SEPTEMBER_TIERS.find((t) => subtotal >= t.minSubtotal) ?? null;
+}
+
+function getNextTier(subtotal: number): SeptemberTier | null {
+  const remaining = [...SEPTEMBER_TIERS].reverse().find((t) => subtotal < t.minSubtotal);
+  return remaining ?? null;
+}
+// ==========================================================
 
 function StepCard({ step, title, children }: { step: number; title: string; children: React.ReactNode }) {
   return (
@@ -145,13 +174,18 @@ function SimulationContent() {
     return total;
   }, [selectedPackages, selectedAddons, igStoryUpload]);
 
-  // Syarat Bundling: Minimal 1 TikTok + (1 IG Feeds ATAU Reels)
+  // Syarat Diskon Bundling: Minimal 1 TikTok + (1 IG Feeds ATAU Reels)
   const hasTikTok = selectedPackages.some((id) => id.startsWith("tk_"));
   const hasIgMain = selectedPackages.includes("ig_feed") || selectedPackages.includes("ig_reels");
   const isBundle = hasTikTok && hasIgMain;
 
-  // Promo Agustus: Diskon Bundling 10% + Extra 7% Semua Paket = 17%
-  const discount = isBundle ? subtotal * BUNDLE_DISCOUNT_RATE : 0;
+  // Promo September: Diskon Bundling 10% (jika bundling) + Diskon Tier (nominal, berdasarkan subtotal)
+  const bundleDiscount = isBundle ? subtotal * BUNDLE_DISCOUNT_RATE : 0;
+  const activeTier = useMemo(() => getActiveTier(subtotal), [subtotal]);
+  const nextTier = useMemo(() => getNextTier(subtotal), [subtotal]);
+  const tierDiscount = activeTier ? activeTier.discount : 0;
+
+  const discount = bundleDiscount + tierDiscount;
   const total = subtotal - discount;
 
   // Cek apakah ada paket yang dipilih
@@ -204,11 +238,19 @@ function SimulationContent() {
     // === TOTAL SECTION ===
     message += `Subtotal: Rp${formatPrice(subtotal)}\n`;
 
-    if (discount > 0) {
-      message += `Diskon Bundling (${BUNDLE_DISCOUNT_LABEL}): -Rp${formatPrice(discount)}\n`;
+    if (bundleDiscount > 0) {
+      message += `Diskon Bundling (${BUNDLE_DISCOUNT_LABEL}): -Rp${formatPrice(bundleDiscount)}\n`;
+    }
+
+    if (activeTier) {
+      message += `Diskon Tier September (${activeTier.label}): -Rp${formatPrice(tierDiscount)}\n`;
     }
 
     message += `Total Estimasi: *Rp${formatPrice(total)}*`;
+
+    if (activeTier?.bonus) {
+      message += `\n\nBonus didapatkan: ${activeTier.bonus} (mohon dikonfirmasi ya)`;
+    }
 
     return encodeURIComponent(message);
   };
@@ -401,8 +443,9 @@ function SimulationContent() {
             <div className="flex items-center gap-2 bg-[#F6F8F3] p-3 border border-[#E3EBCB] rounded-lg">
               <Info size={16} className="text-[#495C29] shrink-0" />
               <p className="text-[11px] text-zinc-600 md:text-xs">
-                Promo Bulan Kemerdekaan: setiap paket bundling endorse TikTok + Instagram (Reels/Feeds) mendapat <span className="font-bold">diskon 10% Bundling Package + Extra 7% All Package = {BUNDLE_DISCOUNT_LABEL}</span> dari total
-                harga.
+                <span className="font-bold">Special September:</span> paket bundling endorse TikTok + Instagram (Reels/Feeds) dapat <span className="font-bold">Diskon Bundling 10%</span>, ditambah{" "}
+                <span className="font-bold">Diskon Tier Khusus September</span> untuk semua pembelian — min. Rp500rb potongan Rp50rb, min. Rp1jt potongan Rp75rb + Free Story IG 1x, min. Rp1,5jt potongan Rp100rb + Free TikTok
+                (Cabang Baboo Kos).
               </p>
             </div>
           </StepCard>
@@ -511,6 +554,25 @@ function SimulationContent() {
               )}
             </div>
 
+            {/* BADGE TIER SEPTEMBER TERCAPAI */}
+            {activeTier && (
+              <div className="flex items-start gap-2 bg-[#F3C546]/15 mt-4 p-3 border border-[#F3C546]/40 rounded-lg">
+                <Gift size={16} className="text-[#F3C546] shrink-0 mt-0.5" />
+                <div className="text-[11px] leading-relaxed">
+                  <p className="font-bold text-[#F3C546]">Tier {activeTier.label} tercapai! Potongan Rp{formatPrice(activeTier.discount)}</p>
+                  {activeTier.bonus && <p className="text-white/70">+ Bonus: {activeTier.bonus}</p>}
+                </div>
+              </div>
+            )}
+
+            {/* HINT MENUJU TIER BERIKUTNYA */}
+            {!activeTier && nextTier && hasSelectedPackages && (
+              <p className="mt-4 text-[10px] text-white/60 text-center">Tambah belanja Rp{formatPrice(nextTier.minSubtotal - subtotal)} lagi untuk dapat potongan Rp{formatPrice(nextTier.discount)}!</p>
+            )}
+            {activeTier && nextTier && (
+              <p className="mt-3 text-[10px] text-white/60 text-center">Tambah Rp{formatPrice(nextTier.minSubtotal - subtotal)} lagi untuk naik ke potongan Rp{formatPrice(nextTier.discount)}!</p>
+            )}
+
             <div className="my-6 border-white/20 border-t" />
 
             <div className="space-y-2 mb-6 text-sm">
@@ -518,10 +580,16 @@ function SimulationContent() {
                 <span className="text-white/80">Subtotal</span>
                 <span className="font-bold">Rp{formatPrice(subtotal)}</span>
               </div>
-              {discount > 0 && (
+              {bundleDiscount > 0 && (
                 <div className="flex justify-between text-[#B3CF58]">
                   <span>Diskon Bundling ({BUNDLE_DISCOUNT_LABEL})</span>
-                  <span className="font-bold">- Rp{formatPrice(discount)}</span>
+                  <span className="font-bold">- Rp{formatPrice(bundleDiscount)}</span>
+                </div>
+              )}
+              {tierDiscount > 0 && (
+                <div className="flex justify-between text-[#B3CF58]">
+                  <span>Diskon Tier September</span>
+                  <span className="font-bold">- Rp{formatPrice(tierDiscount)}</span>
                 </div>
               )}
             </div>

@@ -27,16 +27,16 @@ const marqueeItems = [
 
 function MarqueeStrip() {
   return (
-    <div className="relative w-full overflow-hidden bg-[#7A0E0E] py-3 select-none">
-      <div className="absolute left-0 top-0 h-full w-16 bg-gradient-to-r from-[#7A0E0E] to-transparent z-10 pointer-events-none" />
-      <div className="absolute right-0 top-0 h-full w-16 bg-gradient-to-l from-[#7A0E0E] to-transparent z-10 pointer-events-none" />
+    <div className="relative w-full overflow-hidden bg-[#495C29] py-3 select-none">
+      <div className="absolute left-0 top-0 h-full w-16 bg-gradient-to-r from-[#495C29] to-transparent z-10 pointer-events-none" />
+      <div className="absolute right-0 top-0 h-full w-16 bg-gradient-to-l from-[#495C29] to-transparent z-10 pointer-events-none" />
 
       <div className="flex w-max animate-marquee">
         {[...Array(4)].map((_, dupIdx) => (
           <div key={dupIdx} className="flex items-center">
             {marqueeItems.map((item, i) => (
               <div key={`${dupIdx}-${i}`} className="flex items-center gap-2 px-6 text-white/90 text-xs font-semibold whitespace-nowrap">
-                <span className="text-[#FCA5A5]">{item.icon}</span>
+                <span className="text-[#FFFFFF]">{item.icon}</span>
                 {item.label}
                 <span className="mx-2 text-white/30">•</span>
               </div>
@@ -77,7 +77,7 @@ export default function PromoSection() {
       <div className="flex flex-col items-center mx-auto px-4 md:px-8 py-16 md:py-24 w-full max-w-[1280px]">
         {/* Header */}
         <div className="flex flex-col items-center mb-12 text-center">
-          <h3 className={cn("mb-2 font-bold text-[#B91C1C] text-sm md:text-base transition-all duration-700 ease-out", isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0")}>Promo & Event</h3>
+          <h3 className={cn("mb-2 font-bold text-[#495C29] text-sm md:text-base transition-all duration-700 ease-out", isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0")}>Promo & Event</h3>
           <h2 className={cn("mb-4 font-bold text-slate-900 text-3xl md:text-5xl tracking-tight transition-all duration-700 ease-out delay-150", isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0")}>
             Penawaran Spesial Kemerdekaan
           </h2>
@@ -89,7 +89,7 @@ export default function PromoSection() {
         {/* Image Promotion */}
         <div className={cn("relative w-full max-w-[860px] rounded-[1.75rem] overflow-hidden shadow-sm hover:shadow-md transition-all duration-700 ease-out delay-500", isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0")}>
           <a href="#calculation" className="block">
-            <Image src="/promo-merdeka.webp" alt="Promo Merdeka" width={2976} height={1674} className="w-full h-auto" priority />
+            <Image src="/promo-september.webp" alt="Promo September" width={2976} height={1674} className="w-full h-auto" priority />
           </a>
         </div>
       </div>
