@@ -25,7 +25,7 @@ const tiktokPackages = [
 ];
 
 const instagramPackages = [
-  { id: "ig_feed", name: "Post Feeds", price: 800000, desc: "5-10 Foto | Keep 1 Bulan" },
+  { id: "ig_feed", name: "Post Feeds", price: 900000, desc: "5-10 Foto | Keep 1 Bulan" },
   { id: "ig_reels", name: "Reels", price: 900000, desc: "Video Reels | Keep 1 Bulan" },
   { id: "ig_story", name: "Story", price: 0, desc: "Diunggah dalam kurun 1 minggu" }, // Harga dinamis berdasarkan jumlah
 ];

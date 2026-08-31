@@ -122,7 +122,7 @@ export default function PricingPackages() {
             </div>
 
             <div className="flex flex-col gap-5">
-              <PricingRow icon={<ImageIcon size={16} className="text-zinc-400" />} title="Post Feeds" desc="5 - 10 Foto" price="Rp. 800.000" duration="Keep 1 Bulan" color="yellow" />
+              <PricingRow icon={<ImageIcon size={16} className="text-zinc-400" />} title="Post Feeds" desc="5 - 10 Foto" price="Rp. 900.000" duration="Keep 1 Bulan" color="yellow" />
               <PricingRow icon={<Clapperboard size={16} className="text-zinc-400" />} title="Reels" desc="Video Reels" price="Rp. 900.000" duration="Keep 1 Bulan" color="yellow" />
 
               <div className="flex justify-between items-start pt-1">
