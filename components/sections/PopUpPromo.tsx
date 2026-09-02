@@ -7,7 +7,7 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 const STORAGE_KEY = "promoClosedAt";
-const TWO_DAYS_MS = 1 * 24 * 60 * 60 * 1000; // 2 hari
+const TWO_DAYS_MS = 1 * 24 * 60 * 60 * 1000; // 1 hari
 const OPEN_DELAY_MS = 1200; // delay sebelum pop-up muncul
 const DRAG_CLICK_THRESHOLD = 6; // px, batas geser sebelum dianggap "drag" bukan "klik"
 
@@ -15,8 +15,8 @@ const WIDGET_WIDTH = 168; // lebar widget
 
 // ⚠️ Ganti angka ini sesuai dimensi ASLI file promo.webp kamu (lebar x tinggi).
 // Ini penting supaya gambar tidak "letterbox" dan menyisakan area kosong putih.
-const IMAGE_NATURAL_WIDTH = 422;
-const IMAGE_NATURAL_HEIGHT = 652;
+const IMAGE_NATURAL_WIDTH = 400;
+const IMAGE_NATURAL_HEIGHT = 630;
 const WIDGET_HEIGHT = Math.round(
   WIDGET_WIDTH * (IMAGE_NATURAL_HEIGHT / IMAGE_NATURAL_WIDTH),
 );
