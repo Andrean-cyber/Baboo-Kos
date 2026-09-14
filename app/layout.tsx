@@ -125,7 +125,9 @@ export default function RootLayout({
               url: "https://babookos.com",
               logo: "https://babookos.com/icon.png",
               sameAs: [
-                "https://www.tiktok.com/@baboo_kos"
+                "https://www.tiktok.com/@baboo_kos",
+                "https://instagram.com/baboo_kos",
+                "https://www.facebook.com/profile.php?id=61577834251895"
               ]
             }),
           }}
