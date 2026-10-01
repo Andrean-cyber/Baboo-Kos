@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Script from "next/script";
 import "./globals.css";
 import Navbar from "@/components/sections/Navbar";
 import ScrollToTop from "@/components/sections/ScrollToTop";
@@ -54,9 +53,8 @@ export const metadata: Metadata = {
     },
   },
 
-  alternates: {
-    canonical: "https://babookos.com",
-  },
+  // CATATAN: `alternates.canonical` sengaja dihapus dari layout.
+  // Taruh canonical di masing-masing halaman (lihat app/page.tsx).
 
   openGraph: {
     title: "Baboo Kos - Cari Kos Tanpa Ribet",
@@ -96,6 +94,34 @@ export const metadata: Metadata = {
   },
 };
 
+// JSON-LD: WebSite (dipakai Google untuk site name)
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Baboo Kos",
+  alternateName: ["BabooKos", "Baboo Kos Malang"],
+  url: "https://babookos.com/",
+};
+
+// JSON-LD: Organization
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Baboo Kos",
+  alternateName: "BabooKos",
+  url: "https://babookos.com/",
+  logo: "https://babookos.com/icon.png",
+  sameAs: [
+    "https://www.tiktok.com/@baboo_kos",
+    "https://instagram.com/baboo_kos",
+    "https://www.facebook.com/profile.php?id=61577834251895",
+  ],
+};
+
+// Escape "<" agar aman di dalam tag <script>
+const toJsonLd = (data: object) =>
+  JSON.stringify(data).replace(/</g, "\\u003c");
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -110,49 +136,16 @@ export default function RootLayout({
       style={{ colorScheme: "light" }}
     >
       <body className="bg-[#F5F5F2] overflow-x-hidden font-sans text-zinc-900 antialiased">
-
-        {/* Organization Schema */}
-        <Script
-          id="organization-schema"
+        {/* Website Schema */}
+        <script
           type="application/ld+json"
-          strategy="beforeInteractive"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Organization",
-              name: "Baboo Kos",
-              alternateName: "BabooKos",
-              url: "https://babookos.com",
-              logo: "https://babookos.com/icon.png",
-              sameAs: [
-                "https://www.tiktok.com/@baboo_kos",
-                "https://instagram.com/baboo_kos",
-                "https://www.facebook.com/profile.php?id=61577834251895"
-              ]
-            }),
-          }}
+          dangerouslySetInnerHTML={{ __html: toJsonLd(websiteSchema) }}
         />
 
-        {/* Website Schema */}
-        <Script
-          id="website-schema"
+        {/* Organization Schema */}
+        <script
           type="application/ld+json"
-          strategy="beforeInteractive"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "WebSite",
-              name: "Baboo Kos",
-              alternateName: "BabooKos",
-              url: "https://babookos.com",
-              potentialAction: {
-                "@type": "SearchAction",
-                target:
-                  "https://babookos.com/?q={search_term_string}",
-                "query-input": "required name=search_term_string",
-              },
-            }),
-          }}
+          dangerouslySetInnerHTML={{ __html: toJsonLd(organizationSchema) }}
         />
 
         {/* <ConfettiIndependence /> */}
