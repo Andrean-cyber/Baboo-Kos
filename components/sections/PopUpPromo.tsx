@@ -151,7 +151,7 @@ export default function PopUpPromo() {
           draggable={false}
         >
           <Image
-            src="/promo-september-promo.webp"
+            src="/pop-up-promo-oktober.webp"
             alt="Promo"
             width={IMAGE_NATURAL_WIDTH}
             height={IMAGE_NATURAL_HEIGHT}

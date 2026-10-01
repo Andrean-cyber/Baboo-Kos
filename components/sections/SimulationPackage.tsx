@@ -45,36 +45,19 @@ const addOns = [
 ];
 
 // ==========================================================
-// KONFIGURASI PROMO SEPTEMBER
+// KONFIGURASI PROMO
 // ==========================================================
-// 1) Diskon Bundling: tetap 10%, syarat minimal TikTok + IG (Feed/Reels)
+const PROMO_NAME = "Special Oktober";
+const PROMO_END = new Date("2026-11-01T00:00:00+07:00"); // berlaku s/d 31 Okt 2026, otomatis mati setelahnya
+
+// 1) Diskon Bundling: syarat minimal 1 TikTok + 1 IG (Feeds/Reels)
 const BUNDLE_DISCOUNT_RATE = 0.1;
 const BUNDLE_DISCOUNT_LABEL = "10%";
 
-// 2) Diskon Tier September: nominal, berdasarkan subtotal (semua paket + add on),
-//    berlaku untuk SEMUA pembelian (tidak wajib bundling). Hanya tier tertinggi yg dicapai yang berlaku.
-type SeptemberTier = {
-  id: number;
-  label: string;
-  minSubtotal: number;
-  discount: number;
-  bonus?: string;
-};
-
-const SEPTEMBER_TIERS: SeptemberTier[] = [
-  { id: 3, label: "Most Profitable", minSubtotal: 1500000, discount: 100000, bonus: "Free TikTok (Cabang Baboo Kos)" },
-  { id: 2, label: "Best Seller", minSubtotal: 1000000, discount: 75000, bonus: "Free Story Instagram 1x" },
-  { id: 1, label: "Starter Deal", minSubtotal: 500000, discount: 50000 },
-];
-
-function getActiveTier(subtotal: number): SeptemberTier | null {
-  return SEPTEMBER_TIERS.find((t) => subtotal >= t.minSubtotal) ?? null;
-}
-
-function getNextTier(subtotal: number): SeptemberTier | null {
-  const remaining = [...SEPTEMBER_TIERS].reverse().find((t) => subtotal < t.minSubtotal);
-  return remaining ?? null;
-}
+// 2) Diskon pembelian minimal, berlaku untuk semua pembelian (tidak wajib bundling)
+const MIN_PURCHASE_AMOUNT = 450000;
+const MIN_PURCHASE_RATE = 0.05;
+const MIN_PURCHASE_LABEL = "5%";
 // ==========================================================
 
 function StepCard({ step, title, children }: { step: number; title: string; children: React.ReactNode }) {
@@ -179,13 +162,13 @@ function SimulationContent() {
   const hasIgMain = selectedPackages.includes("ig_feed") || selectedPackages.includes("ig_reels");
   const isBundle = hasTikTok && hasIgMain;
 
-  // Promo September: Diskon Bundling 10% (jika bundling) + Diskon Tier (nominal, berdasarkan subtotal)
-  const bundleDiscount = isBundle ? subtotal * BUNDLE_DISCOUNT_RATE : 0;
-  const activeTier = useMemo(() => getActiveTier(subtotal), [subtotal]);
-  const nextTier = useMemo(() => getNextTier(subtotal), [subtotal]);
-  const tierDiscount = activeTier ? activeTier.discount : 0;
+  // Promo Oktober: Diskon Bundling 10% (jika bundling) + Diskon 5% (min. pembelian), keduanya dihitung dari subtotal
+  const isPromoActive = new Date() < PROMO_END;
 
-  const discount = bundleDiscount + tierDiscount;
+  const bundleDiscount = isPromoActive && isBundle ? subtotal * BUNDLE_DISCOUNT_RATE : 0;
+  const minPurchaseDiscount = isPromoActive && subtotal >= MIN_PURCHASE_AMOUNT ? subtotal * MIN_PURCHASE_RATE : 0;
+
+  const discount = bundleDiscount + minPurchaseDiscount;
   const total = subtotal - discount;
 
   // Cek apakah ada paket yang dipilih
@@ -242,15 +225,11 @@ function SimulationContent() {
       message += `Diskon Bundling (${BUNDLE_DISCOUNT_LABEL}): -Rp${formatPrice(bundleDiscount)}\n`;
     }
 
-    if (activeTier) {
-      message += `Diskon Tier September (${activeTier.label}): -Rp${formatPrice(tierDiscount)}\n`;
+    if (minPurchaseDiscount > 0) {
+      message += `Diskon ${MIN_PURCHASE_LABEL} (min. Rp${formatPrice(MIN_PURCHASE_AMOUNT)}): -Rp${formatPrice(minPurchaseDiscount)}\n`;
     }
 
     message += `Total Estimasi: *Rp${formatPrice(total)}*`;
-
-    if (activeTier?.bonus) {
-      message += `\n\nBonus didapatkan: ${activeTier.bonus} (mohon dikonfirmasi ya)`;
-    }
 
     return encodeURIComponent(message);
   };
@@ -443,9 +422,9 @@ function SimulationContent() {
             <div className="flex items-center gap-2 bg-[#F6F8F3] p-3 border border-[#E3EBCB] rounded-lg">
               <Info size={16} className="text-[#495C29] shrink-0" />
               <p className="text-[11px] text-zinc-600 md:text-xs">
-                <span className="font-bold">Special September:</span> paket bundling endorse TikTok + Instagram (Reels/Feeds) dapat <span className="font-bold">Diskon Bundling 10%</span>, ditambah{" "}
-                <span className="font-bold">Diskon Tier Khusus September</span> untuk semua pembelian — min. Rp500rb potongan Rp50rb, min. Rp1jt potongan Rp75rb + Free Story IG 1x, min. Rp1,5jt potongan Rp100rb + Free TikTok
-                (Cabang Baboo Kos).
+                <span className="font-bold">{PROMO_NAME}:</span> paket bundling endorse TikTok + Instagram (Reels/Feeds) dapat{" "}
+                <span className="font-bold">Diskon Bundling {BUNDLE_DISCOUNT_LABEL}</span>, ditambah{" "}
+                <span className="font-bold">Diskon {MIN_PURCHASE_LABEL}</span> untuk pembelian minimal Rp{formatPrice(MIN_PURCHASE_AMOUNT)}.
               </p>
             </div>
           </StepCard>
@@ -554,23 +533,21 @@ function SimulationContent() {
               )}
             </div>
 
-            {/* BADGE TIER SEPTEMBER TERCAPAI */}
-            {activeTier && (
+            {/* BADGE DISKON MIN. PEMBELIAN TERCAPAI */}
+            {minPurchaseDiscount > 0 && (
               <div className="flex items-start gap-2 bg-[#F3C546]/15 mt-4 p-3 border border-[#F3C546]/40 rounded-lg">
                 <Gift size={16} className="text-[#F3C546] shrink-0 mt-0.5" />
-                <div className="text-[11px] leading-relaxed">
-                  <p className="font-bold text-[#F3C546]">Tier {activeTier.label} tercapai! Potongan Rp{formatPrice(activeTier.discount)}</p>
-                  {activeTier.bonus && <p className="text-white/70">+ Bonus: {activeTier.bonus}</p>}
-                </div>
+                <p className="font-bold text-[#F3C546] text-[11px] leading-relaxed">
+                  Diskon {MIN_PURCHASE_LABEL} tercapai! Hemat Rp{formatPrice(minPurchaseDiscount)}
+                </p>
               </div>
             )}
 
-            {/* HINT MENUJU TIER BERIKUTNYA */}
-            {!activeTier && nextTier && hasSelectedPackages && (
-              <p className="mt-4 text-[10px] text-white/60 text-center">Tambah belanja Rp{formatPrice(nextTier.minSubtotal - subtotal)} lagi untuk dapat potongan Rp{formatPrice(nextTier.discount)}!</p>
-            )}
-            {activeTier && nextTier && (
-              <p className="mt-3 text-[10px] text-white/60 text-center">Tambah Rp{formatPrice(nextTier.minSubtotal - subtotal)} lagi untuk naik ke potongan Rp{formatPrice(nextTier.discount)}!</p>
+            {/* HINT MENUJU DISKON */}
+            {isPromoActive && hasSelectedPackages && subtotal < MIN_PURCHASE_AMOUNT && (
+              <p className="mt-4 text-[10px] text-white/60 text-center">
+                Tambah belanja Rp{formatPrice(MIN_PURCHASE_AMOUNT - subtotal)} lagi untuk dapat diskon {MIN_PURCHASE_LABEL}!
+              </p>
             )}
 
             <div className="my-6 border-white/20 border-t" />
@@ -586,10 +563,10 @@ function SimulationContent() {
                   <span className="font-bold">- Rp{formatPrice(bundleDiscount)}</span>
                 </div>
               )}
-              {tierDiscount > 0 && (
+              {minPurchaseDiscount > 0 && (
                 <div className="flex justify-between text-[#B3CF58]">
-                  <span>Diskon Tier September</span>
-                  <span className="font-bold">- Rp{formatPrice(tierDiscount)}</span>
+                  <span>Diskon {MIN_PURCHASE_LABEL}</span>
+                  <span className="font-bold">- Rp{formatPrice(minPurchaseDiscount)}</span>
                 </div>
               )}
             </div>
@@ -631,9 +608,9 @@ function SimulationContent() {
                 </span>
               </div>
 
-              {/* BADGE BARU: AUDIENCE ORGANIK */}
+              {/* BADGE: AUDIENCE ORGANIK */}
               <div className="flex flex-col items-center gap-1.5 text-center">
-                <svg stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" className="w-[18px] h-[18px]" xmlns="https://www.w3.org/2000/svg">
+                <svg stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" className="w-[18px] h-[18px]" xmlns="http://www.w3.org/2000/svg">
                   <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
                   <circle cx="9" cy="7" r="4" />
                   <path d="M22 21v-2a4 4 0 0 0-3-3.87" />

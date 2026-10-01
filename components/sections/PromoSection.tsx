@@ -89,7 +89,7 @@ export default function PromoSection() {
         {/* Image Promotion */}
         <div className={cn("relative w-full max-w-[860px] rounded-[1.75rem] overflow-hidden shadow-sm hover:shadow-md transition-all duration-700 ease-out delay-500", isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0")}>
           <a href="#calculation" className="block">
-            <Image src="/promo-september.webp" alt="Promo September" width={2976} height={1674} className="w-full h-auto" priority />
+            <Image src="/promo-oktober.webp" alt="Promo September" width={2976} height={1674} className="w-full h-auto" priority />
           </a>
         </div>
       </div>
