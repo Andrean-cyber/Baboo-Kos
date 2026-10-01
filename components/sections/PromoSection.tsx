@@ -9,16 +9,16 @@ import { Sparkles, Tag, CheckCircle, Zap, Gift } from "lucide-react";
 // MARQUEE ITEMS
 // ========================
 const marqueeItems = [
-  { label: "Bundle Merdeka", icon: <Tag size={14} /> },
-  { label: "Hemat 17%", icon: <Sparkles size={14} /> },
+  { label: "Diskon 5%", icon: <Tag size={14} /> },
+  { label: "Hemat 15%", icon: <Sparkles size={14} /> },
   { label: "TikTok + Instagram", icon: <Zap size={14} /> },
   { label: "Paket Hemat Tersedia", icon: <Gift size={14} /> },
-  { label: "Promo Aktif Sekarang", icon: <CheckCircle size={14} /> },
-  { label: "Bundle Merdeka", icon: <Tag size={14} /> },
-  { label: "Hemat 17%", icon: <Sparkles size={14} /> },
+  { label: "Promo Oktober", icon: <CheckCircle size={14} /> },
+  { label: "Diskon 5%", icon: <Tag size={14} /> },
+  { label: "Hemat 15%", icon: <Sparkles size={14} /> },
   { label: "TikTok + Instagram", icon: <Zap size={14} /> },
   { label: "Paket Hemat Tersedia", icon: <Gift size={14} /> },
-  { label: "Promo Aktif Sekarang", icon: <CheckCircle size={14} /> },
+  { label: "Promo Oktober", icon: <CheckCircle size={14} /> },
 ];
 
 // ========================
