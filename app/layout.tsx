@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     },
   },
 
-  // CATATAN: `alternates.canonical` sengaja dihapus dari layout.
+  // CATATAN: `alternates.canonical` sengaja tidak diset di layout.
   // Taruh canonical di masing-masing halaman (lihat app/page.tsx).
 
   openGraph: {
@@ -94,16 +94,9 @@ export const metadata: Metadata = {
   },
 };
 
-// JSON-LD: WebSite (dipakai Google untuk site name)
-const websiteSchema = {
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  name: "Baboo Kos",
-  alternateName: ["BabooKos", "Baboo Kos Malang"],
-  url: "https://babookos.com/",
-};
-
-// JSON-LD: Organization
+// JSON-LD: Organization (aman dipasang di semua halaman).
+// Schema WebSite sengaja TIDAK di sini, melainkan hanya di app/page.tsx
+// (homepage), sesuai panduan Google untuk nama situs.
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
@@ -136,12 +129,6 @@ export default function RootLayout({
       style={{ colorScheme: "light" }}
     >
       <body className="bg-[#F5F5F2] overflow-x-hidden font-sans text-zinc-900 antialiased">
-        {/* Website Schema */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: toJsonLd(websiteSchema) }}
-        />
-
         {/* Organization Schema */}
         <script
           type="application/ld+json"
