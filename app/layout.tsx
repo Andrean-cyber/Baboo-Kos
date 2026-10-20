@@ -101,7 +101,7 @@ const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: "Baboo Kos",
-  alternateName: "BabooKos",
+  alternateName: "Baboo Kos", // Ubah dari "BabooKos" menjadi "Baboo Kos Indonesia"
   url: "https://babookos.com/",
   logo: "https://babookos.com/icon.png",
   sameAs: [

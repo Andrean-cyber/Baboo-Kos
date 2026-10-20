@@ -20,7 +20,7 @@ const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   name: "Baboo Kos",
-  alternateName: ["BabooKos"],
+  alternateName: ["Baboo Kos Indonesia", "Baboo Kos Official"],
   url: "https://babookos.com/",
 };
 
