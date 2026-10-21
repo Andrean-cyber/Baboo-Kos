@@ -187,14 +187,14 @@ export default function FollowOurJourney() {
             <div className="flex items-center gap-6 text-center shrink-0">
               <div className="flex flex-col">
                 <span className="font-bold text-zinc-900 text-sm">
-                  <CountUp end={67} />
+                  <CountUp end={95} />
                 </span>
                 <span className="text-[10px] text-zinc-500">Posts</span>
               </div>
 
               <div className="flex flex-col">
                 <span className="font-bold text-zinc-900 text-sm">
-                  <CountUp end={99} />
+                  <CountUp end={106} />
                 </span>
                 <span className="text-[10px] text-zinc-500">Followers</span>
               </div>
@@ -271,7 +271,7 @@ export default function FollowOurJourney() {
 
               <div className="flex flex-col">
                 <span className="font-bold text-zinc-900 text-sm">
-                  <CountUp end={1080} />
+                  <CountUp end={1615} />
                 </span>
                 <span className="text-[10px] text-zinc-500">Likes</span>
               </div>
